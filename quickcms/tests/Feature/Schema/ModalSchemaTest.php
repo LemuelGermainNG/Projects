@@ -41,3 +41,18 @@ it('compiles a modal schema', function (): void {
         ],
     ]);
 });
+
+it('is immutable', function (): void {
+    $modal = ModalSchema::make();
+
+    $updated = $modal->title('My modal');
+
+    expect($updated)
+        ->not->toBe($modal);
+
+    expect($modal->title())
+        ->toBe('');
+
+    expect($updated->title())
+        ->toBe('My modal');
+});

@@ -22,4 +22,13 @@ abstract class Schema
     {
         return get_object_vars($this);
     }
+
+    protected function with(string $property,mixed $value): static
+    {
+        $clone = clone $this;
+
+        $clone->{$property} = $value;
+
+        return $clone;
+    }
 }

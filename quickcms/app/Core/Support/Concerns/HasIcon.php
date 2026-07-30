@@ -4,24 +4,19 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use Closure;
+
 trait HasIcon
 {
-    /**
-     * Schema icon.
-     */
-    protected ?string $icon = null;
+    protected string|Closure|null $icon = null;
 
-    /**
-     * Get or set the schema icon.
-     */
-    public function icon(?string $icon = null): string|static|null
-    {
+    public function icon(
+        string|Closure|null $icon = null,
+    ): string|Closure|static|null {
         if ($icon === null) {
             return $this->icon;
         }
 
-        $this->icon = $icon;
-
-        return $this;
+        return $this->with('icon', $icon);
     }
 }

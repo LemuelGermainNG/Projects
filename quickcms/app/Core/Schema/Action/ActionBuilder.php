@@ -25,34 +25,26 @@ final class ActionBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'id' => $schema->id(),
-            'name' => $schema->name(),
-            'label' => $schema->label(),
-            'icon' => $schema->icon(),
-            'tooltip' => $schema->tooltip(),
+            'type' => 'action',
 
-            'visible' => $schema->visible(),
-            'disabled' => $schema->disabled(),
+            'label' => $this->evaluate($schema->label()),
 
-            'type' => $schema->type()->value,
-            'trigger' => $schema->trigger()->value,
+            'icon' => $this->evaluate($schema->icon()),
 
-            'color' => $schema->color()->value,
-            'size' => $schema->size()->value,
-            'target' => $schema->target()->value,
-
-            'url' => $schema->url(),
-
-            'attributes' => $schema->attributes(),
-
-            'event' => $schema->event(),
+            'color' => $this->evaluate($schema->color())?->value,
 
             'modal' => $schema->modal() !== null
-                ? $this->registry->build($schema->modal())
+                ? $this->registry->build(
+                    $schema->modal(),
+                    $this->context,
+                )
                 : null,
 
             'confirmation' => $schema->confirmation() !== null
-                ? $this->registry->build($schema->confirmation())
+                ? $this->registry->build(
+                    $schema->confirmation(),
+                    $this->context,
+                )
                 : null,
         ];
     }

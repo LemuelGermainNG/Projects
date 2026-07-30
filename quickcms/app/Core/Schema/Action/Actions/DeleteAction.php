@@ -6,17 +6,19 @@ namespace App\Core\Schema\Action\Actions;
 
 use App\Core\Schema\Action\Enums\ActionTrigger;
 use App\Core\Support\Enums\Color;
+use Closure;
 
 final class DeleteAction extends Action
 {
-    protected function configure(): void
-    {
-        $this
-            ->id('delete')
-            ->name('delete')
-            ->label('Delete')
-            ->icon('heroicon-o-trash')
-            ->color(Color::Danger)
-            ->trigger(ActionTrigger::Request);
-    }
+    protected string $id = 'delete';
+
+    protected string $name = 'delete';
+
+    protected string|Closure $label = 'Delete';
+
+    protected string|Closure|null $icon = 'heroicon-o-trash';
+
+    protected Color|Closure $color = Color::Danger;
+
+    protected ActionTrigger $trigger = ActionTrigger::Request;
 }

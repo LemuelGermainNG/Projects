@@ -26,10 +26,12 @@ trait HasAttributes
     /**
      * Set an HTML attribute.
      */
-    public function attribute(string $key, mixed $value): static
+    public function attribute(string $key,mixed $value,): static
     {
-        $this->attributes[$key] = $value;
+        $clone = clone $this;
 
-        return $this;
+        $clone->attributes[$key] = $value;
+
+        return $clone;
     }
 }

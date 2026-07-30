@@ -5,26 +5,19 @@ declare(strict_types=1);
 namespace App\Core\Support\Concerns;
 
 use App\Core\Support\Enums\Color;
+use Closure;
 
 trait HasColor
 {
-    /**
-     *  color.
-     */
-    protected Color $color = Color::Primary;
+    protected Color|Closure $color = Color::Primary;
 
-    /**
-     * Get or set the  color.
-     */
     public function color(
-        ?Color $color = null,
-    ): Color|static {
+        Color|Closure|null $color = null,
+    ): Color|Closure|static {
         if ($color === null) {
             return $this->color;
         }
 
-        $this->color = $color;
-
-        return $this;
+        return $this->with('color', $color);
     }
 }

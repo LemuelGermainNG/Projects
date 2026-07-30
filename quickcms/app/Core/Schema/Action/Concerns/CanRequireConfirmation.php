@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace App\Core\Schema\Action\Concerns;
 
-use App\Core\Schema\Modal\ConfirmationSchema;
+use App\Core\Schema\Confirm\ConfirmSchema;
 
 trait CanRequireConfirmation
 {
     /**
      * Action confirmation.
      */
-    protected ?ConfirmationSchema $confirmation = null;
+    protected ?ConfirmSchema $confirmation = null;
 
     /**
      * Get or set the confirmation dialog.
      */
     public function confirmation(
-        ?ConfirmationSchema $confirmation = null,
-    ): ConfirmationSchema|static|null {
+        ?ConfirmSchema $confirmation = null,
+    ): ConfirmSchema|static|null {
         if ($confirmation === null) {
             return $this->confirmation;
         }

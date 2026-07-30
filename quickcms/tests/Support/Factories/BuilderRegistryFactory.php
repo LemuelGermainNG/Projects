@@ -6,6 +6,7 @@ namespace Tests\Support\Factories;
 
 use App\Core\Builder\BuilderDiscovery;
 use App\Core\Builder\BuilderRegistry;
+use App\Core\Support\Discovery\ClassDiscovery;
 
 final class BuilderRegistryFactory
 {
@@ -13,7 +14,9 @@ final class BuilderRegistryFactory
     {
         $registry = new BuilderRegistry();
 
-        $builders = (new BuilderDiscovery())
+        // Grâce à la découverte hybride dans ClassDiscovery,
+        // tous les builders du dossier Core/ seront bien trouvés pendant les tests !
+        $builders = (new BuilderDiscovery(new ClassDiscovery()))
             ->discover(app_path('Core'));
 
         foreach ($builders as $schema => $builder) {

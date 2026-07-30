@@ -5,127 +5,131 @@ declare(strict_types=1);
 namespace App\Core\Schema\Modal;
 
 use App\Core\Schema\Schema;
+use App\Core\Support\Concerns\HasSize;
 use App\Core\Support\Enums\Position;
-use App\Core\Support\Enums\Size;
 
 final class ModalSchema extends Schema
 {
-    public function __construct(
-        protected string $title = '',
-        protected ?string $description = null,
-        protected Size $size = Size::Medium,
-        protected Position $position = Position::Center,
-        protected bool $closable = true,
-        protected bool $closeOnEscape = true,
-        protected bool $closeOnBackdrop = true,
-        protected bool $stickyHeader = false,
-        protected bool $stickyFooter = false,
-        protected Schema|string|array|null $content = null,
-        protected array $props = [],
-    ) {
+    use HasSize;
+
+    protected string $title = '';
+
+    protected ?string $description = null;
+
+    protected Position $position = Position::Center;
+
+    protected bool $closable = true;
+
+    protected bool $closeOnEscape = true;
+
+    protected bool $closeOnBackdrop = true;
+
+    protected bool $stickyHeader = false;
+
+    protected bool $stickyFooter = false;
+
+    protected Schema|string|array|null $content = null;
+
+    protected array $props = [];
+
+    public static function make(): static
+    {
+        return new static();
     }
 
-    public static function make(): self
+    public function title(?string $title = null): string|static
     {
-        return new self();
+        if (func_num_args() === 0) {
+            return $this->title;
+        }
+
+        return $this->with('title', $title);
     }
 
-    public function title(string $title): self
+    public function description(?string $description = null): string|static|null
     {
-        $clone = clone $this;
+        if (func_num_args() === 0) {
+            return $this->description;
+        }
 
-        $clone->title = $title;
-
-        return $clone;
+        return $this->with('description', $description);
     }
 
-    public function description(?string $description): self
+    public function position(?Position $position = null): Position|static
     {
-        $clone = clone $this;
+        if (func_num_args() === 0) {
+            return $this->position;
+        }
 
-        $clone->description = $description;
-
-        return $clone;
+        return $this->with('position', $position);
     }
 
-    public function size(Size $size): self
+    public function closable(bool $enabled = true): static
     {
-        $clone = clone $this;
-
-        $clone->size = $size;
-
-        return $clone;
+        return $this->with('closable', $enabled);
     }
 
-    public function position(Position $position): self
+    public function isClosable(): bool
     {
-        $clone = clone $this;
-
-        $clone->position = $position;
-
-        return $clone;
+        return $this->closable;
     }
 
-    public function closable(bool $closable = true): self
+    public function closeOnEscape(bool $enabled = true): static
     {
-        $clone = clone $this;
-
-        $clone->closable = $closable;
-
-        return $clone;
+        return $this->with('closeOnEscape', $enabled);
     }
 
-    public function closeOnEscape(bool $closeOnEscape = true): self
+    public function closesOnEscape(): bool
     {
-        $clone = clone $this;
-
-        $clone->closeOnEscape = $closeOnEscape;
-
-        return $clone;
+        return $this->closeOnEscape;
     }
 
-    public function closeOnBackdrop(bool $closeOnBackdrop = true): self
+    public function closeOnBackdrop(bool $enabled = true): static
     {
-        $clone = clone $this;
-
-        $clone->closeOnBackdrop = $closeOnBackdrop;
-
-        return $clone;
+        return $this->with('closeOnBackdrop', $enabled);
     }
 
-    public function stickyHeader(bool $stickyHeader = true): self
+    public function closesOnBackdrop(): bool
     {
-        $clone = clone $this;
-
-        $clone->stickyHeader = $stickyHeader;
-
-        return $clone;
+        return $this->closeOnBackdrop;
     }
 
-    public function stickyFooter(bool $stickyFooter = true): self
+    public function stickyHeader(bool $enabled = true): static
     {
-        $clone = clone $this;
-
-        $clone->stickyFooter = $stickyFooter;
-
-        return $clone;
+        return $this->with('stickyHeader', $enabled);
     }
 
-    public function content(Schema|string|array|null $content): self
+    public function hasStickyHeader(): bool
     {
-        $clone = clone $this;
-
-        $clone->content = $content;
-
-        return $clone;
+        return $this->stickyHeader;
     }
 
-    public function props(array $props): self
+    public function stickyFooter(bool $enabled = true): static
     {
-        $clone = clone $this;
+        return $this->with('stickyFooter', $enabled);
+    }
 
-        $clone->props = $props;
+    public function hasStickyFooter(): bool
+    {
+        return $this->stickyFooter;
+    }
 
-        return $clone;
+    public function content(
+        Schema|string|array|null $content = null,
+    ): Schema|string|array|static|null {
+        if (func_num_args() === 0) {
+            return $this->content;
+        }
+
+        return $this->with('content', $content);
+    }
+
+    public function props(?array $props = null): array|static
+    {
+        if (func_num_args() === 0) {
+            return $this->props;
+        }
+
+        return $this->with('props', $props);
     }
 }

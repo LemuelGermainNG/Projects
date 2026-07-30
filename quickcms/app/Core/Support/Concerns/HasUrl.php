@@ -4,24 +4,19 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use Closure;
+
 trait HasUrl
 {
-    /**
-     * Schema URL.
-     */
-    protected ?string $url = null;
+    protected string|Closure|null $url = null;
 
-    /**
-     * Get or set the schema URL.
-     */
-    public function url(?string $url = null): string|static|null
-    {
+    public function url(
+        string|Closure|null $url = null,
+    ): string|Closure|static|null {
         if ($url === null) {
             return $this->url;
         }
 
-        $this->url = $url;
-
-        return $this;
+        return $this->with('url', $url);
     }
 }

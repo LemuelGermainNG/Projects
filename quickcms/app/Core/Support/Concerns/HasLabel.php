@@ -4,24 +4,19 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use Closure;
+
 trait HasLabel
 {
-    /**
-     * Schema label.
-     */
-    protected string $label;
+    protected string|Closure $label = '';
 
-    /**
-     * Get or set the schema label.
-     */
-    public function label(?string $label = null): string|static
-    {
+    public function label(
+        string|Closure|null $label = null,
+    ): string|Closure|static {
         if ($label === null) {
             return $this->label;
         }
 
-        $this->label = $label;
-
-        return $this;
+        return $this->with('label', $label);
     }
 }

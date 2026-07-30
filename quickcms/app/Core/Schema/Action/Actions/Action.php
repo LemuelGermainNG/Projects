@@ -8,16 +8,4 @@ use App\Core\Schema\Action\ActionSchema;
 
 abstract class Action extends ActionSchema
 {
-    /**
-     * Create a new action instance.
-     */
-    public function __construct()
-    {
-        $this->configure();
-    }
-
-    /**
-     * Configure the action defaults.
-     */
-    abstract protected function configure(): void;
 }

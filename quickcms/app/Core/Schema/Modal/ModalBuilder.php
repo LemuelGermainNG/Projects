@@ -18,13 +18,27 @@ final class ModalBuilder extends Builder
     {
         $values = $this->schema->values();
 
-        $values['content'] = $this->compileContent(
-            $values['content'] ?? null,
-        );
-
         return [
             'type' => 'modal',
-            ...$values,
+
+            'title' => $values['title'],
+            'description' => $values['description'],
+
+            'size' => $values['size'],
+            'position' => $values['position'],
+
+            'closable' => $values['closable'],
+            'closeOnEscape' => $values['closeOnEscape'],
+            'closeOnBackdrop' => $values['closeOnBackdrop'],
+
+            'stickyHeader' => $values['stickyHeader'],
+            'stickyFooter' => $values['stickyFooter'],
+
+            'content' => $this->compileContent(
+                $values['content'] ?? null,
+            ),
+
+            'props' => $values['props'],
         ];
     }
 
@@ -35,13 +49,19 @@ final class ModalBuilder extends Builder
         Schema|string|array|null $content,
     ): Schema|string|array|null {
         if ($content instanceof Schema) {
-            return $this->registry->build($content);
+            return $this->registry->build(
+                $content,
+                $this->context,
+            );
         }
 
         if (is_array($content)) {
             return array_map(
                 fn (mixed $item): mixed => $item instanceof Schema
-                    ? $this->registry->build($item)
+                    ? $this->registry->build(
+                        $item,
+                        $this->context,
+                    )
                     : $item,
                 $content,
             );

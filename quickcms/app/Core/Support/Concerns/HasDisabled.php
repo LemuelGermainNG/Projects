@@ -4,24 +4,19 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use Closure;
+
 trait HasDisabled
 {
-    /**
-     * Whether the schema is disabled.
-     */
-    protected bool $disabled = false;
+    protected bool|Closure $disabled = false;
 
-    /**
-     * Get or set whether the schema is disabled.
-     */
-    public function disabled(?bool $disabled = null): bool|static
-    {
+    public function disabled(
+        bool|Closure|null $disabled = null,
+    ): bool|Closure|static {
         if ($disabled === null) {
             return $this->disabled;
         }
 
-        $this->disabled = $disabled;
-
-        return $this;
+        return $this->with('disabled', $disabled);
     }
 }

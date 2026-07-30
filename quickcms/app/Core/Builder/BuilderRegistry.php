@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Builder;
 
 use App\Core\Schema\Schema;
+use App\Core\Support\Contracts\EvaluationContextInterface;
+use App\Core\Support\Contexts\EvaluationContext;
 use InvalidArgumentException;
 
 final class BuilderRegistry
@@ -34,13 +36,16 @@ final class BuilderRegistry
     /**
      * Compile a schema.
      */
-    public function build(Schema $schema): array
+    public function build(Schema $schema, ?EvaluationContextInterface $context = null): array
     {
         $builder = $this->resolve($schema);
+
+        $context ??= new EvaluationContext();
 
         return new $builder(
             $schema,
             $this,
+            $context,
         )->build();
     }
 

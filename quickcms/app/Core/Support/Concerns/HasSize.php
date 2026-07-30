@@ -17,15 +17,12 @@ trait HasSize
     /**
      * Get or set the  size.
      */
-    public function size(
-        ?Size $size = null,
-    ): Size|static {
+    public function size(?Size $size = null): Size|static
+    {
         if ($size === null) {
             return $this->size;
         }
 
-        $this->size = $size;
-
-        return $this;
+        return $this->with('size', $size);
     }
 }

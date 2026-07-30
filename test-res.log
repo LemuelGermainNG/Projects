@@ -1,0 +1,268 @@
+dmtb@CET-CT74197:~/dev/Projects/quickcms$ composer test
+
+   INFO  Configuration cache cleared successfully.  
+
+PHP Warning:  The use statement with non-compound name 'InvalidArgumentException' has no effect in /home/dmtb/dev/Projects/quickcms/tests/Unit/Builder/BuilderDiscoveryTest.php on line 6
+PHP Warning:  The use statement with non-compound name 'RuntimeException' has no effect in /home/dmtb/dev/Projects/quickcms/tests/Feature/Application/ApplicationBuilderTest.php on line 9
+
+   PASS  Tests\Unit\Builder\BuilderCacheTest
+  ✓ it does not exist by default
+  ✓ it stores builders
+  ✓ it loads builders
+  ✓ it returns an empty array when the cache does not exist
+  ✓ it clears the cache
+
+   PASS  Tests\Unit\Builder\BuilderDiscoveryTest
+  ✓ it registers a builder                                               0.01s  
+  ✓ it returns all registered builders
+  ✓ it builds a schema
+  ✓ it throws an exception when no builder is registered
+
+   PASS  Tests\Feature\Application\ApplicationBuilderTest
+  ✓ it throws an exception when the application is not registered        0.08s  
+  ✓ it builds an application schema                                      0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationContextTest
+  ✓ it creates an application context                                    0.02s  
+  ✓ it registers an application                                          0.01s  
+  ✓ it registers pages                                                   0.01s  
+  ✓ it registers navigation                                              0.01s  
+  ✓ it supports fluent configuration                                     0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationMetadataTest
+  ✓ it creates application metadata                                      0.03s  
+  ✓ it sets the id                                                       0.01s  
+  ✓ it sets the name                                                     0.01s  
+  ✓ it sets the path                                                     0.01s  
+  ✓ it sets the layout                                                   0.01s  
+  ✓ it converts metadata to an array                                     0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationRegistryTest
+  ✓ it registers an application                                          0.04s  
+  ✓ it returns null for an unknown application                           0.01s  
+  ✓ it determines whether an application exists                          0.01s  
+  ✓ it registers pages                                                   0.01s  
+  ✓ it registers navigation                                              0.01s  
+  ✓ it returns an empty page list for an unknown application             0.01s  
+  ✓ it returns an empty navigation list for an unknown application       0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationTest
+  ✓ it creates an application context                                    0.04s  
+  ✓ it creates an application context for specific applications          0.01s  
+  ✓ it finds a registered application                                    0.01s  
+  ✓ it returns null when the application does not exist                  0.01s  
+
+   FAIL  Tests\Feature\Schema\Action\ActionBuilderTest
+  ✓ it creates an action schema                                          0.03s  
+  ⨯ it compiles an action schema                                         0.02s  
+  ⨯ it compiles an action with a modal and confirmation                  0.02s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Action\ActionSchemaTest
+  ✓ it creates an action schema                                          0.02s  
+  ✓ it sets the id                                                       0.01s  
+  ✓ it sets the name                                                     0.01s  
+  ✓ it sets the label                                                    0.01s  
+  ✓ it sets the icon                                                     0.01s  
+  ✓ it sets the tooltip                                                  0.01s  
+  ✓ it sets the url                                                      0.01s  
+  ✓ it stores custom attributes                                          0.01s  
+  ✓ it sets the color                                                    0.01s  
+  ✓ it sets the size                                                     0.01s  
+  ✓ it sets the target                                                   0.01s  
+  ✓ it sets the trigger                                                  0.01s  
+  ✓ it sets the type                                                     0.01s  
+  ✓ it sets the visibility                                               0.01s  
+  ✓ it sets the disabled state                                           0.01s  
+
+   PASS  Tests\Feature\Schema\Action\CancelActionTest
+  ✓ it creates a cancel action                                           0.08s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\CreateActionTest
+  ✓ it creates a create action                                           0.04s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\DeleteActionTest
+  ✓ it creates a delete action                                           0.05s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\EditActionTest
+  ✓ it creates an edit action                                            0.05s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\SaveActionTest
+  ✓ it creates a save action                                             0.04s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\ViewActionTest
+  ✓ it creates a view action                                             0.05s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it inherits the default color                                        0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\BrandSchemaTest
+  ✓ it creates a brand schema                                            0.05s  
+  ✓ it compiles a brand schema                                           0.02s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\ConfirmSchemaTest
+  ✓ it creates a confirmation schema                                     0.02s  
+  ✓ it compiles a confirmation schema                                    0.02s  
+  ✓ it is immutable                                                      0.01s  
+
+   FAIL  Tests\Feature\Schema\ModalSchemaTest
+  ⨯ it compiles a modal schema                                           0.02s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Action\ActionBuilderTest > it compiles an ac…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'action',
+  -    'id' => '',
+       'label' => 'Edit',
+       'icon' => 'heroicon-o-pencil',
+  -    'tooltip' => null,
+  -    'visible' => true,
+  -    'disabled' => false,
+       'color' => 'primary',
+  -    'url' => null,
+  -    'attributes' => Array &1 [],
+  -    'event' => null,
+       'modal' => null,
+       'confirmation' => null,
+   ]
+  
+
+  at tests/Feature/Schema/Action/ActionBuilderTest.php:27
+     23▕     expect(
+     24▕         $action->compile(
+     25▕             BuilderRegistryFactory::make(),
+     26▕         ),
+  ➜  27▕     )->toBe([
+     28▕         'type' => 'action',
+     29▕         'id' => '',
+     30▕         'label' => 'Edit',
+     31▕         'icon' => 'heroicon-o-pencil',
+
+  1   tests/Feature/Schema/Action/ActionBuilderTest.php:27
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Action\ActionBuilderTest > it compiles an ac…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'action',
+  -    'id' => '',
+       'label' => 'Delete',
+       'icon' => 'heroicon-o-trash',
+  -    'tooltip' => null,
+  -    'visible' => true,
+  -    'disabled' => false,
+       'color' => 'danger',
+  -    'url' => null,
+  -    'attributes' => Array &1 [],
+  -    'event' => null,
+  -    'modal' => Array &2 [
+  +    'modal' => Array &1 [
+           'type' => 'modal',
+           'title' => 'Delete user',
+           'description' => null,
+  -        'size' => null,
+  -        'position' => null,
+  +        'size' => App\Core\Support\Enums\Size Enum #6868 (Medium, 'md'),
+  +        'position' => App\Core\Support\Enums\Position Enum #5958 (Center, 'center'),
+           'closable' => true,
+           'closeOnEscape' => true,
+           'closeOnBackdrop' => true,
+  -        'stickyHeader' => true,
+  -        'stickyFooter' => true,
+  +        'stickyHeader' => false,
+  +        'stickyFooter' => false,
+           'content' => 'Are you sure?',
+  -        'props' => Array &3 [],
+  +        'props' => Array &2 [],
+       ],
+  -    'confirmation' => Array &4 [
+  +    'confirmation' => Array &3 [
+           'type' => 'confirm',
+           'title' => 'Confirmation',
+           'description' => 'This action cannot be undone.',
+  @@ @@
+           'confirmLabel' => 'Delete',
+           'cancelLabel' => 'Cancel',
+           'icon' => null,
+  -        'color' => null,
+  -        'props' => Array &5 [],
+  +        'color' => 'primary',
+  +        'props' => Array &4 [],
+       ],
+   ]
+  
+
+  at tests/Feature/Schema/Action/ActionBuilderTest.php:66
+     62▕     expect(
+     63▕         $action->compile(
+     64▕             BuilderRegistryFactory::make(),
+     65▕         ),
+  ➜  66▕     )->toBe([
+     67▕         'type' => 'action',
+     68▕         'id' => '',
+     69▕         'label' => 'Delete',
+     70▕         'icon' => 'heroicon-o-trash',
+
+  1   tests/Feature/Schema/Action/ActionBuilderTest.php:66
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\ModalSchemaTest > it compiles a modal…  Error   
+  Call to a member function stickyFooter() on false
+
+  at tests/Feature/Schema/ModalSchemaTest.php:17
+     13▕         ->description('This action cannot be undone.')
+     14▕         ->size(Size::Large)
+     15▕         ->position(Position::Right)
+     16▕         ->stickyHeader()
+  ➜  17▕         ->stickyFooter()
+     18▕         ->content('Hello World')
+     19▕         ->props([
+     20▕             'persistent' => true,
+     21▕         ]);
+
+  1   tests/Feature/Schema/ModalSchemaTest.php:17
+
+
+  Tests:    3 failed, 103 passed (126 assertions)
+  Duration: 1.28s
+
+Script @php artisan test handling the test event returned with error code 2

@@ -9,7 +9,7 @@ trait HasName
     /**
      * Schema name.
      */
-    protected string $name;
+    protected string $name = '';
 
     /**
      * Get or set the schema name.
@@ -20,8 +20,6 @@ trait HasName
             return $this->name;
         }
 
-        $this->name = $name;
-
-        return $this;
+        return $this->with('name', $name);
     }
 }

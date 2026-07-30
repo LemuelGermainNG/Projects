@@ -9,7 +9,7 @@ trait HasId
     /**
      * Schema identifier.
      */
-    protected string $id;
+    protected string $id = '';
 
     /**
      * Get or set the schema identifier.
@@ -20,8 +20,6 @@ trait HasId
             return $this->id;
         }
 
-        $this->id = $id;
-
-        return $this;
+        return $this->with('id', $id);
     }
 }

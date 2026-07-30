@@ -16,15 +16,12 @@ trait HasTarget
     /**
      * Get or set the  target.
      */
-    public function target(
-        ?Target $target = null,
-    ): Target|static {
+    public function target(?Target $target = null): Target|static
+    {
         if ($target === null) {
             return $this->target;
         }
 
-        $this->target = $target;
-
-        return $this;
+        return $this->with('target', $target);
     }
 }
