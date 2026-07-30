@@ -8,42 +8,36 @@ use App\Core\Schema\Schema;
 
 final class BrandSchema extends Schema
 {
-    public function __construct(
-        protected string $name = '',
-        protected ?string $logo = null,
-        protected ?string $favicon = null,
-    ) {
+    protected string $name = '';
+
+    protected ?string $logo = null;
+
+    protected ?string $favicon = null;
+
+    public function name(?string $name = null): string|static
+    {
+        if (func_num_args() === 0) {
+            return $this->name;
+        }
+
+        return $this->with('name', $name);
     }
 
-    public static function make(): self
+    public function logo(?string $logo = null): string|static|null
     {
-        return new self();
+        if (func_num_args() === 0) {
+            return $this->logo;
+        }
+
+        return $this->with('logo', $logo);
     }
 
-    public function name(string $name): self
+    public function favicon(?string $favicon = null): string|static|null
     {
-        $clone = clone $this;
+        if (func_num_args() === 0) {
+            return $this->favicon;
+        }
 
-        $clone->name = $name;
-
-        return $clone;
-    }
-
-    public function logo(?string $logo): self
-    {
-        $clone = clone $this;
-
-        $clone->logo = $logo;
-
-        return $clone;
-    }
-
-    public function favicon(?string $favicon): self
-    {
-        $clone = clone $this;
-
-        $clone->favicon = $favicon;
-
-        return $clone;
+        return $this->with('favicon', $favicon);
     }
 }

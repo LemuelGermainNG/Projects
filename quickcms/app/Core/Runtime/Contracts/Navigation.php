@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Runtime\Contracts;
 
-use App\Core\Schema\Contracts\NavigationSchema;
+use App\Core\Schema\Navigation\NavigationSchema;
+
 
 interface Navigation
 {

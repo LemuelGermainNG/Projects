@@ -6,65 +6,58 @@ namespace App\Core\Schema\Application;
 
 use App\Core\Schema\Brand\BrandSchema;
 use App\Core\Schema\Schema;
+use App\Core\Support\Concerns\HasProps;
 
 final class ApplicationSchema extends Schema
 {
-    public function __construct(
-        protected ?BrandSchema $brand = null,
-        protected array $props = [],
-        protected array $pages = [],
-        protected array $navigation = [],
-    ) {
+    use HasProps;
+
+    protected ?BrandSchema $brand = null;
+
+    /**
+     * @var array<class-string>
+     */
+    protected array $pages = [];
+
+    /**
+     * @var array<class-string>
+     */
+    protected array $navigation = [];
+
+    public function brand(?BrandSchema $brand = null): BrandSchema|static|null
+    {
+        if (func_num_args() === 0) {
+            return $this->brand;
+        }
+
+        return $this->with('brand', $brand);
     }
 
-    public static function make(): self
+    /**
+     * @param array<class-string>|null $pages
+     *
+     * @return array<class-string>|static
+     */
+    public function pages(?array $pages = null): array|static
     {
-        return new self();
+        if (func_num_args() === 0) {
+            return $this->pages;
+        }
+
+        return $this->with('pages', $pages);
     }
 
-    public function brand(BrandSchema $brand): self
+    /**
+     * @param array<class-string>|null $navigation
+     *
+     * @return array<class-string>|static
+     */
+    public function navigation(?array $navigation = null): array|static
     {
-        $clone = clone $this;
+        if (func_num_args() === 0) {
+            return $this->navigation;
+        }
 
-        $clone->brand = $brand;
-
-        return $clone;
-    }
-
-    public function props(array $props): self
-    {
-        $clone = clone $this;
-
-        $clone->props = $props;
-
-        return $clone;
-    }
-
-    public function pages(array $pages): self
-    {
-        $clone = clone $this;
-
-        $clone->pages = $pages;
-
-        return $clone;
-    }
-
-    public function navigation(array $navigation): self
-    {
-        $clone = clone $this;
-
-        $clone->navigation = $navigation;
-
-        return $clone;
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'brand' => $this->brand,
-            'props' => $this->props,
-            'pages' => $this->pages,
-            'navigation' => $this->navigation,
-        ];
+        return $this->with('navigation', $navigation);
     }
 }

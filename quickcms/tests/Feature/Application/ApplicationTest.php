@@ -3,65 +3,59 @@
 declare(strict_types=1);
 
 use App\Core\Application\Application;
-use App\Core\Application\ApplicationContext;
 use App\Core\Application\ApplicationMetadata;
-use App\Core\Application\ApplicationRegistry;
+use App\Core\Application\Enums\ApplicationLayout;
+use App\Core\Schema\Application\ApplicationSchema;
+use Tests\Fixtures\Application\DashboardPage;
+use Tests\Fixtures\Application\NavigationProvider;
+use Tests\Fixtures\Application\UsersPage;
 
-
-it('creates an application context', function (): void {
-    $registry = new ApplicationRegistry();
-
-    $this->app->instance(
-        ApplicationRegistry::class,
-        $registry,
-    );
-
-    expect(Application::make())
-        ->toBeInstanceOf(ApplicationContext::class);
-});
-
-it('creates an application context for specific applications', function (): void {
-    $registry = new ApplicationRegistry();
-
-    $this->app->instance(
-        ApplicationRegistry::class,
-        $registry,
-    );
-
-    expect(
-        Application::only('admin'),
-    )->toBeInstanceOf(ApplicationContext::class);
-});
-
-it('finds a registered application', function (): void {
-    $registry = new ApplicationRegistry();
-
-    $application = ApplicationMetadata::make()
+it('registers and builds an application', function (): void {
+    Application::make()
         ->id('admin')
         ->name('Administration')
-        ->path('/admin');
+        ->path('/admin')
+        ->pages(
+            DashboardPage::class,
+            UsersPage::class,
+        )
+        ->navigation(
+            NavigationProvider::class,
+        );
 
-    $registry->registerApplication($application);
+    $application = Application::find('admin');
 
-    $this->app->instance(
-        ApplicationRegistry::class,
-        $registry,
+    expect($application)
+        ->toBeInstanceOf(ApplicationMetadata::class);
+
+    $schema = Application::build(
+        $application,
+        ApplicationSchema::make(),
     );
 
-    expect(
-        Application::find('admin'),
-    )->toBe($application);
+    expect($schema->pages())
+        ->toHaveCount(2);
+
+    expect($schema->navigation())
+        ->toHaveCount(1);
 });
 
-it('returns null when the application does not exist', function (): void {
-    $registry = new ApplicationRegistry();
 
-    $this->app->instance(
-        ApplicationRegistry::class,
-        $registry,
-    );
+it('stores application metadata', function (): void {
+    Application::make()
+        ->id('backoffice')
+        ->name('Back Office')
+        ->path('/backoffice');
 
-    expect(
-        Application::find('admin'),
-    )->toBeNull();
+    $application = Application::find('backoffice');
+
+    expect($application)
+        ->not->toBeNull();
+
+    expect($application->toArray())->toBe([
+        'id' => 'backoffice',
+        'name' => 'Back Office',
+        'path' => '/backoffice',
+        'layout' => ApplicationLayout::Default->value,
+    ]);
 });

@@ -13,10 +13,15 @@ trait HasVisible
     public function visible(
         bool|Closure|null $visible = null,
     ): bool|Closure|static {
-        if ($visible === null) {
+        if (func_num_args() === 0) {
             return $this->visible;
         }
 
         return $this->with('visible', $visible);
+    }
+
+    public function isVisible(): bool
+    {
+        return (bool) $this->visible;
     }
 }

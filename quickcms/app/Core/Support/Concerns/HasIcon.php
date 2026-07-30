@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use App\Core\Support\Contracts\IconInterface;
 use Closure;
 
 trait HasIcon
 {
-    protected string|Closure|null $icon = null;
+    protected string|IconInterface|Closure|null $icon = null;
 
     public function icon(
-        string|Closure|null $icon = null,
-    ): string|Closure|static|null {
-        if ($icon === null) {
+        string|IconInterface|Closure|null $icon = null,
+    ): string|IconInterface|Closure|static|null {
+        if (func_num_args() === 0) {
             return $this->icon;
         }
 
