@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Schema\Application;
 
 use App\Core\Schema\Brand\BrandSchema;
+use App\Core\Schema\Navigation\NavigationSchema;
+use App\Core\Schema\Page\PageSchema;
 use App\Core\Schema\Schema;
 use App\Core\Support\Concerns\HasProps;
 
@@ -15,12 +17,12 @@ final class ApplicationSchema extends Schema
     protected ?BrandSchema $brand = null;
 
     /**
-     * @var array<class-string>
+     * @var list<PageSchema>
      */
     protected array $pages = [];
 
     /**
-     * @var array<class-string>
+     * @var list<NavigationSchema>
      */
     protected array $navigation = [];
 
@@ -34,9 +36,9 @@ final class ApplicationSchema extends Schema
     }
 
     /**
-     * @param array<class-string>|null $pages
+     * @param list<PageSchema>|null $pages
      *
-     * @return array<class-string>|static
+     * @return list<PageSchema>|static
      */
     public function pages(?array $pages = null): array|static
     {
@@ -48,9 +50,9 @@ final class ApplicationSchema extends Schema
     }
 
     /**
-     * @param array<class-string>|null $navigation
+     * @param list<NavigationSchema>|null $navigation
      *
-     * @return array<class-string>|static
+     * @return list<NavigationSchema>|static
      */
     public function navigation(?array $navigation = null): array|static
     {

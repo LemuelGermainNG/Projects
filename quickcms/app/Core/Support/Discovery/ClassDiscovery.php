@@ -68,7 +68,7 @@ final class ClassDiscovery implements DiscoveryInterface
     }
 
     /**
-     * Discover matching classes (Approche Hybride).
+     * Discover matching classes
      *
      * @return list<class-string>
      */

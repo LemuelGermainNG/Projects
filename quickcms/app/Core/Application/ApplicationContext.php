@@ -58,6 +58,10 @@ final class ApplicationContext
             $this->metadata,
         );
 
+        $this->applications = [
+            $this->metadata->id(),
+        ];
+
         return $this;
     }
 

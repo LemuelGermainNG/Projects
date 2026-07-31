@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Builder\Header;
+namespace App\Core\Schema\Header;
 
 use App\Core\Builder\Builder;
 use App\Core\Schema\Header\HeaderSchema;

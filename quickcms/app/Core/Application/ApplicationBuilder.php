@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Application;
 
-
+use App\Core\Runtime\Contracts\Navigation;
+use App\Core\Runtime\Contracts\Page;
 use App\Core\Schema\Application\ApplicationSchema;
 use RuntimeException;
 
@@ -31,16 +32,26 @@ final class ApplicationBuilder
             );
         }
 
+        $pages = [];
+
+        foreach ($this->registry->pages($application->id()) as $page) {
+            /** @var Page $provider */
+            $provider = new $page();
+
+            $pages[] = $provider->content();
+        }
+
+        $navigation = [];
+
+        foreach ($this->registry->navigation($application->id()) as $item) {
+            /** @var Navigation $provider */
+            $provider = new $item();
+
+            $navigation[] = $provider->schema();
+        }
+
         return $schema
-            ->pages(
-                $this->registry->pages(
-                    $application->id(),
-                ),
-            )
-            ->navigation(
-                $this->registry->navigation(
-                    $application->id(),
-                ),
-            );
+            ->pages($pages)
+            ->navigation($navigation);
     }
 }

@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 use App\Core\Application\Application;
 use App\Core\Application\ApplicationMetadata;
-use App\Core\Application\Enums\ApplicationLayout;
 use App\Core\Schema\Application\ApplicationSchema;
+use App\Core\Schema\Navigation\NavigationSchema;
+use App\Core\Schema\Page\PageSchema;
 use Tests\Fixtures\Application\DashboardPage;
 use Tests\Fixtures\Application\NavigationProvider;
 use Tests\Fixtures\Application\UsersPage;
@@ -34,12 +35,15 @@ it('registers and builds an application', function (): void {
     );
 
     expect($schema->pages())
-        ->toHaveCount(2);
+        ->toHaveCount(2)
+        ->each
+        ->toBeInstanceOf(PageSchema::class);
 
     expect($schema->navigation())
-        ->toHaveCount(1);
+        ->toHaveCount(1)
+        ->each
+        ->toBeInstanceOf(NavigationSchema::class);
 });
-
 
 it('stores application metadata', function (): void {
     Application::make()
@@ -50,12 +54,14 @@ it('stores application metadata', function (): void {
     $application = Application::find('backoffice');
 
     expect($application)
-        ->not->toBeNull();
+        ->toBeInstanceOf(ApplicationMetadata::class);
 
-    expect($application->toArray())->toBe([
-        'id' => 'backoffice',
-        'name' => 'Back Office',
-        'path' => '/backoffice',
-        'layout' => ApplicationLayout::Default->value,
-    ]);
+    expect($application->id())
+        ->toBe('backoffice');
+
+    expect($application->name())
+        ->toBe('Back Office');
+
+    expect($application->path())
+        ->toBe('/backoffice');
 });

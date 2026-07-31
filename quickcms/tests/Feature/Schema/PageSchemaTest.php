@@ -14,35 +14,54 @@ it('creates a page schema', function (): void {
 
 it('sets page properties', function (): void {
     $header = HeaderSchema::make()
-        ->title('Users');
+        ->title('Users')
+        ->description('Manage users');
 
-    $container = ContainerSchema::make();
+    $content = ContainerSchema::make();
 
     $page = PageSchema::make()
         ->header($header)
-        ->content($container)
+        ->content($content)
         ->props([
-            'foo' => 'bar',
+            'fluid' => true,
         ]);
 
-    expect($page->header())->toBe($header)
-        ->and($page->content())->toBe($container)
-        ->and($page->props())->toBe([
-            'foo' => 'bar',
+    expect($page->header())
+        ->toBe($header);
+
+    expect($page->content())
+        ->toBe($content);
+
+    expect($page->props())
+        ->toBe([
+            'fluid' => true,
         ]);
 });
 
 it('is immutable', function (): void {
     $page = PageSchema::make();
 
-    $updated = $page->header(
-        HeaderSchema::make()
-            ->title('Users')
-    );
+    $updated = $page
+        ->header(
+            HeaderSchema::make()
+                ->title('Users'),
+        )
+        ->content(
+            ContainerSchema::make(),
+        );
 
     expect($updated)
         ->not->toBe($page);
 
     expect($page->header())
         ->toBeNull();
+
+    expect($page->content())
+        ->toBeNull();
+
+    expect($updated->header())
+        ->toBeInstanceOf(HeaderSchema::class);
+
+    expect($updated->content())
+        ->toBeInstanceOf(ContainerSchema::class);
 });

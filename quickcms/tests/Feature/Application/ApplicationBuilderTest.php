@@ -6,11 +6,11 @@ use App\Core\Application\ApplicationBuilder;
 use App\Core\Application\ApplicationMetadata;
 use App\Core\Application\ApplicationRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
-use RuntimeException;
-use Tests\Support\Navigation\NavigationOne;
-use Tests\Support\Navigation\NavigationTwo;
-use Tests\Support\Pages\PageOne;
-use Tests\Support\Pages\PageTwo;
+use App\Core\Schema\Navigation\NavigationSchema;
+use App\Core\Schema\Page\PageSchema;
+use Tests\Fixtures\Application\DashboardPage;
+use Tests\Fixtures\Application\NavigationProvider;
+use Tests\Fixtures\Application\UsersPage;
 
 it('throws an exception when the application is not registered', function (): void {
     $builder = new ApplicationBuilder(
@@ -43,14 +43,13 @@ it('builds an application schema', function (): void {
 
     $registry->registerPages(
         ['admin'],
-        PageOne::class,
-        PageTwo::class,
+        DashboardPage::class,
+        UsersPage::class,
     );
 
     $registry->registerNavigation(
         ['admin'],
-        NavigationOne::class,
-        NavigationTwo::class,
+        NavigationProvider::class,
     );
 
     $result = (new ApplicationBuilder($registry))
@@ -60,18 +59,21 @@ it('builds an application schema', function (): void {
         );
 
     expect($result)
-        ->toBeInstanceOf(ApplicationSchema::class)
-        ->and($result->toArray())
-        ->toBe([
-            'brand' => null,
-            'props' => [],
-            'pages' => [
-                PageOne::class,
-                PageTwo::class,
-            ],
-            'navigation' => [
-                NavigationOne::class,
-                NavigationTwo::class,
-            ],
-        ]);
+        ->toBeInstanceOf(ApplicationSchema::class);
+
+    expect($result->brand())
+        ->toBeNull();
+
+    expect($result->props())
+        ->toBe([]);
+
+    expect($result->pages())
+        ->toHaveCount(2)
+        ->each
+        ->toBeInstanceOf(PageSchema::class);
+
+    expect($result->navigation())
+        ->toHaveCount(1)
+        ->each
+        ->toBeInstanceOf(NavigationSchema::class);
 });

@@ -12,10 +12,10 @@ it('compiles a page schema', function (): void {
         ->header(
             HeaderSchema::make()
                 ->title('Users')
-                ->description('Manage users')
+                ->description('Manage users'),
         )
         ->content(
-            ContainerSchema::make()
+            ContainerSchema::make(),
         )
         ->props([
             'fluid' => true,
@@ -27,6 +27,7 @@ it('compiles a page schema', function (): void {
         ),
     )->toBe([
         'type' => 'page',
+
         'header' => [
             'type' => 'header',
             'title' => 'Users',
@@ -34,11 +35,13 @@ it('compiles a page schema', function (): void {
             'icon' => null,
             'props' => [],
         ],
+
         'content' => [
             'type' => 'container',
             'children' => [],
             'props' => [],
         ],
+
         'props' => [
             'fluid' => true,
         ],

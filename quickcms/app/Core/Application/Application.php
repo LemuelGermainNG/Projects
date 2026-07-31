@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Application;
 
-use App\Core\Schema\ApplicationSchema;
+use App\Core\Schema\Application\ApplicationSchema;
 
 
 final class Application
