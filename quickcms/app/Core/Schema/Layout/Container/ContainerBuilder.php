@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Core\Schema\Container;
 
 use App\Core\Builder\Builder;
-use App\Core\Schema\Container\ContainerSchema;
 
 final class ContainerBuilder extends Builder
 {

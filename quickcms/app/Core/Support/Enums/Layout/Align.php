@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Support\Enums;
+namespace App\Core\Support\Enums\Layout;
 
-enum Alignment: string
+enum Align: string
 {
     case Start = 'start';
 

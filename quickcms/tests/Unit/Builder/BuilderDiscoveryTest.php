@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Core\Builder\BuilderRegistry;
-use InvalidArgumentException;
 use Tests\Support\Builders\FakeBuilder;
 use Tests\Support\Schemas\FakeSchema;
 
