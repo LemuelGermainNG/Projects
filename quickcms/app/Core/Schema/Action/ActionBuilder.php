@@ -31,7 +31,7 @@ final class ActionBuilder extends Builder
 
             'icon' => $this->evaluate($schema->icon()),
 
-            'color' => $this->evaluate($schema->color())?->value,
+            'color' => $this->evaluate($schema->color()),
 
             'modal' => $schema->modal() !== null
                 ? $this->registry->build(

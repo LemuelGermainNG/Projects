@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Core\Schema\Action\Actions\DeleteAction;
 use App\Core\Schema\Action\Enums\ActionTrigger;
 use App\Core\Support\Enums\Color;
+use App\Core\Support\Enums\Icons\Heroicons;
 
 it('creates a delete action', function (): void {
     $action = DeleteAction::make();
@@ -38,7 +39,7 @@ it('configures the default icon', function (): void {
     $action = DeleteAction::make();
 
     expect($action->icon())
-        ->toBe('heroicon-o-trash');
+        ->toBe(Heroicons::Trash);
 });
 
 it('configures the default color', function (): void {
@@ -58,13 +59,13 @@ it('configures the default trigger', function (): void {
 it('allows overriding the defaults', function (): void {
     $action = DeleteAction::make()
         ->label('Remove')
-        ->icon('heroicon-o-x-mark')
+        ->icon(Heroicons::XMark)
         ->color(Color::Warning);
 
     expect($action->label())
         ->toBe('Remove')
         ->and($action->icon())
-        ->toBe('heroicon-o-x-mark')
+        ->toBe(Heroicons::XMark)
         ->and($action->color())
         ->toBe(Color::Warning);
 });

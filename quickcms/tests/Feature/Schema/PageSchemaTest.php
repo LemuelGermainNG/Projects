@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Container\ContainerSchema;
+use App\Core\Schema\Layout\Container\ContainerSchema;
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Page\PageSchema;
 

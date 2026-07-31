@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Schema\Container;
+namespace App\Core\Schema\Layout\Container;
 
 use App\Core\Schema\Schema;
 use App\Core\Support\Concerns\HasChildren;

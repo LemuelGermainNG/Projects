@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Core\Schema\Action\Actions\CreateAction;
 use App\Core\Schema\Action\Enums\ActionTrigger;
 use App\Core\Support\Enums\Color;
+use App\Core\Support\Enums\Icons\Heroicons;
 
 it('creates a create action', function (): void {
     $action = CreateAction::make();
@@ -38,7 +39,7 @@ it('configures the default icon', function (): void {
     $action = CreateAction::make();
 
     expect($action->icon())
-        ->toBe('heroicon-o-plus');
+        ->toBe(Heroicons::Plus);
 });
 
 it('configures the default color', function (): void {
@@ -58,13 +59,13 @@ it('configures the default trigger', function (): void {
 it('allows overriding the defaults', function (): void {
     $action = CreateAction::make()
         ->label('New')
-        ->icon('heroicon-o-plus-circle')
+        ->icon(Heroicons::Plus)
         ->color(Color::Success);
 
     expect($action->label())
         ->toBe('New')
         ->and($action->icon())
-        ->toBe('heroicon-o-plus-circle')
+        ->toBe(Heroicons::Plus)
         ->and($action->color())
         ->toBe(Color::Success);
 });

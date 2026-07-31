@@ -1,229 +1,78 @@
-dmtb@CET-CT74197:~/dev/Projects/quickcms$ composer test
+FAILED  Tests\Feature\Schema\Action\ActionBuilderTest > i…  ErrorException   
+  Attempt to read property "value" on string
 
-   INFO  Configuration cache cleared successfully.  
+  at app/Core/Schema/Action/ActionBuilder.php:34
+     30▕             'label' => $this->evaluate($schema->label()),
+     31▕ 
+     32▕             'icon' => $this->evaluate($schema->icon()),
+     33▕ 
+  ➜  34▕             'color' => $this->evaluate($schema->color())?->value,
+     35▕ 
+     36▕             'modal' => $schema->modal() !== null
+     37▕                 ? $this->registry->build(
+     38▕                     $schema->modal(),
 
-PHP Warning:  The use statement with non-compound name 'InvalidArgumentException' has no effect in /home/dmtb/dev/Projects/quickcms/tests/Unit/Builder/BuilderDiscoveryTest.php on line 6
-
-   PASS  Tests\Unit\Builder\BuilderCacheTest
-  ✓ it does not exist by default                                         0.01s  
-  ✓ it stores builders
-  ✓ it loads builders
-  ✓ it returns an empty array when the cache does not exist
-  ✓ it clears the cache
-
-   PASS  Tests\Unit\Builder\BuilderDiscoveryTest
-  ✓ it registers a builder                                               0.02s  
-  ✓ it returns all registered builders
-  ✓ it builds a schema
-  ✓ it throws an exception when no builder is registered
-
-   PASS  Tests\Feature\Application\ApplicationBuilderTest
-  ✓ it throws an exception when the application is not registered        0.12s  
-  ✓ it builds an application schema                                      0.01s  
-
-   PASS  Tests\Feature\Application\ApplicationContextTest
-  ✓ it creates an application context                                    0.03s  
-  ✓ it registers an application                                          0.02s  
-  ✓ it registers pages                                                   0.01s  
-  ✓ it registers navigation                                              0.01s  
-  ✓ it supports fluent configuration                                     0.01s  
-
-   PASS  Tests\Feature\Application\ApplicationMetadataTest
-  ✓ it creates application metadata                                      0.04s  
-  ✓ it sets the id                                                       0.01s  
-  ✓ it sets the name                                                     0.01s  
-  ✓ it sets the path                                                     0.01s  
-  ✓ it sets the layout                                                   0.01s  
-  ✓ it converts metadata to an array                                     0.01s  
-
-   PASS  Tests\Feature\Application\ApplicationRegistryTest
-  ✓ it registers an application                                          0.06s  
-  ✓ it returns null for an unknown application                           0.02s  
-  ✓ it determines whether an application exists                          0.01s  
-  ✓ it registers pages                                                   0.01s  
-  ✓ it registers navigation                                              0.01s  
-  ✓ it returns an empty page list for an unknown application             0.01s  
-  ✓ it returns an empty navigation list for an unknown application       0.01s  
-
-   FAIL  Tests\Feature\Application\ApplicationTest
-  ⨯ it registers and builds an application                               0.07s  
-  ✓ it stores application metadata                                       0.02s  
-
-   PASS  Tests\Feature\Schema\Action\ActionBuilderTest
-  ✓ it creates an action schema                                          0.04s  
-  ✓ it compiles an action schema                                         0.03s  
-  ✓ it compiles an action with a modal and confirmation                  0.02s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\Action\ActionSchemaTest
-  ✓ it creates an action schema                                          0.04s  
-  ✓ it sets the id                                                       0.02s  
-  ✓ it sets the name                                                     0.02s  
-  ✓ it sets the label                                                    0.01s  
-  ✓ it sets the icon                                                     0.01s  
-  ✓ it sets the tooltip                                                  0.01s  
-  ✓ it sets the url                                                      0.01s  
-  ✓ it stores custom attributes                                          0.01s  
-  ✓ it sets the color                                                    0.01s  
-  ✓ it sets the size                                                     0.01s  
-  ✓ it sets the target                                                   0.01s  
-  ✓ it sets the trigger                                                  0.01s  
-  ✓ it sets the type                                                     0.01s  
-  ✓ it sets the visibility                                               0.01s  
-  ✓ it sets the disabled state                                           0.01s  
-
-   PASS  Tests\Feature\Schema\Action\CancelActionTest
-  ✓ it creates a cancel action                                           0.16s  
-  ✓ it configures the default id                                         0.02s  
-  ✓ it configures the default name                                       0.01s  
-  ✓ it configures the default label                                      0.01s  
-  ✓ it configures the default icon                                       0.01s  
-  ✓ it configures the default color                                      0.01s  
-  ✓ it allows overriding the defaults                                    0.01s  
-
-   PASS  Tests\Feature\Schema\Action\CreateActionTest
-  ✓ it creates a create action                                           0.07s  
-  ✓ it configures the default id                                         0.02s  
-  ✓ it configures the default name                                       0.01s  
-  ✓ it configures the default label                                      0.01s  
-  ✓ it configures the default icon                                       0.01s  
-  ✓ it configures the default color                                      0.01s  
-  ✓ it configures the default trigger                                    0.01s  
-  ✓ it allows overriding the defaults                                    0.01s  
-
-   PASS  Tests\Feature\Schema\Action\DeleteActionTest
-  ✓ it creates a delete action                                           0.08s  
-  ✓ it configures the default id                                         0.02s  
-  ✓ it configures the default name                                       0.01s  
-  ✓ it configures the default label                                      0.01s  
-  ✓ it configures the default icon                                       0.01s  
-  ✓ it configures the default color                                      0.01s  
-  ✓ it configures the default trigger                                    0.01s  
-  ✓ it allows overriding the defaults                                    0.01s  
-
-   PASS  Tests\Feature\Schema\Action\EditActionTest
-  ✓ it creates an edit action                                            0.08s  
-  ✓ it configures the default id                                         0.02s  
-  ✓ it configures the default name                                       0.01s  
-  ✓ it configures the default label                                      0.01s  
-  ✓ it configures the default icon                                       0.01s  
-  ✓ it configures the default color                                      0.01s  
-  ✓ it configures the default trigger                                    0.01s  
-  ✓ it allows overriding the defaults                                    0.01s  
-
-   PASS  Tests\Feature\Schema\Action\SaveActionTest
-  ✓ it creates a save action                                             0.08s  
-  ✓ it configures the default id                                         0.01s  
-  ✓ it configures the default name                                       0.01s  
-  ✓ it configures the default label                                      0.01s  
-  ✓ it configures the default icon                                       0.01s  
-  ✓ it configures the default color                                      0.01s  
-  ✓ it configures the default trigger                                    0.01s  
-  ✓ it allows overriding the defaults                                    0.01s  
-
-   PASS  Tests\Feature\Schema\Action\ViewActionTest
-  ✓ it creates a view action                                             0.09s  
-  ✓ it configures the default id                                         0.02s  
-  ✓ it configures the default name                                       0.01s  
-  ✓ it configures the default label                                      0.01s  
-  ✓ it configures the default icon                                       0.01s  
-  ✓ it inherits the default color                                        0.01s  
-  ✓ it configures the default trigger                                    0.01s  
-  ✓ it allows overriding the defaults                                    0.01s  
-
-   PASS  Tests\Feature\Schema\BrandSchemaTest
-  ✓ it creates a brand schema                                            0.08s  
-  ✓ it compiles a brand schema                                           0.03s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\ConfirmSchemaTest
-  ✓ it creates a confirmation schema                                     0.03s  
-  ✓ it compiles a confirmation schema                                    0.03s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\HeaderBuilderTest
-  ✓ it compiles a header schema                                          0.06s  
-
-   PASS  Tests\Feature\Schema\HeaderSchemaTest
-  ✓ it creates a header schema                                           0.03s  
-  ✓ it sets header properties                                            0.01s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\ModalSchemaTest
-  ✓ it compiles a modal schema                                           0.06s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\Navigation\NavigationBuilderTest
-  ✓ it creates a navigation schema                                       0.02s  
-  ✓ it compiles a navigation schema                                      0.04s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\Navigation\NavigationItemBuilderTest
-  ✓ it creates a navigation item schema                                  0.04s  
-  ✓ it compiles a navigation item schema                                 0.04s  
-  ✓ it compiles nested navigation items                                  0.03s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\Navigation\NavigationItemSchemaTest
-  ✓ it creates a navigation item schema                                  0.03s  
-  ✓ it sets navigation item properties                                   0.01s  
-  ✓ it is immutable                                                      0.01s  
-
-   PASS  Tests\Feature\Schema\Navigation\NavigationSchemaTest
-  ✓ it creates a navigation schema                                       0.03s  
-  ✓ it sets navigation properties                                        0.01s  
-  ✓ it is immutable                                                      0.01s  
-
-   FAIL  Tests\Feature\Schema\PageBuilderTest
-  ⨯ it compiles a page schema                                            0.07s  
-
-   PASS  Tests\Feature\Schema\PageSchemaTest
-  ✓ it creates a page schema                                             0.02s  
-  ✓ it sets page properties                                              0.01s  
-  ✓ it is immutable                                                      0.01s  
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Application\ApplicationTest > it registe…  TypeError   
-  App\Core\Application\Application::build(): Argument #2 ($schema) must be of type App\Core\Schema\ApplicationSchema, App\Core\Schema\Application\ApplicationSchema given, called in /home/dmtb/dev/Projects/quickcms/tests/Feature/Application/ApplicationTest.php on line 32
-
-  at app/Core/Application/Application.php:49
-     45▕      * Build an application schema.
-     46▕      */
-     47▕     public static function build(
-     48▕         ApplicationMetadata $application,
-  ➜  49▕         ApplicationSchema $schema,
-     50▕     ): ApplicationSchema {
-     51▕         return app(ApplicationBuilder::class)
-     52▕             ->build($application, $schema);
-     53▕     }
-
-  1   app/Core/Application/Application.php:49
-  2   tests/Feature/Application/ApplicationTest.php:32
+  1   app/Core/Builder/BuilderRegistry.php:49
+  2   app/Core/Schema/Schema.php:18
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\PageBuilderTest > it compiles a page schema     
-  Failed asserting that two arrays are identical.
-   Array &0 [
-  -    'type' => 'page',
-       'header' => Array &1 [
-           'type' => 'header',
-           'title' => 'Users',
+   FAILED  Tests\Feature\Schema\Action\ActionBuilderTest > i…  ErrorException   
+  Attempt to read property "value" on string
+
+  at app/Core/Schema/Action/ActionBuilder.php:34
+     30▕             'label' => $this->evaluate($schema->label()),
+     31▕ 
+     32▕             'icon' => $this->evaluate($schema->icon()),
+     33▕ 
+  ➜  34▕             'color' => $this->evaluate($schema->color())?->value,
+     35▕ 
+     36▕             'modal' => $schema->modal() !== null
+     37▕                 ? $this->registry->build(
+     38▕                     $schema->modal(),
+
+  1   app/Core/Builder/BuilderRegistry.php:49
+  2   app/Core/Schema/Schema.php:18
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Action\CreateActionTest > it configures the…    
+  Failed asserting that two variables reference the same object.
+  -App\Core\Support\Enums\Icons\Heroicons Enum #6627 (PlusCircle, 'heroicon-o-plus-circle')
+  +App\Core\Support\Enums\Icons\Heroicons Enum #5844 (Plus, 'heroicon-o-plus')
   
 
-  at tests/Feature/Schema/PageBuilderTest.php:28
-     24▕     expect(
-     25▕         $page->compile(
-     26▕             BuilderRegistryFactory::make(),
-     27▕         ),
-  ➜  28▕     )->toBe([
-     29▕         'type' => 'page',
-     30▕ 
-     31▕         'header' => [
-     32▕             'type' => 'header',
+  at tests/Feature/Schema/Action/CreateActionTest.php:42
+     38▕ it('configures the default icon', function (): void {
+     39▕     $action = CreateAction::make();
+     40▕ 
+     41▕     expect($action->icon())
+  ➜  42▕         ->toBe(Heroicons::PlusCircle);
+     43▕ });
+     44▕ 
+     45▕ it('configures the default color', function (): void {
+     46▕     $action = CreateAction::make();
 
-  1   tests/Feature/Schema/PageBuilderTest.php:28
+  1   tests/Feature/Schema/Action/CreateActionTest.php:42
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\ConfirmSchemaTest > it compi…  ErrorException   
+  Attempt to read property "value" on string
+
+  at app/Core/Schema/Confirm/ConfirmBuilder.php:38
+     34▕             ),
+     35▕ 
+     36▕             'color' => $this->evaluate(
+     37▕                 $schema->color(),
+  ➜  38▕             )?->value,
+     39▕ 
+     40▕             'props' => $schema->props(),
+     41▕         ];
+     42▕     }
+
+  1   app/Core/Builder/BuilderRegistry.php:49
+  2   app/Core/Schema/Schema.php:18
 
 
-  Tests:    2 failed, 124 passed (179 assertions)
-  Duration: 2.64s
+  Tests:    4 failed, 126 passed (188 assertions)
+  Duration: 4.04s
 
 Script @php artisan test handling the test event returned with error code 2

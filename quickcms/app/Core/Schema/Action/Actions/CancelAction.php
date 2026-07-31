@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core\Schema\Action\Actions;
 
-use App\Core\Support\Enums\Color;
 use Closure;
+use App\Core\Support\Enums\Icons\Heroicons;
+use App\Core\Support\Contracts\IconInterface;
+use App\Core\Support\Enums\Color;
 
 final class CancelAction extends Action
 {
@@ -15,7 +17,7 @@ final class CancelAction extends Action
 
     protected string|Closure $label = 'Cancel';
 
-    protected string|Closure|null $icon = 'heroicon-o-x-mark';
+    protected IconInterface|string|Closure|null $icon = Heroicons::XMark;
 
     protected Color|Closure $color = Color::Secondary;
 }

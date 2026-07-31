@@ -6,21 +6,24 @@ namespace App\Core\Support\Concerns;
 
 use Closure;
 use ReflectionFunction;
+use BackedEnum;
 
 trait EvaluatesValues
 {
     protected function evaluate(mixed $value): mixed
     {
-        if (! $value instanceof Closure) {
-            return $value;
+        if ($value instanceof Closure) {
+            $reflection = new ReflectionFunction($value);
+
+            $value = $reflection->getNumberOfParameters() === 0
+                ? $value()
+                : $value($this->context);
         }
 
-        $reflection = new ReflectionFunction($value);
-
-        if ($reflection->getNumberOfParameters() === 0) {
-            return $value();
+        if ($value instanceof BackedEnum) {
+            return $value->value;
         }
 
-        return $value($this->context);
+        return $value;
     }
 }

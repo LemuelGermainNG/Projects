@@ -29,14 +29,8 @@ final class ConfirmBuilder extends Builder
 
             'cancelLabel' => $schema->cancelLabel(),
 
-            'icon' => $this->evaluate(
-                $schema->icon(),
-            ),
-
-            'color' => $this->evaluate(
-                $schema->color(),
-            )?->value,
-
+            'icon' => $this->evaluate($schema->icon()),
+            'color' => $this->evaluate($schema->color()),
             'props' => $schema->props(),
         ];
     }

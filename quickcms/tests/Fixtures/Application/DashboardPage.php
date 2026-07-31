@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Fixtures\Application;
 
 use App\Core\Runtime\Contracts\Page;
-use App\Core\Schema\Container\ContainerSchema;
+use App\Core\Schema\Layout\Container\ContainerSchema;
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Page\PageSchema;
 

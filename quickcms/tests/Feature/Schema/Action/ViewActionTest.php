@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Core\Schema\Action\Actions\ViewAction;
 use App\Core\Schema\Action\Enums\ActionTrigger;
 use App\Core\Support\Enums\Color;
+use App\Core\Support\Enums\Icons\Heroicons;
 
 it('creates a view action', function (): void {
     $action = ViewAction::make();
@@ -38,7 +39,7 @@ it('configures the default icon', function (): void {
     $action = ViewAction::make();
 
     expect($action->icon())
-        ->toBe('heroicon-o-eye');
+        ->toBe(Heroicons::Eye);
 });
 
 it('inherits the default color', function (): void {
@@ -58,13 +59,13 @@ it('configures the default trigger', function (): void {
 it('allows overriding the defaults', function (): void {
     $action = ViewAction::make()
         ->label('Details')
-        ->icon('heroicon-o-eye-slash')
+        ->icon(Heroicons::Eye)
         ->color(Color::Info);
 
     expect($action->label())
         ->toBe('Details')
         ->and($action->icon())
-        ->toBe('heroicon-o-eye-slash')
+        ->toBe(Heroicons::Eye)
         ->and($action->color())
         ->toBe(Color::Info);
 });

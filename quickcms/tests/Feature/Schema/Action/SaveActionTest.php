@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Core\Schema\Action\Actions\SaveAction;
 use App\Core\Schema\Action\Enums\ActionTrigger;
 use App\Core\Support\Enums\Color;
+use App\Core\Support\Enums\Icons\Heroicons;
 
 it('creates a save action', function (): void {
     $action = SaveAction::make();
@@ -38,7 +39,7 @@ it('configures the default icon', function (): void {
     $action = SaveAction::make();
 
     expect($action->icon())
-        ->toBe('heroicon-o-check');
+        ->toBe(Heroicons::Check);
 });
 
 it('configures the default color', function (): void {
@@ -58,13 +59,13 @@ it('configures the default trigger', function (): void {
 it('allows overriding the defaults', function (): void {
     $action = SaveAction::make()
         ->label('Store')
-        ->icon('heroicon-o-check-badge')
+        ->icon(Heroicons::CheckBadge)
         ->color(Color::Primary);
 
     expect($action->label())
         ->toBe('Store')
         ->and($action->icon())
-        ->toBe('heroicon-o-check-badge')
+        ->toBe(Heroicons::CheckBadge)
         ->and($action->color())
         ->toBe(Color::Primary);
 });

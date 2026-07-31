@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Action\Actions\CancelAction;
-use App\Core\Schema\Action\Enums\ActionTrigger;
 use App\Core\Support\Enums\Color;
+use App\Core\Support\Enums\Icons\Heroicons;
 
 it('creates a cancel action', function (): void {
     $action = CancelAction::make();
@@ -38,7 +38,7 @@ it('configures the default icon', function (): void {
     $action = CancelAction::make();
 
     expect($action->icon())
-        ->toBe('heroicon-o-x-mark');
+        ->toBe(Heroicons::XMark);
 });
 
 it('configures the default color', function (): void {
@@ -51,13 +51,13 @@ it('configures the default color', function (): void {
 it('allows overriding the defaults', function (): void {
     $action = CancelAction::make()
         ->label('Close')
-        ->icon('heroicon-o-x-circle')
+        ->icon(Heroicons::XCircle)
         ->color(Color::Danger);
 
     expect($action->label())
         ->toBe('Close')
         ->and($action->icon())
-        ->toBe('heroicon-o-x-circle')
+        ->toBe(Heroicons::XCircle)
         ->and($action->color())
         ->toBe(Color::Danger);
 });
