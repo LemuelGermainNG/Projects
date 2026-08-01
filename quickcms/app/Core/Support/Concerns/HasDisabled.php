@@ -19,4 +19,14 @@ trait HasDisabled
 
         return $this->with('disabled', $disabled);
     }
+
+    public function disable(): static
+    {
+        return $this->disabled(true);
+    }
+
+    public function enable(): static
+    {
+        return $this->disabled(false);
+    }
 }

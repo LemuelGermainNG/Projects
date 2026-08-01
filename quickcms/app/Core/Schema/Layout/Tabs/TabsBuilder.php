@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Schema\Layout\Stack;
+namespace App\Core\Schema\Layout\Tabs;
 
 use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
-final class StackBuilder extends ChildrenLayoutBuilder
+final class TabsBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'stack';
+    public const TYPE = 'tabs';
 
     public static function schema(): string
     {
-        return StackSchema::class;
+        return TabsSchema::class;
     }
 
     public function build(): array
     {
-        /** @var StackSchema $schema */
+        /** @var TabsSchema $schema */
         $schema = $this->schema;
 
         return [
             'type' => self::TYPE,
 
-            'gap' => $schema->gap(),
-
-            'children' => $this->buildChildren($schema->children()),
+            'children' => $this->buildChildren(
+                $schema->tabs(),
+            ),
 
             'props' => $schema->props(),
         ];

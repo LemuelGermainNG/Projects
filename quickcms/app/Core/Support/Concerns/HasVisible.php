@@ -24,4 +24,14 @@ trait HasVisible
     {
         return (bool) $this->visible;
     }
+
+    public function show(): static
+    {
+        return $this->visible(true);
+    }
+
+    public function hide(): static
+    {
+        return $this->visible(false);
+    }
 }

@@ -2,30 +2,34 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Schema\Layout\Stack;
+namespace App\Core\Schema\Layout\Grid;
 
 use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
-final class StackBuilder extends ChildrenLayoutBuilder
+final class GridBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'stack';
+    public const TYPE = 'grid';
 
     public static function schema(): string
     {
-        return StackSchema::class;
+        return GridSchema::class;
     }
 
     public function build(): array
     {
-        /** @var StackSchema $schema */
+        /** @var GridSchema $schema */
         $schema = $this->schema;
 
         return [
             'type' => self::TYPE,
 
+            'columns' => $schema->columns(),
+
             'gap' => $schema->gap(),
 
-            'children' => $this->buildChildren($schema->children()),
+            'children' => $this->buildChildren(
+                $schema->children(),
+            ),
 
             'props' => $schema->props(),
         ];

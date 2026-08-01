@@ -2,30 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Schema\Layout\Stack;
+namespace App\Core\Schema\Layout\Accordion;
 
 use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
-final class StackBuilder extends ChildrenLayoutBuilder
+final class AccordionBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'stack';
+    public const TYPE = 'accordion';
 
     public static function schema(): string
     {
-        return StackSchema::class;
+        return AccordionSchema::class;
     }
 
     public function build(): array
     {
-        /** @var StackSchema $schema */
+        /** @var AccordionSchema $schema */
         $schema = $this->schema;
 
         return [
             'type' => self::TYPE,
 
-            'gap' => $schema->gap(),
-
-            'children' => $this->buildChildren($schema->children()),
+            'children' => $this->buildChildren(
+                $schema->items(),
+            ),
 
             'props' => $schema->props(),
         ];
