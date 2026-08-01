@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Fixtures\Application;
+namespace Tests\Fixtures\Pages;
 
 use App\Core\Runtime\Contracts\Page;
 use App\Core\Schema\Layout\Container\ContainerSchema;

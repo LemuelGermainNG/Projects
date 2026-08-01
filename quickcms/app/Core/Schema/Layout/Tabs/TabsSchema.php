@@ -16,12 +16,4 @@ final class TabsSchema extends LayoutSchema
         /** @var array<int, TabSchema> */
         return $this->children();
     }
-
-    /**
-     * @param array<int, TabSchema> $tabs
-     */
-    public function withTabs(array $tabs): static
-    {
-        return $this->children($tabs);
-    }
 }

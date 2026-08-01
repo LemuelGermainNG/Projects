@@ -14,7 +14,7 @@ it('creates an accordion schema', function (): void {
 
 it('sets accordion items', function (): void {
     $accordion = AccordionSchema::make()
-        ->withItems([
+        ->children([
             AccordionItemSchema::make()
                 ->header(
                     HeaderSchema::make()
@@ -49,7 +49,7 @@ it('sets accordion items', function (): void {
 it('is immutable', function (): void {
     $accordion = AccordionSchema::make();
 
-    $updated = $accordion->withItems([
+    $updated = $accordion->children([
         AccordionItemSchema::make()
             ->header(
                 HeaderSchema::make()

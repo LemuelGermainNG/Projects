@@ -4,40 +4,14 @@ declare(strict_types=1);
 
 namespace App\Core\Schema\Layout\Section;
 
-use App\Core\Builder\Builder;
+use App\Core\Builder\Layout\SingleChildLayoutBuilder;
 
-final class SectionBuilder extends Builder
+final class SectionBuilder extends SingleChildLayoutBuilder
 {
-    public const TYPE = 'section';
+    protected const TYPE = 'section';
 
     public static function schema(): string
     {
         return SectionSchema::class;
-    }
-
-    public function build(): array
-    {
-        /** @var SectionSchema $schema */
-        $schema = $this->schema;
-
-        return [
-            'type' => self::TYPE,
-
-            'header' => $schema->header() !== null
-                ? $this->registry->build(
-                    $schema->header(),
-                    $this->context,
-                )
-                : null,
-
-            'child' => $schema->child() !== null
-                ? $this->registry->build(
-                    $schema->child(),
-                    $this->context,
-                )
-                : null,
-
-            'props' => $schema->props(),
-        ];
     }
 }

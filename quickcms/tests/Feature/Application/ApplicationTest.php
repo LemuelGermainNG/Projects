@@ -7,9 +7,9 @@ use App\Core\Application\ApplicationMetadata;
 use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
 use App\Core\Schema\Page\PageSchema;
-use Tests\Fixtures\Application\DashboardPage;
-use Tests\Fixtures\Application\NavigationProvider;
-use Tests\Fixtures\Application\UsersPage;
+use Tests\Fixtures\Navigation\NavigationProvider;
+use Tests\Fixtures\Pages\DashboardPage;
+use Tests\Fixtures\Pages\UsersPage;
 
 it('registers and builds an application', function (): void {
     Application::make()

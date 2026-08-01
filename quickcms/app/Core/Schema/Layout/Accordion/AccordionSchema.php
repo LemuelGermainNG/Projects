@@ -16,12 +16,4 @@ final class AccordionSchema extends LayoutSchema
         /** @var array<int, AccordionItemSchema> */
         return $this->children();
     }
-
-    /**
-     * @param array<int, AccordionItemSchema> $items
-     */
-    public function withItems(array $items): static
-    {
-        return $this->children($items);
-    }
 }

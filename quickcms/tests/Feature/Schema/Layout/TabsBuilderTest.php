@@ -10,7 +10,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a tabs schema', function (): void {
     $tabs = TabsSchema::make()
-        ->withTabs([
+        ->children([
             TabSchema::make()
                 ->label('Users')
                 ->icon(Heroicons::Users)

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Core\Support\Concerns;
 
 use App\Core\Schema\Schema;
@@ -15,5 +17,10 @@ trait HasChild
         }
 
         return $this->with('child', $child);
+    }
+
+    public function hasChild(): bool
+    {
+        return $this->child !== null;
     }
 }

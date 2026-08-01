@@ -23,4 +23,9 @@ trait HasHeader
             $header,
         );
     }
+
+    public function hasHeader(): bool
+    {
+        return $this->header !== null;
+    }
 }

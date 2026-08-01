@@ -13,7 +13,7 @@ it('creates a tabs schema', function (): void {
 
 it('sets tabs', function (): void {
     $tabs = TabsSchema::make()
-        ->withTabs([
+        ->children([
             TabSchema::make()->label('Users'),
             TabSchema::make()->label('Roles'),
         ])
@@ -39,7 +39,7 @@ it('sets tabs', function (): void {
 it('is immutable', function (): void {
     $tabs = TabsSchema::make();
 
-    $updated = $tabs->withTabs([
+    $updated = $tabs->children([
         TabSchema::make()
             ->label('Users'),
     ]);

@@ -10,7 +10,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles an accordion schema', function (): void {
     $accordion = AccordionSchema::make()
-        ->withItems([
+        ->children([
             AccordionItemSchema::make()
                 ->header(
                     HeaderSchema::make()

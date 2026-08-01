@@ -9,12 +9,14 @@ use App\Core\Schema\Schema;
 trait HasChildren
 {
     /**
-     * @var array<Schema>
+     * @var array<int, Schema>
      */
     protected array $children = [];
 
     /**
-     * @return array<Schema>|static
+     * @param array<int, Schema>|null $children
+     *
+     * @return array<int, Schema>|static
      */
     public function children(?array $children = null): array|static
     {
@@ -25,11 +27,32 @@ trait HasChildren
         return $this->with('children', $children);
     }
 
-    public function child(Schema $child): static
+    public function addChild(Schema $child): static
     {
-        return $this->with('children', [
-            ...$this->children,
+        return $this->children([
+            ...$this->children(),
             $child,
         ]);
+    }
+
+    public function hasChildren(): bool
+    {
+        return $this->children() !== [];
+    }
+
+    public function firstChild(): ?Schema
+    {
+        return $this->children()[0] ?? null;
+    }
+
+    public function lastChild(): ?Schema
+    {
+        $children = $this->children();
+
+        if ($children === []) {
+            return null;
+        }
+
+        return $children[array_key_last($children)];
     }
 }
