@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Schema;
 
 use App\Core\Builder\BuilderRegistry;
+use App\Core\Support\Contracts\EvaluationContextInterface;
 
 abstract class Schema
 {
@@ -13,9 +14,14 @@ abstract class Schema
         return new static();
     }
 
-    final public function compile(BuilderRegistry $registry): array
-    {
-        return $registry->build($this);
+    final public function compile(
+        BuilderRegistry $registry,
+        ?EvaluationContextInterface $context = null,
+    ): array {
+        return $registry->build(
+            $this,
+            $context,
+        );
     }
 
     final public function values(): array
@@ -23,8 +29,10 @@ abstract class Schema
         return get_object_vars($this);
     }
 
-    protected function with(string $property,mixed $value): static
-    {
+    protected function with(
+        string $property,
+        mixed $value,
+    ): static {
         $clone = clone $this;
 
         $clone->{$property} = $value;

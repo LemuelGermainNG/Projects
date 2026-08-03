@@ -13,7 +13,7 @@ final class ViewAction extends Action
 {
     protected string $id = 'view';
 
-    protected string $name = 'view';
+    protected string|Closure $name = 'view';
 
     protected string|Closure $label = 'View';
 

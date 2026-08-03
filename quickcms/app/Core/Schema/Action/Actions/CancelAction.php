@@ -13,7 +13,7 @@ final class CancelAction extends Action
 {
     protected string $id = 'cancel';
 
-    protected string $name = 'cancel';
+    protected string|Closure $name = 'cancel';
 
     protected string|Closure $label = 'Cancel';
 

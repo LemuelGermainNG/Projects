@@ -13,7 +13,7 @@ final class SaveAction extends Action
 {
     protected string $id = 'save';
 
-    protected string $name = 'save';
+    protected string|Closure $name = 'save';
 
     protected string|Closure $label = 'Save';
 

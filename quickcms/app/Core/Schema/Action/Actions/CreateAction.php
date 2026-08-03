@@ -14,7 +14,7 @@ final class CreateAction extends Action
 {
     protected string $id = 'create';
 
-    protected string $name = 'create';
+    protected string|Closure $name = 'create';
 
     protected string|Closure $label = 'Create';
 

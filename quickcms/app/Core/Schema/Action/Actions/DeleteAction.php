@@ -14,7 +14,7 @@ final class DeleteAction extends Action
 {
     protected string $id = 'delete';
 
-    protected string $name = 'delete';
+    protected string|Closure $name = 'delete';
 
     protected string|Closure $label = 'Delete';
 

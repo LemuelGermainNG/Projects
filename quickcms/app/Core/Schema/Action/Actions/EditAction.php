@@ -14,7 +14,7 @@ final class EditAction extends Action
 {
     protected string $id = 'edit';
 
-    protected string $name = 'edit';
+    protected string|Closure $name = 'edit';
 
     protected string|Closure $label = 'Edit';
 

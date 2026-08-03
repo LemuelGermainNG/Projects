@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use Closure;
+
 trait HasName
 {
-    /**
-     * Schema name.
-     */
-    protected string $name = '';
+    protected string|Closure $name = '';
 
-    /**
-     * Get or set the schema name.
-     */
-    public function name(?string $name = null): string|static
-    {
+    public function name(
+        string|Closure|null $name = null,
+    ): string|Closure|static {
         if ($name === null) {
             return $this->name;
         }
