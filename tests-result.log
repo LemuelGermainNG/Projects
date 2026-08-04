@@ -1,0 +1,98 @@
+ FAILED  Tests\Feature\Schema\Element\Pagination\PaginationBuilderT…  Error   
+  Call to a member function compile() on false
+
+  at tests/Feature/Schema/Element/Pagination/PaginationBuilderTest.php:19
+     15▕         ])
+     16▕         ->simple();
+     17▕ 
+     18▕     expect(
+  ➜  19▕         $pagination->compile(
+     20▕             BuilderRegistryFactory::make(),
+     21▕         ),
+     22▕     )->toBe([
+     23▕         'type' => 'pagination',
+
+  1   tests/Feature/Schema/Element/Pagination/PaginationBuilderTest.php:19
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Element\Pagination\PaginationSchemaTe…  Error   
+  Call to a member function enabled() on false
+
+  at tests/Feature/Schema/Element/Pagination/PaginationSchemaTest.php:23
+     19▕             50,
+     20▕         ])
+     21▕         ->simple();
+     22▕ 
+  ➜  23▕     expect($pagination->enabled())
+     24▕         ->toBeTrue();
+     25▕ 
+     26▕     expect($pagination->perPage())
+     27▕         ->toBe(25);
+
+  1   tests/Feature/Schema/Element/Pagination/PaginationSchemaTest.php:23
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Table\ColumnBuilderTest > it compiles a colu…   
+  Failed asserting that two arrays are identical.
+       'type' => 'column',
+       'label' => 'Name',
+       'description' => '',
+  +    'sortable' => false,
+  +    'searchable' => false,
+  +    'toggleable' => false,
+  +    'hidden' => false,
+  +    'default' => null,
+  +    'alignment' => 'stretch',
+  +    'width' => null,
+  +    'formatter' => null,
+       'child' => Array &1 [
+           'type' => 'text',
+           'value' => 'John Doe',
+  
+
+  at tests/Feature/Schema/Table/ColumnBuilderTest.php:21
+     17▕     expect(
+     18▕         $column->compile(
+     19▕             BuilderRegistryFactory::make(),
+     20▕         ),
+  ➜  21▕     )->toBe([
+     22▕         'type' => 'column',
+     23▕ 
+     24▕         'label' => 'Name',
+     25▕ 
+
+  1   tests/Feature/Schema/Table/ColumnBuilderTest.php:21
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Table\TableBuilderTest > it compiles a table…   
+  Failed asserting that two arrays are identical.
+               'toggleable' => false,
+               'hidden' => false,
+               'default' => null,
+  -            'alignment' => 'start',
+  -            'width' => '',
+  +            'alignment' => 'stretch',
+  +            'width' => null,
+               'formatter' => null,
+               'child' => Array &3 [
+                   'type' => 'text',
+  
+
+  at tests/Feature/Schema/Table/TableBuilderTest.php:61
+     57▕     expect(
+     58▕         $table->compile(
+     59▕             BuilderRegistryFactory::make(),
+     60▕         ),
+  ➜  61▕     )->toBe([
+     62▕         'type' => 'table',
+     63▕ 
+     64▕         'source' => UserSource::class,
+     65▕ 
+
+  1   tests/Feature/Schema/Table/TableBuilderTest.php:61
+
+
+  Tests:    4 failed, 235 passed (423 assertions)
+  Duration: 4.12s
+
+Script @php artisan test handling the test event returned with error code 2

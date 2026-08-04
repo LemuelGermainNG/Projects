@@ -27,6 +27,26 @@ final class TableBuilder extends Builder
                 $schema->schema(),
             ),
 
+            'filters' => $this->compileSchema(
+                $schema->filters(),
+            ),
+
+            'headerActions' => $this->compileSchema(
+                $schema->headerActions(),
+            ),
+
+            'rowActions' => $this->compileSchema(
+                $schema->rowActions(),
+            ),
+
+            'bulkActions' => $this->compileSchema(
+                $schema->bulkActions(),
+            ),
+
+            'pagination' => $this->compileChild(
+                $schema->pagination(),
+            ),
+
             'props' => $schema->props(),
         ];
     }

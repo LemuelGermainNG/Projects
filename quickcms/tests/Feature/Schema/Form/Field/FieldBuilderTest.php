@@ -3,43 +3,31 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Element\Text\TextSchema;
-use App\Core\Schema\Table\Column\ColumnSchema;
+use App\Core\Schema\Form\Field\FieldSchema;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
-it('compiles a column schema', function (): void {
-    $column = ColumnSchema::make()
+it('compiles a field schema', function (): void {
+    $field = FieldSchema::make()
+        ->name('name')
         ->label('Name')
+        ->description('User name')
         ->child(
             TextSchema::make()
                 ->value('John Doe'),
         );
 
     expect(
-        $column->compile(
+        $field->compile(
             BuilderRegistryFactory::make(),
         ),
     )->toBe([
-        'type' => 'column',
+        'type' => 'field',
+
+        'name' => 'name',
 
         'label' => 'Name',
 
-        'description' => '',
-
-        'sortable' => false,
-
-        'searchable' => false,
-
-        'toggleable' => false,
-
-        'hidden' => false,
-
-        'default' => null,
-
-        'align' => 'stretch',
-
-        'width' => null,
-
-        'formatter' => null,
+        'description' => 'User name',
 
         'child' => [
             'type' => 'text',

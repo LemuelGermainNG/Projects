@@ -21,13 +21,25 @@ final class ColumnBuilder extends Builder
         return [
             'type' => 'column',
 
-            'label' => $this->evaluate(
-                $schema->label(),
-            ),
+            'label' => $this->evaluate($schema->label()),
 
-            'description' => $this->evaluate(
-                $schema->description(),
-            ),
+            'description' => $this->evaluate($schema->description()),
+
+            'sortable' => $this->evaluate($schema->sortable()),
+
+            'searchable' => $this->evaluate($schema->searchable()),
+
+            'toggleable' => $this->evaluate($schema->toggleable()),
+
+            'hidden' => $this->evaluate($schema->hidden()),
+
+            'default' => $this->evaluate($schema->default()),
+
+            'align' => $this->evaluate($schema->align()),
+
+            'width' => $this->evaluate($schema->width()),
+
+            'formatter' => $schema->formatter(),
 
             'child' => $this->compileChild(
                 $schema->child(),
