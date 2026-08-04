@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Core\Schema\Form\Base;
 
-abstract class TextInputBaseBuilder extends BaseInputBuilder
+abstract class NumberInputBaseBuilder extends BaseInputBuilder
 {
     public function build(): array
     {
-        /** @var TextInputBaseSchema $schema */
+        /** @var NumberInputBaseSchema $schema */
         $schema = $this->schema;
 
         $data = parent::build();
@@ -17,26 +17,20 @@ abstract class TextInputBaseBuilder extends BaseInputBuilder
 
         $this->addIfNotNull(
             $data,
-            'mask',
-            $this->evaluate($schema->mask()),
+            'min',
+            $this->evaluate($schema->min()),
         );
 
         $this->addIfNotNull(
             $data,
-            'length',
-            $this->evaluate($schema->length()),
+            'max',
+            $this->evaluate($schema->max()),
         );
 
         $this->addIfNotNull(
             $data,
-            'minLength',
-            $this->evaluate($schema->minLength()),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'maxLength',
-            $this->evaluate($schema->maxLength()),
+            'step',
+            $this->evaluate($schema->step()),
         );
 
         $data['props'] = $schema->props();

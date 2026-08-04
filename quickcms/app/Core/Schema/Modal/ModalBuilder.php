@@ -19,7 +19,7 @@ final class ModalBuilder extends Builder
         $values = $this->schema->values();
 
         return [
-            'type' => 'modal',
+            'type' => $this->type(),
 
             'title' => $values['title'],
             'description' => $values['description'],

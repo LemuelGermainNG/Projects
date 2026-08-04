@@ -8,8 +8,6 @@ use App\Core\Builder\Builder;
 
 final class SplitBuilder extends Builder
 {
-    public const TYPE = 'split';
-
     public static function schema(): string
     {
         return SplitSchema::class;
@@ -21,7 +19,7 @@ final class SplitBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => self::TYPE,
+            'type' => $this->type(),
 
             'direction' => $this->evaluate(
                 $schema->direction(),

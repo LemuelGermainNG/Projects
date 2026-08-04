@@ -9,15 +9,13 @@ use App\Core\Schema\Layout\SingleChildLayoutSchema;
 
 abstract class SingleChildLayoutBuilder extends Builder
 {
-    protected const TYPE = '';
-
     public function build(): array
     {
         /** @var SingleChildLayoutSchema $schema */
         $schema = $this->schema;
 
         return [
-            'type' => static::TYPE,
+            'type' => $this->type(),
 
             'header' => $schema->header() !== null
                 ? $this->registry->build(

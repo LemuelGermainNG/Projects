@@ -8,8 +8,6 @@ use App\Core\Builder\Layout\SingleChildLayoutBuilder;
 
 final class CardBuilder extends SingleChildLayoutBuilder
 {
-    protected const TYPE = 'card';
-
     public static function schema(): string
     {
         return CardSchema::class;

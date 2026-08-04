@@ -19,7 +19,7 @@ final class AvatarBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'avatar',
+            'type' => $this->type(),
 
             'name' => $this->evaluate($schema->name()),
 

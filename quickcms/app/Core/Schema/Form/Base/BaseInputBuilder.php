@@ -8,8 +8,6 @@ use App\Core\Builder\Builder;
 
 abstract class BaseInputBuilder extends Builder
 {
-    abstract protected function type(): string;
-
     public function build(): array
     {
         /** @var BaseInputSchema $schema */

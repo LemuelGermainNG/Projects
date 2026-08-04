@@ -27,7 +27,7 @@ final class HeaderBuilder extends Builder
         }
 
         return [
-            'type' => 'header',
+            'type' => $this->type(),
             'title' => $schema->title(),
             'description' => $schema->description(),
             'icon' => $icon,

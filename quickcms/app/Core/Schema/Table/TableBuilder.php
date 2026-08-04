@@ -19,7 +19,7 @@ final class TableBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'table',
+            'type' => $this->type(),
 
             'source' => $schema->source(),
 

@@ -19,7 +19,7 @@ final class PaginationBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'pagination',
+            'type' => $this->type(),
 
             'enabled' => $schema->isEnabled(),
 

@@ -8,8 +8,6 @@ use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
 final class FlexBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'flex';
-
     public static function schema(): string
     {
         return FlexSchema::class;
@@ -21,7 +19,7 @@ final class FlexBuilder extends ChildrenLayoutBuilder
         $schema = $this->schema;
 
         return [
-            'type' => self::TYPE,
+            'type' => $this->type(),
 
             'direction' => $this->evaluate(
                 $schema->direction(),

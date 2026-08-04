@@ -19,7 +19,7 @@ final class FilterBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'filter',
+            'type' => $this->type(),
 
             'name' => $schema->name(),
 

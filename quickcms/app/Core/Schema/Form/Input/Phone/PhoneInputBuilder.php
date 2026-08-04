@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Schema\Form\Input\Text;
+namespace App\Core\Schema\Form\Input\Phone;
 
 use App\Core\Schema\Form\Base\TextInputBaseBuilder;
 
-final class TextInputBuilder extends TextInputBaseBuilder
+final class PhoneInputBuilder extends TextInputBaseBuilder
 {
     public static function schema(): string
     {
-        return TextInputSchema::class;
+        return PhoneInputSchema::class;
     }
 }

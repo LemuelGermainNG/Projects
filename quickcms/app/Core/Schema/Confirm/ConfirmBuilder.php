@@ -19,7 +19,7 @@ final class ConfirmBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'confirm',
+            'type' => $this->type(),
 
             'title' => $schema->title(),
 

@@ -13,11 +13,6 @@ final class PasswordInputBuilder extends TextInputBaseBuilder
         return PasswordInputSchema::class;
     }
 
-    protected function type(): string
-    {
-        return 'password-input';
-    }
-
     public function build(): array
     {
         /** @var PasswordInputSchema $schema */

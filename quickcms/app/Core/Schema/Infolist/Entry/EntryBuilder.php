@@ -19,7 +19,7 @@ final class EntryBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'entry',
+            'type' => $this->type(),
 
             'label' => $this->evaluate($schema->label()),
 

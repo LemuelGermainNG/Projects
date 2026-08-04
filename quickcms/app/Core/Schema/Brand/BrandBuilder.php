@@ -16,7 +16,7 @@ final class BrandBuilder extends Builder
     public function build(): array
     {
         return [
-            'type' => 'brand',
+            'type' => $this->type(),
             ...$this->schema->values(),
         ];
     }

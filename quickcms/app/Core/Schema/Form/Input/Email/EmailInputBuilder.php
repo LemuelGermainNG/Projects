@@ -12,9 +12,4 @@ final class EmailInputBuilder extends TextInputBaseBuilder
     {
         return EmailInputSchema::class;
     }
-
-    protected function type(): string
-    {
-        return 'email-input';
-    }
 }

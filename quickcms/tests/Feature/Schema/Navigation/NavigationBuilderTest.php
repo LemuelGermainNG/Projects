@@ -30,7 +30,10 @@ it('compiles a navigation schema', function (): void {
             BuilderRegistryFactory::make(),
         ),
     )->toBe([
+        'type' => 'navigation',
+
         'label' => 'Administration',
+
         'icon' => 'heroicon-o-cog',
 
         'items' => [

@@ -19,7 +19,7 @@ final class BadgeBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'badge',
+            'type' => $this->type(),
 
             'value' => $this->evaluate($schema->value()),
 

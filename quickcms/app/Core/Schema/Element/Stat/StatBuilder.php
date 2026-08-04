@@ -19,7 +19,7 @@ final class StatBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'stat',
+            'type' => $this->type(),
 
             'label' => $this->evaluate($schema->label()),
 

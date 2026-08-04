@@ -8,8 +8,6 @@ use App\Core\Builder\Builder;
 
 final class TabBuilder extends Builder
 {
-    public const TYPE = 'tab';
-
     public static function schema(): string
     {
         return TabSchema::class;
@@ -21,7 +19,7 @@ final class TabBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => self::TYPE,
+            'type' => $this->type(),
 
             'label' => $this->evaluate(
                 $schema->label(),

@@ -19,7 +19,7 @@ final class ImageBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'image',
+            'type' => $this->type(),
 
             'url' => $this->evaluate($schema->url()),
 

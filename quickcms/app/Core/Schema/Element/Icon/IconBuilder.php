@@ -19,7 +19,7 @@ final class IconBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'icon',
+            'type' => $this->type(),
 
             'icon' => $this->evaluate($schema->icon()),
 

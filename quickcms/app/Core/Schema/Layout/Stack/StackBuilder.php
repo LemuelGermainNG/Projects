@@ -8,8 +8,6 @@ use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
 final class StackBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'stack';
-
     public static function schema(): string
     {
         return StackSchema::class;
@@ -21,7 +19,7 @@ final class StackBuilder extends ChildrenLayoutBuilder
         $schema = $this->schema;
 
         return [
-            'type' => self::TYPE,
+            'type' => $this->type(),
 
             'gap' => $schema->gap(),
 

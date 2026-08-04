@@ -8,8 +8,6 @@ use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
 final class GridBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'grid';
-
     public static function schema(): string
     {
         return GridSchema::class;
@@ -21,7 +19,7 @@ final class GridBuilder extends ChildrenLayoutBuilder
         $schema = $this->schema;
 
         return [
-            'type' => self::TYPE,
+            'type' => $this->type(),
 
             'columns' => $schema->columns(),
 

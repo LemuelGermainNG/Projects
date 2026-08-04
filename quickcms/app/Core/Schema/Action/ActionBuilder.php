@@ -25,7 +25,7 @@ final class ActionBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'action',
+            'type' => $this->type(),
 
             'label' => $this->evaluate($schema->label()),
 

@@ -21,6 +21,7 @@ final class NavigationBuilder extends Builder
         $schema = $this->schema;
 
         return [
+            'type' => $this->type(),
             'label' => $schema->label(),
             'icon' => $schema->icon(),
             'items' => array_map(

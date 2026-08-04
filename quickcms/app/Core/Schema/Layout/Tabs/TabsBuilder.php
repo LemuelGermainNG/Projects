@@ -8,8 +8,6 @@ use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
 final class TabsBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'tabs';
-
     public static function schema(): string
     {
         return TabsSchema::class;
@@ -21,7 +19,7 @@ final class TabsBuilder extends ChildrenLayoutBuilder
         $schema = $this->schema;
 
         return [
-            'type' => self::TYPE,
+            'type' => $this->type(),
 
             'children' => $this->buildChildren(
                 $schema->tabs(),

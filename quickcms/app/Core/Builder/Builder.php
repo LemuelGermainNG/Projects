@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace App\Core\Builder;
 
 use App\Core\Schema\Schema;
-use Illuminate\Support\Collection;
 use App\Core\Support\Concerns\EvaluatesValues;
 use App\Core\Support\Contracts\EvaluationContextInterface;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 abstract class Builder implements BuilderInterface
 {
@@ -50,5 +51,17 @@ abstract class Builder implements BuilderInterface
         if ($value !== null) {
             $data[$key] = $value;
         }
+    }
+
+    protected function type(): string
+    {
+        $class = class_basename($this->schema);
+
+        $class = Str::of($class)
+            ->replaceLast('Schema', '')
+            ->kebab()
+            ->toString();
+
+        return $class;
     }
 }

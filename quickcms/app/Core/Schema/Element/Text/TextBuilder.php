@@ -19,7 +19,7 @@ final class TextBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'text',
+            'type' => $this->type(),
 
             'value' => $this->evaluate($schema->value(),),
 

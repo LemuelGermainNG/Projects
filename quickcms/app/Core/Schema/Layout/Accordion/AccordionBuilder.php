@@ -8,8 +8,6 @@ use App\Core\Builder\Layout\ChildrenLayoutBuilder;
 
 final class AccordionBuilder extends ChildrenLayoutBuilder
 {
-    public const TYPE = 'accordion';
-
     public static function schema(): string
     {
         return AccordionSchema::class;
@@ -21,7 +19,7 @@ final class AccordionBuilder extends ChildrenLayoutBuilder
         $schema = $this->schema;
 
         return [
-            'type' => self::TYPE,
+            'type' => $this->type(),
 
             'children' => $this->buildChildren(
                 $schema->items(),

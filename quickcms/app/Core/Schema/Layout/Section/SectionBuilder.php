@@ -8,8 +8,6 @@ use App\Core\Builder\Layout\SingleChildLayoutBuilder;
 
 final class SectionBuilder extends SingleChildLayoutBuilder
 {
-    protected const TYPE = 'section';
-
     public static function schema(): string
     {
         return SectionSchema::class;

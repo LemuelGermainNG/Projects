@@ -19,7 +19,7 @@ final class PageBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'page',
+            'type' => $this->type(),
 
             'header' => $schema->header()
                 ? $this->registry->build(

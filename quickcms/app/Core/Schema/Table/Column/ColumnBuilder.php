@@ -19,7 +19,7 @@ final class ColumnBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'column',
+            'type' => $this->type(),
 
             'label' => $this->evaluate($schema->label()),
 

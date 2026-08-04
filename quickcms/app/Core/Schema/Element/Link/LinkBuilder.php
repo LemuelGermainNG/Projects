@@ -19,7 +19,7 @@ final class LinkBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'link',
+            'type' => $this->type(),
 
             'label' => $this->evaluate($schema->label()),
 

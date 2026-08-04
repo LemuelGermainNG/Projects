@@ -19,7 +19,7 @@ final class InfolistBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'infolist',
+            'type' => $this->type(),
 
             'source' => $schema->source(),
 

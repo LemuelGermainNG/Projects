@@ -19,7 +19,7 @@ final class ContainerBuilder extends Builder
         $schema = $this->schema;
 
         return [
-            'type' => 'container',
+            'type' => $this->type(),
             'children' => array_map(
                 fn ($child) => $this->registry->build(
                     $child,
