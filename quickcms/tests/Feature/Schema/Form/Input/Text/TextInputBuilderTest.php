@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Form\Input\TextInput\TextInputSchema;
+use App\Core\Schema\Form\Input\Text\TextInputSchema;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a text input', function (): void {

@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Form\Input\TextInput\TextInputSchema;
+use App\Core\Schema\Form\Input\Password\PasswordInputSchema;
 
-it('creates a text input', function (): void {
+it('creates a password input', function (): void {
     expect(
-        TextInputSchema::make(),
-    )->toBeInstanceOf(TextInputSchema::class);
+        PasswordInputSchema::make(),
+    )->toBeInstanceOf(PasswordInputSchema::class);
 });
 
 it('sets properties', function (): void {
-    $input = TextInputSchema::make()
-        ->value('John Doe')
-        ->placeholder('Enter your name')
+    $input = PasswordInputSchema::make()
+        ->value('secret')
+        ->placeholder('Password')
         ->readonly(true)
         ->disabled(true);
 
     expect($input->value())
-        ->toBe('John Doe');
+        ->toBe('secret');
 
     expect($input->placeholder())
-        ->toBe('Enter your name');
+        ->toBe('Password');
 
     expect($input->readonly())
         ->toBeTrue();
@@ -31,10 +31,10 @@ it('sets properties', function (): void {
 });
 
 it('is immutable', function (): void {
-    $input = TextInputSchema::make();
+    $input = PasswordInputSchema::make();
 
     $updated = $input
-        ->placeholder('Name');
+        ->placeholder('Password');
 
     expect($updated)
         ->not->toBe($input);
@@ -43,5 +43,5 @@ it('is immutable', function (): void {
         ->toBe('');
 
     expect($updated->placeholder())
-        ->toBe('Name');
+        ->toBe('Password');
 });

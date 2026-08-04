@@ -44,4 +44,11 @@ abstract class Builder implements BuilderInterface
             ))
             ->all();
     }
+
+    protected function addIfNotNull(array &$data, string $key, mixed $value): void
+    {
+        if ($value !== null) {
+            $data[$key] = $value;
+        }
+    }
 }

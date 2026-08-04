@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Core\Schema\Form\Input\EmailInput;
+declare(strict_types=1);
 
-use App\Core\Schema\Form\BaseInputBuilder;
+namespace App\Core\Schema\Form\Input\Email;
 
-final class EmailInputBuilder extends BaseInputBuilder
+use App\Core\Schema\Form\Base\TextInputBaseBuilder;
+
+final class EmailInputBuilder extends TextInputBaseBuilder
 {
     public static function schema(): string
     {

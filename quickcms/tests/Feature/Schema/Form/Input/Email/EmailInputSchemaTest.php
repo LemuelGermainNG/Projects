@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Form\Input\EmailInput\EmailInputSchema;
+use App\Core\Schema\Form\Input\Email\EmailInputSchema;
 
 it('creates an email input', function (): void {
     expect(
