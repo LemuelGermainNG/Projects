@@ -1,93 +1,152 @@
-────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Email\EmailInputBuilderTest > it…    
+  FAILED  Tests\Feature\Schema\Form\FormBuilderTest > it compiles a form sc…   
   Failed asserting that two arrays are identical.
-       'placeholder' => 'Email address',
-       'disabled' => false,
-       'readonly' => false,
-  -    'prefix' => null,
-  -    'suffix' => null,
-       'props' => Array &1 [],
-  -    'mask' => null,
-  -    'length' => null,
-  -    'minLength' => null,
-  -    'maxLength' => null,
-   ]
+               'type' => 'field',
+               'name' => 'name',
+               'label' => 'Name',
+  -            'description' => '',
+  +            'description' => null,
+               'child' => Array &3 [
+                   'type' => 'text',
+                   'value' => 'John Doe',
   
 
-  at tests/Feature/Schema/Form/Input/Email/EmailInputBuilderTest.php:17
-     13▕     expect(
-     14▕         $input->compile(
-     15▕             BuilderRegistryFactory::make(),
-     16▕         ),
-  ➜  17▕     )->toBe([
-     18▕         'type' => 'email-input',
-     19▕ 
-     20▕         'value' => 'john@example.com',
-     21▕ 
+  at tests/Feature/Schema/Form/FormBuilderTest.php:40
+     36▕     expect(
+     37▕         $form->compile(
+     38▕             BuilderRegistryFactory::make(),
+     39▕         ),
+  ➜  40▕     )->toBe([
+     41▕         'type' => 'form',
+     42▕ 
+     43▕         'source' => UserSource::class,
+     44▕ 
 
-  1   tests/Feature/Schema/Form/Input/Email/EmailInputBuilderTest.php:17
+  1   tests/Feature/Schema/Form/FormBuilderTest.php:40
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Password\PasswordInputBuilderTest…   
-  Failed asserting that two arrays are identical.
-       'placeholder' => 'Password',
-       'disabled' => true,
-       'readonly' => true,
-  -    'prefix' => null,
-  -    'suffix' => null,
-       'props' => Array &1 [],
-  -    'mask' => null,
-  -    'length' => null,
-  -    'minLength' => null,
-  -    'maxLength' => null,
-       'revealable' => false,
-   ]
+   FAILED  Tests\Feature\Schema\Form\Input\Select\SelectBuilderTest > it com…   
+  Failed asserting that an array has a key 'options' with the value […].
+Failed asserting that two arrays are equal.
+           'type' => 'option'
+           'value' => 'admin'
+           'label' => 'Administrator'
+  -        'description' => ''
+           'disabled' => false
+           'props' => []
+       )
+  @@ @@
+           'type' => 'option'
+           'value' => 'user'
+           'label' => 'User'
+  -        'description' => ''
+           'disabled' => false
+           'props' => []
+       )
+   )
   
 
-  at tests/Feature/Schema/Form/Input/Password/PasswordInputBuilderTest.php:19
-     15▕     expect(
-     16▕         $input->compile(
-     17▕             BuilderRegistryFactory::make(),
-     18▕         ),
-  ➜  19▕     )->toBe([
-     20▕         'type' => 'password-input',
-     21▕ 
-     22▕         'value' => 'secret',
-     23▕ 
+  at tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:63
+     59▕     expect(
+     60▕         $select->compile(
+     61▕             BuilderRegistryFactory::make(),
+     62▕         ),
+  ➜  63▕     )->toMatchArray([
+     64▕         'type' => 'select',
+     65▕ 
+     66▕         'options' => [
+     67▕             [
 
-  1   tests/Feature/Schema/Form/Input/Password/PasswordInputBuilderTest.php:19
+  1   tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:63
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Text\TextInputBuilderTest > it co…   
+   FAILED  Tests\Feature\Schema\Infolist\InfolistBuilderTest > it compiles a…   
   Failed asserting that two arrays are identical.
-       'placeholder' => 'Enter your name',
-       'disabled' => true,
-       'readonly' => true,
-  -    'prefix' => null,
-  -    'suffix' => null,
-       'props' => Array &1 [],
-  -    'mask' => null,
-  -    'length' => null,
-  -    'minLength' => null,
-  -    'maxLength' => null,
-   ]
+           0 => Array &2 [
+               'type' => 'entry',
+               'label' => 'Name',
+  -            'description' => '',
+  +            'description' => null,
+               'child' => Array &3 [
+                   'type' => 'text',
+                   'value' => 'John Doe',
   
 
-  at tests/Feature/Schema/Form/Input/Text/TextInputBuilderTest.php:19
-     15▕     expect(
-     16▕         $input->compile(
-     17▕             BuilderRegistryFactory::make(),
-     18▕         ),
-  ➜  19▕     )->toBe([
-     20▕         'type' => 'text-input',
-     21▕ 
-     22▕         'value' => 'John Doe',
+  at tests/Feature/Schema/Infolist/InfolistBuilderTest.php:27
+     23▕     expect(
+     24▕         $infolist->compile(
+     25▕             BuilderRegistryFactory::make(),
+     26▕         ),
+  ➜  27▕     )->toBe([
+     28▕         'type' => 'infolist',
+     29▕ 
+     30▕         'source' => UserSource::class,
+     31▕ 
+
+  1   tests/Feature/Schema/Infolist/InfolistBuilderTest.php:27
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Table\ColumnBuilderTest > it compiles a colu…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'column',
+       'label' => 'Name',
+  -    'description' => '',
+  +    'description' => null,
+       'sortable' => false,
+       'searchable' => false,
+       'toggleable' => false,
+  
+
+  at tests/Feature/Schema/Table/ColumnBuilderTest.php:21
+     17▕     expect(
+     18▕         $column->compile(
+     19▕             BuilderRegistryFactory::make(),
+     20▕         ),
+  ➜  21▕     )->toBe([
+     22▕         'type' => 'column',
      23▕ 
+     24▕         'label' => 'Name',
+     25▕ 
 
-  1   tests/Feature/Schema/Form/Input/Text/TextInputBuilderTest.php:19
+  1   tests/Feature/Schema/Table/ColumnBuilderTest.php:21
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Table\TableBuilderTest > it compiles a table…   
+  Failed asserting that two arrays are identical.
+           0 => Array &2 [
+               'type' => 'column',
+               'label' => 'Name',
+  -            'description' => '',
+  +            'description' => null,
+               'sortable' => false,
+               'searchable' => false,
+               'toggleable' => false,
+  @@ @@
+               'type' => 'filter',
+               'name' => 'status',
+               'label' => 'Status',
+  -            'description' => '',
+  +            'description' => null,
+               'child' => Array &8 [
+                   'type' => 'text',
+                   'value' => 'Active',
+  
+
+  at tests/Feature/Schema/Table/TableBuilderTest.php:61
+     57▕     expect(
+     58▕         $table->compile(
+     59▕             BuilderRegistryFactory::make(),
+     60▕         ),
+  ➜  61▕     )->toBe([
+     62▕         'type' => 'table',
+     63▕ 
+     64▕         'source' => UserSource::class,
+     65▕ 
+
+  1   tests/Feature/Schema/Table/TableBuilderTest.php:61
 
 
-  Tests:    3 failed, 248 passed (455 assertions)
-  Duration: 6.72s
+  Tests:    5 failed, 265 passed (495 assertions)
+  Duration: 7.15s
 
 Script @php artisan test handling the test event returned with error code 1

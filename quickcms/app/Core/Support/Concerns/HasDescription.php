@@ -13,10 +13,13 @@ trait HasDescription
     public function description(
         string|Closure|null $description = null,
     ): string|Closure|static {
-        if ($description === null) {
+        if (func_num_args() === 0) {
             return $this->description;
         }
 
-        return $this->with('description', $description);
+        return $this->with(
+            'description',
+            $description ?? '',
+        );
     }
 }

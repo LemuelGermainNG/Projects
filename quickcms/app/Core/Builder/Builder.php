@@ -46,6 +46,29 @@ abstract class Builder implements BuilderInterface
             ->all();
     }
 
+    /**
+     * @param array<int|string, mixed>|null $items
+     *
+     * @return array<int|string, mixed>|null
+     */
+    protected function compileCollection(?array $items): ?array
+    {
+        if ($items === null) {
+            return null;
+        }
+
+        foreach ($items as $key => $item) {
+            if ($item instanceof Schema) {
+                $items[$key] = $item->compile(
+                    $this->registry,
+                    $this->context,
+                );
+            }
+        }
+
+        return $items;
+    }
+
     protected function addIfNotNull(array &$data, string $key, mixed $value): void
     {
         if ($value !== null) {
