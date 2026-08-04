@@ -1,98 +1,392 @@
- FAILED  Tests\Feature\Schema\Element\Pagination\PaginationBuilderT…  Error   
-  Call to a member function compile() on false
+ FAILED  Tests\Feature\Schema\Action\ActionSchemaTest > it sets the disabl…   
+  Failed asserting that App\Core\Schema\Action\ActionSchema Object #12333 (
+    'type' => App\Core\Schema\Action\Enums\ActionType Enum #11804 (Button, 'button'),
+    'trigger' => App\Core\Schema\Action\Enums\ActionTrigger Enum #11803 (Request, 'request'),
+    'id' => '',
+    'name' => '',
+    'label' => '',
+    'icon' => null,
+    'tooltip' => null,
+    'visible' => true,
+    'disabled' => true,
+    'attributes' => Array &0 [],
+    'url' => null,
+    'color' => App\Core\Support\Enums\Color Enum #11562 (Primary, 'primary'),
+    'size' => App\Core\Support\Enums\Size Enum #11808 (Medium, 'md'),
+    'target' => App\Core\Support\Enums\Target Enum #11802 (Self, '_self'),
+    'modal' => null,
+    'confirmation' => null,
+    'event' => null,
+) is true.
 
-  at tests/Feature/Schema/Element/Pagination/PaginationBuilderTest.php:19
-     15▕         ])
-     16▕         ->simple();
-     17▕ 
-     18▕     expect(
-  ➜  19▕         $pagination->compile(
-     20▕             BuilderRegistryFactory::make(),
-     21▕         ),
-     22▕     )->toBe([
-     23▕         'type' => 'pagination',
+  at tests/Feature/Schema/Action/ActionSchemaTest.php:132
+    128▕     $action = ActionSchema::make()
+    129▕         ->disabled(true);
+    130▕ 
+    131▕     expect($action->disabled())
+  ➜ 132▕         ->toBeTrue();
+    133▕ });
+    134▕ 
+    135▕ 
+    136▕ 
 
-  1   tests/Feature/Schema/Element/Pagination/PaginationBuilderTest.php:19
+  1   tests/Feature/Schema/Action/ActionSchemaTest.php:132
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Element\Pagination\PaginationSchemaTe…  Error   
-  Call to a member function enabled() on false
-
-  at tests/Feature/Schema/Element/Pagination/PaginationSchemaTest.php:23
-     19▕             50,
-     20▕         ])
-     21▕         ->simple();
-     22▕ 
-  ➜  23▕     expect($pagination->enabled())
-     24▕         ->toBeTrue();
-     25▕ 
-     26▕     expect($pagination->perPage())
-     27▕         ->toBe(25);
-
-  1   tests/Feature/Schema/Element/Pagination/PaginationSchemaTest.php:23
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Table\ColumnBuilderTest > it compiles a colu…   
+   FAILED  Tests\Feature\Schema\Layout\AccordionBuilderTest > it compiles an…   
   Failed asserting that two arrays are identical.
-       'type' => 'column',
-       'label' => 'Name',
-       'description' => '',
-  +    'sortable' => false,
-  +    'searchable' => false,
-  +    'toggleable' => false,
-  +    'hidden' => false,
-  +    'default' => null,
-  +    'alignment' => 'stretch',
-  +    'width' => null,
-  +    'formatter' => null,
-       'child' => Array &1 [
-           'type' => 'text',
-           'value' => 'John Doe',
+                   'props' => Array &4 [],
+               ],
+               'visible' => true,
+  -            'disabled' => false,
+  -            'child' => Array &5 [
+  +            'disabled' => App\Core\Schema\Layout\Accordion\AccordionItemSchema Object #12404 (
+  +                'header' => App\Core\Schema\Header\HeaderSchema Object #8730 (
+  +                    'title' => 'Users',
+  +                    'description' => null,
+  +                    'icon' => null,
+  +                    'props' => Array &5 [],
+  +                ),
+  +                'child' => App\Core\Schema\Layout\Stack\StackSchema Object #14110 (
+  +                    'children' => Array &6 [],
+  +                    'props' => Array &7 [],
+  +                    'gap' => null,
+  +                ),
+  +                'props' => Array &8 [],
+  +                'visible' => true,
+  +                'disabled' => true,
+  +            ),
+  +            'child' => Array &9 [
+                   'type' => 'stack',
+                   'gap' => null,
+  -                'children' => Array &6 [],
+  -                'props' => Array &7 [],
+  +                'children' => Array &10 [],
+  +                'props' => Array &11 [],
+               ],
+  -            'props' => Array &8 [],
+  +            'props' => Array &12 [],
+           ],
+  -        1 => Array &9 [
+  +        1 => Array &13 [
+               'type' => 'accordion-item',
+  -            'header' => Array &10 [
+  +            'header' => Array &14 [
+                   'type' => 'header',
+                   'title' => 'Roles',
+                   'description' => null,
+                   'icon' => null,
+  -                'props' => Array &11 [],
+  +                'props' => Array &15 [],
+               ],
+               'visible' => true,
+  -            'disabled' => false,
+  -            'child' => Array &12 [
+  +            'disabled' => App\Core\Schema\Layout\Accordion\AccordionItemSchema Object #14685 (
+  +                'header' => App\Core\Schema\Header\HeaderSchema Object #15254 (
+  +                    'title' => 'Roles',
+  +                    'description' => null,
+  +                    'icon' => null,
+  +                    'props' => Array &16 [],
+  +                ),
+  +                'child' => App\Core\Schema\Layout\Stack\StackSchema Object #958 (
+  +                    'children' => Array &17 [],
+  +                    'props' => Array &18 [],
+  +                    'gap' => null,
+  +                ),
+  +                'props' => Array &19 [],
+  +                'visible' => true,
+  +                'disabled' => true,
+  +            ),
+  +            'child' => Array &20 [
+                   'type' => 'stack',
+                   'gap' => null,
+  -                'children' => Array &13 [],
+  -                'props' => Array &14 [],
+  +                'children' => Array &21 [],
+  +                'props' => Array &22 [],
+               ],
+  -            'props' => Array &15 [],
+  +            'props' => Array &23 [],
+           ],
+       ],
+  -    'props' => Array &16 [
+  +    'props' => Array &24 [
+           'multiple' => true,
+       ],
+   ]
   
 
-  at tests/Feature/Schema/Table/ColumnBuilderTest.php:21
-     17▕     expect(
-     18▕         $column->compile(
-     19▕             BuilderRegistryFactory::make(),
-     20▕         ),
-  ➜  21▕     )->toBe([
-     22▕         'type' => 'column',
-     23▕ 
-     24▕         'label' => 'Name',
-     25▕ 
+  at tests/Feature/Schema/Layout/AccordionBuilderTest.php:40
+     36▕     expect(
+     37▕         $accordion->compile(
+     38▕             BuilderRegistryFactory::make(),
+     39▕         ),
+  ➜  40▕     )->toBe([
+     41▕         'type' => 'accordion',
+     42▕ 
+     43▕         'children' => [
+     44▕             [
 
-  1   tests/Feature/Schema/Table/ColumnBuilderTest.php:21
+  1   tests/Feature/Schema/Layout/AccordionBuilderTest.php:40
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Table\TableBuilderTest > it compiles a table…   
+   FAILED  Tests\Feature\Schema\Layout\AccordionItemBuilderTest > it compile…   
   Failed asserting that two arrays are identical.
-               'toggleable' => false,
-               'hidden' => false,
-               'default' => null,
-  -            'alignment' => 'start',
-  -            'width' => '',
-  +            'alignment' => 'stretch',
-  +            'width' => null,
-               'formatter' => null,
-               'child' => Array &3 [
-                   'type' => 'text',
+           'props' => Array &2 [],
+       ],
+       'visible' => true,
+  -    'disabled' => false,
+  -    'child' => Array &3 [
+  +    'disabled' => App\Core\Schema\Layout\Accordion\AccordionItemSchema Object #15169 (
+  +        'header' => App\Core\Schema\Header\HeaderSchema Object #8535 (
+  +            'title' => 'Users',
+  +            'description' => 'Manage users',
+  +            'icon' => null,
+  +            'props' => Array &3 [],
+  +        ),
+  +        'child' => App\Core\Schema\Layout\Stack\StackSchema Object #15614 (
+  +            'children' => Array &4 [],
+  +            'props' => Array &5 [],
+  +            'gap' => null,
+  +        ),
+  +        'props' => Array &6 [
+  +            'lazy' => true,
+  +        ],
+  +        'visible' => true,
+  +        'disabled' => true,
+  +    ),
+  +    'child' => Array &7 [
+           'type' => 'stack',
+           'gap' => null,
+  -        'children' => Array &4 [],
+  -        'props' => Array &5 [],
+  +        'children' => Array &8 [],
+  +        'props' => Array &9 [],
+       ],
+  -    'props' => Array &6 [
+  +    'props' => Array &10 [
+           'lazy' => true,
+       ],
+   ]
   
 
-  at tests/Feature/Schema/Table/TableBuilderTest.php:61
-     57▕     expect(
-     58▕         $table->compile(
-     59▕             BuilderRegistryFactory::make(),
-     60▕         ),
-  ➜  61▕     )->toBe([
-     62▕         'type' => 'table',
-     63▕ 
-     64▕         'source' => UserSource::class,
-     65▕ 
+  at tests/Feature/Schema/Layout/AccordionItemBuilderTest.php:30
+     26▕     expect(
+     27▕         $item->compile(
+     28▕             BuilderRegistryFactory::make(),
+     29▕         ),
+  ➜  30▕     )->toBe([
+     31▕         'type' => 'accordion-item',
+     32▕ 
+     33▕         'header' => [
+     34▕             'type' => 'header',
 
-  1   tests/Feature/Schema/Table/TableBuilderTest.php:61
+  1   tests/Feature/Schema/Layout/AccordionItemBuilderTest.php:30
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Layout\AccordionItemSchemaTest > it sets acc…   
+  Failed asserting that App\Core\Schema\Layout\Accordion\AccordionItemSchema Object #17740 (
+    'header' => App\Core\Schema\Header\HeaderSchema Object #12626 (
+        'title' => 'Users',
+        'description' => 'Manage users',
+        'icon' => null,
+        'props' => Array &0 [],
+    ),
+    'child' => App\Core\Schema\Layout\Stack\StackSchema Object #7808 (
+        'children' => Array &1 [],
+        'props' => Array &2 [],
+        'gap' => null,
+    ),
+    'props' => Array &3 [
+        'lazy' => true,
+    ],
+    'visible' => true,
+    'disabled' => true,
+) is false.
+
+  at tests/Feature/Schema/Layout/AccordionItemSchemaTest.php:41
+     37▕     expect($item->visible())
+     38▕         ->toBeTrue();
+     39▕ 
+     40▕     expect($item->disabled())
+  ➜  41▕         ->toBeFalse();
+     42▕ 
+     43▕     expect($item->props())
+     44▕         ->toBe([
+     45▕             'lazy' => true,
+
+  1   tests/Feature/Schema/Layout/AccordionItemSchemaTest.php:41
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Layout\TabBuilderTest > it compiles a tab sc…   
+  Failed asserting that two arrays are identical.
+       'label' => 'Users',
+       'icon' => 'heroicon-o-users',
+       'visible' => true,
+  -    'disabled' => false,
+  -    'child' => Array &1 [
+  +    'disabled' => App\Core\Schema\Layout\Tabs\TabSchema Object #10011 (
+  +        'label' => 'Users',
+  +        'icon' => App\Core\Support\Enums\Icons\Heroicons Enum #8796 (Users, 'heroicon-o-users'),
+  +        'child' => App\Core\Schema\Header\HeaderSchema Object #17099 (
+  +            'title' => 'Users',
+  +            'description' => null,
+  +            'icon' => null,
+  +            'props' => Array &1 [],
+  +        ),
+  +        'visible' => true,
+  +        'disabled' => true,
+  +        'props' => Array &2 [
+  +            'lazy' => true,
+  +        ],
+  +    ),
+  +    'child' => Array &3 [
+           'type' => 'header',
+           'title' => 'Users',
+           'description' => null,
+           'icon' => null,
+  -        'props' => Array &2 [],
+  +        'props' => Array &4 [],
+       ],
+  -    'props' => Array &3 [
+  +    'props' => Array &5 [
+           'lazy' => true,
+       ],
+   ]
+  
+
+  at tests/Feature/Schema/Layout/TabBuilderTest.php:28
+     24▕     expect(
+     25▕         $tab->compile(
+     26▕             BuilderRegistryFactory::make(),
+     27▕         ),
+  ➜  28▕     )->toBe([
+     29▕         'type' => 'tab',
+     30▕ 
+     31▕         'label' => 'Users',
+     32▕ 
+
+  1   tests/Feature/Schema/Layout/TabBuilderTest.php:28
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Layout\TabSchemaTest > it sets tab propertie…   
+  Failed asserting that App\Core\Schema\Layout\Tabs\TabSchema Object #6126 (
+    'label' => 'Users',
+    'icon' => App\Core\Support\Enums\Icons\Heroicons Enum #8796 (Users, 'heroicon-o-users'),
+    'child' => App\Core\Schema\Header\HeaderSchema Object #21584 (
+        'title' => 'Users',
+        'description' => null,
+        'icon' => null,
+        'props' => Array &0 [],
+    ),
+    'visible' => true,
+    'disabled' => true,
+    'props' => Array &1 [
+        'lazy' => true,
+    ],
+) is false.
+
+  at tests/Feature/Schema/Layout/TabSchemaTest.php:39
+     35▕     expect($tab->visible())
+     36▕         ->toBeTrue();
+     37▕ 
+     38▕     expect($tab->disabled())
+  ➜  39▕         ->toBeFalse();
+     40▕ 
+     41▕     expect($tab->child())
+     42▕         ->toBeInstanceOf(HeaderSchema::class);
+     43▕ 
+
+  1   tests/Feature/Schema/Layout/TabSchemaTest.php:39
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Layout\TabsBuilderTest > it compiles a tabs…    
+  Failed asserting that two arrays are identical.
+               'label' => 'Users',
+               'icon' => 'heroicon-o-users',
+               'visible' => true,
+  -            'disabled' => false,
+  -            'child' => Array &3 [
+  +            'disabled' => App\Core\Schema\Layout\Tabs\TabSchema Object #19046 (
+  +                'label' => 'Users',
+  +                'icon' => App\Core\Support\Enums\Icons\Heroicons Enum #8796 (Users, 'heroicon-o-users'),
+  +                'child' => App\Core\Schema\Header\HeaderSchema Object #19388 (
+  +                    'title' => 'Users',
+  +                    'description' => null,
+  +                    'icon' => null,
+  +                    'props' => Array &3 [],
+  +                ),
+  +                'visible' => true,
+  +                'disabled' => true,
+  +                'props' => Array &4 [],
+  +            ),
+  +            'child' => Array &5 [
+                   'type' => 'header',
+                   'title' => 'Users',
+                   'description' => null,
+                   'icon' => null,
+  -                'props' => Array &4 [],
+  +                'props' => Array &6 [],
+               ],
+  -            'props' => Array &5 [],
+  +            'props' => Array &7 [],
+           ],
+  -        1 => Array &6 [
+  +        1 => Array &8 [
+               'type' => 'tab',
+               'label' => 'Roles',
+               'icon' => null,
+               'visible' => true,
+  -            'disabled' => false,
+  -            'child' => Array &7 [
+  +            'disabled' => App\Core\Schema\Layout\Tabs\TabSchema Object #18900 (
+  +                'label' => 'Roles',
+  +                'icon' => null,
+  +                'child' => App\Core\Schema\Header\HeaderSchema Object #17460 (
+  +                    'title' => 'Roles',
+  +                    'description' => null,
+  +                    'icon' => null,
+  +                    'props' => Array &9 [],
+  +                ),
+  +                'visible' => true,
+  +                'disabled' => true,
+  +                'props' => Array &10 [],
+  +            ),
+  +            'child' => Array &11 [
+                   'type' => 'header',
+                   'title' => 'Roles',
+                   'description' => null,
+                   'icon' => null,
+  -                'props' => Array &8 [],
+  +                'props' => Array &12 [],
+               ],
+  -            'props' => Array &9 [],
+  +            'props' => Array &13 [],
+           ],
+       ],
+  -    'props' => Array &10 [
+  +    'props' => Array &14 [
+           'lazy' => true,
+       ],
+   ]
+  
+
+  at tests/Feature/Schema/Layout/TabsBuilderTest.php:41
+     37▕     expect(
+     38▕         $tabs->compile(
+     39▕             BuilderRegistryFactory::make(),
+     40▕         ),
+  ➜  41▕     )->toBe([
+     42▕         'type' => 'tabs',
+     43▕ 
+     44▕         'children' => [
+     45▕             [
+
+  1   tests/Feature/Schema/Layout/TabsBuilderTest.php:41
 
 
-  Tests:    4 failed, 235 passed (423 assertions)
-  Duration: 4.12s
+  Tests:    7 failed, 236 passed (434 assertions)
+  Duration: 4.09s
 
-Script @php artisan test handling the test event returned with error code 2
+Script @php artisan test handling the test event returned with error code 1
