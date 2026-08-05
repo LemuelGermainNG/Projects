@@ -7,6 +7,7 @@ namespace App\Core\Builder;
 use App\Core\Schema\Schema;
 use App\Core\Support\Concerns\EvaluatesValues;
 use App\Core\Support\Contracts\EvaluationContextInterface;
+use BackedEnum;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -74,6 +75,16 @@ abstract class Builder implements BuilderInterface
         if ($value !== null) {
             $data[$key] = $value;
         }
+    }
+    protected function evaluateEnum(mixed $value): mixed
+    {
+        $value = $this->evaluate($value);
+
+        if ($value instanceof BackedEnum) {
+            return $value->value;
+        }
+
+        return $value;
     }
 
     protected function type(): string
