@@ -18,52 +18,108 @@ final class RelationshipBuilder extends Builder
         /** @var RelationshipSchema $schema */
         $schema = $this->schema;
 
-        return [
+        $data = [
             'type' => $this->type(),
 
-            'source' => $this->evaluate(
+            'props' => $schema->props(),
+        ];
+
+        unset($data['props']);
+
+        $this->addIfNotNull(
+            $data,
+            'source',
+            $this->evaluate(
                 $schema->source(),
             ),
+        );
 
-            'label' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'label',
+            $this->evaluate(
                 $schema->label(),
             ),
+        );
 
-            'value' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'value',
+            $this->evaluate(
                 $schema->value(),
             ),
+        );
 
-            'search' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'search',
+            $this->evaluate(
                 $schema->search(),
             ),
+        );
 
-            'limit' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'limit',
+            $this->evaluate(
                 $schema->limit(),
             ),
+        );
 
-            'filters' => $this->compileCollection(
+        $this->addIfNotNull(
+            $data,
+            'filters',
+            $this->compileCollection(
                 $this->evaluate(
                     $schema->filters(),
                 ),
             ),
+        );
 
-            'sort' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'sort',
+            $this->evaluate(
                 $schema->sort(),
             ),
+        );
 
-            'includes' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'includes',
+            $this->evaluate(
                 $schema->includes(),
             ),
+        );
 
-            'appends' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'appends',
+            $this->evaluate(
                 $schema->appends(),
             ),
+        );
 
-            'cache' => $this->evaluate(
+        $this->addIfNotNull(
+            $data,
+            'cache',
+            $this->evaluate(
                 $schema->cache(),
             ),
+        );
 
-            'props' => $schema->props(),
-        ];
+        $this->addIfNotNull(
+            $data,
+            'optionActions',
+            $this->compileCollection(
+                $this->evaluate(
+                    $schema->optionActions(),
+                ),
+            ),
+        );
+
+        $data['props'] = $schema->props();
+
+        return $data;
     }
 }
