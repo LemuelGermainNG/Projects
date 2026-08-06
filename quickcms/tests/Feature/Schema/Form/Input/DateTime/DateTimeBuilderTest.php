@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Core\Support\Enums\Date\WeekDay;
+use App\Core\Support\Enum\Date\WeekDay;
 use App\Core\Schema\Form\Input\DateTime\DateTimeSchema;
 use Tests\Support\Factories\BuilderRegistryFactory;
 

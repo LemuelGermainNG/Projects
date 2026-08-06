@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Element\Text\TextSchema;
-use App\Core\Support\Enums\Color;
+use App\Core\Support\Enum\Color;
 
 it('creates a text schema', function (): void {
     expect(

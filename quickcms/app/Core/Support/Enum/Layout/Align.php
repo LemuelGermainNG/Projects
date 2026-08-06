@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Support\Enums\Layout;
+namespace App\Core\Support\Enum\Layout;
 
 enum Align: string
 {

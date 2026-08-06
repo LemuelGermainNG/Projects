@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Action\Actions\CancelAction;
-use App\Core\Support\Enums\Color;
-use App\Core\Support\Enums\Icons\Heroicons;
+use App\Core\Support\Enum\Color;
+use App\Core\Support\Enum\Icons\Heroicons;
 
 it('creates a cancel action', function (): void {
     $action = CancelAction::make();

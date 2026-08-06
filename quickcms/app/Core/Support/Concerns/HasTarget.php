@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
-use App\Core\Support\Enums\Target;
+use App\Core\Support\Enum\Target;
 
 trait HasTarget
 {

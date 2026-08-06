@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Element\Icon\IconSchema;
-use App\Core\Support\Enums\Color;
-use App\Core\Support\Enums\Icons\Heroicons;
+use App\Core\Support\Enum\Color;
+use App\Core\Support\Enum\Icons\Heroicons;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles an icon schema', function (): void {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Support\Enums\Layout;
+namespace App\Core\Support\Enum\Layout;
 
 enum Wrap: string
 {

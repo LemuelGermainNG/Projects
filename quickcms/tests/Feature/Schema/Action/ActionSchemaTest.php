@@ -5,9 +5,9 @@ declare(strict_types=1);
 use App\Core\Schema\Action\ActionSchema;
 use App\Core\Schema\Action\Enums\ActionTrigger;
 use App\Core\Schema\Action\Enums\ActionType;
-use App\Core\Support\Enums\Color;
-use App\Core\Support\Enums\Size;
-use App\Core\Support\Enums\Target;
+use App\Core\Support\Enum\Color;
+use App\Core\Support\Enum\Size;
+use App\Core\Support\Enum\Target;
 
 it('creates an action schema', function (): void {
     $action = ActionSchema::make();

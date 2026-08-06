@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Support\Enums\Date;
+namespace App\Core\Support\Enum\Date;
 
 enum WeekDay: int
 {

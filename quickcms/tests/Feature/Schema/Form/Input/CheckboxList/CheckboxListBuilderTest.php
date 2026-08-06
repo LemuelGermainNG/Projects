@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Form\Input\CheckboxList\CheckboxListSchema;
-use App\Core\Support\Enums\Layout\Direction;
+use App\Core\Support\Enum\Layout\Direction;
 use Tests\Support\Assertions\OptionAssertions;
 use Tests\Support\Builders\OptionBuilderFactory;
 use Tests\Support\Factories\BuilderRegistryFactory;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Support\Enums;
+namespace App\Core\Support\Enum;
 
 enum Size: string
 {

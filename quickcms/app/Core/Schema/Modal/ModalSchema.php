@@ -6,7 +6,7 @@ namespace App\Core\Schema\Modal;
 
 use App\Core\Schema\Schema;
 use App\Core\Support\Concerns\HasSize;
-use App\Core\Support\Enums\Position;
+use App\Core\Support\Enum\Position;
 
 final class ModalSchema extends Schema
 {

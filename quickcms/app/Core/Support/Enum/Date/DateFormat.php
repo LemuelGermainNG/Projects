@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Support\Enums\Date;
+namespace App\Core\Support\Enum\Date;
 
 enum DateFormat: string
 {

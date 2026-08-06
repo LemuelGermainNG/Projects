@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Layout\Tabs\TabSchema;
-use App\Core\Support\Enums\Icons\Heroicons;
+use App\Core\Support\Enum\Icons\Heroicons;
 
 it('creates a tab schema', function (): void {
     expect(

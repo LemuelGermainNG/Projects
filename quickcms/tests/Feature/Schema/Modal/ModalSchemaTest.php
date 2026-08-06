@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Modal\ModalSchema;
-use App\Core\Support\Enums\Position;
-use App\Core\Support\Enums\Size;
+use App\Core\Support\Enum\Position;
+use App\Core\Support\Enum\Size;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a modal schema', function (): void {

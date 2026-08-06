@@ -7,7 +7,7 @@ namespace Tests\Fixtures\Navigation;
 use App\Core\Runtime\Contracts\Navigation;
 use App\Core\Schema\Navigation\NavigationItemSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
-use App\Core\Support\Enums\Icons\Heroicons;
+use App\Core\Support\Enum\Icons\Heroicons;
 use Tests\Fixtures\Pages\DashboardPage;
 use Tests\Fixtures\Pages\UsersPage;
 

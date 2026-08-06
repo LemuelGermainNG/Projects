@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Support\Enums\Icons;
+namespace App\Core\Support\Enum\Icons;
 
 use App\Core\Support\Contracts\IconInterface;
 

@@ -2,7 +2,7 @@
 
 namespace App\Core\Support\Concerns;
 
-use App\Core\Support\Enums\Layout\Direction;
+use App\Core\Support\Enum\Layout\Direction;
 
 trait HasDirection
 {

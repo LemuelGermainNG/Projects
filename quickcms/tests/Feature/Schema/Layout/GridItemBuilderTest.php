@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Layout\Grid\GridItemSchema;
-use App\Core\Support\Enums\Layout\Align;
-use App\Core\Support\Enums\Layout\Justify;
+use App\Core\Support\Enum\Layout\Align;
+use App\Core\Support\Enum\Layout\Justify;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a grid item schema', function (): void {

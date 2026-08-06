@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Layout\Split\SplitSchema;
-use App\Core\Support\Enums\Layout\Direction;
+use App\Core\Support\Enum\Layout\Direction;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a split schema', function (): void {

@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Header\HeaderSchema;
-use App\Core\Support\Enums\Icons\Heroicons;
+use App\Core\Support\Enum\Icons\Heroicons;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a header schema', function (): void {
