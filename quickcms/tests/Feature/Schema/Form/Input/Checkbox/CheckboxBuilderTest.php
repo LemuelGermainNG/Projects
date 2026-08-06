@@ -7,6 +7,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a checkbox', function (): void {
     $checkbox = CheckboxSchema::make()
+        ->name('accepted')
         ->checked()
         ->inline();
 
@@ -16,6 +17,8 @@ it('compiles a checkbox', function (): void {
         ),
     )->toBe([
         'type' => 'checkbox',
+
+        'name'=> 'accepted',
 
         'value' => null,
 

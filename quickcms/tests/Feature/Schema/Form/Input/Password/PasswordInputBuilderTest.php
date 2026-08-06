@@ -7,6 +7,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a password input', function (): void {
     $input = PasswordInputSchema::make()
+        ->name('password')
         ->value('secret')
         ->placeholder('Password')
         ->readonly(true)
@@ -18,7 +19,7 @@ it('compiles a password input', function (): void {
         ),
     )->toBe([
         'type' => 'password-input',
-
+        'name'=> 'password',
         'value' => 'secret',
 
         'placeholder' => 'Password',

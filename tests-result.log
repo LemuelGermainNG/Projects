@@ -1,112 +1,232 @@
- FAILED  Tests\Feature\Schema\Form\Input\ColorPicker\ColorPicke…  TypeError   
-  App\Core\Schema\Form\Input\ColorPicker\ColorPickerSchema::format(): Argument #1 ($format) must be of type App\Core\Enum\Color\ColorFormat|Closure|null, App\Core\Support\Enum\Color\ColorFormat given, called in /home/dmtb/dev/Projects/quickcms/tests/Support/Builders/ColorPickerBuilderFactory.php on line 16
+ FAILED  Tests\Feature\Schema\Form\Input\Checkbox\CheckboxBuilderTest > it…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'checkbox',
+  +    'name' => '',
+       'value' => null,
+       'placeholder' => '',
+       'disabled' => false,
+  
 
-  at app/Core/Support/Concerns/HasFormat.php:15
-     11▕ {
-     12▕     protected ColorFormat|Closure|null $format = null;
-     13▕ 
-     14▕     public function format(
-  ➜  15▕         ColorFormat|Closure|null $format = null,
-     16▕     ): ColorFormat|Closure|null|static {
-     17▕         if (func_num_args() === 0) {
-     18▕             return $this->format;
-     19▕         }
+  at tests/Feature/Schema/Form/Input/Checkbox/CheckboxBuilderTest.php:17
+     13▕     expect(
+     14▕         $checkbox->compile(
+     15▕             BuilderRegistryFactory::make(),
+     16▕         ),
+  ➜  17▕     )->toBe([
+     18▕         'type' => 'checkbox',
+     19▕ 
+     20▕         'value' => null,
+     21▕ 
 
-  1   app/Core/Support/Concerns/HasFormat.php:15
-  2   tests/Support/Builders/ColorPickerBuilderFactory.php:16
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\ColorPicker\ColorPicke…  TypeError   
-  App\Core\Schema\Form\Input\ColorPicker\ColorPickerSchema::format(): Argument #1 ($format) must be of type App\Core\Enum\Color\ColorFormat|Closure|null, App\Core\Support\Enum\Color\ColorFormat given, called in /home/dmtb/dev/Projects/quickcms/tests/Support/Builders/ColorPickerBuilderFactory.php on line 16
-
-  at app/Core/Support/Concerns/HasFormat.php:15
-     11▕ {
-     12▕     protected ColorFormat|Closure|null $format = null;
-     13▕ 
-     14▕     public function format(
-  ➜  15▕         ColorFormat|Closure|null $format = null,
-     16▕     ): ColorFormat|Closure|null|static {
-     17▕         if (func_num_args() === 0) {
-     18▕             return $this->format;
-     19▕         }
-
-  1   app/Core/Support/Concerns/HasFormat.php:15
-  2   tests/Support/Builders/ColorPickerBuilderFactory.php:16
+  1   tests/Feature/Schema/Form/Input/Checkbox/CheckboxBuilderTest.php:17
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\ColorPicker\ColorPicke…  TypeError   
-  App\Core\Schema\Form\Input\ColorPicker\ColorPickerSchema::format(): Argument #1 ($format) must be of type App\Core\Enum\Color\ColorFormat|Closure|null, App\Core\Support\Enum\Color\ColorFormat given, called in /home/dmtb/dev/Projects/quickcms/tests/Support/Builders/ColorPickerBuilderFactory.php on line 16
+   FAILED  Tests\Feature\Schema\Form\Input\Email\EmailInputBuilderTest > it…    
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'email-input',
+  +    'name' => '',
+       'value' => 'john@example.com',
+       'placeholder' => 'Email address',
+       'disabled' => false,
+  
 
-  at app/Core/Support/Concerns/HasFormat.php:15
-     11▕ {
-     12▕     protected ColorFormat|Closure|null $format = null;
-     13▕ 
-     14▕     public function format(
-  ➜  15▕         ColorFormat|Closure|null $format = null,
-     16▕     ): ColorFormat|Closure|null|static {
-     17▕         if (func_num_args() === 0) {
-     18▕             return $this->format;
-     19▕         }
+  at tests/Feature/Schema/Form/Input/Email/EmailInputBuilderTest.php:17
+     13▕     expect(
+     14▕         $input->compile(
+     15▕             BuilderRegistryFactory::make(),
+     16▕         ),
+  ➜  17▕     )->toBe([
+     18▕         'type' => 'email-input',
+     19▕ 
+     20▕         'value' => 'john@example.com',
+     21▕ 
 
-  1   app/Core/Support/Concerns/HasFormat.php:15
-  2   tests/Support/Builders/ColorPickerBuilderFactory.php:16
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Markdown\MarkdownBuild…  TypeError   
-  App\Core\Schema\Form\Input\Markdown\MarkdownSchema::flavor(): Argument #1 ($flavor) must be of type App\Core\Enum\Markdown\MarkdownFlavor|Closure|null, App\Core\Support\Enum\Markdown\MarkdownFlavor given, called in /home/dmtb/dev/Projects/quickcms/tests/Support/Builders/MarkdownBuilderFactory.php on line 29
-
-  at app/Core/Support/Concerns/Markdown/HasFlavor.php:15
-     11▕ {
-     12▕     protected MarkdownFlavor|Closure|null $flavor = null;
-     13▕ 
-     14▕     public function flavor(
-  ➜  15▕         MarkdownFlavor|Closure|null $flavor = null,
-     16▕     ): MarkdownFlavor|Closure|null|static {
-     17▕         if (func_num_args() === 0) {
-     18▕             return $this->flavor;
-     19▕         }
-
-  1   app/Core/Support/Concerns/Markdown/HasFlavor.php:15
-  2   tests/Support/Builders/MarkdownBuilderFactory.php:29
+  1   tests/Feature/Schema/Form/Input/Email/EmailInputBuilderTest.php:17
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Markdown\MarkdownSchem…  TypeError   
-  App\Core\Schema\Form\Input\Markdown\MarkdownSchema::flavor(): Argument #1 ($flavor) must be of type App\Core\Enum\Markdown\MarkdownFlavor|Closure|null, App\Core\Support\Enum\Markdown\MarkdownFlavor given, called in /home/dmtb/dev/Projects/quickcms/tests/Support/Builders/MarkdownBuilderFactory.php on line 29
+   FAILED  Tests\Feature\Schema\Form\Input\Number\NumberInputBuilderTest > i…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'number-input',
+  +    'name' => '',
+       'value' => 42,
+       'placeholder' => '',
+       'disabled' => false,
+  
 
-  at app/Core/Support/Concerns/Markdown/HasFlavor.php:15
-     11▕ {
-     12▕     protected MarkdownFlavor|Closure|null $flavor = null;
-     13▕ 
-     14▕     public function flavor(
-  ➜  15▕         MarkdownFlavor|Closure|null $flavor = null,
-     16▕     ): MarkdownFlavor|Closure|null|static {
-     17▕         if (func_num_args() === 0) {
-     18▕             return $this->flavor;
-     19▕         }
+  at tests/Feature/Schema/Form/Input/Number/NumberInputBuilderTest.php:19
+     15▕     expect(
+     16▕         $input->compile(
+     17▕             BuilderRegistryFactory::make(),
+     18▕         ),
+  ➜  19▕     )->toBe([
+     20▕         'type' => 'number-input',
+     21▕ 
+     22▕         'value' => 42,
+     23▕ 
 
-  1   app/Core/Support/Concerns/Markdown/HasFlavor.php:15
-  2   tests/Support/Builders/MarkdownBuilderFactory.php:29
+  1   tests/Feature/Schema/Form/Input/Number/NumberInputBuilderTest.php:19
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Markdown\MarkdownSchem…  TypeError   
-  App\Core\Schema\Form\Input\Markdown\MarkdownSchema::flavor(): Argument #1 ($flavor) must be of type App\Core\Enum\Markdown\MarkdownFlavor|Closure|null, App\Core\Support\Enum\Markdown\MarkdownFlavor given, called in /home/dmtb/dev/Projects/quickcms/tests/Support/Builders/MarkdownBuilderFactory.php on line 29
+   FAILED  Tests\Feature\Schema\Form\Input\Password\PasswordInputBuilderTest…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'password-input',
+  +    'name' => '',
+       'value' => 'secret',
+       'placeholder' => 'Password',
+       'disabled' => true,
+  
 
-  at app/Core/Support/Concerns/Markdown/HasFlavor.php:15
-     11▕ {
-     12▕     protected MarkdownFlavor|Closure|null $flavor = null;
-     13▕ 
-     14▕     public function flavor(
-  ➜  15▕         MarkdownFlavor|Closure|null $flavor = null,
-     16▕     ): MarkdownFlavor|Closure|null|static {
-     17▕         if (func_num_args() === 0) {
-     18▕             return $this->flavor;
-     19▕         }
+  at tests/Feature/Schema/Form/Input/Password/PasswordInputBuilderTest.php:19
+     15▕     expect(
+     16▕         $input->compile(
+     17▕             BuilderRegistryFactory::make(),
+     18▕         ),
+  ➜  19▕     )->toBe([
+     20▕         'type' => 'password-input',
+     21▕ 
+     22▕         'value' => 'secret',
+     23▕ 
 
-  1   app/Core/Support/Concerns/Markdown/HasFlavor.php:15
-  2   tests/Support/Builders/MarkdownBuilderFactory.php:29
+  1   tests/Feature/Schema/Form/Input/Password/PasswordInputBuilderTest.php:19
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Form\Input\Phone\PhoneInputBuilderTest > it…    
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'phone-input',
+  +    'name' => '',
+       'value' => '+33 6 12 34 56 78',
+       'placeholder' => 'Phone number',
+       'disabled' => false,
+  
+
+  at tests/Feature/Schema/Form/Input/Phone/PhoneInputBuilderTest.php:18
+     14▕     expect(
+     15▕         $input->compile(
+     16▕             BuilderRegistryFactory::make(),
+     17▕         ),
+  ➜  18▕     )->toBe([
+     19▕         'type' => 'phone-input',
+     20▕ 
+     21▕         'value' => '+33 6 12 34 56 78',
+     22▕ 
+
+  1   tests/Feature/Schema/Form/Input/Phone/PhoneInputBuilderTest.php:18
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Form\Input\Repeater\RepeaterBuilderTest > it…   
+  Failed asserting that an array has a key 'schema' with the value […].
+Failed asserting that two arrays are equal.
+   Array (
+       0 => Array (
+           'type' => 'text-input'
+  -        'name' => ''
+  +        'name' => 'title'
+           'value' => null
+           'placeholder' => ''
+           'disabled' => false
+  @@ @@
+       )
+       1 => Array (
+           'type' => 'text-input'
+  -        'name' => ''
+  +        'name' => 'description'
+           'value' => null
+           'placeholder' => ''
+           'disabled' => false
+  
+
+  at tests/Feature/Schema/Form/Input/Repeater/RepeaterBuilderTest.php:15
+     11▕         RepeaterBuilderFactory::make()
+     12▕             ->compile(
+     13▕                 BuilderRegistryFactory::make(),
+     14▕             ),
+  ➜  15▕     )->toMatchArray(
+     16▕         RepeaterAssertions::make(),
+     17▕     );
+     18▕ });
+     19▕ 
+
+  1   tests/Feature/Schema/Form/Input/Repeater/RepeaterBuilderTest.php:15
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Form\Input\Select\SelectBuilderTest > it com…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'select',
+  +    'name' => '',
+       'value' => null,
+       'placeholder' => '',
+       'disabled' => false,
+  
+
+  at tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:22
+     18▕     expect(
+     19▕         $input->compile(
+     20▕             BuilderRegistryFactory::make(),
+     21▕         ),
+  ➜  22▕     )->toBe([
+     23▕         'type' => 'select',
+     24▕ 
+     25▕         'value' => null,
+     26▕ 
+
+  1   tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:22
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Form\Input\Text\TextInputBuilderTest > it co…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'text-input',
+  +    'name' => '',
+       'value' => 'John Doe',
+       'placeholder' => 'Enter your name',
+       'disabled' => true,
+  
+
+  at tests/Feature/Schema/Form/Input/Text/TextInputBuilderTest.php:19
+     15▕     expect(
+     16▕         $input->compile(
+     17▕             BuilderRegistryFactory::make(),
+     18▕         ),
+  ➜  19▕     )->toBe([
+     20▕         'type' => 'text-input',
+     21▕ 
+     22▕         'value' => 'John Doe',
+     23▕ 
+
+  1   tests/Feature/Schema/Form/Input/Text/TextInputBuilderTest.php:19
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Form\Input\Textarea\TextareaInputBuilderTest…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+       'type' => 'textarea-input',
+  +    'name' => '',
+       'value' => 'Lorem ipsum',
+       'placeholder' => '',
+       'disabled' => false,
+  
+
+  at tests/Feature/Schema/Form/Input/Textarea/TextareaInputBuilderTest.php:19
+     15▕     expect(
+     16▕         $input->compile(
+     17▕             BuilderRegistryFactory::make(),
+     18▕         ),
+  ➜  19▕     )->toBe([
+     20▕         'type' => 'textarea-input',
+     21▕ 
+     22▕         'value' => 'Lorem ipsum',
+     23▕ 
+
+  1   tests/Feature/Schema/Form/Input/Textarea/TextareaInputBuilderTest.php:19
 
 
-  Tests:    6 failed, 297 passed (697 assertions)
-  Duration: 9.58s
+  Tests:    9 failed, 303 passed (835 assertions)
+  Duration: 9.17s
 
-Script @php artisan test handling the test event returned with error code 2
+Script @php artisan test handling the test event returned with error code 1

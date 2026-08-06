@@ -7,6 +7,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a phone input', function (): void {
     $input = PhoneInputSchema::make()
+        ->name('phone')
         ->value('+33 6 12 34 56 78')
         ->placeholder('Phone number')
         ->mask('+99 9 99 99 99 99');
@@ -17,7 +18,7 @@ it('compiles a phone input', function (): void {
         ),
     )->toBe([
         'type' => 'phone-input',
-
+        'name' => 'phone',
         'value' => '+33 6 12 34 56 78',
 
         'placeholder' => 'Phone number',

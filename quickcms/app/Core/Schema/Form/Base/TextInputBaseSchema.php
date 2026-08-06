@@ -8,7 +8,6 @@ use App\Core\Support\Concerns\HasLength;
 use App\Core\Support\Concerns\HasMask;
 use App\Core\Support\Concerns\HasMaxLength;
 use App\Core\Support\Concerns\HasMinLength;
-use App\Core\Support\Concerns\HasName;
 
 abstract class TextInputBaseSchema extends BaseInputSchema
 {
@@ -16,5 +15,4 @@ abstract class TextInputBaseSchema extends BaseInputSchema
     use HasMask;
     use HasMaxLength;
     use HasMinLength;
-    use HasName;
 }

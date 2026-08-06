@@ -7,6 +7,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a textarea input', function (): void {
     $input = TextareaInputSchema::make()
+        ->name('description')
         ->value('Lorem ipsum')
         ->rows(5)
         ->cols(50)
@@ -18,7 +19,7 @@ it('compiles a textarea input', function (): void {
         ),
     )->toBe([
         'type' => 'textarea-input',
-
+        'name' => 'description',
         'value' => 'Lorem ipsum',
 
         'placeholder' => '',

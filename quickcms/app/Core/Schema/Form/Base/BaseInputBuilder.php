@@ -15,7 +15,10 @@ abstract class BaseInputBuilder extends Builder
 
         $data = [
             'type' => $this->type(),
-
+            
+            'name' => $this->evaluate(
+                    $schema->name(),
+                ),
             'value' => $this->evaluate(
                 $schema->value(),
             ),

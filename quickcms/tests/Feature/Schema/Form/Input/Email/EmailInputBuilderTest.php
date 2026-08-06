@@ -7,6 +7,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles an email input', function (): void {
     $input = EmailInputSchema::make()
+        ->name('email')
         ->value('john@example.com')
         ->placeholder('Email address');
 
@@ -16,7 +17,7 @@ it('compiles an email input', function (): void {
         ),
     )->toBe([
         'type' => 'email-input',
-
+        'name'=> 'email',
         'value' => 'john@example.com',
 
         'placeholder' => 'Email address',

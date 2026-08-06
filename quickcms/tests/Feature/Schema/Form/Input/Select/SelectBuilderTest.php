@@ -8,6 +8,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a select input', function (): void {
     $input = SelectSchema::make()
+        ->name('role')
         ->options([
             'admin' => 'Administrator',
             'user' => 'User',
@@ -21,7 +22,7 @@ it('compiles a select input', function (): void {
         ),
     )->toBe([
         'type' => 'select',
-
+        'name'=> 'role',
         'value' => null,
 
         'placeholder' => '',

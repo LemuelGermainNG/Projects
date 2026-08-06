@@ -7,6 +7,7 @@ use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a number input', function (): void {
     $input = NumberInputSchema::make()
+        ->name('age')
         ->value(42)
         ->min(0)
         ->max(100)
@@ -18,7 +19,7 @@ it('compiles a number input', function (): void {
         ),
     )->toBe([
         'type' => 'number-input',
-
+        'name'=> 'age',
         'value' => 42,
 
         'placeholder' => '',

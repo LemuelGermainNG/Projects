@@ -15,9 +15,11 @@ final class RepeaterAssertions
             'type' => 'repeater',
 
             'schema' => SchemaAssertions::compileMany([
-                TextInputSchema::make(),
+                TextInputSchema::make()
+                    ->name('title'),
 
-                TextInputSchema::make(),
+                TextInputSchema::make()
+                    ->name('description'),
             ]),
 
             'defaultItems' => 1,
