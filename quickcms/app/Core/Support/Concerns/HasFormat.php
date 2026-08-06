@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
-use App\Core\Enum\Color\ColorFormat;
+use App\Core\Support\Enum\Color\ColorFormat;
 use Closure;
 
 trait HasFormat
