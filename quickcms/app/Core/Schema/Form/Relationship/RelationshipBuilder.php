@@ -19,19 +19,24 @@ final class RelationshipBuilder extends Builder
         $schema = $this->schema;
 
         $data = [
-            'type' => $this->type(),
-
-            'props' => $schema->props(),
+            'type' => 'relationship',
         ];
 
-        unset($data['props']);
+        $source = null;
+
+        if ($schema->hasSource()) {
+            $source = $this->sourceRegistry
+                ->resolve(
+                    $this->evaluate(
+                        $schema->source(),
+                    ),
+                );
+        }
 
         $this->addIfNotNull(
             $data,
             'source',
-            $this->evaluate(
-                $schema->source(),
-            ),
+            $source::class,
         );
 
         $this->addIfNotNull(
@@ -52,51 +57,33 @@ final class RelationshipBuilder extends Builder
 
         $this->addIfNotNull(
             $data,
-            'search',
-            $this->evaluate(
-                $schema->search(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'limit',
-            $this->evaluate(
-                $schema->limit(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
             'filters',
             $this->compileCollection(
-                $this->evaluate(
-                    $schema->filters(),
-                ),
+                $schema->filters(),
             ),
         );
 
         $this->addIfNotNull(
             $data,
             'sort',
-            $this->evaluate(
+            $this->compileCollection(
                 $schema->sort(),
             ),
         );
 
         $this->addIfNotNull(
             $data,
-            'includes',
-            $this->evaluate(
-                $schema->includes(),
+            'include',
+            $this->compileCollection(
+                $schema->include(),
             ),
         );
 
         $this->addIfNotNull(
             $data,
-            'appends',
-            $this->evaluate(
-                $schema->appends(),
+            'append',
+            $this->compileCollection(
+                $schema->append(),
             ),
         );
 
@@ -110,11 +97,25 @@ final class RelationshipBuilder extends Builder
 
         $this->addIfNotNull(
             $data,
+            'limit',
+            $this->evaluate(
+                $schema->limit(),
+            ),
+        );
+
+        $this->addIfNotNull(
+            $data,
+            'search',
+            $this->evaluate(
+                $schema->search(),
+            ),
+        );
+
+        $this->addIfNotNull(
+            $data,
             'optionActions',
             $this->compileCollection(
-                $this->evaluate(
-                    $schema->optionActions(),
-                ),
+                $schema->optionActions(),
             ),
         );
 

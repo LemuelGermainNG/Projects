@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Enum\Option;
+namespace App\Core\Support\Enums;
 
 enum OptionAction: string
 {

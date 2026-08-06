@@ -7,7 +7,6 @@ namespace App\Core\Source;
 use App\Core\Source\Contracts\Source as SourceContract;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\LaravelData\Data;
-use Spatie\QueryBuilder\QueryBuilder;
 
 abstract class Source implements SourceContract
 {

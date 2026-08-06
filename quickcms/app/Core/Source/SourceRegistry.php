@@ -11,12 +11,17 @@ final class SourceRegistry
     /**
      * @template T of Source
      *
-     * @param class-string<T> $source
+     * @param class-string<T>|T $source
      *
      * @return T
      */
-    public function resolve(string $source): Source
-    {
+    public function resolve(
+        string|Source $source,
+    ): Source {
+        if ($source instanceof Source) {
+            return $source;
+        }
+
         if (! is_subclass_of($source, Source::class)) {
             throw new InvalidArgumentException(sprintf(
                 '[%s] must extend [%s].',

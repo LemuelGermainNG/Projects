@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Core\Schema\Table;
 
 use App\Core\Schema\Schema;
-use App\Core\Source\Concerns\HasSource;
+use App\Core\Support\Concerns\HasSource;
 use App\Core\Support\Concerns\HasBulkActions;
 use App\Core\Support\Concerns\HasFilters;
 use App\Core\Support\Concerns\HasHeaderActions;
