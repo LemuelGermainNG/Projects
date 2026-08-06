@@ -15,7 +15,7 @@ abstract class BaseInputBuilder extends Builder
 
         $data = [
             'type' => $this->type(),
-            
+
             'name' => $this->evaluate(
                     $schema->name(),
                 ),
@@ -51,6 +51,14 @@ abstract class BaseInputBuilder extends Builder
             'suffix',
             $this->compileChild(
                 $schema->suffix(),
+            ),
+        );
+        
+        $this->addIfNotNull(
+            $data,
+            'validation',
+            $this->compileChild(
+                $schema->validation(),
             ),
         );
 

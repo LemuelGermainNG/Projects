@@ -39,4 +39,12 @@ abstract class Schema
 
         return $clone;
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function properties(): array
+    {
+        return get_object_vars($this);
+    }
 }

@@ -36,8 +36,10 @@ final class BuilderRegistry
     /**
      * Compile a schema.
      */
-    public function build(Schema $schema, ?EvaluationContextInterface $context = null): array
-    {
+    public function build(
+        Schema $schema,
+        ?EvaluationContextInterface $context = null,
+    ): array {
         $builder = $this->resolve($schema);
 
         $context ??= new EvaluationContext();
@@ -62,21 +64,39 @@ final class BuilderRegistry
     /**
      * Resolve the builder for a schema.
      *
+     * Supports inheritance:
+     * - exact match
+     * - parent class
+     * - implemented interface
+     *
      * @return class-string<Builder>
      */
-    protected function resolve(Schema $schema): string
-    {
+    protected function resolve(
+        Schema $schema,
+    ): string {
         $schemaClass = $schema::class;
 
-        if (! isset($this->builders[$schemaClass])) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'No builder registered for schema [%s].',
-                    $schemaClass,
-                ),
-            );
+        /*
+         * Exact match.
+         */
+        if (isset($this->builders[$schemaClass])) {
+            return $this->builders[$schemaClass];
         }
 
-        return $this->builders[$schemaClass];
+        /*
+         * Parent classes / interfaces.
+         */
+        foreach ($this->builders as $registeredSchema => $builder) {
+            if (is_a($schema, $registeredSchema)) {
+                return $builder;
+            }
+        }
+
+        throw new InvalidArgumentException(
+            sprintf(
+                'No builder registered for schema [%s].',
+                $schemaClass,
+            ),
+        );
     }
 }

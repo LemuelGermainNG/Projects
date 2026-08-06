@@ -12,6 +12,7 @@ use App\Core\Support\Concerns\HasPrefix;
 use App\Core\Support\Concerns\HasProps;
 use App\Core\Support\Concerns\HasReadonly;
 use App\Core\Support\Concerns\HasSuffix;
+use App\Core\Support\Concerns\HasValidation;
 use App\Core\Support\Concerns\HasValue;
 
 abstract class BaseInputSchema extends Schema
@@ -24,4 +25,5 @@ abstract class BaseInputSchema extends Schema
     use HasReadonly;
     use HasSuffix;
     use HasValue;
+    use HasValidation;
 }
