@@ -20,10 +20,10 @@ use App\Core\Support\Concerns\File\HasOpenable;
 use App\Core\Support\Concerns\File\HasOptimize;
 use App\Core\Support\Concerns\File\HasPreserveFilenames;
 use App\Core\Support\Concerns\File\HasPreviewable;
-use App\Core\Support\Concerns\File\HasReorderable;
 use App\Core\Support\Concerns\File\HasResponsiveImages;
 use App\Core\Support\Concerns\File\HasTemporaryUrls;
 use App\Core\Support\Concerns\File\HasVisibility;
+use App\Core\Support\Concerns\HasReorderable;
 
 abstract class FileInputBaseSchema extends BaseInputSchema
 {

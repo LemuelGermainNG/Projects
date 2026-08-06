@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Support\Concerns\File;
+namespace App\Core\Support\Concerns;
 
 use Closure;
 
