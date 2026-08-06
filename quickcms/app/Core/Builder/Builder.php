@@ -36,16 +36,32 @@ abstract class Builder implements BuilderInterface
     }
 
     /**
-     * @param array<int, Schema> $schemas
+     * Compile une collection de schémas.
      *
-     * @return array<int, array>
+     * @param array<int, Schema>|Closure|null $schemas
+     *
+     * @return array<int, array<string, mixed>>
      */
-    protected function compileSchema(array $schemas): array
-    {
+    protected function compileSchemas(
+        array|Closure|null $schemas,
+    ): array {
+        $schemas = $this->evaluate($schemas);
+
+        if ($schemas === null) {
+            return [];
+        }
+
         return Collection::make($schemas)
-            ->map(fn (Schema $schema): array => $schema->compile(
-                $this->registry,
-            ))
+            ->filter(
+                fn (mixed $schema): bool => $schema instanceof Schema,
+            )
+            ->map(
+                fn (Schema $schema): array => $schema->compile(
+                    $this->registry,
+                    $this->context,
+                ),
+            )
+            ->values()
             ->all();
     }
 

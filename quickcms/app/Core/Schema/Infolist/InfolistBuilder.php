@@ -23,7 +23,7 @@ final class InfolistBuilder extends Builder
 
             'source' => $schema->source(),
 
-            'schema' => $this->compileSchema(
+            'schema' => $this->compileSchemas(
                 $schema->schema(),
             ),
 

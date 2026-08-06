@@ -23,15 +23,15 @@ final class FormBuilder extends Builder
 
             'source' => $schema->source(),
 
-            'schema' => $this->compileSchema(
+            'schema' => $this->compileSchemas(
                 $schema->schema(),
             ),
 
-            'headerActions' => $this->compileSchema(
+            'headerActions' => $this->compileSchemas(
                 $schema->headerActions(),
             ),
 
-            'footerActions' => $this->compileSchema(
+            'footerActions' => $this->compileSchemas(
                 $schema->footerActions(),
             ),
 

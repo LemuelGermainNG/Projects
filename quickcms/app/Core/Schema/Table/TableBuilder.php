@@ -23,23 +23,23 @@ final class TableBuilder extends Builder
 
             'source' => $schema->source(),
 
-            'schema' => $this->compileSchema(
+            'schema' => $this->compileSchemas(
                 $schema->schema(),
             ),
 
-            'filters' => $this->compileSchema(
+            'filters' => $this->compileSchemas(
                 $schema->filters(),
             ),
 
-            'headerActions' => $this->compileSchema(
+            'headerActions' => $this->compileSchemas(
                 $schema->headerActions(),
             ),
 
-            'rowActions' => $this->compileSchema(
+            'rowActions' => $this->compileSchemas(
                 $schema->rowActions(),
             ),
 
-            'bulkActions' => $this->compileSchema(
+            'bulkActions' => $this->compileSchemas(
                 $schema->bulkActions(),
             ),
 
