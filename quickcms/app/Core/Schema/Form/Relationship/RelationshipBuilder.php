@@ -25,12 +25,9 @@ final class RelationshipBuilder extends Builder
         $source = null;
 
         if ($schema->hasSource()) {
-            $source = $this->sourceRegistry
-                ->resolve(
-                    $this->evaluate(
-                        $schema->source(),
-                    ),
-                );
+            $source = $this->resolveSource(
+                $schema->source(),
+            );
         }
 
         $this->addIfNotNull(

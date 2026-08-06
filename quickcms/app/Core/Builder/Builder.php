@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Core\Builder;
 
 use App\Core\Schema\Schema;
+use App\Core\Source\Contracts\Source;
 use App\Core\Support\Concerns\EvaluatesValues;
 use App\Core\Support\Contracts\EvaluationContextInterface;
 use BackedEnum;
+use Closure;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -87,6 +89,22 @@ abstract class Builder implements BuilderInterface
         return $value;
     }
 
+    protected function evaluateEnums(
+        array|Closure|null $values,
+    ): ?array {
+        $values = $this->evaluate($values);
+
+        if ($values === null) {
+            return null;
+        }
+
+        return array_map(
+            fn (mixed $value): mixed => $value instanceof \BackedEnum
+                ? $value->value
+                : $value,
+            $values,
+        );
+    }
     protected function type(): string
     {
         $class = class_basename($this->schema);
@@ -98,4 +116,17 @@ abstract class Builder implements BuilderInterface
 
         return $class;
     }
+
+    protected function resolveSource(
+        string|Source|null $source,
+    ): ?Source
+    {
+        if ($source === null) {
+            return null;
+        }
+
+        return $this->sourceRegistry->resolve(
+            $this->evaluate($source),
+        );
+}
 }
