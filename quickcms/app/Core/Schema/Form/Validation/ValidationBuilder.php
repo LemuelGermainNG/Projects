@@ -10,12 +10,12 @@ final class ValidationRulesBuilder extends Builder
 {
     public static function schema(): string
     {
-        return ValidationRules::class;
+        return Validation::class;
     }
 
     public function build(): array
     {
-        /** @var ValidationRules $schema */
+        /** @var Validation $schema */
         $schema = $this->schema;
 
         return [

@@ -3,6 +3,9 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Form\Input\Text\TextInputSchema;
+use Tests\Support\Assertions\ValidationAssertions;
+use Tests\Support\Builders\ValidationBuilderFactory;
+use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('creates a text input', function (): void {
     expect(
@@ -44,4 +47,20 @@ it('is immutable', function (): void {
 
     expect($updated->placeholder())
         ->toBe('Name');
+});
+
+it('compiles validation rules', function (): void {
+    $input = TextInputSchema::make()
+        ->name('email')
+        ->validation(
+            ValidationBuilderFactory::email(),
+        );
+
+    expect(
+        $input->compile(
+            BuilderRegistryFactory::make(),
+        ),
+    )->toMatchArray([
+        'validation' => ValidationAssertions::email(),
+    ]);
 });

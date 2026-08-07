@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
-use App\Core\Schema\Form\Validation\ValidationRules;
+use App\Core\Schema\Form\Validation\Validation;
 use Closure;
 
 trait HasValidation
 {
-    protected ValidationRules|Closure|null $validation = null;
+    protected Validation|Closure|null $validation = null;
 
     public function validation(
-        ValidationRules|Closure|null $validation = null,
-    ): ValidationRules|Closure|null|static {
+        Validation|Closure|null $validation = null,
+    ): Validation|Closure|null|static {
         if (func_num_args() === 0) {
             return $this->validation;
         }
