@@ -10,36 +10,28 @@ final class FileAssertions
     {
         return [
             'type' => 'file-upload',
-
-            'collection' => 'documents',
-
+            'name' => 'document',
+            'value' => null,
+            'placeholder' => '',
+            'disabled' => false,
+            'readonly' => false,
             'acceptedFileTypes' => [
                 'application/pdf',
             ],
-
             'disk' => 'public',
-
             'directory' => 'documents',
-
             'visibility' => 'private',
-
-            'multiple' => true,
-
             'maxFiles' => 5,
-
             'maxSize' => 10240,
-
             'minSize' => 10,
-
+            'multiple' => true,
             'downloadable' => true,
-
             'openable' => true,
-
             'previewable' => true,
-
             'preserveFilenames' => true,
-
             'reorderable' => true,
+            'collection' => 'documents',
+            'props' => [],
         ];
     }
 
@@ -47,34 +39,29 @@ final class FileAssertions
     {
         return [
             'type' => 'image-upload',
-
+            'name' => 'avatar',
+            'value' => null,
+            'placeholder' => '',
+            'disabled' => false,
+            'readonly' => false,
+            'previewable' => true,
             'collection' => 'avatars',
-
             'conversions' => [
                 'thumb',
                 'medium',
             ],
-
+            'responsiveImages' => true,
+            'optimize' => true,
             'crop' => true,
-
             'circleCrop' => true,
-
             'avatar' => true,
-
             'aspectRatio' => '1:1',
-
             'resize' => [
                 'width' => 512,
                 'height' => 512,
             ],
-
             'imageQuality' => 90,
-
-            'responsiveImages' => true,
-
-            'optimize' => true,
-
-            'previewable' => true,
+            'props' => [],
         ];
     }
 }

@@ -13,6 +13,7 @@ final class FileBuilderFactory
     public static function document(): FileUploadSchema
     {
         return FileUploadSchema::make()
+            ->name('document')
             ->collection('documents')
             ->acceptedFileTypes([
                 'application/pdf',
@@ -34,6 +35,7 @@ final class FileBuilderFactory
     public static function avatar(): ImageUploadSchema
     {
         return ImageUploadSchema::make()
+            ->name('avatar')
             ->collection('avatars')
             ->conversions([
                 Conversion::Thumb,

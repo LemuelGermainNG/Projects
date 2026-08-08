@@ -4,72 +4,27 @@ declare(strict_types=1);
 
 namespace Tests\Support\Assertions;
 
+use Tests\Support\Assertions\Validation\ValidationAssertions as BaseValidationAssertions;
+
 final class ValidationAssertions
 {
     public static function make(): array
     {
-        return [
-            'rules' => [
-
-                [
-                    'type' => 'required',
-                ],
-
-                [
-                    'type' => 'min',
-
-                    'parameters' => [
-                        'value' => 3,
-                    ],
-                ],
-
-                [
-                    'type' => 'max',
-
-                    'parameters' => [
-                        'value' => 255,
-                    ],
-                ],
-            ],
-        ];
+        return BaseValidationAssertions::make();
     }
 
     public static function email(): array
     {
         return [
             'rules' => [
-
                 [
                     'type' => 'required',
                 ],
-
+                [
+                    'type' => 'string',
+                ],
                 [
                     'type' => 'email',
-                ],
-            ],
-        ];
-    }
-
-    public static function unique(): array
-    {
-        return [
-            'rules' => [
-
-                [
-                    'type' => 'required',
-                ],
-
-                [
-                    'type' => 'email',
-                ],
-
-                [
-                    'type' => 'unique',
-
-                    'parameters' => [
-                        'model' => \App\Models\User::class,
-                        'column' => 'email',
-                    ],
                 ],
             ],
         ];

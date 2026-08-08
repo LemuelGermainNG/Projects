@@ -2,11 +2,21 @@
 
 declare(strict_types=1);
 
-use Tests\Support\Assertions\ValidationAssertions;
-use Tests\Support\Builders\ValidationBuilderFactory;
+use App\Core\Schema\Form\Validation\Validation;
+use App\Core\Schema\Form\Validation\ValidationBuilder;
+use Tests\Support\Assertions\Validation\ValidationAssertions;
+use Tests\Support\Builders\Validation\ValidationBuilderFactory;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
-it('compiles validation rules', function (): void {
+it('returns validation schema', function (): void {
+    expect(
+        ValidationBuilder::schema(),
+    )->toBe(
+        Validation::class,
+    );
+});
+
+it('builds validation', function (): void {
     expect(
         ValidationBuilderFactory::make()
             ->compile(

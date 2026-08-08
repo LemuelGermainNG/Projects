@@ -6,7 +6,7 @@ namespace App\Core\Schema\Form\Validation;
 
 use App\Core\Builder\Builder;
 
-final class ValidationRulesBuilder extends Builder
+final class ValidationBuilder extends Builder
 {
     public static function schema(): string
     {

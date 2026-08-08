@@ -2,23 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Tests\Support\Builders;
+namespace Tests\Support\Builders\Validation;
 
 use App\Core\Schema\Form\Validation\Validation;
-use Tests\Support\Builders\Validation\ValidationBuilderFactory as BaseValidationBuilderFactory;
 
 final class ValidationBuilderFactory
 {
     public static function make(): Validation
     {
-        return BaseValidationBuilderFactory::make();
-    }
-
-    public static function email(): Validation
-    {
         return Validation::make()
             ->required()
             ->string()
+            ->min(3)
+            ->max(255)
             ->email();
     }
 }
