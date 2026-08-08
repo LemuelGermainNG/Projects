@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Schema\Form\Base;
 
+use App\Core\Schema\Form\State\HasState;
 use App\Core\Schema\Schema;
 use App\Core\Support\Concerns\HasDisabled;
 use App\Core\Support\Concerns\HasName;
@@ -23,6 +24,7 @@ abstract class BaseInputSchema extends Schema
     use HasPrefix;
     use HasProps;
     use HasReadonly;
+    use HasState;
     use HasSuffix;
     use HasValue;
     use HasValidation;

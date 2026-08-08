@@ -40,6 +40,14 @@ abstract class BaseInputBuilder extends Builder
 
         $this->addIfNotNull(
             $data,
+            'state',
+            $this->compileState(
+                $schema,
+            ),
+        );
+
+        $this->addIfNotNull(
+            $data,
             'prefix',
             $this->compileChild(
                 $schema->prefix(),
@@ -53,7 +61,7 @@ abstract class BaseInputBuilder extends Builder
                 $schema->suffix(),
             ),
         );
-        
+
         $this->addIfNotNull(
             $data,
             'validation',
@@ -63,5 +71,25 @@ abstract class BaseInputBuilder extends Builder
         );
 
         return $data;
+    }
+
+    protected function compileState(
+        BaseInputSchema $schema,
+    ): ?array {
+        $state = $schema->stateSchema();
+
+        if ($state === null) {
+            return null;
+        }
+
+        if ($state instanceof \Closure) {
+            $state = $this->evaluate($state);
+        }
+
+        if ($state === null) {
+            return null;
+        }
+
+        return $this->compileChild($state);
     }
 }
