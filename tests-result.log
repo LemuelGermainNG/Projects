@@ -1,232 +1,763 @@
- FAILED  Tests\Feature\Schema\Form\Input\Checkbox\CheckboxBuilderTest > it…   
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'checkbox',
-  +    'name' => '',
-       'value' => null,
-       'placeholder' => '',
-       'disabled' => false,
-  
-
-  at tests/Feature/Schema/Form/Input/Checkbox/CheckboxBuilderTest.php:17
-     13▕     expect(
-     14▕         $checkbox->compile(
-     15▕             BuilderRegistryFactory::make(),
-     16▕         ),
-  ➜  17▕     )->toBe([
-     18▕         'type' => 'checkbox',
-     19▕ 
-     20▕         'value' => null,
-     21▕ 
-
-  1   tests/Feature/Schema/Form/Input/Checkbox/CheckboxBuilderTest.php:17
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Email\EmailInputBuilderTest > it…    
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'email-input',
-  +    'name' => '',
-       'value' => 'john@example.com',
-       'placeholder' => 'Email address',
-       'disabled' => false,
-  
-
-  at tests/Feature/Schema/Form/Input/Email/EmailInputBuilderTest.php:17
-     13▕     expect(
-     14▕         $input->compile(
-     15▕             BuilderRegistryFactory::make(),
-     16▕         ),
-  ➜  17▕     )->toBe([
-     18▕         'type' => 'email-input',
-     19▕ 
-     20▕         'value' => 'john@example.com',
-     21▕ 
-
-  1   tests/Feature/Schema/Form/Input/Email/EmailInputBuilderTest.php:17
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Number\NumberInputBuilderTest > i…   
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'number-input',
-  +    'name' => '',
-       'value' => 42,
-       'placeholder' => '',
-       'disabled' => false,
-  
-
-  at tests/Feature/Schema/Form/Input/Number/NumberInputBuilderTest.php:19
-     15▕     expect(
-     16▕         $input->compile(
-     17▕             BuilderRegistryFactory::make(),
-     18▕         ),
-  ➜  19▕     )->toBe([
-     20▕         'type' => 'number-input',
-     21▕ 
-     22▕         'value' => 42,
-     23▕ 
-
-  1   tests/Feature/Schema/Form/Input/Number/NumberInputBuilderTest.php:19
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Password\PasswordInputBuilderTest…   
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'password-input',
-  +    'name' => '',
-       'value' => 'secret',
-       'placeholder' => 'Password',
-       'disabled' => true,
-  
-
-  at tests/Feature/Schema/Form/Input/Password/PasswordInputBuilderTest.php:19
-     15▕     expect(
-     16▕         $input->compile(
-     17▕             BuilderRegistryFactory::make(),
-     18▕         ),
-  ➜  19▕     )->toBe([
-     20▕         'type' => 'password-input',
-     21▕ 
-     22▕         'value' => 'secret',
-     23▕ 
-
-  1   tests/Feature/Schema/Form/Input/Password/PasswordInputBuilderTest.php:19
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Phone\PhoneInputBuilderTest > it…    
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'phone-input',
-  +    'name' => '',
-       'value' => '+33 6 12 34 56 78',
-       'placeholder' => 'Phone number',
-       'disabled' => false,
-  
-
-  at tests/Feature/Schema/Form/Input/Phone/PhoneInputBuilderTest.php:18
-     14▕     expect(
-     15▕         $input->compile(
-     16▕             BuilderRegistryFactory::make(),
-     17▕         ),
-  ➜  18▕     )->toBe([
-     19▕         'type' => 'phone-input',
-     20▕ 
-     21▕         'value' => '+33 6 12 34 56 78',
-     22▕ 
-
-  1   tests/Feature/Schema/Form/Input/Phone/PhoneInputBuilderTest.php:18
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Repeater\RepeaterBuilderTest > it…   
-  Failed asserting that an array has a key 'schema' with the value […].
-Failed asserting that two arrays are equal.
-   Array (
-       0 => Array (
-           'type' => 'text-input'
-  -        'name' => ''
-  +        'name' => 'title'
-           'value' => null
-           'placeholder' => ''
-           'disabled' => false
-  @@ @@
-       )
-       1 => Array (
-           'type' => 'text-input'
-  -        'name' => ''
-  +        'name' => 'description'
-           'value' => null
-           'placeholder' => ''
-           'disabled' => false
-  
-
-  at tests/Feature/Schema/Form/Input/Repeater/RepeaterBuilderTest.php:15
-     11▕         RepeaterBuilderFactory::make()
-     12▕             ->compile(
-     13▕                 BuilderRegistryFactory::make(),
-     14▕             ),
-  ➜  15▕     )->toMatchArray(
-     16▕         RepeaterAssertions::make(),
-     17▕     );
-     18▕ });
-     19▕ 
-
-  1   tests/Feature/Schema/Form/Input/Repeater/RepeaterBuilderTest.php:15
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Select\SelectBuilderTest > it com…   
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'select',
-  +    'name' => '',
-       'value' => null,
-       'placeholder' => '',
-       'disabled' => false,
-  
-
-  at tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:22
-     18▕     expect(
-     19▕         $input->compile(
-     20▕             BuilderRegistryFactory::make(),
-     21▕         ),
-  ➜  22▕     )->toBe([
-     23▕         'type' => 'select',
-     24▕ 
-     25▕         'value' => null,
-     26▕ 
-
-  1   tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:22
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Text\TextInputBuilderTest > it co…   
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'text-input',
-  +    'name' => '',
-       'value' => 'John Doe',
-       'placeholder' => 'Enter your name',
-       'disabled' => true,
-  
-
-  at tests/Feature/Schema/Form/Input/Text/TextInputBuilderTest.php:19
-     15▕     expect(
-     16▕         $input->compile(
-     17▕             BuilderRegistryFactory::make(),
-     18▕         ),
-  ➜  19▕     )->toBe([
-     20▕         'type' => 'text-input',
-     21▕ 
-     22▕         'value' => 'John Doe',
-     23▕ 
-
-  1   tests/Feature/Schema/Form/Input/Text/TextInputBuilderTest.php:19
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Form\Input\Textarea\TextareaInputBuilderTest…   
-  Failed asserting that two arrays are identical.
-   Array &0 [
-       'type' => 'textarea-input',
-  +    'name' => '',
-       'value' => 'Lorem ipsum',
-       'placeholder' => '',
-       'disabled' => false,
-  
-
-  at tests/Feature/Schema/Form/Input/Textarea/TextareaInputBuilderTest.php:19
-     15▕     expect(
-     16▕         $input->compile(
-     17▕             BuilderRegistryFactory::make(),
-     18▕         ),
-  ➜  19▕     )->toBe([
-     20▕         'type' => 'textarea-input',
-     21▕ 
-     22▕         'value' => 'Lorem ipsum',
-     23▕ 
-
-  1   tests/Feature/Schema/Form/Input/Textarea/TextareaInputBuilderTest.php:19
+  INFO  Configuration cache cleared successfully.  
 
 
-  Tests:    9 failed, 303 passed (835 assertions)
-  Duration: 9.17s
+   PASS  Tests\Unit\Builder\BuilderCacheTest
+  ✓ it does not exist by default
+  ✓ it stores builders
+  ✓ it loads builders
+  ✓ it returns an empty array when the cache does not exist
+  ✓ it clears the cache
 
-Script @php artisan test handling the test event returned with error code 1
+   PASS  Tests\Unit\Builder\BuilderDiscoveryTest
+  ✓ it registers a builder                                               0.01s  
+  ✓ it returns all registered builders
+  ✓ it builds a schema
+  ✓ it throws an exception when no builder is registered
+
+   PASS  Tests\Feature\Application\ApplicationBuilderTest
+  ✓ it throws an exception when the application is not registered        0.08s  
+  ✓ it builds an application schema                                      0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationContextTest
+  ✓ it creates an application context                                    0.02s  
+  ✓ it registers an application                                          0.01s  
+  ✓ it registers pages                                                   0.01s  
+  ✓ it registers navigation                                              0.01s  
+  ✓ it supports fluent configuration                                     0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationMetadataTest
+  ✓ it creates application metadata                                      0.03s  
+  ✓ it sets the id                                                       0.01s  
+  ✓ it sets the name                                                     0.01s  
+  ✓ it sets the path                                                     0.01s  
+  ✓ it sets the layout                                                   0.01s  
+  ✓ it converts metadata to an array                                     0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationRegistryTest
+  ✓ it registers an application                                          0.04s  
+  ✓ it returns null for an unknown application                           0.01s  
+  ✓ it determines whether an application exists                          0.01s  
+  ✓ it registers pages                                                   0.01s  
+  ✓ it registers navigation                                              0.01s  
+  ✓ it returns an empty page list for an unknown application             0.01s  
+  ✓ it returns an empty navigation list for an unknown application       0.01s  
+
+   PASS  Tests\Feature\Application\ApplicationTest
+  ✓ it registers and builds an application                               0.04s  
+  ✓ it stores application metadata                                       0.01s  
+
+   PASS  Tests\Feature\Builder\EvaluateClosureTest
+  ✓ it evaluates closures using the evaluation context                   0.07s  
+
+   PASS  Tests\Feature\Schema\Action\ActionBuilderTest
+  ✓ it creates an action schema                                          0.01s  
+  ✓ it compiles an action schema                                         0.03s  
+  ✓ it compiles an action with a modal and confirmation                  0.03s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Action\ActionSchemaTest
+  ✓ it creates an action schema                                          0.03s  
+  ✓ it sets the id                                                       0.01s  
+  ✓ it sets the name                                                     0.01s  
+  ✓ it sets the label                                                    0.01s  
+  ✓ it sets the icon                                                     0.01s  
+  ✓ it sets the tooltip                                                  0.01s  
+  ✓ it sets the url                                                      0.01s  
+  ✓ it stores custom attributes                                          0.01s  
+  ✓ it sets the color                                                    0.01s  
+  ✓ it sets the size                                                     0.01s  
+  ✓ it sets the target                                                   0.01s  
+  ✓ it sets the trigger                                                  0.01s  
+  ✓ it sets the type                                                     0.01s  
+  ✓ it sets the visibility                                               0.01s  
+  ✓ it sets the disabled state                                           0.01s  
+
+   PASS  Tests\Feature\Schema\Action\CancelActionTest
+  ✓ it creates a cancel action                                           0.09s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\CreateActionTest
+  ✓ it creates a create action                                           0.04s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\DeleteActionTest
+  ✓ it creates a delete action                                           0.04s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\EditActionTest
+  ✓ it creates an edit action                                            0.04s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\SaveActionTest
+  ✓ it creates a save action                                             0.05s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it configures the default color                                      0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Action\ViewActionTest
+  ✓ it creates a view action                                             0.05s  
+  ✓ it configures the default id                                         0.01s  
+  ✓ it configures the default name                                       0.01s  
+  ✓ it configures the default label                                      0.01s  
+  ✓ it configures the default icon                                       0.01s  
+  ✓ it inherits the default color                                        0.01s  
+  ✓ it configures the default trigger                                    0.01s  
+  ✓ it allows overriding the defaults                                    0.01s  
+
+   PASS  Tests\Feature\Schema\Brand\BrandSchemaTest
+  ✓ it creates a brand schema                                            0.04s  
+  ✓ it compiles a brand schema                                           0.04s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Confirm\ConfirmSchemaTest
+  ✓ it creates a confirmation schema                                     0.02s  
+  ✓ it compiles a confirmation schema                                    0.03s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Avatar\AvatarBuilderTest
+  ✓ it compiles an avatar schema                                         0.05s  
+
+   PASS  Tests\Feature\Schema\Element\Avatar\AvatarSchemaTest
+  ✓ it creates an avatar schema                                          0.01s  
+  ✓ it sets avatar properties                                            0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Badge\BadgeBuilderTest
+  ✓ it compiles a badge schema                                           0.05s  
+
+   PASS  Tests\Feature\Schema\Element\Badge\BadgeSchemaTest
+  ✓ it creates a badge schema                                            0.01s  
+  ✓ it sets badge properties                                             0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Filter\FilterBuilderTest
+  ✓ it compiles a filter schema                                          0.06s  
+
+   PASS  Tests\Feature\Schema\Element\Filter\FilterSchemaTest
+  ✓ it creates a filter schema                                           0.01s  
+  ✓ it sets filter properties                                            0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Icon\IconBuilderTest
+  ✓ it compiles an icon schema                                           0.05s  
+
+   PASS  Tests\Feature\Schema\Element\Icon\IconSchemaTest
+  ✓ it creates an icon schema                                            0.01s  
+  ✓ it sets icon properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Image\ImageBuilderTest
+  ✓ it compiles an image schema                                          0.05s  
+
+   PASS  Tests\Feature\Schema\Element\Image\ImageSchemaTest
+  ✓ it creates an image schema                                           0.02s  
+  ✓ it sets image properties                                             0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Link\LinkBuilderTest
+  ✓ it compiles a link schema                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Element\Link\LinkSchemaTest
+  ✓ it creates a link schema                                             0.01s  
+  ✓ it sets link properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Pagination\PaginationBuilderTest
+  ✓ it compiles a pagination schema                                      0.06s  
+  ✓ it compiles a disabled pagination                                    0.04s  
+
+   PASS  Tests\Feature\Schema\Element\Pagination\PaginationSchemaTest
+  ✓ it creates a pagination schema                                       0.02s  
+  ✓ it sets pagination properties                                        0.01s  
+  ✓ it is immutable                                                      0.01s  
+  ✓ it can be disabled                                                   0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Stat\StatBuilderTest
+  ✓ it compiles a stat schema                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Element\Stat\StatSchemaTest
+  ✓ it creates a stat schema                                             0.01s  
+  ✓ it sets stat properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Element\Text\TextBuilderTest
+  ✓ it compiles a text schema                                            0.11s  
+
+   PASS  Tests\Feature\Schema\Element\Text\TextSchemaTest
+  ✓ it creates a text schema                                             0.02s  
+  ✓ it sets text properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Field\FieldBuilderTest
+  ✓ it compiles a field schema                                           0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Field\FieldSchemaTest
+  ✓ it creates a field schema                                            0.01s  
+  ✓ it sets field properties                                             0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\FormBuilderTest
+  ✓ it compiles a form schema                                            0.12s  
+
+   PASS  Tests\Feature\Schema\Form\FormIntegrationTest
+  ✓ it compiles a complete form with input state and validation          0.05s  
+  ✓ it keeps the form schema immutable                                   0.01s  
+
+   PASS  Tests\Feature\Schema\Form\FormSchemaTest
+  ✓ it creates a form schema                                             0.02s  
+  ✓ it sets form properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+  ✓ it sets form actions                                                 0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Blocks\Block\BlockBuilderTest
+  ✓ it compiles a block                                                  0.13s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Blocks\Block\BlockSchemaTest
+  ✓ it creates a block                                                   0.01s  
+  ✓ it sets block properties                                             0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Blocks\BlocksBuilderTest
+  ✓ it compiles blocks input                                             0.12s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Blocks\BlocksSchemaTest
+  ✓ it creates blocks input                                              0.01s  
+  ✓ it sets blocks properties                                            0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Checkbox\CheckboxBuilderTest
+  ✓ it compiles a checkbox                                               0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Checkbox\CheckboxSchemaTest
+  ✓ it creates a checkbox                                                0.01s  
+  ✓ it sets properties                                                   0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\CheckboxList\CheckboxListBuilderTest
+  ✓ it compiles a checkbox list                                          0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\CheckboxList\CheckboxListSchemaTest
+  ✓ it sets checkbox list properties                                     0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\ColorPicker\ColorPickerBuilderTest
+  ✓ it compiles a color picker                                           0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\ColorPicker\ColorPickerSchemaTest
+  ✓ it creates a color picker                                            0.01s  
+  ✓ it sets color picker properties                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Date\DateBuilderTest
+  ✓ it compiles a date input                                             0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Date\DateSchemaTest
+  ✓ it sets date properties                                              0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\DateTime\DateTimeBuilderTest
+  ✓ it compiles a datetime input                                         0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\DateTime\DateTimeSchemaTest
+  ✓ it sets datetime properties                                          0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Email\EmailInputBuilderTest
+  ✓ it compiles an email input                                           0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Email\EmailInputSchemaTest
+  ✓ it creates an email input                                            0.01s  
+  ✓ it sets properties                                                   0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\FileUpload\FileUploadBuilderTest
+  ✓ it compiles a file upload                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Input\FileUpload\FileUploadSchemaTest
+  ✓ it creates a file upload                                             0.01s  
+  ✓ it sets file upload properties                                       0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Hidden\HiddenBuilderTest
+  ✓ it compiles a hidden input                                           0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Hidden\HiddenSchemaTest
+  ✓ it creates a hidden input                                            0.01s  
+  ✓ it sets hidden properties                                            0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\ImageUpload\ImageUploadBuilderTest
+  ✓ it compiles an image upload                                          0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\ImageUpload\ImageUploadSchemaTest
+  ✓ it creates an image upload                                           0.01s  
+  ✓ it sets image upload properties                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\KeyValue\KeyValueBuilderTest
+  ✓ it compiles a key value input                                        0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\KeyValue\KeyValueSchemaTest
+  ✓ it creates a key value input                                         0.01s  
+  ✓ it sets key value properties                                         0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Markdown\MarkdownBuilderTest
+  ✓ it compiles a markdown input                                         0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Markdown\MarkdownSchemaTest
+  ✓ it creates a markdown input                                          0.01s  
+  ✓ it sets markdown properties                                          0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Number\NumberInputBuilderTest
+  ✓ it compiles a number input                                           0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Number\NumberInputSchemaTest
+  ✓ it creates a number input                                            0.01s  
+  ✓ it sets properties                                                   0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Password\PasswordInputBuilderTest
+  ✓ it compiles a password input                                         0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Password\PasswordInputSchemaTest
+  ✓ it creates a password input                                          0.01s  
+  ✓ it sets properties                                                   0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Phone\PhoneInputBuilderTest
+  ✓ it compiles a phone input                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Phone\PhoneInputSchemaTest
+  ✓ it creates a phone input                                             0.01s  
+  ✓ it sets properties                                                   0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Radio\RadioBuilderTest
+  ✓ it compiles a radio                                                  0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Radio\RadioSchemaTest
+  ✓ it creates a radio                                                   0.01s  
+  ✓ it sets radio properties                                             0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Repeater\RepeaterBuilderTest
+  ✓ it compiles a repeater                                               0.12s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Repeater\RepeaterSchemaTest
+  ✓ it creates a repeater                                                0.01s  
+  ✓ it sets repeater properties                                          0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\RichEditor\RichEditorBuilderTest
+  ✓ it compiles a rich editor                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Input\RichEditor\RichEditorSchemaTest
+  ✓ it creates a rich editor                                             0.01s  
+  ✓ it sets rich editor properties                                       0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Select\SelectBuilderTest
+  ✓ it compiles a select input                                           0.05s  
+  ✓ it compiles select options from option schemas                       0.04s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Select\SelectSchemaTest
+  ✓ it creates a select input                                            0.02s  
+  ✓ it sets properties                                                   0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Tags\TagsBuilderTest
+  ✓ it compiles a tags input                                             0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Tags\TagsSchemaTest
+  ✓ it sets tags properties                                              0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Text\TextInputBuilderTest
+  ✓ it compiles a text input                                             0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Text\TextInputSchemaTest
+  ✓ it creates a text input                                              0.01s  
+  ✓ it sets properties                                                   0.01s  
+  ✓ it is immutable                                                      0.01s  
+  ✓ it compiles validation rules                                         0.04s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Text\TextInputStateTest
+  ✓ it supports state on text input                                      0.07s  
+  ✓ it supports default state on text input                              0.04s  
+  ✓ it supports hydration on text input                                  0.04s  
+  ✓ it supports dehydration on text input                                0.04s  
+  ✓ it supports complete state configuration on text input               0.04s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Textarea\TextareaInputBuilderTest
+  ✓ it compiles a textarea input                                         0.07s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Textarea\TextareaInputSchemaTest
+  ✓ it creates a textarea input                                          0.01s  
+  ✓ it sets properties                                                   0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Time\TimeBuilderTest
+  ✓ it compiles a time input                                             0.06s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Time\TimeSchemaTest
+  ✓ it sets time properties                                              0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Toggle\ToggleBuilderTest
+  ✓ it compiles a toggle                                                 0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Input\Toggle\ToggleSchemaTest
+  ✓ it sets toggle properties                                            0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Option\OptionBuilderTest
+  ✓ it compiles an option                                                0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Option\OptionSchemaTest
+  ✓ it creates an option                                                 0.01s  
+  ✓ it sets properties                                                   0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   WARN  Tests\Feature\Schema\Form\State\StateBuilderTest
+  ✓ it compiles a complete state                                         0.06s  
+  ✓ it compiles a default state                                          0.05s  
+  ✓ it compiles a dynamic default state                                  0.04s  
+  ✓ it compiles a state path                                             0.04s  
+  ✓ it compiles state callbacks                                          0.04s  
+  ✓ it compiles live state                                               0.04s  
+  ✓ it compiles reactive state                                           0.04s  
+  ✓ it compiles persistent state                                         0.04s  
+  ! it does not expose dehydrated when enabled by default → This test d… 0.04s  
+  ✓ it compiles disabled dehydration                                     0.04s  
+
+   PASS  Tests\Feature\Schema\Form\State\StateSchemaTest
+  ✓ it creates a state schema                                            0.06s  
+  ✓ it sets a state path                                                 0.01s  
+  ✓ it sets a default value                                              0.01s  
+  ✓ it accepts a dynamic default value                                   0.01s  
+  ✓ it sets live state                                                   0.01s  
+  ✓ it sets reactive state                                               0.01s  
+  ✓ it sets persistent state                                             0.01s  
+  ✓ it enables dehydration by default                                    0.01s  
+  ✓ it can disable dehydration                                           0.01s  
+  ✓ it sets hydration callback                                           0.01s  
+  ✓ it sets after hydrate callback                                       0.01s  
+  ✓ it sets after update callback                                        0.01s  
+  ✓ it sets before dehydrate callback                                    0.01s  
+  ✓ it sets dehydration callback                                         0.01s  
+  ✓ it hydrates a value                                                  0.01s  
+  ✓ it runs after hydrate after hydration                                0.01s  
+  ✓ it runs after update                                                 0.01s  
+  ✓ it runs before dehydrate before dehydration                          0.01s  
+  ✓ it dehydrates a value                                                0.01s  
+  ✓ it returns the original value without hydration callback             0.01s  
+  ✓ it returns the original value without dehydration callback           0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Validation\Password\PasswordDefaultsTest
+  ✓ it compiles default password preset                                  0.15s  
+  ✓ it compiles strong password preset                                   0.04s  
+
+   PASS  Tests\Feature\Schema\Form\Validation\Password\PasswordParametersTest
+  ✓ it compiles default password parameters                              0.05s  
+  ✓ it compiles custom password parameters                               0.05s  
+  ✓ it hides strength meter                                              0.04s  
+  ✓ it supports every predefined strength with ('weak', 'weak')          0.04s  
+  ✓ it supports every predefined strength with ('medium', 'medium')      0.04s  
+  ✓ it supports every predefined strength with ('strong', 'strong')      0.04s  
+  ✓ it supports every predefined strength with ('veryStrong', 'very-str… 0.04s  
+
+   PASS  Tests\Feature\Schema\Form\Validation\Rule\RuleBuilderTest
+  ✓ it compiles required rule                                            0.09s  
+  ✓ it compiles email rule                                               0.04s  
+  ✓ it compiles between rule                                             0.05s  
+  ✓ it compiles password rule                                            0.04s  
+  ✓ it compiles custom rule                                              0.05s  
+
+   PASS  Tests\Feature\Schema\Form\Validation\Rule\RuleSchemaTest
+  ✓ Presence → it creates required rule                                  0.03s  
+  ✓ Presence → it creates nullable rule                                  0.01s  
+  ✓ Presence → it creates accepted rule                                  0.01s  
+  ✓ Presence → it creates declined rule                                  0.01s  
+  ✓ Types → it creates string rule                                       0.01s  
+  ✓ Types → it creates boolean rule                                      0.01s  
+  ✓ Types → it creates integer rule                                      0.01s  
+  ✓ Types → it creates numeric rule                                      0.01s  
+  ✓ Types → it creates array rule                                        0.01s  
+  ✓ Types → it creates date rule                                         0.01s  
+  ✓ Types → it creates file rule                                         0.01s  
+  ✓ Types → it creates image rule                                        0.01s  
+  ✓ Text → it creates email rule                                         0.01s  
+  ✓ Text → it creates regex rule                                         0.01s  
+  ✓ Size → it creates min rule                                           0.01s  
+  ✓ Size → it creates max rule                                           0.01s  
+  ✓ Size → it creates between rule                                       0.01s  
+  ✓ Size → it creates decimal rule                                       0.01s  
+  ✓ Size → it creates multiple of rule                                   0.01s  
+  ✓ Dates → it creates before rule                                       0.01s  
+  ✓ Dates → it creates before or equal rule                              0.01s  
+  ✓ Dates → it creates after rule                                        0.01s  
+  ✓ Dates → it creates after or equal rule                               0.01s  
+  ✓ Database → it creates exists rule                                    0.01s  
+  ✓ Database → it creates unique rule                                    0.01s  
+  ✓ Files → it creates mimes rule                                        0.01s  
+  ✓ Files → it creates extensions rule                                   0.01s  
+  ✓ Password → it creates password rule                                  0.01s  
+  ✓ Comparison → it creates same rule                                    0.01s  
+  ✓ Comparison → it creates different rule                               0.01s  
+  ✓ Comparison → it creates in rule                                      0.01s  
+  ✓ Comparison → it creates not in rule                                  0.01s  
+  ✓ Custom → it creates custom rule                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Form\Validation\ValidationBuilderTest
+  ✓ it returns validation schema                                         0.17s  
+  ✓ it builds validation                                                 0.04s  
+
+   PASS  Tests\Feature\Schema\Form\Validation\ValidationSchemaTest
+  ✓ it compiles the default validation                                   0.06s  
+  ✓ it compiles type validation                                          0.05s  
+  ✓ it compiles size validation                                          0.05s  
+  ✓ it compiles text validation                                          0.05s  
+  ✓ it compiles date validation                                          0.04s  
+  ✓ it compiles file validation                                          0.04s  
+  ✓ it compiles password validation                                      0.04s  
+  ✓ it compiles comparison validation                                    0.04s  
+  ✓ it compiles custom validation                                        0.04s  
+
+   PASS  Tests\Feature\Schema\Header\HeaderBuilderTest
+  ✓ it compiles a header schema                                          0.09s  
+
+   PASS  Tests\Feature\Schema\Header\HeaderSchemaTest
+  ✓ it creates a header schema                                           0.01s  
+  ✓ it sets header properties                                            0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Infolist\InfolistBuilderTest
+  ✓ it compiles an infolist schema                                       0.07s  
+
+   PASS  Tests\Feature\Schema\Infolist\InfolistSchemaTest
+  ✓ it creates an infolist schema                                        0.03s  
+  ✓ it sets infolist properties                                          0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\AccordionBuilderTest
+  ✓ it compiles an accordion schema                                      0.11s  
+
+   PASS  Tests\Feature\Schema\Layout\AccordionItemBuilderTest
+  ✓ it compiles an accordion item schema                                 0.05s  
+
+   PASS  Tests\Feature\Schema\Layout\AccordionItemSchemaTest
+  ✓ it creates an accordion item schema                                  0.01s  
+  ✓ it sets accordion item properties                                    0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\AccordionSchemaTest
+  ✓ it creates an accordion schema                                       0.02s  
+  ✓ it sets accordion items                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\CardBuilderTest
+  ✓ it compiles a card schema                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Layout\CardSchemaTest
+  ✓ it creates a card schema                                             0.01s  
+  ✓ it sets card properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\FlexBuilderTest
+  ✓ it compiles a flex schema                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Layout\FlexSchemaTest
+  ✓ it creates a flex schema                                             0.01s  
+  ✓ it sets flex properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\GridBuilderTest
+  ✓ it compiles a grid schema                                            0.08s  
+
+   PASS  Tests\Feature\Schema\Layout\GridItemBuilderTest
+  ✓ it compiles a grid item schema                                       0.08s  
+
+   PASS  Tests\Feature\Schema\Layout\GridItemSchemaTest
+  ✓ it creates a grid item schema                                        0.01s  
+  ✓ it sets grid item properties                                         0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\GridSchemaTest
+  ✓ it creates a grid schema                                             0.02s  
+  ✓ it sets grid properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\SectionBuilderTest
+  ✓ it compiles a section schema                                         0.06s  
+
+   PASS  Tests\Feature\Schema\Layout\SectionSchemaTest
+  ✓ it creates a section schema                                          0.01s  
+  ✓ it sets section properties                                           0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\SplitBuilderTest
+  ✓ it compiles a split schema                                           0.06s  
+
+   PASS  Tests\Feature\Schema\Layout\SplitSchemaTest
+  ✓ it creates a split schema                                            0.01s  
+  ✓ it sets split properties                                             0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\StackBuilderTest
+  ✓ it compiles a stack schema                                           0.06s  
+
+   PASS  Tests\Feature\Schema\Layout\StackSchemaTest
+  ✓ it creates a stack schema                                            0.01s  
+  ✓ it sets stack properties                                             0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\TabBuilderTest
+  ✓ it compiles a tab schema                                             0.07s  
+
+   PASS  Tests\Feature\Schema\Layout\TabSchemaTest
+  ✓ it creates a tab schema                                              0.02s  
+  ✓ it sets tab properties                                               0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Layout\TabsBuilderTest
+  ✓ it compiles a tabs schema                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Layout\TabsSchemaTest
+  ✓ it creates a tabs schema                                             0.01s  
+  ✓ it sets tabs                                                         0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Modal\ModalSchemaTest
+  ✓ it compiles a modal schema                                           0.06s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Navigation\NavigationBuilderTest
+  ✓ it creates a navigation schema                                       0.02s  
+  ✓ it compiles a navigation schema                                      0.04s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Navigation\NavigationItemBuilderTest
+  ✓ it creates a navigation item schema                                  0.02s  
+  ✓ it compiles a navigation item schema                                 0.05s  
+  ✓ it compiles nested navigation items                                  0.04s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Navigation\NavigationItemSchemaTest
+  ✓ it creates a navigation item schema                                  0.03s  
+  ✓ it sets navigation item properties                                   0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Navigation\NavigationSchemaTest
+  ✓ it creates a navigation schema                                       0.02s  
+  ✓ it sets navigation properties                                        0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Page\PageBuilderTest
+  ✓ it compiles a page schema                                            0.06s  
+
+   PASS  Tests\Feature\Schema\Page\PageSchemaTest
+  ✓ it creates a page schema                                             0.01s  
+  ✓ it sets page properties                                              0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Source\HasSourceTest
+  ✓ it sets a source                                                     0.02s  
+  ✓ it is immutable                                                      0.01s  
+  ✓ it detects when no source is defined                                 0.01s  
+
+   PASS  Tests\Feature\Schema\Table\ColumnBuilderTest
+  ✓ it compiles a column schema                                          0.07s  
+
+   PASS  Tests\Feature\Schema\Table\ColumnSchemaTest
+  ✓ it creates a column schema                                           0.01s  
+  ✓ it sets column properties                                            0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Table\TableBuilderTest
+  ✓ it compiles a table schema                                           0.16s  
+
+   PASS  Tests\Feature\Schema\Table\TableSchemaTest
+  ✓ it creates a table schema                                            0.01s  
+  ✓ it sets table properties                                             0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Widget\Data\Empty\WidgetEmptySchemaTest
+  ✓ it creates empty schema                                              0.02s  
+  ✓ it sets empty properties                                             0.01s  
+
+   PASS  Tests\Feature\Schema\Widget\Data\Loading\WidgetLoadingSchemaTest
+  ✓ it creates loading schema                                            0.02s  
+  ✓ it sets loading properties                                           0.01s  
+
+   PASS  Tests\Feature\Schema\Widget\Data\Pagination\WidgetPaginationSchemaTest
+  ✓ it creates pagination schema                                         0.02s  
+  ✓ it sets pagination properties                                        0.01s  
+
+   PASS  Tests\Feature\Schema\Widget\Data\Records\WidgetRecordsSchemaTest
+  ✓ it creates records schema                                            0.03s  
+  ✓ it sets records                                                      0.01s  
+
+   WARN  Tests\Feature\Schema\Widget\Data\WidgetDataBuilderTest
+  ✓ it compiles records                                                  0.06s  
+  ✓ it compiles pagination                                               0.05s  
+  ✓ it compiles loading state                                            0.05s  
+  ✓ it compiles empty state                                              0.05s  
+  ✓ it compiles complete widget data                                     0.04s  
+  ! it compiles empty widget data → This test did not perform any asser… 0.04s  
+
+   PASS  Tests\Feature\Schema\Widget\Data\WidgetDataSchemaTest
+  ✓ it creates a widget data schema                                      0.04s  
+  ✓ it sets records                                                      0.01s  
+  ✓ it sets pagination                                                   0.01s  
+  ✓ it sets loading                                                      0.01s  
+  ✓ it sets empty state                                                  0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Schema\Widget\WidgetBuilderTest
+  ✓ it compiles a complete widget                                        0.08s  
+  ✓ it compiles a widget key                                             0.05s  
+  ✓ it compiles a widget title                                           0.05s  
+  ✓ it compiles a widget description                                     0.05s  
+  ✓ it compiles a widget icon                                            0.04s  
+  ✓ it compiles widget visibility                                        0.04s  
+  ✓ it compiles widget width                                             0.04s  
+  ✓ it compiles widget columns                                           0.04s  
+  ✓ it compiles widget props                                             0.04s  
+  ✓ it compiles an empty widget                                          0.04s  
+
+   PASS  Tests\Feature\Schema\Widget\WidgetSchemaTest
+  ✓ it creates a widget schema                                           0.06s  
+  ✓ it sets a widget key                                                 0.01s  
+  ✓ it sets a widget title                                               0.01s  
+  ✓ it sets a widget description                                         0.01s  
+  ✓ it sets a widget icon                                                0.01s  
+  ✓ it sets widget visibility                                            0.01s  
+  ✓ it sets widget width                                                 0.01s  
+  ✓ it sets widget columns                                               0.01s  
+  ✓ it sets widget props                                                 0.01s  
+  ✓ it is immutable                                                      0.01s  
+
+   PASS  Tests\Feature\Source\SourceQueryTest
+  ✓ it creates a query builder for a source                              0.06s  
+
+   PASS  Tests\Feature\Source\SourceRegistryTest
+  ✓ it resolves a source                                                 0.01s  
+  ✓ it always returns the same source type                               0.01s  
+
+   PASS  Tests\Feature\Source\SourceTest
+  ✓ it creates a source                                                  0.02s  
+  ✓ it returns the model class                                           0.01s  
+  ✓ it returns the data class                                            0.01s  
+
+  Tests:    2 risky, 454 passed (1390 assertions)
+  Duration: 10.54s

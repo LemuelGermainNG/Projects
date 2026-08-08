@@ -44,7 +44,9 @@ it('sets grid properties', function (): void {
 });
 
 it('is immutable', function (): void {
-    $grid = GridSchema::make();
+    $grid = GridSchema::make()
+        ->columns(12)
+        ->gap(6);
 
     $updated = $grid
         ->columns(24)
@@ -57,7 +59,7 @@ it('is immutable', function (): void {
         ->toBe(12);
 
     expect($grid->gap())
-        ->toBeNull();
+        ->toBe(6);
 
     expect($updated->columns())
         ->toBe(24);

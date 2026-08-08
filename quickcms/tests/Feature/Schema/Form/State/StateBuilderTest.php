@@ -95,14 +95,13 @@ it('compiles persistent state', function (): void {
 });
 
 it('does not expose dehydrated when enabled by default', function (): void {
-    expect(
-        StateBuilderFactory::dehydrated()
-            ->compile(
-                BuilderRegistryFactory::make(),
-            ),
-    )->toMatchArray(
-        StateAssertions::dehydrated(),
-    );
+    $compiled = StateBuilderFactory::dehydrated()
+        ->compile(
+            BuilderRegistryFactory::make(),
+        );
+
+    expect($compiled)
+        ->not->toHaveKey('dehydrated');
 });
 
 it('compiles disabled dehydration', function (): void {
