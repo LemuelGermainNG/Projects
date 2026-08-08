@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Core\Schema\Form\Field\FieldSchema;
 use App\Core\Schema\Form\FormSchema;
 use App\Core\Schema\Form\Input\Text\TextInputSchema;
-use App\Core\Schema\Form\State\State;
+use App\Core\Schema\Form\State\StateSchema;
 use App\Core\Schema\Form\Validation\Validation;
 use Tests\Fixtures\Sources\UserSource;
 use Tests\Support\Factories\BuilderRegistryFactory;
@@ -22,7 +22,7 @@ it('compiles a complete form with input state and validation', function (): void
                         ->name('name')
                         ->value('John Doe')
                         ->state(
-                            State::make()
+                            StateSchema::make()
                                 ->path('name')
                                 ->default('John Doe')
                                 ->hydrate(

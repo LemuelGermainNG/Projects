@@ -4,14 +4,29 @@ declare(strict_types=1);
 
 namespace App\Core\Schema\Form\State;
 
+use App\Core\Schema\Form\State\Concerns\HasAfterHydrate;
+use App\Core\Schema\Form\State\Concerns\HasAfterUpdate;
+use App\Core\Schema\Form\State\Concerns\HasBeforeDehydrate;
+use App\Core\Schema\Form\State\Concerns\HasDefault;
+use App\Core\Schema\Form\State\Concerns\HasDehydrated;
+use App\Core\Schema\Form\State\Concerns\HasLive;
+use App\Core\Schema\Form\State\Concerns\HasPersist;
+use App\Core\Schema\Form\State\Concerns\HasReactive;
 use App\Core\Schema\Schema;
 use Closure;
 
-final class State extends Schema
+final class StateSchema extends Schema
 {
-    protected string|Closure|null $path = null;
+    use HasAfterHydrate;
+    use HasAfterUpdate;
+    use HasBeforeDehydrate;
+    use HasDefault;
+    use HasDehydrated;
+    use HasLive;
+    use HasPersist;
+    use HasReactive;
 
-    protected mixed $default = null;
+    protected string|Closure|null $path = null;
 
     protected Closure|null $hydrate = null;
 
@@ -23,15 +38,6 @@ final class State extends Schema
         return $this->with(
             'path',
             $path,
-        );
-    }
-
-    public function default(
-        mixed $value,
-    ): static {
-        return $this->with(
-            'default',
-            $value,
         );
     }
 
@@ -58,11 +64,6 @@ final class State extends Schema
         return $this->path;
     }
 
-    public function defaultValue(): mixed
-    {
-        return $this->default;
-    }
-
     public function hydrateCallback(): ?Closure
     {
         return $this->hydrate;
@@ -76,24 +77,28 @@ final class State extends Schema
     public function hydrateValue(
         mixed $value,
     ): mixed {
-        $callback = $this->hydrate;
-
-        if ($callback === null) {
-            return $value;
+        if ($this->hydrate !== null) {
+            $value = ($this->hydrate)($value);
         }
 
-        return $callback($value);
+        return $this->runAfterHydrate($value);
     }
 
     public function dehydrateValue(
         mixed $value,
     ): mixed {
-        $callback = $this->dehydrate;
+        $value = $this->runBeforeDehydrate($value);
 
-        if ($callback === null) {
-            return $value;
+        if ($this->dehydrate !== null) {
+            $value = ($this->dehydrate)($value);
         }
 
-        return $callback($value);
+        return $value;
+    }
+
+    public function updateValue(
+        mixed $value,
+    ): mixed {
+        return $this->runAfterUpdate($value);
     }
 }

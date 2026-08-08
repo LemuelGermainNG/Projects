@@ -28,6 +28,17 @@ it('compiles a default state', function (): void {
     );
 });
 
+it('compiles a dynamic default state', function (): void {
+    expect(
+        StateBuilderFactory::dynamicDefault()
+            ->compile(
+                BuilderRegistryFactory::make(),
+            ),
+    )->toMatchArray(
+        StateAssertions::default(),
+    );
+});
+
 it('compiles a state path', function (): void {
     expect(
         StateBuilderFactory::path()
@@ -39,7 +50,7 @@ it('compiles a state path', function (): void {
     );
 });
 
-it('compiles hydration and dehydration', function (): void {
+it('compiles state callbacks', function (): void {
     expect(
         StateBuilderFactory::callbacks()
             ->compile(
@@ -47,5 +58,60 @@ it('compiles hydration and dehydration', function (): void {
             ),
     )->toMatchArray(
         StateAssertions::callbacks(),
+    );
+});
+
+it('compiles live state', function (): void {
+    expect(
+        StateBuilderFactory::live()
+            ->compile(
+                BuilderRegistryFactory::make(),
+            ),
+    )->toMatchArray(
+        StateAssertions::live(),
+    );
+});
+
+it('compiles reactive state', function (): void {
+    expect(
+        StateBuilderFactory::reactive()
+            ->compile(
+                BuilderRegistryFactory::make(),
+            ),
+    )->toMatchArray(
+        StateAssertions::reactive(),
+    );
+});
+
+it('compiles persistent state', function (): void {
+    expect(
+        StateBuilderFactory::persist()
+            ->compile(
+                BuilderRegistryFactory::make(),
+            ),
+    )->toMatchArray(
+        StateAssertions::persist(),
+    );
+});
+
+it('does not expose dehydrated when enabled by default', function (): void {
+    expect(
+        StateBuilderFactory::dehydrated()
+            ->compile(
+                BuilderRegistryFactory::make(),
+            ),
+    )->toMatchArray(
+        StateAssertions::dehydrated(),
+    );
+});
+
+it('compiles disabled dehydration', function (): void {
+    expect(
+        StateBuilderFactory::notDehydrated()
+            ->compile(
+                BuilderRegistryFactory::make(),
+            ),
+    )->toMatchArray(
+        StateAssertions::notDehydrated(),
     );
 });

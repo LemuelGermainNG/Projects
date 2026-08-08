@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 use App\Core\Schema\Form\Input\Text\TextInputSchema;
-use App\Core\Schema\Form\State\State;
+use App\Core\Schema\Form\State\StateSchema;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('supports state on text input', function (): void {
     $input = TextInputSchema::make()
         ->state(
-            State::make()
+            StateSchema::make()
                 ->path('name')
                 ->default('John Doe'),
         );
@@ -78,7 +78,7 @@ it('supports dehydration on text input', function (): void {
 it('supports complete state configuration on text input', function (): void {
     $input = TextInputSchema::make()
         ->state(
-            State::make()
+            StateSchema::make()
                 ->path('name')
                 ->default('John Doe')
                 ->hydrate(

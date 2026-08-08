@@ -10,8 +10,23 @@ final class StateAssertions
     {
         return [
             'path' => 'name',
+
             'default' => 'John Doe',
+
+            'live' => true,
+
+            'reactive' => true,
+
+            'persist' => true,
+
             'hydrate' => true,
+
+            'afterHydrate' => true,
+
+            'afterUpdate' => true,
+
+            'beforeDehydrate' => true,
+
             'dehydrate' => true,
         ];
     }
@@ -34,7 +49,47 @@ final class StateAssertions
     {
         return [
             'hydrate' => true,
+
+            'afterHydrate' => true,
+
+            'afterUpdate' => true,
+
+            'beforeDehydrate' => true,
+
             'dehydrate' => true,
+        ];
+    }
+
+    public static function live(): array
+    {
+        return [
+            'live' => true,
+        ];
+    }
+
+    public static function reactive(): array
+    {
+        return [
+            'reactive' => true,
+        ];
+    }
+
+    public static function persist(): array
+    {
+        return [
+            'persist' => true,
+        ];
+    }
+
+    public static function dehydrated(): array
+    {
+        return [];
+    }
+
+    public static function notDehydrated(): array
+    {
+        return [
+            'dehydrated' => false,
         ];
     }
 }
