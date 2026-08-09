@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Widget\Chart\ChartSchema;
+use App\Core\Schema\Widget\Chart\ChartWidgetSchema;
 use Tests\Fixtures\Sources\UserSource;
 
 it('creates a chart schema', function (): void {
     expect(
-        ChartSchema::make(),
-    )->toBeInstanceOf(ChartSchema::class);
+        ChartWidgetSchema::make(),
+    )->toBeInstanceOf(ChartWidgetSchema::class);
 });
 
 it('sets chart type', function (): void {
-    $chart = ChartSchema::make()
+    $chart = ChartWidgetSchema::make()
         ->chartType('line');
 
     expect($chart->chartTypeValue())
@@ -27,7 +27,7 @@ it('sets chart dataset', function (): void {
         ],
     ];
 
-    $chart = ChartSchema::make()
+    $chart = ChartWidgetSchema::make()
         ->dataset($dataset);
 
     expect($chart->datasetValue())
@@ -41,7 +41,7 @@ it('sets chart labels', function (): void {
         'Mar',
     ];
 
-    $chart = ChartSchema::make()
+    $chart = ChartWidgetSchema::make()
         ->labels($labels);
 
     expect($chart->labelsValue())
@@ -60,7 +60,7 @@ it('sets chart series', function (): void {
         ],
     ];
 
-    $chart = ChartSchema::make()
+    $chart = ChartWidgetSchema::make()
         ->series($series);
 
     expect($chart->seriesValue())
@@ -72,7 +72,7 @@ it('sets chart options', function (): void {
         'responsive' => true,
     ];
 
-    $chart = ChartSchema::make()
+    $chart = ChartWidgetSchema::make()
         ->options($options);
 
     expect($chart->optionsValue())
@@ -88,7 +88,7 @@ it('sets chart axes', function (): void {
         'title' => 'Revenue',
     ];
 
-    $chart = ChartSchema::make()
+    $chart = ChartWidgetSchema::make()
         ->xAxis($xAxis)
         ->yAxis($yAxis);
 
@@ -100,7 +100,7 @@ it('sets chart axes', function (): void {
 });
 
 it('inherits widget source', function (): void {
-    $chart = ChartSchema::make()
+    $chart = ChartWidgetSchema::make()
         ->source(UserSource::class);
 
     expect($chart->source())
@@ -108,7 +108,7 @@ it('inherits widget source', function (): void {
 });
 
 it('is immutable', function (): void {
-    $chart = ChartSchema::make();
+    $chart = ChartWidgetSchema::make();
 
     $updated = $chart
         ->key('revenue')

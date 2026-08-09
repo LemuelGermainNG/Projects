@@ -2,72 +2,72 @@
 
 declare(strict_types=1);
 
-use Tests\Support\Assertions\Widget\Chart\ChartAssertions;
-use Tests\Support\Builders\Widget\Chart\ChartBuilderFactory;
+use Tests\Support\Assertions\Widget\Chart\ChartWidgetAssertions;
+use Tests\Support\Builders\Widget\Chart\ChartWidgetBuilderFactory;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a chart', function (): void {
     expect(
-        ChartBuilderFactory::make()
+        ChartWidgetBuilderFactory::make()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        ChartAssertions::make(),
+        ChartWidgetAssertions::make(),
     );
 });
 
 it('compiles a chart with widget data', function (): void {
     expect(
-        ChartBuilderFactory::withWidgetData()
+        ChartWidgetBuilderFactory::withWidgetData()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        ChartAssertions::withWidgetData(),
+        ChartWidgetAssertions::withWidgetData(),
     );
 });
 
 it('compiles an empty chart', function (): void {
     expect(
-        ChartBuilderFactory::empty()
+        ChartWidgetBuilderFactory::empty()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        ChartAssertions::empty(),
+        ChartWidgetAssertions::empty(),
     );
 });
 
 it('compiles a chart source', function (): void {
     expect(
-        ChartBuilderFactory::source()
+        ChartWidgetBuilderFactory::source()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        ChartAssertions::source(),
+        ChartWidgetAssertions::source(),
     );
 });
 
 it('compiles a bar chart', function (): void {
     expect(
-        ChartBuilderFactory::bar()
+        ChartWidgetBuilderFactory::bar()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        ChartAssertions::bar(),
+        ChartWidgetAssertions::bar(),
     );
 });
 
 it('compiles a pie chart', function (): void {
     expect(
-        ChartBuilderFactory::pie()
+        ChartWidgetBuilderFactory::pie()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        ChartAssertions::pie(),
+        ChartWidgetAssertions::pie(),
     );
 });

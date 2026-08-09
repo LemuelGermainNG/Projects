@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Widget\Card\CardSchema;
+use App\Core\Schema\Widget\Card\CardWidgetSchema;
 use Tests\Fixtures\Sources\UserSource;
 
 it('creates a card schema', function (): void {
     expect(
-        CardSchema::make(),
-    )->toBeInstanceOf(CardSchema::class);
+        CardWidgetSchema::make(),
+    )->toBeInstanceOf(CardWidgetSchema::class);
 });
 
 it('inherits widget configuration', function (): void {
-    $card = CardSchema::make()
+    $card = CardWidgetSchema::make()
         ->key('users')
         ->title('Users')
         ->description('Manage users')
@@ -58,7 +58,7 @@ it('inherits widget configuration', function (): void {
 });
 
 it('inherits source', function (): void {
-    $card = CardSchema::make()
+    $card = CardWidgetSchema::make()
         ->source(UserSource::class);
 
     expect($card->source())
@@ -66,7 +66,7 @@ it('inherits source', function (): void {
 });
 
 it('is immutable', function (): void {
-    $card = CardSchema::make();
+    $card = CardWidgetSchema::make();
 
     $updated = $card
         ->key('users')

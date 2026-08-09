@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Support\Builders\Widget\Chart;
 
-use App\Core\Schema\Widget\Chart\ChartSchema;
+use App\Core\Schema\Widget\Chart\ChartWidgetSchema;
 use App\Core\Schema\Widget\Data\Empty\WidgetEmptySchema;
 use App\Core\Schema\Widget\Data\Loading\WidgetLoadingSchema;
 use App\Core\Schema\Widget\Data\Pagination\WidgetPaginationSchema;
@@ -12,11 +12,11 @@ use App\Core\Schema\Widget\Data\Records\WidgetRecordsSchema;
 use App\Core\Schema\Widget\Data\WidgetDataSchema;
 use Tests\Fixtures\Sources\UserSource;
 
-final class ChartBuilderFactory
+final class ChartWidgetBuilderFactory
 {
-    public static function make(): ChartSchema
+    public static function make(): ChartWidgetSchema
     {
-        return ChartSchema::make()
+        return ChartWidgetSchema::make()
             ->key('revenue')
             ->title('Revenue')
             ->description('Monthly revenue')
@@ -60,7 +60,7 @@ final class ChartBuilderFactory
             ]);
     }
 
-    public static function withWidgetData(): ChartSchema
+    public static function withWidgetData(): ChartWidgetSchema
     {
         return self::make()
             ->data(
@@ -97,20 +97,20 @@ final class ChartBuilderFactory
             );
     }
 
-    public static function empty(): ChartSchema
+    public static function empty(): ChartWidgetSchema
     {
-        return ChartSchema::make();
+        return ChartWidgetSchema::make();
     }
 
-    public static function source(): ChartSchema
+    public static function source(): ChartWidgetSchema
     {
-        return ChartSchema::make()
+        return ChartWidgetSchema::make()
             ->source(UserSource::class);
     }
 
-    public static function bar(): ChartSchema
+    public static function bar(): ChartWidgetSchema
     {
-        return ChartSchema::make()
+        return ChartWidgetSchema::make()
             ->chartType('bar')
             ->labels([
                 'Jan',
@@ -129,9 +129,9 @@ final class ChartBuilderFactory
             ]);
     }
 
-    public static function pie(): ChartSchema
+    public static function pie(): ChartWidgetSchema
     {
-        return ChartSchema::make()
+        return ChartWidgetSchema::make()
             ->chartType('pie')
             ->labels([
                 'Desktop',

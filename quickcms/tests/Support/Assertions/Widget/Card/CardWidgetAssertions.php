@@ -6,12 +6,12 @@ namespace Tests\Support\Assertions\Widget\Card;
 
 use Tests\Fixtures\Sources\UserSource;
 
-final class CardAssertions
+final class CardWidgetAssertions
 {
     public static function make(): array
     {
         return [
-            'type' => 'card',
+            'type' => 'card-widget',
 
             'title' => 'Users',
 
@@ -77,7 +77,7 @@ final class CardAssertions
     public static function empty(): array
     {
         return [
-            'type' => 'card',
+            'type' => 'card-widget',
 
             'title' => '',
 
@@ -98,7 +98,7 @@ final class CardAssertions
     public static function source(): array
     {
         return [
-            'type' => 'card',
+            'type' => 'card-widget',
 
             'title' => '',
 

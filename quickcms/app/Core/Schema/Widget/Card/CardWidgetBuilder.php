@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Schema\Widget\Stats;
+namespace App\Core\Schema\Widget\Card;
 
 use App\Core\Builder\Builder;
 
-final class StatsBuilder extends Builder
+final class CardWidgetBuilder extends Builder
 {
     public static function schema(): string
     {
-        return StatsSchema::class;
+        return CardWidgetSchema::class;
     }
 
     public function build(): array
     {
-        /** @var StatsSchema $schema */
+        /** @var CardWidgetSchema $schema */
         $schema = $this->schema;
 
         $data = [
@@ -61,22 +61,6 @@ final class StatsBuilder extends Builder
             'source',
             $this->evaluate(
                 $schema->source(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'value',
-            $this->evaluate(
-                $schema->valueValue(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'trend',
-            $this->evaluate(
-                $schema->trendValue(),
             ),
         );
 

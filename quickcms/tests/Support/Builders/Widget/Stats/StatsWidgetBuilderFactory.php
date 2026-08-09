@@ -9,14 +9,14 @@ use App\Core\Schema\Widget\Data\Loading\WidgetLoadingSchema;
 use App\Core\Schema\Widget\Data\Pagination\WidgetPaginationSchema;
 use App\Core\Schema\Widget\Data\Records\WidgetRecordsSchema;
 use App\Core\Schema\Widget\Data\WidgetDataSchema;
-use App\Core\Schema\Widget\Stats\StatsSchema;
+use App\Core\Schema\Widget\Stats\StatsWidgetSchema;
 use Tests\Fixtures\Sources\UserSource;
 
-final class StatsBuilderFactory
+final class StatsWidgetBuilderFactory
 {
-    public static function make(): StatsSchema
+    public static function make(): StatsWidgetSchema
     {
-        return StatsSchema::make()
+        return StatsWidgetSchema::make()
             ->key('users')
             ->title('Users')
             ->description('Total users')
@@ -35,7 +35,7 @@ final class StatsBuilderFactory
             ]);
     }
 
-    public static function withData(): StatsSchema
+    public static function withData(): StatsWidgetSchema
     {
         return self::make()
             ->data(
@@ -72,14 +72,14 @@ final class StatsBuilderFactory
             );
     }
 
-    public static function empty(): StatsSchema
+    public static function empty(): StatsWidgetSchema
     {
-        return StatsSchema::make();
+        return StatsWidgetSchema::make();
     }
 
-    public static function source(): StatsSchema
+    public static function source(): StatsWidgetSchema
     {
-        return StatsSchema::make()
+        return StatsWidgetSchema::make()
             ->source(UserSource::class);
     }
 }

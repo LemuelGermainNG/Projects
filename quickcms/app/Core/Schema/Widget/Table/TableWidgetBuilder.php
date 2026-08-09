@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Core\Schema\Widget\Chart;
+namespace App\Core\Schema\Widget\Table;
 
 use App\Core\Builder\Builder;
 
-final class ChartBuilder extends Builder
+final class TableWidgetBuilder extends Builder
 {
     public static function schema(): string
     {
-        return ChartSchema::class;
+        return TableWidgetSchema::class;
     }
 
     public function build(): array
     {
-        /** @var ChartSchema $schema */
+        /** @var TableWidgetSchema $schema */
         $schema = $this->schema;
 
         $data = [
@@ -66,63 +66,23 @@ final class ChartBuilder extends Builder
 
         $this->addIfNotNull(
             $data,
-            'chartType',
+            'tableColumns',
             $this->evaluate(
-                $schema->chartTypeValue(),
+                $schema->tableColumnsValue(),
             ),
         );
 
         $this->addIfNotNull(
             $data,
-            'dataset',
+            'rowKey',
             $this->evaluate(
-                $schema->datasetValue(),
+                $schema->rowKeyValue(),
             ),
         );
 
         $this->addIfNotNull(
             $data,
-            'labels',
-            $this->evaluate(
-                $schema->labelsValue(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'series',
-            $this->evaluate(
-                $schema->seriesValue(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'options',
-            $this->evaluate(
-                $schema->optionsValue(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'xAxis',
-            $this->evaluate(
-                $schema->xAxisValue(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'yAxis',
-            $this->evaluate(
-                $schema->yAxisValue(),
-            ),
-        );
-
-        $this->addIfNotNull(
-            $data,
-            'widgetData',
+            'data',
             $this->compileChild(
                 $schema->dataSchema(),
             ),

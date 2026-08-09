@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Support\Builders\Widget\Card;
 
-use App\Core\Schema\Widget\Card\CardSchema;
+use App\Core\Schema\Widget\Card\CardWidgetSchema;
 use App\Core\Schema\Widget\Data\Empty\WidgetEmptySchema;
 use App\Core\Schema\Widget\Data\Loading\WidgetLoadingSchema;
 use App\Core\Schema\Widget\Data\Pagination\WidgetPaginationSchema;
@@ -12,11 +12,11 @@ use App\Core\Schema\Widget\Data\Records\WidgetRecordsSchema;
 use App\Core\Schema\Widget\Data\WidgetDataSchema;
 use Tests\Fixtures\Sources\UserSource;
 
-final class CardBuilderFactory
+final class CardWidgetBuilderFactory
 {
-    public static function make(): CardSchema
+    public static function make(): CardWidgetSchema
     {
-        return CardSchema::make()
+        return CardWidgetSchema::make()
             ->key('users')
             ->title('Users')
             ->description('Manage users')
@@ -33,7 +33,7 @@ final class CardBuilderFactory
             ]);
     }
 
-    public static function withData(): CardSchema
+    public static function withData(): CardWidgetSchema
     {
         return self::make()
             ->data(
@@ -70,14 +70,14 @@ final class CardBuilderFactory
             );
     }
 
-    public static function empty(): CardSchema
+    public static function empty(): CardWidgetSchema
     {
-        return CardSchema::make();
+        return CardWidgetSchema::make();
     }
 
-    public static function source(): CardSchema
+    public static function source(): CardWidgetSchema
     {
-        return CardSchema::make()
+        return CardWidgetSchema::make()
             ->source(UserSource::class);
     }
 }

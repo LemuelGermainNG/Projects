@@ -6,12 +6,12 @@ namespace Tests\Support\Assertions\Widget\Chart;
 
 use Tests\Fixtures\Sources\UserSource;
 
-final class ChartAssertions
+final class ChartWidgetAssertions
 {
     public static function make(): array
     {
         return [
-            'type' => 'chart',
+            'type' => 'chart-widget',
 
             'title' => 'Revenue',
 
@@ -110,7 +110,7 @@ final class ChartAssertions
     public static function empty(): array
     {
         return [
-            'type' => 'chart',
+            'type' => 'chart-widget',
 
             'title' => '',
 
@@ -131,7 +131,7 @@ final class ChartAssertions
     public static function source(): array
     {
         return [
-            'type' => 'chart',
+            'type' => 'chart-widget',
 
             'title' => '',
 
@@ -154,7 +154,7 @@ final class ChartAssertions
     public static function bar(): array
     {
         return [
-            'type' => 'chart',
+            'type' => 'chart-widget',
 
             'title' => '',
 
@@ -194,7 +194,7 @@ final class ChartAssertions
     public static function pie(): array
     {
         return [
-            'type' => 'chart',
+            'type' => 'chart-widget',
 
             'title' => '',
 

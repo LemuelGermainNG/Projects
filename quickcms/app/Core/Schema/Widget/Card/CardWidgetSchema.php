@@ -6,6 +6,6 @@ namespace App\Core\Schema\Widget\Card;
 
 use App\Core\Schema\Widget\WidgetSchema;
 
-final class CardSchema extends WidgetSchema
+final class CardWidgetSchema extends WidgetSchema
 {
 }

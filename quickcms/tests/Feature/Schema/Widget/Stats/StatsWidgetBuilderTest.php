@@ -2,51 +2,51 @@
 
 declare(strict_types=1);
 
-use Tests\Support\Assertions\Widget\Stats\StatsAssertions;
-use Tests\Support\Builders\Widget\Stats\StatsBuilderFactory;
+use Tests\Support\Assertions\Widget\Stats\StatsWidgetAssertions;
+use Tests\Support\Builders\Widget\Stats\StatsWidgetBuilderFactory;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
 it('compiles a stats widget', function (): void {
     expect(
-        StatsBuilderFactory::make()
+        StatsWidgetBuilderFactory::make()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        StatsAssertions::make(),
+        StatsWidgetAssertions::make(),
     );
 });
 
 it('compiles a stats widget with data', function (): void {
     expect(
-        StatsBuilderFactory::withData()
+        StatsWidgetBuilderFactory::withData()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        StatsAssertions::withData(),
+        StatsWidgetAssertions::withData(),
     );
 });
 
 it('compiles an empty stats widget', function (): void {
-    $compiled = StatsBuilderFactory::empty()
+    $compiled = StatsWidgetBuilderFactory::empty()
         ->compile(
             BuilderRegistryFactory::make(),
         );
 
     expect($compiled)
         ->toMatchArray(
-            StatsAssertions::empty(),
+            StatsWidgetAssertions::empty(),
         );
 });
 
 it('compiles a stats source', function (): void {
     expect(
-        StatsBuilderFactory::source()
+        StatsWidgetBuilderFactory::source()
             ->compile(
                 BuilderRegistryFactory::make(),
             ),
     )->toMatchArray(
-        StatsAssertions::source(),
+        StatsWidgetAssertions::source(),
     );
 });

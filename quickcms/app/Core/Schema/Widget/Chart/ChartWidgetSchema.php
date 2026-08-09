@@ -6,7 +6,7 @@ namespace App\Core\Schema\Widget\Chart;
 
 use App\Core\Schema\Widget\WidgetSchema;
 
-final class ChartSchema extends WidgetSchema
+final class ChartWidgetSchema extends WidgetSchema
 {
     protected string|null $chartType = null;
 

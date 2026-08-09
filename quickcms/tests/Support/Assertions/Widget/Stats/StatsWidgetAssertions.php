@@ -6,12 +6,12 @@ namespace Tests\Support\Assertions\Widget\Stats;
 
 use Tests\Fixtures\Sources\UserSource;
 
-final class StatsAssertions
+final class StatsWidgetAssertions
 {
     public static function make(): array
     {
         return [
-            'type' => 'stats',
+            'type' => 'stats-widget',
 
             'title' => 'Users',
 
@@ -81,7 +81,7 @@ final class StatsAssertions
     public static function empty(): array
     {
         return [
-            'type' => 'stats',
+            'type' => 'stats-widget',
 
             'title' => '',
 
@@ -102,7 +102,7 @@ final class StatsAssertions
     public static function source(): array
     {
         return [
-            'type' => 'stats',
+            'type' => 'stats-widget',
 
             'title' => '',
 

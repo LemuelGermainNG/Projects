@@ -6,7 +6,7 @@ namespace App\Core\Schema\Widget\Stats;
 
 use App\Core\Schema\Widget\WidgetSchema;
 
-final class StatsSchema extends WidgetSchema
+final class StatsWidgetSchema extends WidgetSchema
 {
     protected mixed $value = null;
 

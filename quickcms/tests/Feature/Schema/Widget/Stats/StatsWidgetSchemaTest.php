@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Widget\Stats\StatsSchema;
+use App\Core\Schema\Widget\Stats\StatsWidgetSchema;
 use Tests\Fixtures\Sources\UserSource;
 
 it('creates a stats schema', function (): void {
     expect(
-        StatsSchema::make(),
-    )->toBeInstanceOf(StatsSchema::class);
+        StatsWidgetSchema::make(),
+    )->toBeInstanceOf(StatsWidgetSchema::class);
 });
 
 it('sets a stats value', function (): void {
-    $stats = StatsSchema::make()
+    $stats = StatsWidgetSchema::make()
         ->value(1250);
 
     expect($stats->valueValue())
@@ -20,7 +20,7 @@ it('sets a stats value', function (): void {
 });
 
 it('sets a stats trend', function (): void {
-    $stats = StatsSchema::make()
+    $stats = StatsWidgetSchema::make()
         ->trend(12.5);
 
     expect($stats->trendValue())
@@ -28,7 +28,7 @@ it('sets a stats trend', function (): void {
 });
 
 it('inherits widget configuration', function (): void {
-    $stats = StatsSchema::make()
+    $stats = StatsWidgetSchema::make()
         ->key('users')
         ->title('Users')
         ->description('Total users')
@@ -74,7 +74,7 @@ it('inherits widget configuration', function (): void {
 });
 
 it('inherits source', function (): void {
-    $stats = StatsSchema::make()
+    $stats = StatsWidgetSchema::make()
         ->source(UserSource::class);
 
     expect($stats->source())
@@ -82,7 +82,7 @@ it('inherits source', function (): void {
 });
 
 it('is immutable', function (): void {
-    $stats = StatsSchema::make();
+    $stats = StatsWidgetSchema::make();
 
     $updated = $stats
         ->key('users')
