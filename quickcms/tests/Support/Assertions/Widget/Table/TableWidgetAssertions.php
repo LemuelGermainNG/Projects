@@ -39,14 +39,32 @@ final class TableWidgetAssertions
                 [
                     'key' => 'id',
                     'label' => 'ID',
+                    'sortable' => false,
+                    'searchable' => false,
+                    'width' => null,
+                    'align' => 'start',
+                    'format' => null,
+                    'visible' => true,
                 ],
                 [
                     'key' => 'name',
                     'label' => 'Name',
+                    'sortable' => false,
+                    'searchable' => false,
+                    'width' => null,
+                    'align' => 'start',
+                    'format' => null,
+                    'visible' => true,
                 ],
                 [
                     'key' => 'email',
                     'label' => 'Email',
+                    'sortable' => false,
+                    'searchable' => false,
+                    'width' => null,
+                    'align' => 'start',
+                    'format' => null,
+                    'visible' => true,
                 ],
             ],
 
@@ -133,6 +151,80 @@ final class TableWidgetAssertions
             'props' => [],
 
             'source' => UserSource::class,
+        ];
+    }
+
+    public static function advanced(): array
+    {
+        return [
+            'type' => 'table-widget',
+
+            'title' => 'Users',
+
+            'description' => 'User list',
+
+            'icon' => 'heroicon-o-users',
+
+            'visible' => true,
+
+            'width' => 12,
+
+            'columns' => [
+                'default' => 1,
+            ],
+
+            'props' => [
+                'striped' => true,
+            ],
+
+            'key' => 'users',
+
+            'source' => UserSource::class,
+
+            'tableColumns' => [
+                [
+                    'key' => 'id',
+                    'label' => 'ID',
+                    'sortable' => true,
+                    'searchable' => false,
+                    'width' => 100,
+                    'align' => 'center',
+                    'format' => 'number',
+                    'visible' => true,
+                ],
+                [
+                    'key' => 'name',
+                    'label' => 'Name',
+                    'sortable' => true,
+                    'searchable' => true,
+                    'width' => 240,
+                    'align' => 'start',
+                    'format' => 'text',
+                    'visible' => true,
+                ],
+                [
+                    'key' => 'email',
+                    'label' => 'Email',
+                    'sortable' => true,
+                    'searchable' => true,
+                    'width' => 320,
+                    'align' => 'start',
+                    'format' => 'email',
+                    'visible' => true,
+                ],
+                [
+                    'key' => 'created_at',
+                    'label' => 'Created',
+                    'sortable' => true,
+                    'searchable' => false,
+                    'width' => 180,
+                    'align' => 'end',
+                    'format' => 'date',
+                    'visible' => false,
+                ],
+            ],
+
+            'rowKey' => 'id',
         ];
     }
 }

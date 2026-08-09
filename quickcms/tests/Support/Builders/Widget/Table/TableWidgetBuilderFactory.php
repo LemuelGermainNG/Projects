@@ -96,4 +96,65 @@ final class TableWidgetBuilderFactory
         return TableWidgetSchema::make()
             ->source(UserSource::class);
     }
+
+    public static function advanced(): TableWidgetSchema
+    {
+        return TableWidgetSchema::make()
+            ->key('users')
+            ->title('Users')
+            ->description('User list')
+            ->icon('heroicon-o-users')
+            ->visible(true)
+            ->width(12)
+            ->columns([
+                'default' => 1,
+            ])
+            ->source(UserSource::class)
+            ->tableColumns([
+                [
+                    'key' => 'id',
+                    'label' => 'ID',
+                    'sortable' => true,
+                    'searchable' => false,
+                    'width' => 100,
+                    'align' => 'center',
+                    'format' => 'number',
+                    'visible' => true,
+                ],
+                [
+                    'key' => 'name',
+                    'label' => 'Name',
+                    'sortable' => true,
+                    'searchable' => true,
+                    'width' => 240,
+                    'align' => 'start',
+                    'format' => 'text',
+                    'visible' => true,
+                ],
+                [
+                    'key' => 'email',
+                    'label' => 'Email',
+                    'sortable' => true,
+                    'searchable' => true,
+                    'width' => 320,
+                    'align' => 'start',
+                    'format' => 'email',
+                    'visible' => true,
+                ],
+                [
+                    'key' => 'created_at',
+                    'label' => 'Created',
+                    'sortable' => true,
+                    'searchable' => false,
+                    'width' => 180,
+                    'align' => 'end',
+                    'format' => 'date',
+                    'visible' => false,
+                ],
+            ])
+            ->rowKey('id')
+            ->props([
+                'striped' => true,
+            ]);
+    }
 }

@@ -30,6 +30,37 @@ it('sets table columns', function (): void {
         ->toBe($columns);
 });
 
+it('sets advanced table columns', function (): void {
+    $columns = [
+        [
+            'key' => 'name',
+            'label' => 'Name',
+            'sortable' => true,
+            'searchable' => true,
+            'width' => 240,
+            'align' => 'start',
+            'format' => 'text',
+            'visible' => true,
+        ],
+        [
+            'key' => 'email',
+            'label' => 'Email',
+            'sortable' => true,
+            'searchable' => true,
+            'width' => 320,
+            'align' => 'start',
+            'format' => 'email',
+            'visible' => false,
+        ],
+    ];
+
+    $table = TableWidgetSchema::make()
+        ->tableColumns($columns);
+
+    expect($table->tableColumnsValue())
+        ->toBe($columns);
+});
+
 it('sets row key', function (): void {
     $table = TableWidgetSchema::make()
         ->rowKey('id');
@@ -93,15 +124,23 @@ it('inherits source', function (): void {
 it('is immutable', function (): void {
     $table = TableWidgetSchema::make();
 
+    $columns = [
+        [
+            'key' => 'name',
+            'label' => 'Name',
+            'sortable' => true,
+            'searchable' => true,
+            'width' => 240,
+            'align' => 'start',
+            'format' => 'text',
+            'visible' => true,
+        ],
+    ];
+
     $updated = $table
         ->key('users')
         ->title('Users')
-        ->tableColumns([
-            [
-                'key' => 'name',
-                'label' => 'Name',
-            ],
-        ])
+        ->tableColumns($columns)
         ->rowKey('id')
         ->source(UserSource::class);
 
@@ -130,12 +169,7 @@ it('is immutable', function (): void {
         ->toBe('Users');
 
     expect($updated->tableColumnsValue())
-        ->toBe([
-            [
-                'key' => 'name',
-                'label' => 'Name',
-            ],
-        ]);
+        ->toBe($columns);
 
     expect($updated->rowKeyValue())
         ->toBe('id');

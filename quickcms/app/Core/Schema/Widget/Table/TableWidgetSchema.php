@@ -8,10 +8,16 @@ use App\Core\Schema\Widget\WidgetSchema;
 
 final class TableWidgetSchema extends WidgetSchema
 {
+    /**
+     * @var array<int, array<string, mixed>>|null
+     */
     protected array|null $tableColumns = null;
 
     protected string|null $rowKey = null;
 
+    /**
+     * @param array<int, array<string, mixed>>|null $columns
+     */
     public function tableColumns(
         ?array $columns,
     ): static {
@@ -30,6 +36,9 @@ final class TableWidgetSchema extends WidgetSchema
         );
     }
 
+    /**
+     * @return array<int, array<string, mixed>>|null
+     */
     public function tableColumnsValue(): ?array
     {
         return $this->tableColumns;

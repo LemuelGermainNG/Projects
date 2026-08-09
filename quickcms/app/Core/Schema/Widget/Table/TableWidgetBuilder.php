@@ -67,7 +67,7 @@ final class TableWidgetBuilder extends Builder
         $this->addIfNotNull(
             $data,
             'tableColumns',
-            $this->evaluate(
+            $this->compileTableColumns(
                 $schema->tableColumnsValue(),
             ),
         );
@@ -89,5 +89,53 @@ final class TableWidgetBuilder extends Builder
         );
 
         return $data;
+    }
+
+    /**
+     * @param array<int, array<string, mixed>>|null $columns
+     *
+     * @return array<int, array<string, mixed>>|null
+     */
+    protected function compileTableColumns(?array $columns): ?array
+    {
+        if ($columns === null) {
+            return null;
+        }
+
+        return array_map(
+            function (array $column): array {
+                $column = array_replace(
+                    [
+                        'key' => null,
+                        'label' => '',
+                        'sortable' => false,
+                        'searchable' => false,
+                        'width' => null,
+                        'align' => 'start',
+                        'format' => null,
+                        'visible' => true,
+                    ],
+                    $column,
+                );
+
+                foreach ([
+                    'key',
+                    'label',
+                    'sortable',
+                    'searchable',
+                    'width',
+                    'align',
+                    'format',
+                    'visible',
+                ] as $property) {
+                    $column[$property] = $this->evaluate(
+                        $column[$property],
+                    );
+                }
+
+                return $column;
+            },
+            $columns,
+        );
     }
 }
