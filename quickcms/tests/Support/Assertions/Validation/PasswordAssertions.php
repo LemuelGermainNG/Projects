@@ -42,6 +42,7 @@ final class PasswordAssertions
                     'strength' => 'strong',
                     'generate' => false,
                     'showStrengthMeter' => true,
+                    'includeDefaults' => true,
                 ],
             ],
         ];
