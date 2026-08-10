@@ -65,3 +65,28 @@ it('stores application metadata', function (): void {
     expect($application->path())
         ->toBe('/backoffice');
 });
+
+
+it('targets the current application when using make', function (): void {
+    $registry = app(
+        \App\Core\Application\ApplicationRegistry::class,
+    );
+
+    $context = \App\Core\Application\Application::make();
+
+    expect($context)
+        ->toBeInstanceOf(
+            \App\Core\Application\ApplicationContext::class,
+        );
+});
+
+it('creates a scoped application context with only', function (): void {
+    $context = \App\Core\Application\Application::only(
+        'shop',
+    );
+
+    expect($context)
+        ->toBeInstanceOf(
+            \App\Core\Application\ApplicationContext::class,
+        );
+});

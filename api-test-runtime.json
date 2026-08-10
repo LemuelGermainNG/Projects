@@ -1,0 +1,494 @@
+{
+    "brand": {
+        "type": "brand",
+        "name": "Laravel",
+        "logo": "/logo.svg",
+        "favicon": "/favicon.ico"
+    },
+    "pages": [
+        {
+            "type": "page",
+            "header": null,
+            "content": {
+                "type": "dashboard",
+                "title": "Dashboard",
+                "description": "QuickCMS administration dashboard",
+                "icon": null,
+                "visible": true,
+                "layout": {
+                    "type": "dashboard-layout",
+                    "columns": 12,
+                    "gap": 6,
+                    "rows": [
+                        {
+                            "type": "dashboard-row",
+                            "gap": 6,
+                            "columns": [
+                                {
+                                    "type": "dashboard-column",
+                                    "width": {
+                                        "default": 12,
+                                        "md": 6,
+                                        "lg": 3
+                                    },
+                                    "widget": {
+                                        "type": "stats-widget",
+                                        "title": "Users",
+                                        "description": "",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "users",
+                                        "value": 1245,
+                                        "trend": 12.5
+                                    },
+                                    "props": []
+                                },
+                                {
+                                    "type": "dashboard-column",
+                                    "width": {
+                                        "default": 12,
+                                        "md": 6,
+                                        "lg": 3
+                                    },
+                                    "widget": {
+                                        "type": "stats-widget",
+                                        "title": "Orders",
+                                        "description": "",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "orders",
+                                        "value": 328,
+                                        "trend": 8.2
+                                    },
+                                    "props": []
+                                },
+                                {
+                                    "type": "dashboard-column",
+                                    "width": {
+                                        "default": 12,
+                                        "md": 6,
+                                        "lg": 3
+                                    },
+                                    "widget": {
+                                        "type": "stats-widget",
+                                        "title": "Revenue",
+                                        "description": "",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "revenue",
+                                        "value": "$48,240",
+                                        "trend": 15.8
+                                    },
+                                    "props": []
+                                },
+                                {
+                                    "type": "dashboard-column",
+                                    "width": {
+                                        "default": 12,
+                                        "md": 6,
+                                        "lg": 3
+                                    },
+                                    "widget": {
+                                        "type": "card-widget",
+                                        "title": "System",
+                                        "description": "All systems operational",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "system"
+                                    },
+                                    "props": []
+                                }
+                            ],
+                            "props": []
+                        },
+                        {
+                            "type": "dashboard-row",
+                            "gap": 6,
+                            "columns": [
+                                {
+                                    "type": "dashboard-column",
+                                    "width": {
+                                        "default": 12,
+                                        "lg": 8
+                                    },
+                                    "widget": {
+                                        "type": "chart-widget",
+                                        "title": "Sales",
+                                        "description": "",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "sales",
+                                        "chartType": "line",
+                                        "labels": [
+                                            "Jan",
+                                            "Feb",
+                                            "Mar",
+                                            "Apr",
+                                            "May",
+                                            "Jun"
+                                        ],
+                                        "series": [
+                                            {
+                                                "name": "Sales",
+                                                "data": [
+                                                    120,
+                                                    180,
+                                                    160,
+                                                    240,
+                                                    210,
+                                                    300
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "props": []
+                                },
+                                {
+                                    "type": "dashboard-column",
+                                    "width": {
+                                        "default": 12,
+                                        "lg": 4
+                                    },
+                                    "widget": {
+                                        "type": "list-widget",
+                                        "title": "Recent activity",
+                                        "description": "",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "activity",
+                                        "itemKey": "id",
+                                        "itemTitle": "title",
+                                        "itemDescription": "description",
+                                        "items": [
+                                            {
+                                                "id": 1,
+                                                "title": "New user",
+                                                "description": "John Doe registered"
+                                            },
+                                            {
+                                                "id": 2,
+                                                "title": "Order created",
+                                                "description": "Order #1024"
+                                            }
+                                        ]
+                                    },
+                                    "props": []
+                                }
+                            ],
+                            "props": []
+                        },
+                        {
+                            "type": "dashboard-row",
+                            "gap": 6,
+                            "columns": [
+                                {
+                                    "type": "dashboard-column",
+                                    "width": 12,
+                                    "widget": {
+                                        "type": "table-widget",
+                                        "title": "Latest users",
+                                        "description": "",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "latest-users",
+                                        "tableColumns": [
+                                            {
+                                                "key": "name",
+                                                "label": "Name",
+                                                "sortable": true,
+                                                "searchable": true,
+                                                "width": 240,
+                                                "align": "start",
+                                                "format": null,
+                                                "visible": true
+                                            },
+                                            {
+                                                "key": "email",
+                                                "label": "Email",
+                                                "sortable": false,
+                                                "searchable": true,
+                                                "width": null,
+                                                "align": "start",
+                                                "format": null,
+                                                "visible": true
+                                            },
+                                            {
+                                                "key": "status",
+                                                "label": "Status",
+                                                "sortable": false,
+                                                "searchable": false,
+                                                "width": null,
+                                                "align": "start",
+                                                "format": "badge",
+                                                "visible": true
+                                            }
+                                        ],
+                                        "rowKey": "id"
+                                    },
+                                    "props": []
+                                }
+                            ],
+                            "props": []
+                        },
+                        {
+                            "type": "dashboard-row",
+                            "gap": 6,
+                            "columns": [
+                                {
+                                    "type": "dashboard-column",
+                                    "width": 12,
+                                    "widget": {
+                                        "type": "calendar-widget",
+                                        "title": "Calendar",
+                                        "description": "",
+                                        "icon": null,
+                                        "visible": true,
+                                        "width": null,
+                                        "columns": null,
+                                        "props": [],
+                                        "key": "calendar",
+                                        "views": [
+                                            "month",
+                                            "week",
+                                            "day"
+                                        ],
+                                        "defaultView": "month",
+                                        "currentDate": "2026-08-09",
+                                        "eventKey": "id",
+                                        "eventTitle": "title",
+                                        "eventStart": "start",
+                                        "eventEnd": "end",
+                                        "eventAllDay": "allDay",
+                                        "eventColor": "color"
+                                    },
+                                    "props": []
+                                }
+                            ],
+                            "props": []
+                        }
+                    ],
+                    "props": []
+                },
+                "state": null,
+                "filters": [],
+                "actions": [],
+                "refresh": null,
+                "props": []
+            },
+            "props": []
+        },
+        {
+            "type": "page",
+            "header": null,
+            "content": {
+                "type": "table-widget",
+                "title": "Users",
+                "description": "Manage application users.",
+                "icon": null,
+                "visible": true,
+                "width": null,
+                "columns": null,
+                "props": [],
+                "key": "users",
+                "tableColumns": [
+                    {
+                        "key": "name",
+                        "label": "Name",
+                        "sortable": true,
+                        "searchable": true,
+                        "width": null,
+                        "align": "start",
+                        "format": null,
+                        "visible": true
+                    },
+                    {
+                        "key": "email",
+                        "label": "Email",
+                        "sortable": true,
+                        "searchable": true,
+                        "width": null,
+                        "align": "start",
+                        "format": null,
+                        "visible": true
+                    },
+                    {
+                        "key": "status",
+                        "label": "Status",
+                        "sortable": false,
+                        "searchable": false,
+                        "width": null,
+                        "align": "start",
+                        "format": "badge",
+                        "visible": true
+                    }
+                ],
+                "rowKey": "id",
+                "data": {
+                    "records": [
+                        {
+                            "id": 1,
+                            "name": "John Doe",
+                            "email": "john@example.com",
+                            "status": "active"
+                        },
+                        {
+                            "id": 2,
+                            "name": "Jane Doe",
+                            "email": "jane@example.com",
+                            "status": "active"
+                        }
+                    ],
+                    "pagination": {
+                        "enabled": true,
+                        "perPage": 20,
+                        "page": 1
+                    }
+                }
+            },
+            "props": []
+        },
+        {
+            "type": "page",
+            "header": null,
+            "content": {
+                "type": "form",
+                "source": null,
+                "schema": [
+                    {
+                        "type": "text-input",
+                        "name": "name",
+                        "value": null,
+                        "placeholder": "John Doe",
+                        "disabled": false,
+                        "readonly": false,
+                        "state": {
+                            "path": "name",
+                            "default": ""
+                        },
+                        "validation": {
+                            "rules": [
+                                {
+                                    "type": "required"
+                                },
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "min",
+                                    "parameters": {
+                                        "value": 2
+                                    }
+                                }
+                            ]
+                        },
+                        "props": []
+                    },
+                    {
+                        "type": "email-input",
+                        "name": "email",
+                        "value": null,
+                        "placeholder": "john@example.com",
+                        "disabled": false,
+                        "readonly": false,
+                        "state": {
+                            "path": "email",
+                            "default": ""
+                        },
+                        "validation": {
+                            "rules": [
+                                {
+                                    "type": "required"
+                                },
+                                {
+                                    "type": "email"
+                                }
+                            ]
+                        },
+                        "props": []
+                    }
+                ],
+                "headerActions": [],
+                "footerActions": [],
+                "props": {
+                    "submitLabel": "Create user"
+                }
+            },
+            "props": []
+        }
+    ],
+    "navigation": [
+        {
+            "type": "navigation",
+            "label": "Administration",
+            "icon": "heroicon-o-squares-2x2",
+            "items": [
+                {
+                    "label": "Dashboard",
+                    "icon": "heroicon-o-home",
+                    "route": "App\\Runtime\\Pages\\DashboardPage",
+                    "url": null,
+                    "badge": null,
+                    "visible": true,
+                    "children": [],
+                    "props": []
+                },
+                {
+                    "label": "Users",
+                    "icon": "heroicon-o-users",
+                    "route": null,
+                    "url": null,
+                    "badge": null,
+                    "visible": true,
+                    "children": [
+                        {
+                            "label": "List",
+                            "icon": "heroicon-o-user",
+                            "route": "App\\Runtime\\Pages\\UsersPage",
+                            "url": null,
+                            "badge": null,
+                            "visible": true,
+                            "children": [],
+                            "props": []
+                        },
+                        {
+                            "label": "Create",
+                            "icon": "heroicon-o-user-plus",
+                            "route": "App\\Runtime\\Pages\\UserCreatePage",
+                            "url": null,
+                            "badge": null,
+                            "visible": true,
+                            "children": [],
+                            "props": []
+                        }
+                    ],
+                    "props": []
+                }
+            ],
+            "props": []
+        }
+    ],
+    "props": {
+        "version": null
+    }
+}

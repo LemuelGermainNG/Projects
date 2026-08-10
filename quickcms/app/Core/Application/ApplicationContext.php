@@ -58,15 +58,24 @@ final class ApplicationContext
             $this->metadata,
         );
 
-        $this->applications = [
-            $this->metadata->id(),
-        ];
+        /*
+         * Application::make()
+         *
+         * When no explicit application scope exists,
+         * the application being configured becomes the
+         * target for subsequent contributions.
+         */
+        if ($this->applications === []) {
+            $this->applications = [
+                $this->metadata->id(),
+            ];
+        }
 
         return $this;
     }
 
     /**
-     * Register pages.
+     * Register pages for the current application scope.
      *
      * @param class-string ...$pages
      */
@@ -82,7 +91,7 @@ final class ApplicationContext
     }
 
     /**
-     * Register navigation.
+     * Register navigation for the current application scope.
      *
      * @param class-string ...$navigation
      */

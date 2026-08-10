@@ -26,7 +26,7 @@ final class ApplicationMetadata
     /**
      * Root application layout.
      */
-    protected ApplicationLayout $layout;
+    protected ApplicationLayout $layout = ApplicationLayout::Default;
 
     /**
      * Create a new application metadata instance.
