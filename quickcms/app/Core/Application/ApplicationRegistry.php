@@ -74,9 +74,11 @@ final class ApplicationRegistry
         foreach ($applications as $application) {
             $this->navigation[$application] ??= [];
 
-            array_push(
-                $this->navigation[$application],
-                ...$navigation,
+            $this->navigation[$application] = array_values(
+                array_unique([
+                    ...$this->navigation[$application],
+                    ...$navigation,
+                ]),
             );
         }
     }

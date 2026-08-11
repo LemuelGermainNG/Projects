@@ -1,599 +1,246 @@
-dmtb@CET-CT74197:~/dev/Projects/quickcms$ php artisan test --filter=Widget
+dmtb@CET-CT74197:~/dev/Projects/quickcms$ php artisan test --filter=Application
 
-   PASS  Tests\Feature\Schema\Dashboard\Layout\DashboardColumnBuilderTest
-  ✓ it compiles a dashboard column with a widget                         0.20s  
+   FAIL  Tests\Feature\Application\AdminNavigationTest
+  ⨯ it aggregates application and feature navigation                     0.14s  
 
-   FAIL  Tests\Feature\Schema\Widget\Calendar\CalendarWidgetBuilderTest
-  ⨯ it compiles a calendar widget                                        0.12s  
-  ⨯ it compiles a calendar widget with data                              0.08s  
-  ✓ it compiles an empty calendar widget                                 0.08s  
-  ⨯ it compiles a calendar widget source                                 0.08s  
-  ✓ it compiles calendar event mapping                                   0.08s  
+   PASS  Tests\Feature\Application\ApplicationBuilderTest
+  ✓ it throws an exception when the application is not registered        0.03s  
 
-   PASS  Tests\Feature\Schema\Widget\Calendar\CalendarWidgetSchemaTest
-  ✓ it creates a calendar widget schema                                  0.09s  
-  ✓ it sets calendar views                                               0.04s  
-  ✓ it sets default view                                                 0.04s  
-  ✓ it sets current date                                                 0.04s  
-  ✓ it sets event key                                                    0.04s  
-  ✓ it sets event title                                                  0.04s  
-  ✓ it sets event start                                                  0.04s  
-  ✓ it sets event end                                                    0.04s  
-  ✓ it sets event all day                                                0.04s  
-  ✓ it sets event color                                                  0.04s  
-  ✓ it inherits widget configuration                                     0.05s  
-  ✓ it inherits source                                                   0.04s  
-  ✓ it is immutable                                                      0.04s  
+   PASS  Tests\Feature\Application\ApplicationContextTest
+  ✓ it targets the configured application navigation when using an empt… 0.03s  
+  ✓ it targets multiple application navigation                           0.03s  
+  ✓ it preserves an explicit application scope                           0.03s  
 
-   FAIL  Tests\Feature\Schema\Widget\Card\CardWidgetBuilderTest
-  ⨯ it compiles a card                                                   0.19s  
-  ⨯ it compiles a card with data                                         0.09s  
-  ✓ it compiles an empty card                                            0.08s  
-  ⨯ it compiles a card source                                            0.09s  
+   PASS  Tests\Feature\Application\ApplicationDiscoveryTest
+  ✓ it discovers application providers                                   0.04s  
+  ✓ it does not discover non application classes                         0.04s  
+  ✓ it only returns application provider classes                         0.04s  
 
-   PASS  Tests\Feature\Schema\Widget\Card\CardWidgetSchemaTest
-  ✓ it creates a card schema                                             0.08s  
-  ✓ it inherits widget configuration                                     0.04s  
-  ✓ it inherits source                                                   0.04s  
-  ✓ it is immutable                                                      0.04s  
+   PASS  Tests\Feature\Application\ApplicationManagerTest
+  ✓ it registers an application provider                                 0.06s  
+  ✓ it discovers and registers application providers                     0.05s  
+  ✓ it registers application metadata through providers                  0.05s  
+  ✓ it returns the application registry                                  0.05s  
+  ✓ it boots registered application providers                            0.05s  
+  ✓ it registers a feature provider                                      0.05s  
+  ✓ it discovers and registers feature providers                         0.05s  
+  ✓ it registers feature services through Laravel                        0.05s  
+  ✓ it delegates feature registration to Laravel                         0.05s  
+  ✓ it does not manually boot feature providers                          0.05s  
 
-   FAIL  Tests\Feature\Schema\Widget\Chart\ChartWidgetBuilderTest
-  ⨯ it compiles a chart                                                  0.12s  
-  ⨯ it compiles a chart with widget data                                 0.09s  
-  ✓ it compiles an empty chart                                           0.08s  
-  ⨯ it compiles a chart source                                           0.08s  
-  ✓ it compiles a bar chart                                              0.08s  
-  ✓ it compiles a pie chart                                              0.08s  
+   PASS  Tests\Feature\Application\ApplicationMetadataTest
+  ✓ it creates application metadata                                      0.04s  
+  ✓ it sets the id                                                       0.03s  
+  ✓ it sets the name                                                     0.03s  
+  ✓ it sets the path                                                     0.03s  
+  ✓ it sets the layout                                                   0.03s  
+  ✓ it converts metadata to an array                                     0.03s  
 
-   PASS  Tests\Feature\Schema\Widget\Chart\ChartWidgetSchemaTest
-  ✓ it creates a chart schema                                            0.10s  
-  ✓ it sets chart type                                                   0.04s  
-  ✓ it sets chart dataset                                                0.04s  
-  ✓ it sets chart labels                                                 0.04s  
-  ✓ it sets chart series                                                 0.05s  
-  ✓ it sets chart options                                                0.04s  
-  ✓ it sets chart axes                                                   0.05s  
-  ✓ it inherits widget source                                            0.05s  
-  ✓ it is immutable                                                      0.05s  
+   PASS  Tests\Feature\Application\ApplicationRegistryTest
+  ✓ it registers an application                                          0.04s  
+  ✓ it returns null for an unknown application                           0.03s  
+  ✓ it determines whether an application exists                          0.03s  
+  ✓ it registers navigation                                              0.03s  
+  ✓ it returns an empty navigation list for an unknown application       0.03s  
 
-   PASS  Tests\Feature\Schema\Widget\Data\Empty\WidgetEmptySchemaTest
-  ✓ it creates empty schema                                              0.12s  
-  ✓ it sets empty properties                                             0.04s  
+   FAIL  Tests\Feature\Application\ApplicationTest
+  ⨯ it registers and builds an application                               0.07s  
+  ✓ it stores application metadata                                       0.03s  
+  ✓ it targets the current application when using make                   0.03s  
+  ✓ it creates a scoped application context with only                    0.03s  
 
-   PASS  Tests\Feature\Schema\Widget\Data\Loading\WidgetLoadingSchemaTest
-  ✓ it creates loading schema                                            0.06s  
-  ✓ it sets loading properties                                           0.05s  
+   PASS  Tests\Feature\Application\QuickCmsServiceProviderTest
+  ✓ it registers the application manager as a singleton                  0.06s  
+  ✓ it discovers applications during registration                        0.05s  
+  ✓ it discovers features during registration                            0.05s  
+  ✓ it boots application providers through the manager                   0.05s  
+  ✓ it resolves the same application manager instance                    0.05s  
 
-   PASS  Tests\Feature\Schema\Widget\Data\Pagination\WidgetPaginationSchemaTest
-  ✓ it creates pagination schema                                         0.07s  
-  ✓ it sets pagination properties                                        0.04s  
+   PASS  Tests\Feature\Application\UserNavigationTest
+  ✓ it builds the user navigation                                        0.03s  
+  ✓ it contains the users entry                                          0.03s  
 
-   PASS  Tests\Feature\Schema\Widget\Data\Records\WidgetRecordsSchemaTest
-  ✓ it creates records schema                                            0.06s  
-  ✓ it sets records                                                      0.05s  
+   PASS  Tests\Feature\Feature\UserFeatureProviderTest
+  ✓ it registers navigation for the selected application                 0.04s  
 
-   PASS  Tests\Feature\Schema\Widget\Data\WidgetDataBuilderTest
-  ✓ it compiles records                                                  0.11s  
-  ✓ it compiles pagination                                               0.08s  
-  ✓ it compiles loading state                                            0.08s  
-  ✓ it compiles empty state                                              0.08s  
-  ✓ it compiles complete widget data                                     0.08s  
-  ✓ it compiles empty widget data                                        0.08s  
+   PASS  Tests\Feature\Http\ApplicationSchemaEndpointTest
+  ✓ it returns application metadata                                      0.04s  
+  ✓ it returns another application metadata                              0.03s  
+  ✓ it returns not found for an unknown application                      0.03s  
+  ✓ it returns an empty compiled schema for an application without cont… 0.08s  
+  ✓ it returns not found when compiling an unknown application           0.03s  
 
-   PASS  Tests\Feature\Schema\Widget\Data\WidgetDataSchemaTest
-  ✓ it creates a widget data schema                                      0.10s  
-  ✓ it sets records                                                      0.04s  
-  ✓ it sets pagination                                                   0.04s  
-  ✓ it sets loading                                                      0.04s  
-  ✓ it sets empty state                                                  0.04s  
-  ✓ it is immutable                                                      0.04s  
-
-   FAIL  Tests\Feature\Schema\Widget\List\ListWidgetBuilderTest
-  ⨯ it compiles a list widget                                            0.15s  
-  ⨯ it compiles a list widget with data                                  0.08s  
-  ✓ it compiles an empty list widget                                     0.09s  
-  ⨯ it compiles a list widget source                                     0.08s  
-  ✓ it compiles a stats list widget                                      0.08s  
-
-   PASS  Tests\Feature\Schema\Widget\List\ListWidgetSchemaTest
-  ✓ it creates a list widget schema                                      0.08s  
-  ✓ it sets item key                                                     0.04s  
-  ✓ it sets item title                                                   0.04s  
-  ✓ it sets item description                                             0.04s  
-  ✓ it sets item icon                                                    0.04s  
-  ✓ it sets item value                                                   0.04s  
-  ✓ it sets item trend                                                   0.04s  
-  ✓ it sets item meta                                                    0.04s  
-  ✓ it sets static items                                                 0.04s  
-  ✓ it sets filters                                                      0.04s  
-  ✓ it inherits widget configuration                                     0.04s  
-  ✓ it inherits source                                                   0.04s  
-  ✓ it is immutable                                                      0.04s  
-
-   FAIL  Tests\Feature\Schema\Widget\Stats\StatsWidgetBuilderTest
-  ⨯ it compiles a stats widget                                           0.20s  
-  ⨯ it compiles a stats widget with data                                 0.08s  
-  ✓ it compiles an empty stats widget                                    0.08s  
-  ⨯ it compiles a stats source                                           0.09s  
-
-   PASS  Tests\Feature\Schema\Widget\Stats\StatsWidgetSchemaTest
-  ✓ it creates a stats schema                                            0.08s  
-  ✓ it sets a stats value                                                0.04s  
-  ✓ it sets a stats trend                                                0.04s  
-  ✓ it inherits widget configuration                                     0.04s  
-  ✓ it inherits source                                                   0.04s  
-  ✓ it is immutable                                                      0.04s  
-
-   FAIL  Tests\Feature\Schema\Widget\Table\TableWidgetBuilderTest
-  ⨯ it compiles a table                                                  0.14s  
-  ⨯ it compiles a table with data                                        0.08s  
-  ✓ it compiles an empty table                                           0.08s  
-  ⨯ it compiles a table source                                           0.08s  
-  ✓ it compiles table column defaults                                    0.08s  
-  ✓ it compiles advanced table column configuration                      0.08s  
-  ✓ it evaluates table column closures                                   0.08s  
-  ✓ it keeps table column order                                          0.09s  
-  ⨯ it compiles advanced table columns                                   0.09s  
-
-   PASS  Tests\Feature\Schema\Widget\Table\TableWidgetSchemaTest
-  ✓ it creates a table schema                                            0.14s  
-  ✓ it sets table columns                                                0.04s  
-  ✓ it sets advanced table columns                                       0.04s  
-  ✓ it sets row key                                                      0.04s  
-  ✓ it inherits widget configuration                                     0.04s  
-  ✓ it inherits source                                                   0.04s  
-  ✓ it is immutable                                                      0.04s  
-
-   FAIL  Tests\Feature\Schema\Widget\WidgetBuilderTest
-  ⨯ it compiles a complete widget                                        0.16s  
-  ✓ it compiles a widget key                                             0.08s  
-  ✓ it compiles a widget title                                           0.08s  
-  ✓ it compiles a widget description                                     0.08s  
-  ✓ it compiles a widget icon                                            0.08s  
-  ✓ it compiles widget visibility                                        0.08s  
-  ✓ it compiles widget width                                             0.08s  
-  ✓ it compiles widget columns                                           0.09s  
-  ✓ it compiles widget props                                             0.08s  
-  ✓ it compiles an empty widget                                          0.08s  
-
-   PASS  Tests\Feature\Schema\Widget\WidgetIntegrationTest
-  ✓ it compiles a complete widget with source and data                   0.19s  
-  ✓ it compiles a widget with a source and without data                  0.08s  
-  ✓ it compiles a widget with data and without a source                  0.09s  
-  ✓ it serializes a source using its public name                         0.09s  
-
-   PASS  Tests\Feature\Schema\Widget\WidgetSchemaTest
-  ✓ it creates a widget schema                                           0.09s  
-  ✓ it sets a widget key                                                 0.04s  
-  ✓ it sets a widget title                                               0.04s  
-  ✓ it sets a widget description                                         0.04s  
-  ✓ it sets a widget icon                                                0.04s  
-  ✓ it sets widget visibility                                            0.04s  
-  ✓ it sets widget width                                                 0.04s  
-  ✓ it sets widget columns                                               0.04s  
-  ✓ it sets widget props                                                 0.04s  
-  ✓ it is immutable                                                      0.04s  
-  ✓ it sets a widget source                                              0.04s  
+   PASS  Tests\Feature\Schema\Application\ApplicationSchemaBuilderTest
+  ✓ it compiles application brand                                        0.06s  
+  ✓ it compiles application navigation                                   0.05s  
+  ✓ it compiles a complete application schema                            0.06s  
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Calendar\CalendarWidgetBuilderTest >…    
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
+   FAILED  Tests\Feature\Application\AdminNavigationTest > it aggregates app…   
+  Failed asserting that two arrays are identical.
+   Array &0 [
+  -    0 => 'App\Applications\Admin\Navigation\AdminNavigation',
+  -    1 => 'App\Features\User\Navigation\UserNavigation',
+  +    0 => App\Core\Schema\Navigation\NavigationSchema Object #19914 (
+  +        'items' => Array &1 [
+  +            0 => App\Core\Schema\Navigation\NavigationItemSchema Object #19913 (
+  +                'children' => Array &2 [],
+  +                'label' => 'Dashboard',
+  +                'icon' => 'heroicon-o-home',
+  +                'route' => 'App\Applications\Admin\Pages\DashboardPage',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &3 [],
+  +            ),
+  +            1 => App\Core\Schema\Navigation\NavigationItemSchema Object #19912 (
+  +                'children' => Array &4 [],
+  +                'label' => 'Settings',
+  +                'icon' => 'heroicon-o-cog-6-tooth',
+  +                'route' => 'admin.settings',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &5 [],
+  +            ),
+  +            2 => App\Core\Schema\Navigation\NavigationItemSchema Object #19927 (
+  +                'children' => Array &6 [],
+  +                'label' => 'Plugins',
+  +                'icon' => 'heroicon-o-puzzle-piece',
+  +                'route' => 'admin.plugins',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &7 [],
+  +            ),
+  +            3 => App\Core\Schema\Navigation\NavigationItemSchema Object #19910 (
+  +                'children' => Array &8 [],
+  +                'label' => 'System',
+  +                'icon' => 'heroicon-o-server',
+  +                'route' => 'admin.system',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &9 [],
+  +            ),
+  +        ],
+  +        'icon' => 'heroicon-o-squares-2x2',
+  +        'label' => 'Administration',
+  +        'props' => Array &10 [],
+  +    ),
+  +    1 => App\Core\Schema\Navigation\NavigationSchema Object #19909 (
+  +        'items' => Array &11 [
+  +            0 => App\Core\Schema\Navigation\NavigationItemSchema Object #19908 (
+  +                'children' => Array &12 [],
+  +                'label' => 'Users',
+  +                'icon' => 'heroicon-o-user',
+  +                'route' => 'users.index',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &13 [],
+  +            ),
+  +        ],
+  +        'icon' => 'heroicon-o-users',
+  +        'label' => 'Users',
+  +        'props' => Array &14 [],
+  +    ),
+  +    2 => App\Core\Schema\Navigation\NavigationSchema Object #19907 (
+  +        'items' => Array &15 [
+  +            0 => App\Core\Schema\Navigation\NavigationItemSchema Object #19915 (
+  +                'children' => Array &16 [],
+  +                'label' => 'Dashboard',
+  +                'icon' => 'heroicon-o-home',
+  +                'route' => 'App\Applications\Admin\Pages\DashboardPage',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &17 [],
+  +            ),
+  +            1 => App\Core\Schema\Navigation\NavigationItemSchema Object #19920 (
+  +                'children' => Array &18 [],
+  +                'label' => 'Settings',
+  +                'icon' => 'heroicon-o-cog-6-tooth',
+  +                'route' => 'admin.settings',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &19 [],
+  +            ),
+  +            2 => App\Core\Schema\Navigation\NavigationItemSchema Object #19929 (
+  +                'children' => Array &20 [],
+  +                'label' => 'Plugins',
+  +                'icon' => 'heroicon-o-puzzle-piece',
+  +                'route' => 'admin.plugins',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &21 [],
+  +            ),
+  +            3 => App\Core\Schema\Navigation\NavigationItemSchema Object #19930 (
+  +                'children' => Array &22 [],
+  +                'label' => 'System',
+  +                'icon' => 'heroicon-o-server',
+  +                'route' => 'admin.system',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &23 [],
+  +            ),
+  +        ],
+  +        'icon' => 'heroicon-o-squares-2x2',
+  +        'label' => 'Administration',
+  +        'props' => Array &24 [],
+  +    ),
+  +    3 => App\Core\Schema\Navigation\NavigationSchema Object #19931 (
+  +        'items' => Array &25 [
+  +            0 => App\Core\Schema\Navigation\NavigationItemSchema Object #19932 (
+  +                'children' => Array &26 [],
+  +                'label' => 'Users',
+  +                'icon' => 'heroicon-o-user',
+  +                'route' => 'users.index',
+  +                'url' => null,
+  +                'badge' => null,
+  +                'visible' => true,
+  +                'props' => Array &27 [],
+  +            ),
+  +        ],
+  +        'icon' => 'heroicon-o-users',
+  +        'label' => 'Users',
+  +        'props' => Array &28 [],
+  +    ),
+   ]
   
 
-  at tests/Feature/Schema/Widget/Calendar/CalendarWidgetBuilderTest.php:16
-     12▕         CalendarWidgetBuilderFactory::make()
-     13▕             ->compile(
-     14▕                 BuilderRegistryFactory::make(),
-     15▕             ),
-  ➜  16▕     )->toMatchArray(
-     17▕         CalendarWidgetAssertions::make(),
-     18▕     );
-     19▕ });
-     20▕ 
+  at tests/Feature/Application/AdminNavigationTest.php:36
+     32▕         ApplicationSchema::make(),
+     33▕     );
+     34▕ 
+     35▕     expect($schema->navigation())
+  ➜  36▕         ->toBe([
+     37▕             AdminNavigation::class,
+     38▕             UserNavigation::class,
+     39▕         ]);
+     40▕ });
 
-  1   tests/Feature/Schema/Widget/Calendar/CalendarWidgetBuilderTest.php:16
+  1   tests/Feature/Application/AdminNavigationTest.php:36
 
   ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Calendar\CalendarWidgetBuilderTest >…    
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
+   FAILED  Tests\Feature\Application\ApplicationTest > it registers and buil…   
+  Failed asserting that actual size 3 matches expected size 1.
 
-  at tests/Feature/Schema/Widget/Calendar/CalendarWidgetBuilderTest.php:27
-     23▕         CalendarWidgetBuilderFactory::withData()
-     24▕             ->compile(
-     25▕                 BuilderRegistryFactory::make(),
-     26▕             ),
-  ➜  27▕     )->toMatchArray(
-     28▕         CalendarWidgetAssertions::withData(),
-     29▕     );
-     30▕ });
+  at tests/Feature/Application/ApplicationTest.php:33
+     29▕         ApplicationSchema::make(),
+     30▕     );
      31▕ 
+     32▕     expect($schema->navigation())
+  ➜  33▕         ->toHaveCount(1)
+     34▕         ->each
+     35▕         ->toBeInstanceOf(NavigationSchema::class);
+     36▕ });
+     37▕ 
 
-  1   tests/Feature/Schema/Widget/Calendar/CalendarWidgetBuilderTest.php:27
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Calendar\CalendarWidgetBuilderTest >…    
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Calendar/CalendarWidgetBuilderTest.php:49
-     45▕         CalendarWidgetBuilderFactory::source()
-     46▕             ->compile(
-     47▕                 BuilderRegistryFactory::make(),
-     48▕             ),
-  ➜  49▕     )->toMatchArray(
-     50▕         CalendarWidgetAssertions::source(),
-     51▕     );
-     52▕ });
-     53▕ 
-
-  1   tests/Feature/Schema/Widget/Calendar/CalendarWidgetBuilderTest.php:49
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Card\CardWidgetBuilderTest > it compi…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Card/CardWidgetBuilderTest.php:15
-     11▕         CardWidgetBuilderFactory::make()
-     12▕             ->compile(
-     13▕                 BuilderRegistryFactory::make(),
-     14▕             ),
-  ➜  15▕     )->toMatchArray(
-     16▕         CardWidgetAssertions::make(),
-     17▕     );
-     18▕ });
-     19▕ 
-
-  1   tests/Feature/Schema/Widget/Card/CardWidgetBuilderTest.php:15
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Card\CardWidgetBuilderTest > it compi…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Card/CardWidgetBuilderTest.php:26
-     22▕         CardWidgetBuilderFactory::withData()
-     23▕             ->compile(
-     24▕                 BuilderRegistryFactory::make(),
-     25▕             ),
-  ➜  26▕     )->toMatchArray(
-     27▕         CardWidgetAssertions::withData(),
-     28▕     );
-     29▕ });
-     30▕ 
-
-  1   tests/Feature/Schema/Widget/Card/CardWidgetBuilderTest.php:26
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Card\CardWidgetBuilderTest > it compi…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Card/CardWidgetBuilderTest.php:48
-     44▕         CardWidgetBuilderFactory::source()
-     45▕             ->compile(
-     46▕                 BuilderRegistryFactory::make(),
-     47▕             ),
-  ➜  48▕     )->toMatchArray(
-     49▕         CardWidgetAssertions::source(),
-     50▕     );
-     51▕ });
-     52▕ 
-
-  1   tests/Feature/Schema/Widget/Card/CardWidgetBuilderTest.php:48
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Chart\ChartWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Chart/ChartWidgetBuilderTest.php:15
-     11▕         ChartWidgetBuilderFactory::make()
-     12▕             ->compile(
-     13▕                 BuilderRegistryFactory::make(),
-     14▕             ),
-  ➜  15▕     )->toMatchArray(
-     16▕         ChartWidgetAssertions::make(),
-     17▕     );
-     18▕ });
-     19▕ 
-
-  1   tests/Feature/Schema/Widget/Chart/ChartWidgetBuilderTest.php:15
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Chart\ChartWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Chart/ChartWidgetBuilderTest.php:26
-     22▕         ChartWidgetBuilderFactory::withWidgetData()
-     23▕             ->compile(
-     24▕                 BuilderRegistryFactory::make(),
-     25▕             ),
-  ➜  26▕     )->toMatchArray(
-     27▕         ChartWidgetAssertions::withWidgetData(),
-     28▕     );
-     29▕ });
-     30▕ 
-
-  1   tests/Feature/Schema/Widget/Chart/ChartWidgetBuilderTest.php:26
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Chart\ChartWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Chart/ChartWidgetBuilderTest.php:48
-     44▕         ChartWidgetBuilderFactory::source()
-     45▕             ->compile(
-     46▕                 BuilderRegistryFactory::make(),
-     47▕             ),
-  ➜  48▕     )->toMatchArray(
-     49▕         ChartWidgetAssertions::source(),
-     50▕     );
-     51▕ });
-     52▕ 
-
-  1   tests/Feature/Schema/Widget/Chart/ChartWidgetBuilderTest.php:48
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\List\ListWidgetBuilderTest > it compi…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/List/ListWidgetBuilderTest.php:15
-     11▕         ListWidgetBuilderFactory::make()
-     12▕             ->compile(
-     13▕                 BuilderRegistryFactory::make(),
-     14▕             ),
-  ➜  15▕     )->toMatchArray([
-     16▕         'type' => 'list-widget',
-     17▕ 
-     18▕         'title' => 'Users',
-     19▕ 
-
-  1   tests/Feature/Schema/Widget/List/ListWidgetBuilderTest.php:15
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\List\ListWidgetBuilderTest > it compi…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/List/ListWidgetBuilderTest.php:57
-     53▕         ListWidgetBuilderFactory::withData()
-     54▕             ->compile(
-     55▕                 BuilderRegistryFactory::make(),
-     56▕             ),
-  ➜  57▕     )->toMatchArray([
-     58▕         'type' => 'list-widget',
-     59▕ 
-     60▕         'title' => 'Users',
-     61▕ 
-
-  1   tests/Feature/Schema/Widget/List/ListWidgetBuilderTest.php:57
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\List\ListWidgetBuilderTest > it compi…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/List/ListWidgetBuilderTest.php:143
-    139▕         ListWidgetBuilderFactory::source()
-    140▕             ->compile(
-    141▕                 BuilderRegistryFactory::make(),
-    142▕             ),
-  ➜ 143▕     )->toMatchArray(
-    144▕         ListWidgetAssertions::source(),
-    145▕     );
-    146▕ });
-    147▕ 
-
-  1   tests/Feature/Schema/Widget/List/ListWidgetBuilderTest.php:143
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Stats\StatsWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Stats/StatsWidgetBuilderTest.php:15
-     11▕         StatsWidgetBuilderFactory::make()
-     12▕             ->compile(
-     13▕                 BuilderRegistryFactory::make(),
-     14▕             ),
-  ➜  15▕     )->toMatchArray(
-     16▕         StatsWidgetAssertions::make(),
-     17▕     );
-     18▕ });
-     19▕ 
-
-  1   tests/Feature/Schema/Widget/Stats/StatsWidgetBuilderTest.php:15
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Stats\StatsWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Stats/StatsWidgetBuilderTest.php:26
-     22▕         StatsWidgetBuilderFactory::withData()
-     23▕             ->compile(
-     24▕                 BuilderRegistryFactory::make(),
-     25▕             ),
-  ➜  26▕     )->toMatchArray(
-     27▕         StatsWidgetAssertions::withData(),
-     28▕     );
-     29▕ });
-     30▕ 
-
-  1   tests/Feature/Schema/Widget/Stats/StatsWidgetBuilderTest.php:26
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Stats\StatsWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Stats/StatsWidgetBuilderTest.php:49
-     45▕         StatsWidgetBuilderFactory::source()
-     46▕             ->compile(
-     47▕                 BuilderRegistryFactory::make(),
-     48▕             ),
-  ➜  49▕     )->toMatchArray(
-     50▕         StatsWidgetAssertions::source(),
-     51▕     );
-     52▕ });
-     53▕ 
-
-  1   tests/Feature/Schema/Widget/Stats/StatsWidgetBuilderTest.php:49
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Table\TableWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:15
-     11▕         TableWidgetBuilderFactory::make()
-     12▕             ->compile(
-     13▕                 BuilderRegistryFactory::make(),
-     14▕             ),
-  ➜  15▕     )->toMatchArray(
-     16▕         TableWidgetAssertions::make(),
-     17▕     );
-     18▕ });
-     19▕ 
-
-  1   tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:15
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Table\TableWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:26
-     22▕         TableWidgetBuilderFactory::withData()
-     23▕             ->compile(
-     24▕                 BuilderRegistryFactory::make(),
-     25▕             ),
-  ➜  26▕     )->toMatchArray(
-     27▕         TableWidgetAssertions::withData(),
-     28▕     );
-     29▕ });
-     30▕ 
-
-  1   tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:26
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Table\TableWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:48
-     44▕         TableWidgetBuilderFactory::source()
-     45▕             ->compile(
-     46▕                 BuilderRegistryFactory::make(),
-     47▕             ),
-  ➜  48▕     )->toMatchArray(
-     49▕         TableWidgetAssertions::source(),
-     50▕     );
-     51▕ });
-     52▕ 
-
-  1   tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:48
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\Table\TableWidgetBuilderTest > it com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:230
-    226▕         TableWidgetBuilderFactory::advanced()
-    227▕             ->compile(
-    228▕                 BuilderRegistryFactory::make(),
-    229▕             ),
-  ➜ 230▕     )->toMatchArray(
-    231▕         TableWidgetAssertions::advanced(),
-    232▕     );
-    233▕ });
-    234▕ 
-
-  1   tests/Feature/Schema/Widget/Table/TableWidgetBuilderTest.php:230
-
-  ────────────────────────────────────────────────────────────────────────────  
-   FAILED  Tests\Feature\Schema\Widget\WidgetBuilderTest > it compiles a com…   
-  Failed asserting that an array has a key 'source' with the value 'user'.
-Failed asserting that two strings are equal.
-  -'Tests\Fixtures\Sources\UserSource'
-  +'user'
-  
-
-  at tests/Feature/Schema/Widget/WidgetBuilderTest.php:15
-     11▕         WidgetBuilderFactory::make()
-     12▕             ->compile(
-     13▕                 BuilderRegistryFactory::make(),
-     14▕             ),
-  ➜  15▕     )->toMatchArray(
-     16▕         WidgetAssertions::make(),
-     17▕     );
-     18▕ });
-     19▕ 
-
-  1   tests/Feature/Schema/Widget/WidgetBuilderTest.php:15
+  1   tests/Feature/Application/ApplicationTest.php:33
 
 
-  Tests:    20 failed, 111 passed (979 assertions)
-  Duration: 9.27s
+  Tests:    2 failed, 47 passed (115 assertions)
+  Duration: 2.27s

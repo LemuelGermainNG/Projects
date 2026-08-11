@@ -44,21 +44,6 @@ it('determines whether an application exists', function (): void {
         ->and($registry->has('website'))->toBeFalse();
 });
 
-it('registers pages', function (): void {
-    $registry = new ApplicationRegistry();
-
-    $registry->registerPages(
-        ['admin'],
-        PageOne::class,
-        PageTwo::class,
-    );
-
-    expect($registry->pages('admin'))
-        ->toBe([
-            PageOne::class,
-            PageTwo::class,
-        ]);
-});
 
 it('registers navigation', function (): void {
     $registry = new ApplicationRegistry();
@@ -74,13 +59,6 @@ it('registers navigation', function (): void {
             NavigationOne::class,
             NavigationTwo::class,
         ]);
-});
-
-it('returns an empty page list for an unknown application', function (): void {
-    $registry = new ApplicationRegistry();
-
-    expect($registry->pages('admin'))
-        ->toBe([]);
 });
 
 it('returns an empty navigation list for an unknown application', function (): void {

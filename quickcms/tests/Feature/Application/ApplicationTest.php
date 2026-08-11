@@ -8,81 +8,94 @@ use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
 use App\Core\Schema\Page\PageSchema;
 use Tests\Fixtures\Navigation\NavigationProvider;
-use Tests\Fixtures\Pages\DashboardPage;
-use Tests\Fixtures\Pages\UsersPage;
+use Tests\Support\Pages\PageOne;
 
 it('registers and builds an application', function (): void {
     Application::make()
-        ->id('admin')
+        ->id('application-test')
         ->name('Administration')
-        ->path('/admin')
-        ->pages(
-            DashboardPage::class,
-            UsersPage::class,
-        )
+        ->path('/application-test')
         ->navigation(
             NavigationProvider::class,
+        )
+        ->rootPage(
+            PageOne::class,
         );
 
-    $application = Application::find('admin');
+    $application = Application::find(
+        'application-test',
+    );
 
     expect($application)
-        ->toBeInstanceOf(ApplicationMetadata::class);
+        ->toBeInstanceOf(
+            ApplicationMetadata::class,
+        );
 
     $schema = Application::build(
         $application,
         ApplicationSchema::make(),
     );
 
-    expect($schema->pages())
-        ->toHaveCount(2)
-        ->each
-        ->toBeInstanceOf(PageSchema::class);
+    expect($schema->root())
+        ->toBeInstanceOf(
+            PageSchema::class,
+        );
 
     expect($schema->navigation())
-        ->toHaveCount(1)
-        ->each
-        ->toBeInstanceOf(NavigationSchema::class);
+        ->toHaveCount(1);
+
+    expect($schema->navigation()[0])
+        ->toBeInstanceOf(
+            NavigationSchema::class,
+        );
 });
 
 it('stores application metadata', function (): void {
     Application::make()
-        ->id('backoffice')
+        ->id('backoffice-test')
         ->name('Back Office')
-        ->path('/backoffice');
+        ->path('/backoffice-test');
 
-    $application = Application::find('backoffice');
-
-    expect($application)
-        ->toBeInstanceOf(ApplicationMetadata::class);
-
-    expect($application->id())
-        ->toBe('backoffice');
-
-    expect($application->name())
-        ->toBe('Back Office');
-
-    expect($application->path())
-        ->toBe('/backoffice');
-});
-
-
-it('targets the current application when using make', function (): void {
-    $registry = app(
-        \App\Core\Application\ApplicationRegistry::class,
+    $application = Application::find(
+        'backoffice-test',
     );
 
-    $context = \App\Core\Application\Application::make();
-
-    expect($context)
+    expect($application)
         ->toBeInstanceOf(
-            \App\Core\Application\ApplicationContext::class,
+            ApplicationMetadata::class,
+        );
+
+    expect($application->toArray())->toBe([
+        'id' => 'backoffice-test',
+        'name' => 'Back Office',
+        'path' => '/backoffice-test',
+        'layout' => $application->layout()->value,
+    ]);
+});
+
+it('targets the current application when using make', function (): void {
+    Application::make()
+        ->id('current-test')
+        ->name('Current')
+        ->path('/current-test')
+        ->rootPage(
+            PageOne::class,
+        );
+
+    $application = Application::find(
+        'current-test',
+    );
+
+    expect($application)
+        ->toBeInstanceOf(
+            ApplicationMetadata::class,
         );
 });
 
 it('creates a scoped application context with only', function (): void {
-    $context = \App\Core\Application\Application::only(
-        'shop',
+    $context = Application::only(
+        'admin',
+        'backoffice',
     );
 
     expect($context)
