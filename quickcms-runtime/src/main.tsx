@@ -1,10 +1,17 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import '@/styles/globals.css'
+import { AppProvider } from '@/app/providers/AppProvider'
+import { bootstrap } from '@/app/bootstrap'
+import App from './App'
+
+
+const { queryClient, runtime } = bootstrap()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <AppProvider queryClient={queryClient} runtime={runtime}>
+      <App />
+    </AppProvider>
   </StrictMode>,
 )

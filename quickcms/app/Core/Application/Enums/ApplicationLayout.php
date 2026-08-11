@@ -10,9 +10,7 @@ enum ApplicationLayout: string
 
     case TopNavigation = 'top-navigation';
 
-    case Blank = 'blank';
-
     case Split = 'split';
 
-    case Default = 'default';
+    case Simple = 'simple';
 }

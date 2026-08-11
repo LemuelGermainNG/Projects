@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Application;
 
+use App\Core\Application\Enums\ApplicationLayout;
+
 final class ApplicationContext
 {
     /**
@@ -36,6 +38,18 @@ final class ApplicationContext
         string $name,
     ): static {
         $this->metadata->name($name);
+
+        return $this;
+    }
+
+    public function layout(
+        ApplicationLayout|string $layout,
+    ): static {
+        if (is_string($layout)) {
+            $layout = ApplicationLayout::from($layout);
+        }
+
+        $this->metadata->layout($layout);
 
         return $this;
     }

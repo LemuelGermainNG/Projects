@@ -18,6 +18,7 @@ final class AdminApplicationProvider extends ApplicationProvider
             ->id('admin')
             ->name('Administration')
             ->path('/admin')
+            ->layout('sidebar')
             ->navigation(
                 AdminNavigation::class,
             )

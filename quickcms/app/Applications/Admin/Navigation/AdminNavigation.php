@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Applications\Admin\Navigation;
 
-use App\Applications\Admin\Pages\DashboardPage;
 use App\Core\Runtime\Contracts\Navigation;
 use App\Core\Schema\Navigation\NavigationItemSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
@@ -20,9 +19,7 @@ final class AdminNavigation implements Navigation
                 NavigationItemSchema::make()
                     ->label('Dashboard')
                     ->icon('heroicon-o-home')
-                    ->route(
-                        DashboardPage::class,
-                    ),
+                    ->route('admin.dashboard'),
 
                 NavigationItemSchema::make()
                     ->label('Settings')
