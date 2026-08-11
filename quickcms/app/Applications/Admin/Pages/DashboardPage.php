@@ -165,6 +165,7 @@ final class DashboardPage implements Page
                                                     ->itemDescription(
                                                         'description',
                                                     )
+                                                    
                                                     ->items([
                                                         [
                                                             'id' => 1,
@@ -184,13 +185,16 @@ final class DashboardPage implements Page
                                     ]),
 
                                 /*
-                                 * Latest users
+                                 * User data
                                  */
                                 DashboardRowSchema::make()
                                     ->gap(6)
                                     ->columns([
                                         DashboardColumnSchema::make()
-                                            ->width(12)
+                                            ->width([
+                                                'default' => 12,
+                                                'lg' => 8,
+                                            ])
                                             ->widget(
                                                 TableWidgetSchema::make()
                                                     ->key('latest-users')
@@ -218,6 +222,23 @@ final class DashboardPage implements Page
                                                         ],
                                                     ])
                                                     ->rowKey('id'),
+                                            ),
+
+                                        DashboardColumnSchema::make()
+                                            ->width([
+                                                'default' => 12,
+                                                'lg' => 4,
+                                            ])
+                                            ->widget(
+                                                CardWidgetSchema::make()
+                                                    ->key('users-source')
+                                                    ->title('Users')
+                                                    ->description(
+                                                        'Users provided by UserSource',
+                                                    )
+                                                    ->source(
+                                                        UserSource::class,
+                                                    ),
                                             ),
                                     ]),
                             ]),

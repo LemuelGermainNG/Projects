@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\Source\SourceRegistry;
-use Tests\Fixtures\Sources\UserSource;
+use App\Features\User\Sources\UserSource;
 
 it('resolves a source', function (): void {
     $registry = new SourceRegistry();
@@ -23,9 +23,6 @@ it('always returns the same source type', function (): void {
     expect($source)
         ->toBeInstanceOf(UserSource::class);
 
-    expect($source::model())
-        ->toBe(UserSource::model());
-
-    expect($source::data())
-        ->toBe(UserSource::data());
+    expect($source::name())
+        ->toBe('user');
 });

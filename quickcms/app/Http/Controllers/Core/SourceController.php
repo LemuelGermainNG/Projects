@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Core;
 
 use App\Core\Source\SourceRegistry;
+use App\Core\Source\SourceRequest;
 use App\Core\Source\SourceResolver;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
@@ -39,31 +40,34 @@ final class SourceController extends Controller
             );
         }
 
-        $page = max(
-            1,
-            $request->integer(
-                'page',
-                1,
-            ),
-        );
-
-        $perPage = min(
-            100,
-            max(
+        $sourceRequest = new SourceRequest(
+            page: max(
                 1,
                 $request->integer(
-                    'perPage',
-                    20,
+                    'page',
+                    1,
                 ),
             ),
+            perPage: min(
+                100,
+                max(
+                    1,
+                    $request->integer(
+                        'perPage',
+                        20,
+                    ),
+                ),
+            ),
+            query: $request->query(),
+        );
+
+        $result = $this->resolver->resolve(
+            source: $resolved,
+            request: $sourceRequest,
         );
 
         return response()->json([
-            'data' => $this->resolver->records(
-                source: $resolved,
-                page: $page,
-                perPage: $perPage,
-            ),
+            'data' => $result->toArray(),
         ]);
     }
 }

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Core\Bridge\Spatie\MediaLibrary\Source;
 
 use App\Core\Bridge\Spatie\MediaLibrary\Support\Enums\Collection;
+use App\Core\Source\Drivers\Model\ModelQuery;
 use App\Core\Source\Source;
-use App\Core\Source\SourceQuery;
+use App\Core\Source\SourceRequest;
+use App\Core\Source\SourceResult;
 use Closure;
 use Spatie\LaravelData\Data;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -41,8 +43,8 @@ final class MediaSource extends Source
 
     public function query(): QueryBuilder
     {
-        $query = SourceQuery::for(
-            static::class,
+        $query = ModelQuery::for(
+            model: Media::class,
         );
 
         $collection = $this->evaluate(
@@ -61,5 +63,33 @@ final class MediaSource extends Source
         }
 
         return $query;
+    }
+
+    public function resolve(
+        SourceRequest $request,
+    ): SourceResult {
+        $paginator = $this->query()->paginate(
+            perPage: $request->perPage,
+            page: $request->page,
+        );
+
+        return new SourceResult(
+            records: $paginator
+                ->getCollection()
+                ->map(
+                    fn (Media $media): array =>
+                        Data::from($media)->toArray(),
+                )
+                ->values()
+                ->all(),
+
+            pagination: [
+                'enabled' => true,
+                'perPage' => $paginator->perPage(),
+                'page' => $paginator->currentPage(),
+                'total' => $paginator->total(),
+                'lastPage' => $paginator->lastPage(),
+            ],
+        );
     }
 }

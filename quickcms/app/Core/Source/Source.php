@@ -5,20 +5,16 @@ declare(strict_types=1);
 namespace App\Core\Source;
 
 use App\Core\Source\Contracts\Source as SourceContract;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\LaravelData\Data;
+use App\Core\Support\Concerns\EvaluatesValues;
 
 abstract class Source implements SourceContract
 {
-    /**
-     * @return class-string<Model>
-     */
-    abstract public static function model(): string;
+    use EvaluatesValues;
 
-    /**
-     * @return class-string<Data>
-     */
-    abstract public static function data(): string;
+    public static function make(): static
+    {
+        return new static();
+    }
 
     public static function name(): string
     {
@@ -27,4 +23,19 @@ abstract class Source implements SourceContract
             ->snake()
             ->toString();
     }
+
+    protected function with(
+        string $property,
+        mixed $value,
+    ): static {
+        $clone = clone $this;
+
+        $clone->{$property} = $value;
+
+        return $clone;
+    }
+
+    abstract public function resolve(
+        SourceRequest $request,
+    ): SourceResult;
 }

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\Source\SourceRegistry;
+use App\Features\User\Models\User;
 use App\Features\User\Sources\UserSource;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -15,7 +16,7 @@ beforeEach(function (): void {
 });
 
 it('returns source records for widgets', function (): void {
-    \App\Features\User\Models\User::factory()
+    User::factory()
         ->count(3)
         ->create();
 
@@ -44,4 +45,94 @@ it('returns source records for widgets', function (): void {
                 ],
             ],
         ]);
+
+    expect(
+        $response->json('data.records'),
+    )->toHaveCount(3);
+});
+
+it('passes pagination parameters to the source', function (): void {
+    User::factory()
+        ->count(25)
+        ->create();
+
+    $response = $this->getJson(
+        '/api/sources/user?page=2&perPage=10',
+    );
+
+    $response
+        ->assertOk()
+        ->assertJsonPath(
+            'data.pagination.page',
+            2,
+        )
+        ->assertJsonPath(
+            'data.pagination.perPage',
+            10,
+        )
+        ->assertJsonPath(
+            'data.pagination.total',
+            25,
+        )
+        ->assertJsonPath(
+            'data.pagination.lastPage',
+            3,
+        );
+
+    expect(
+        $response->json('data.records'),
+    )->toHaveCount(10);
+});
+
+it('passes filters to the source', function (): void {
+    User::factory()
+        ->count(2)
+        ->create([
+            'status' => 'active',
+        ]);
+
+    User::factory()
+        ->create([
+            'status' => 'inactive',
+        ]);
+
+    $response = $this->getJson(
+        '/api/sources/user?filter[status]=active',
+    );
+
+    $response
+        ->assertOk()
+        ->assertJsonPath(
+            'data.pagination.total',
+            2,
+        );
+
+    expect(
+        $response->json('data.records'),
+    )->toHaveCount(2);
+});
+
+it('passes sorting to the source', function (): void {
+    User::factory()->create([
+        'name' => 'Zachary',
+    ]);
+
+    User::factory()->create([
+        'name' => 'Alice',
+    ]);
+
+    $response = $this->getJson(
+        '/api/sources/user?sort=name',
+    );
+
+    $response
+        ->assertOk();
+
+    expect(
+        $response->json('data.records.0.name'),
+    )->toBe('Alice');
+
+    expect(
+        $response->json('data.records.1.name'),
+    )->toBe('Zachary');
 });

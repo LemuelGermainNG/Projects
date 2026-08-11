@@ -3,10 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\Source\Source;
-use Spatie\QueryBuilder\QueryBuilder;
-use Tests\Fixtures\Sources\User;
-use Tests\Fixtures\Sources\UserData;
-use Tests\Fixtures\Sources\UserSource;
+use App\Features\User\Sources\UserSource;
 
 it('creates a source', function (): void {
     expect(
@@ -14,14 +11,8 @@ it('creates a source', function (): void {
     )->toBeInstanceOf(Source::class);
 });
 
-it('returns the model class', function (): void {
+it('returns the source name', function (): void {
     expect(
-        UserSource::model(),
-    )->toBe(User::class);
-});
-
-it('returns the data class', function (): void {
-    expect(
-        UserSource::data(),
-    )->toBe(UserData::class);
+        UserSource::name(),
+    )->toBe('user');
 });
