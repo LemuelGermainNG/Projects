@@ -13,8 +13,7 @@ final class ApplicationBuilder
 {
     public function __construct(
         protected ApplicationRegistry $registry,
-    ) {
-    }
+    ) {}
 
     /**
      * Build an application schema.
@@ -32,26 +31,39 @@ final class ApplicationBuilder
             );
         }
 
-        $pages = [];
+        $rootPageClass = $this->registry->rootPage(
+            $application->id(),
+        );
 
-        foreach ($this->registry->pages($application->id()) as $page) {
-            /** @var Page $provider */
-            $provider = new $page();
-
-            $pages[] = $provider->content();
+        if ($rootPageClass === null) {
+            throw new RuntimeException(
+                sprintf(
+                    'Application [%s] has no root page.',
+                    $application->id(),
+                ),
+            );
         }
+
+        /** @var Page $rootPage */
+        $rootPage = new $rootPageClass();
 
         $navigation = [];
 
-        foreach ($this->registry->navigation($application->id()) as $item) {
+        foreach (
+            $this->registry->navigation(
+                $application->id(),
+            ) as $navigationClass
+        ) {
             /** @var Navigation $provider */
-            $provider = new $item();
+            $provider = new $navigationClass();
 
             $navigation[] = $provider->schema();
         }
 
         return $schema
-            ->pages($pages)
+            ->root(
+                $rootPage->content(),
+            )
             ->navigation($navigation);
     }
 }

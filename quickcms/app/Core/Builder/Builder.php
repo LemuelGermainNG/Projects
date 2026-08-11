@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Core\Builder;
 
 use App\Core\Schema\Schema;
-use App\Core\Source\Contracts\Source;
+use App\Core\Source\Contracts\Source as SourceContract;
+use App\Core\Source\SourceRegistry;
 use App\Core\Support\Concerns\EvaluatesValues;
 use App\Core\Support\Contracts\EvaluationContextInterface;
 use BackedEnum;
@@ -24,20 +25,20 @@ abstract class Builder implements BuilderInterface
     ) {
     }
 
-    protected function compileChild(?Schema $schema): ?array
-    {
+    protected function compileChild(
+        ?Schema $schema,
+    ): ?array {
         if ($schema === null) {
             return null;
         }
 
         return $schema->compile(
             $this->registry,
+            $this->context,
         );
     }
 
     /**
-     * Compile une collection de schémas.
-     *
      * @param array<int, Schema>|Closure|null $schemas
      *
      * @return array<int, array<string, mixed>>
@@ -53,13 +54,15 @@ abstract class Builder implements BuilderInterface
 
         return Collection::make($schemas)
             ->filter(
-                fn (mixed $schema): bool => $schema instanceof Schema,
+                fn (mixed $schema): bool =>
+                    $schema instanceof Schema,
             )
             ->map(
-                fn (Schema $schema): array => $schema->compile(
-                    $this->registry,
-                    $this->context,
-                ),
+                fn (Schema $schema): array =>
+                    $schema->compile(
+                        $this->registry,
+                        $this->context,
+                    ),
             )
             ->values()
             ->all();
@@ -70,8 +73,9 @@ abstract class Builder implements BuilderInterface
      *
      * @return array<int|string, mixed>|null
      */
-    protected function compileCollection(?array $items): ?array
-    {
+    protected function compileCollection(
+        ?array $items,
+    ): ?array {
         if ($items === null) {
             return null;
         }
@@ -88,14 +92,19 @@ abstract class Builder implements BuilderInterface
         return $items;
     }
 
-    protected function addIfNotNull(array &$data, string $key, mixed $value): void
-    {
+    protected function addIfNotNull(
+        array &$data,
+        string $key,
+        mixed $value,
+    ): void {
         if ($value !== null) {
             $data[$key] = $value;
         }
     }
-    protected function evaluateEnum(mixed $value): mixed
-    {
+
+    protected function evaluateEnum(
+        mixed $value,
+    ): mixed {
         $value = $this->evaluate($value);
 
         if ($value instanceof BackedEnum) {
@@ -115,34 +124,45 @@ abstract class Builder implements BuilderInterface
         }
 
         return array_map(
-            fn (mixed $value): mixed => $value instanceof \BackedEnum
-                ? $value->value
-                : $value,
+            fn (mixed $value): mixed =>
+                $value instanceof BackedEnum
+                    ? $value->value
+                    : $value,
             $values,
         );
     }
+
     protected function type(): string
     {
         $class = class_basename($this->schema);
 
-        $class = Str::of($class)
+        return Str::of($class)
             ->replaceLast('Schema', '')
             ->kebab()
             ->toString();
-
-        return $class;
     }
 
+    /**
+     * @param class-string<SourceContract>|SourceContract|null $source
+     */
     protected function resolveSource(
-        string|Source|null $source,
-    ): ?Source
-    {
+        string|SourceContract|null $source,
+    ): ?SourceContract {
         if ($source === null) {
             return null;
         }
 
-        return $this->sourceRegistry->resolve(
+        return app(SourceRegistry::class)->resolve(
             $this->evaluate($source),
         );
-}
+    }
+
+    /**
+     * @param class-string<SourceContract>|SourceContract|null $source
+     */
+    protected function resolveSourceName(
+        string|SourceContract|null $source,
+    ): ?string {
+        return $this->resolveSource($source)?->name();
+    }
 }

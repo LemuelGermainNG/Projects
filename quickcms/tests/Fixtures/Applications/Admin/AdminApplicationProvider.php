@@ -8,7 +8,6 @@ use App\Core\Application\ApplicationContext;
 use App\Core\Application\ApplicationProvider;
 use Tests\Fixtures\Navigation\NavigationProvider;
 use Tests\Fixtures\Pages\DashboardPage;
-use Tests\Fixtures\Pages\UsersPage;
 
 final class AdminApplicationProvider extends ApplicationProvider
 {
@@ -19,9 +18,8 @@ final class AdminApplicationProvider extends ApplicationProvider
             ->id('admin')
             ->name('Administration')
             ->path('/admin')
-            ->pages(
+            ->rootPage(
                 DashboardPage::class,
-                UsersPage::class,
             )
             ->navigation(
                 NavigationProvider::class,

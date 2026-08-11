@@ -34,12 +34,24 @@ final class QuickCmsServiceProvider extends ServiceProvider
             ApplicationManager::class,
         );
 
+        /*
+         * Discover Applications.
+         */
         $manager->discover(
-            $this->applicationsPath(),
+            config(
+                'quickcms.applications_path',
+                app_path('Applications'),
+            ),
         );
 
+        /*
+         * Discover Features.
+         */
         $manager->discoverFeatures(
-            $this->featuresPath(),
+            config(
+                'quickcms.features_path',
+                app_path('Features'),
+            ),
         );
     }
 
@@ -47,21 +59,5 @@ final class QuickCmsServiceProvider extends ServiceProvider
         ApplicationManager $manager,
     ): void {
         $manager->boot();
-    }
-
-    protected function applicationsPath(): string
-    {
-        return config(
-            'quickcms.applications_path',
-            app_path('Applications'),
-        );
-    }
-
-    protected function featuresPath(): string
-    {
-        return config(
-            'quickcms.features_path',
-            app_path('Features'),
-        );
     }
 }

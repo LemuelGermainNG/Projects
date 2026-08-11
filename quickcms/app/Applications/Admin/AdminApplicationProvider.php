@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Applications\Admin;
 
+use App\Applications\Admin\Pages\DashboardPage;
 use App\Core\Application\ApplicationContext;
 use App\Core\Application\ApplicationProvider;
-use App\Applications\Admin\Pages\DashboardPage;
 
 final class AdminApplicationProvider extends ApplicationProvider
 {
@@ -17,7 +17,7 @@ final class AdminApplicationProvider extends ApplicationProvider
             ->id('admin')
             ->name('Administration')
             ->path('/admin')
-            ->pages(
+            ->rootPage(
                 DashboardPage::class,
             );
     }

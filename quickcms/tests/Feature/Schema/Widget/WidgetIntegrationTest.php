@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Core\Schema\Widget\Card\CardWidgetSchema;
 use App\Core\Schema\Widget\Data\Empty\WidgetEmptySchema;
 use App\Core\Schema\Widget\Data\Loading\WidgetLoadingSchema;
 use App\Core\Schema\Widget\Data\Pagination\WidgetPaginationSchema;
 use App\Core\Schema\Widget\Data\Records\WidgetRecordsSchema;
 use App\Core\Schema\Widget\Data\WidgetDataSchema;
+use App\Core\Schema\Widget\Table\TableWidgetSchema;
 use App\Core\Schema\Widget\WidgetSchema;
 use Tests\Fixtures\Sources\UserSource;
 use Tests\Support\Factories\BuilderRegistryFactory;
@@ -82,7 +84,7 @@ it('compiles a complete widget with source and data', function (): void {
 
         'key' => 'users',
 
-        'source' => UserSource::class,
+        'source' => 'user',
 
         'data' => [
             'records' => [
@@ -129,7 +131,7 @@ it('compiles a widget with a source and without data', function (): void {
 
         'key' => 'users',
 
-        'source' => UserSource::class,
+        'source' => 'user',
     ]);
 });
 
@@ -167,4 +169,45 @@ it('compiles a widget with data and without a source', function (): void {
             ],
         ],
     ]);
+});
+
+
+it('serializes a source using its public name', function (): void {
+    $widget = WidgetSchema::make()
+        ->key('users')
+        ->source(UserSource::class);
+
+    expect(
+        $widget->compile(
+            BuilderRegistryFactory::make(),
+        ),
+    )->toMatchArray([
+        'source' => 'user',
+    ]);
+});
+
+
+it('allows multiple widgets to consume the same source', function (): void {
+    $table = TableWidgetSchema::make()
+        ->key('latest-users')
+        ->source(UserSource::class);
+
+    $card = CardWidgetSchema::make()
+        ->key('users')
+        ->source(UserSource::class);
+
+    $registry = BuilderRegistryFactory::make();
+
+    $tableSchema = $table->compile($registry);
+    $cardSchema = $card->compile($registry);
+
+    expect($tableSchema)
+        ->toMatchArray([
+            'source' => 'user',
+        ]);
+
+    expect($cardSchema)
+        ->toMatchArray([
+            'source' => 'user',
+        ]);
 });

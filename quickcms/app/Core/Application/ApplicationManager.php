@@ -25,6 +25,11 @@ final class ApplicationManager
      */
     protected array $discoveredApplicationPaths = [];
 
+    /**
+     * @var array<string, true>
+     */
+    protected array $discoveredFeaturePaths = [];
+
     public function __construct(
         protected readonly ApplicationRegistry $registry,
         protected readonly ApplicationDiscovery $discovery,
@@ -53,14 +58,18 @@ final class ApplicationManager
     }
 
     /**
-     * Discover and register application providers.
+     * Discover application providers.
      */
     public function discover(
         string $directory,
     ): void {
         $directory = realpath($directory) ?: $directory;
 
-        if (isset($this->discoveredApplicationPaths[$directory])) {
+        if (
+            isset(
+                $this->discoveredApplicationPaths[$directory],
+            )
+        ) {
             return;
         }
 
@@ -77,11 +86,16 @@ final class ApplicationManager
     }
 
     /**
-     * Register a feature provider through Laravel.
+     * Register a feature provider.
      */
     public function registerFeature(
         FeatureProvider $feature,
     ): void {
+        /*
+         * QuickCMS discovers the Feature, but Laravel
+         * remains responsible for its ServiceProvider
+         * lifecycle.
+         */
         $this->application->register(
             $feature,
         );
@@ -90,11 +104,23 @@ final class ApplicationManager
     }
 
     /**
-     * Discover and register feature providers.
+     * Discover feature providers.
      */
     public function discoverFeatures(
         string $directory,
     ): void {
+        $directory = realpath($directory) ?: $directory;
+
+        if (
+            isset(
+                $this->discoveredFeaturePaths[$directory],
+            )
+        ) {
+            return;
+        }
+
+        $this->discoveredFeaturePaths[$directory] = true;
+
         foreach (
             $this->featureDiscovery->discover($directory)
             as $feature
@@ -110,9 +136,10 @@ final class ApplicationManager
     }
 
     /**
-     * Bootstrap registered application providers.
+     * Boot QuickCMS application providers.
      *
-     * Feature providers are bootstrapped by Laravel.
+     * Feature providers are registered with Laravel
+     * and are booted by Laravel itself.
      */
     public function boot(): void
     {

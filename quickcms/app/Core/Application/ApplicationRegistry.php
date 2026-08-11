@@ -12,69 +12,58 @@ final class ApplicationRegistry
     protected array $applications = [];
 
     /**
-     * @var array<string, list<class-string>>
+     * @var array<string, class-string>
      */
-    protected array $pages = [];
+    protected array $rootPage = [];
 
     /**
      * @var array<string, list<class-string>>
      */
     protected array $navigation = [];
 
-    /**
-     * Register an application.
-     */
     public function registerApplication(
         ApplicationMetadata $application,
     ): void {
-        $this->applications[
-            $application->id()
-        ] = $application;
+        $this->applications[$application->id()] = $application;
     }
 
-    /**
-     * Find an application.
-     */
     public function application(
         string $application,
     ): ?ApplicationMetadata {
         return $this->applications[$application] ?? null;
     }
 
-    /**
-     * Determine if an application exists.
-     */
     public function has(
         string $application,
     ): bool {
-        return isset(
-            $this->applications[$application],
-        );
+        return isset($this->applications[$application]);
     }
 
     /**
-     * Register pages.
+     * Register the single root page of an application.
      *
      * @param list<string> $applications
-     * @param class-string ...$pages
+     * @param class-string $page
      */
-    public function registerPages(
+    public function registerRootPage(
         array $applications,
-        string ...$pages,
+        string $page,
     ): void {
         foreach ($applications as $application) {
-            $this->pages[$application] ??= [];
-
-            array_push(
-                $this->pages[$application],
-                ...$pages,
-            );
+            $this->rootPage[$application] = $page;
         }
     }
 
     /**
-     * Register navigation.
-     *
+     * @return class-string|null
+     */
+    public function rootPage(
+        string $application,
+    ): ?string {
+        return $this->rootPage[$application] ?? null;
+    }
+
+    /**
      * @param list<string> $applications
      * @param class-string ...$navigation
      */
@@ -93,19 +82,6 @@ final class ApplicationRegistry
     }
 
     /**
-     * Get registered pages.
-     *
-     * @return list<class-string>
-     */
-    public function pages(
-        string $application,
-    ): array {
-        return $this->pages[$application] ?? [];
-    }
-
-    /**
-     * Get registered navigation.
-     *
      * @return list<class-string>
      */
     public function navigation(

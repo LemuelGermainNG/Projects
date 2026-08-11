@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Core\ApplicationSchemaController;
+use App\Http\Controllers\Core\SourceController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('applications')
@@ -17,3 +18,6 @@ Route::prefix('applications')
             [ApplicationSchemaController::class, 'schema'],
         );
     });
+
+
+Route::get('/sources/{source}',[SourceController::class, 'index'],);

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Support\Assertions\Widget\Chart;
 
-use Tests\Fixtures\Sources\UserSource;
-
 final class ChartWidgetAssertions
 {
     public static function make(): array
@@ -34,7 +32,7 @@ final class ChartWidgetAssertions
 
             'key' => 'revenue',
 
-            'source' => UserSource::class,
+            'source' => 'user',
 
             'chartType' => 'line',
 
@@ -147,7 +145,7 @@ final class ChartWidgetAssertions
 
             'props' => [],
 
-            'source' => UserSource::class,
+            'source' => 'user',
         ];
     }
 

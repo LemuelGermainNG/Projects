@@ -57,12 +57,14 @@ class WidgetBuilder extends Builder
             'key',
             $key,
         );
-
-        $source = $schema->source();
-
-        if ($source !== null) {
-            $data['source'] = $this->evaluate($source);
-        }
+        
+        $this->addIfNotNull(
+            $data,
+            'source',
+            $this->resolveSourceName(
+                $schema->source(),
+            ),
+        );
 
         $this->addIfNotNull(
             $data,

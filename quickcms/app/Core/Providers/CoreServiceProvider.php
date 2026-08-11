@@ -8,6 +8,7 @@ use App\Core\Application\ApplicationBuilder;
 use App\Core\Application\ApplicationRegistry;
 use App\Core\Builder\BuilderDiscovery;
 use App\Core\Builder\BuilderRegistry;
+use App\Core\Source\SourceRegistry;
 use App\Core\Support\Discovery\ClassDiscovery;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +25,11 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton(
             ApplicationBuilder::class,
+        );
+
+        $this->app->singleton(
+            SourceRegistry::class,
+            fn (): SourceRegistry => new SourceRegistry(),
         );
 
         $this->app->singleton(

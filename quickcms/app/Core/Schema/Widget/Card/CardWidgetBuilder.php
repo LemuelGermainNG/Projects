@@ -59,7 +59,7 @@ final class CardWidgetBuilder extends Builder
         $this->addIfNotNull(
             $data,
             'source',
-            $this->evaluate(
+            $this->resolveSourceName(
                 $schema->source(),
             ),
         );

@@ -34,7 +34,7 @@ final class StatsWidgetAssertions
 
             'key' => 'users',
 
-            'source' => UserSource::class,
+            'source' => 'user',
 
             'value' => 1250,
 
@@ -118,7 +118,7 @@ final class StatsWidgetAssertions
 
             'props' => [],
 
-            'source' => UserSource::class,
+            'source' => 'user',
         ];
     }
 }

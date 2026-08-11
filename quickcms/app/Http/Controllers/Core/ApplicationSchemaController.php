@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Core;
 
 use App\Core\Application\Application;
-use App\Core\Application\ApplicationManager;
 use App\Core\Builder\BuilderRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
 use Illuminate\Http\JsonResponse;
@@ -13,12 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 final class ApplicationSchemaController
 {
-    public function __construct(
-        protected readonly ApplicationManager $manager,
-        protected readonly BuilderRegistry $builders,
-    ) {
-    }
-
     /**
      * Return application metadata.
      */
@@ -67,16 +60,13 @@ final class ApplicationSchemaController
             ApplicationSchema::make(),
         );
 
-        return response()->json(
-            [
-                'data' => [
-                    'application' => $metadata->toArray(),
-
-                    'schema' => $schema->compile(
-                        $this->builders,
-                    ),
-                ],
+        return response()->json([
+            'data' => [
+                'application' => $metadata->toArray(),
+                'schema' => $schema->compile(
+                    app(BuilderRegistry::class),
+                ),
             ],
-        );
+        ]);
     }
 }

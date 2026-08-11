@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Support\Assertions\Widget;
 
-use Tests\Fixtures\Sources\UserSource;
-
 final class WidgetAssertions
 {
     public static function make(): array
@@ -30,7 +28,7 @@ final class WidgetAssertions
 
             'key' => 'users',
 
-            'source' => UserSource::class,
+            'source' => 'user',
 
             'props' => [
                 'refresh' => true,

@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Core\Schema\Widget\Calendar\CalendarWidgetSchema;
 use Tests\Support\Assertions\Widget\Calendar\CalendarWidgetAssertions;
 use Tests\Support\Builders\Widget\Calendar\CalendarWidgetBuilderFactory;
 use Tests\Support\Factories\BuilderRegistryFactory;

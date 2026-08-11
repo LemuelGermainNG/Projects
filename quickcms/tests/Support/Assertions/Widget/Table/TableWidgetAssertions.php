@@ -33,7 +33,7 @@ final class TableWidgetAssertions
 
             'key' => 'users',
 
-            'source' => UserSource::class,
+            'source' => 'user',
 
             'tableColumns' => [
                 [
@@ -150,7 +150,7 @@ final class TableWidgetAssertions
 
             'props' => [],
 
-            'source' => UserSource::class,
+            'source' => 'user',
         ];
     }
 
@@ -179,7 +179,7 @@ final class TableWidgetAssertions
 
             'key' => 'users',
 
-            'source' => UserSource::class,
+            'source' => 'user',
 
             'tableColumns' => [
                 [

@@ -34,7 +34,7 @@ final class CardWidgetAssertions
 
             'key' => 'users',
 
-            'source' => UserSource::class,
+            'source' => 'user',
         ];
     }
 
@@ -114,7 +114,7 @@ final class CardWidgetAssertions
 
             'props' => [],
 
-            'source' => UserSource::class,
+            'source' => 'user',
         ];
     }
 }

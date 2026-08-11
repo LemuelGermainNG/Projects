@@ -14,9 +14,6 @@ final class UserApplicationFeatureProvider extends FeatureProvider
     public function boot(): void
     {
         Application::only('shop')
-            ->pages(
-                PageOne::class,
-            )
             ->navigation(
                 NavigationOne::class,
             );

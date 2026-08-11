@@ -26,7 +26,9 @@ it('registers the application manager as a singleton', function (): void {
     $provider->register();
 
     expect(app(ApplicationManager::class))
-        ->toBeInstanceOf(ApplicationManager::class);
+        ->toBeInstanceOf(
+            ApplicationManager::class,
+        );
 
     expect(
         app(ApplicationManager::class),

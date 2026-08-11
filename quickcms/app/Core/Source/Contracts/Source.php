@@ -10,6 +10,11 @@ use Spatie\LaravelData\Data;
 interface Source
 {
     /**
+     * @return non-empty-string
+     */
+    public static function name(): string;
+
+    /**
      * @return class-string<Model>
      */
     public static function model(): string;

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Support\Assertions\Widget\Calendar;
 
-use Tests\Fixtures\Sources\UserSource;
-
 final class CalendarWidgetAssertions
 {
     public static function make(): array
@@ -33,7 +31,7 @@ final class CalendarWidgetAssertions
 
             'key' => 'calendar',
 
-            'source' => UserSource::class,
+            'source' => 'user',
 
             'views' => [
                 'day',
@@ -152,7 +150,7 @@ final class CalendarWidgetAssertions
 
             'props' => [],
 
-            'source' => UserSource::class,
+            'source' => 'user',
         ];
     }
 }

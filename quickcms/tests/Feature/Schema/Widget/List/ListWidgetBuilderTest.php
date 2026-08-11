@@ -36,7 +36,7 @@ it('compiles a list widget', function (): void {
 
         'key' => 'users',
 
-        'source' => Tests\Fixtures\Sources\UserSource::class,
+        'source' => 'user',
 
         'itemKey' => 'id',
 
@@ -78,7 +78,7 @@ it('compiles a list widget with data', function (): void {
 
         'key' => 'users',
 
-        'source' => Tests\Fixtures\Sources\UserSource::class,
+        'source' => 'user',
 
         'itemKey' => 'id',
 

@@ -24,9 +24,6 @@ final class ApplicationContext
         $this->metadata = ApplicationMetadata::make();
     }
 
-    /**
-     * Define the application identifier.
-     */
     public function id(
         string $id,
     ): static {
@@ -35,9 +32,6 @@ final class ApplicationContext
         return $this;
     }
 
-    /**
-     * Define the application name.
-     */
     public function name(
         string $name,
     ): static {
@@ -46,9 +40,6 @@ final class ApplicationContext
         return $this;
     }
 
-    /**
-     * Define the application path.
-     */
     public function path(
         string $path,
     ): static {
@@ -58,40 +49,31 @@ final class ApplicationContext
             $this->metadata,
         );
 
-        /*
-         * Application::make()
-         *
-         * When no explicit application scope exists,
-         * the application being configured becomes the
-         * target for subsequent contributions.
-         */
-        if ($this->applications === []) {
-            $this->applications = [
-                $this->metadata->id(),
-            ];
-        }
+        $this->applications = [
+            $this->metadata->id(),
+        ];
 
         return $this;
     }
 
     /**
-     * Register pages for the current application scope.
+     * Register the application root page.
      *
-     * @param class-string ...$pages
+     * @param class-string $page
      */
-    public function pages(
-        string ...$pages,
+    public function rootPage(
+        string $page,
     ): static {
-        $this->registry->registerPages(
+        $this->registry->registerRootPage(
             $this->applications,
-            ...$pages,
+            $page,
         );
 
         return $this;
     }
 
     /**
-     * Register navigation for the current application scope.
+     * Register navigation.
      *
      * @param class-string ...$navigation
      */
