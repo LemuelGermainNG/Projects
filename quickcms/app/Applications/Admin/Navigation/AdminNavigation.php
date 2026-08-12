@@ -19,22 +19,22 @@ final class AdminNavigation implements Navigation
                 NavigationItemSchema::make()
                     ->label('Dashboard')
                     ->icon('heroicon-o-home')
-                    ->route('admin.dashboard'),
+                    ->route('dashboard'),
 
                 NavigationItemSchema::make()
                     ->label('Settings')
                     ->icon('heroicon-o-cog-6-tooth')
-                    ->route('admin.settings'),
+                    ->route('settings'),
 
                 NavigationItemSchema::make()
                     ->label('Plugins')
                     ->icon('heroicon-o-puzzle-piece')
-                    ->route('admin.plugins'),
+                    ->route('plugins'),
 
                 NavigationItemSchema::make()
                     ->label('System')
                     ->icon('heroicon-o-server')
-                    ->route('admin.system'),
+                    ->route('system'),
             ]);
     }
 

@@ -4,13 +4,7 @@ import {
 } from 'react'
 
 import {
-  Circle,
-  LayoutDashboard,
-  Puzzle,
-  Server,
-  Settings,
   User,
-  Users,
 } from 'lucide-react'
 
 import {
@@ -54,6 +48,10 @@ import {
   useCurrentRoute,
 } from '@/runtime/Navigation/useCurrentRoute'
 
+import {
+  iconResolver,
+} from '@/runtime/Icons'
+
 import type {
   ApplicationLayoutProps,
 } from './LayoutRegistry'
@@ -75,33 +73,6 @@ interface NavigationGroup {
   icon: string | null
   items: NavigationItem[]
   props: unknown[]
-}
-
-function resolveIcon(
-  icon: string | null,
-) {
-  switch (icon) {
-    case 'heroicon-o-home':
-      return LayoutDashboard
-
-    case 'heroicon-o-cog-6-tooth':
-      return Settings
-
-    case 'heroicon-o-puzzle-piece':
-      return Puzzle
-
-    case 'heroicon-o-server':
-      return Server
-
-    case 'heroicon-o-users':
-      return Users
-
-    case 'heroicon-o-user':
-      return User
-
-    default:
-      return Circle
-  }
 }
 
 function getNavigation(
@@ -131,9 +102,10 @@ function NavigationItem({
     return null
   }
 
-  const Icon = resolveIcon(
-    item.icon,
-  )
+  const Icon =
+    iconResolver.resolve(
+      item.icon,
+    )
 
   const href =
     routeResolver.resolveHref(
@@ -368,10 +340,36 @@ export function SidebarLayout({
   const navigation =
     getNavigation(schema)
 
-  const currentPath =
+  /*
+   * useCurrentRoute returns the complete
+   * ResolvedRoute object.
+   *
+   * We keep it because the runtime will
+   * need route/page/application later
+   * when we introduce PageResolver.
+   */
+  const currentRoute =
     useCurrentRoute(
       routeResolver,
     )
+
+  /*
+   * Navigation components only need the
+   * browser path for active state.
+   *
+   * Example:
+   *
+   * currentRoute = {
+   *   route: 'settings',
+   *   path: '/admin/settings',
+   *   page: 'settings',
+   *   application: 'admin'
+   * }
+   *
+   * currentPath = '/admin/settings'
+   */
+  const currentPath =
+    currentRoute.path
 
   const currentPageTitle =
     getCurrentPageTitle(schema)

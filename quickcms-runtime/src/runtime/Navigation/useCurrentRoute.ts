@@ -4,25 +4,26 @@ import {
 } from 'react'
 
 import type {
+  ResolvedRoute,
   RouteResolver,
 } from './RouteResolver'
 
 export function useCurrentRoute(
   routeResolver: RouteResolver,
-): string {
+): ResolvedRoute {
   const [
-    currentPath,
-    setCurrentPath,
-  ] = useState<string>(
+    currentRoute,
+    setCurrentRoute,
+  ] = useState<ResolvedRoute>(
     () =>
-      routeResolver.getCurrentPath(),
+      routeResolver.resolveCurrentRoute(),
   )
 
   useEffect(() => {
     const handleRouteChange =
       () => {
-        setCurrentPath(
-          routeResolver.getCurrentPath(),
+        setCurrentRoute(
+          routeResolver.resolveCurrentRoute(),
         )
       }
 
@@ -39,5 +40,5 @@ export function useCurrentRoute(
     }
   }, [routeResolver])
 
-  return currentPath
+  return currentRoute
 }

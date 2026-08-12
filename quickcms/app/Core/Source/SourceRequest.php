@@ -42,15 +42,33 @@ final readonly class SourceRequest
      */
     public function sorts(): array
     {
-        $sort = $this->query['sort'] ?? [];
+        $sort = $this->query['sort'] ?? null;
 
-        if (is_string($sort)) {
-            return [$sort];
+        if ($sort === null || $sort === '') {
+            return [];
         }
 
-        return is_array($sort)
-            ? array_values($sort)
-            : [];
+        if (is_array($sort)) {
+            return array_values(
+                array_filter(
+                    array_map(
+                        static fn (mixed $value): string => (string) $value,
+                        $sort,
+                    ),
+                    static fn (string $value): bool => $value !== '',
+                ),
+            );
+        }
+
+        return array_values(
+            array_filter(
+                array_map(
+                    static fn (string $value): string => trim($value),
+                    explode(',', (string) $sort),
+                ),
+                static fn (string $value): bool => $value !== '',
+            ),
+        );
     }
 
     public function toHttpRequest(): Request

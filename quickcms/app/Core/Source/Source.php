@@ -19,7 +19,7 @@ abstract class Source implements SourceContract
     public static function name(): string
     {
         return str(class_basename(static::class))
-            ->before('Source')
+            ->beforeLast('Source')
             ->snake()
             ->toString();
     }

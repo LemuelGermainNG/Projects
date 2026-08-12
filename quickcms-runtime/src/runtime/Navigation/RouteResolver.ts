@@ -3,6 +3,47 @@ export interface RouteResolverOptions {
   applicationPath: string
 }
 
+export interface ResolvedRoute {
+  /**
+   * Original logical route received
+   * from the backend.
+   *
+   * Examples:
+   *
+   * admin.dashboard
+   * admin.settings
+   * users.index
+   */
+  route: string
+
+  /**
+   * Browser pathname.
+   *
+   * Examples:
+   *
+   * /admin
+   * /admin/settings
+   * /admin/users
+   */
+  path: string
+
+  /**
+   * Backend page name.
+   *
+   * Examples:
+   *
+   * dashboard
+   * settings
+   * users
+   */
+  page: string
+
+  /**
+   * Application identifier.
+   */
+  application: string
+}
+
 export class RouteResolver {
   private readonly applicationId: string
 
@@ -15,117 +56,152 @@ export class RouteResolver {
       options.applicationId
 
     this.applicationPath =
-      this.normalizePath(
+      this.normalizeApplicationPath(
         options.applicationPath,
       )
   }
 
   /**
-   * Resolve a logical application route
-   * to a browser path.
+   * Resolve a logical backend route.
    *
-   * Examples:
+   * Supported forms:
    *
-   * admin.dashboard -> /admin
-   * admin.settings  -> /admin/settings
-   * admin.plugins   -> /admin/plugins
-   * admin.system    -> /admin/system
-   * users.index     -> /admin/users
+   * dashboard
+   * settings
+   * admin.dashboard
+   * admin.settings
+   * users.index
+   * users.show
    */
-  resolveRoute(
+  resolve(
     route: string | null,
-  ): string {
-    if (!route) {
-      return this.applicationPath
+  ): ResolvedRoute {
+    const normalizedRoute =
+      this.normalizeRoute(route)
+
+    if (!normalizedRoute) {
+      return this.createResolvedRoute(
+        'dashboard',
+        'dashboard',
+        this.applicationPath,
+      )
     }
 
-    const parts = route
-      .split('.')
-      .filter(Boolean)
-
-    if (parts.length === 0) {
-      return this.applicationPath
-    }
-
-    const [
-      namespace,
-      ...segments
-    ] = parts
+    const segments =
+      normalizedRoute
+        .split('.')
+        .filter(Boolean)
 
     /*
-     * Routes belonging to the current
-     * application.
+     * Backend may prefix routes with
+     * the application identifier.
+     *
+     * admin.settings
+     *
+     * becomes:
+     *
+     * settings
+     */
+    const applicationPrefix =
+      `${this.applicationId}.`
+
+    let routeSegments =
+      segments
+
+    if (
+      normalizedRoute.startsWith(
+        applicationPrefix,
+      )
+    ) {
+      routeSegments =
+        normalizedRoute
+          .slice(
+            applicationPrefix.length,
+          )
+          .split('.')
+          .filter(Boolean)
+    }
+
+    if (
+      routeSegments.length === 0
+    ) {
+      routeSegments = [
+        'dashboard',
+      ]
+    }
+
+    /*
+     * First segment is the page/resource.
+     *
+     * settings
+     * users
+     */
+    const page =
+      routeSegments[0] ??
+      'dashboard'
+
+    /*
+     * Dashboard is the application
+     * root.
      *
      * admin.dashboard
-     * admin.settings
-     * admin.plugins
+     * dashboard
+     *
+     * both resolve to:
+     *
+     * /admin
      */
     if (
-      namespace ===
-      this.applicationId
+      routeSegments.length === 1 &&
+      page === 'dashboard'
     ) {
-      /*
-       * The application dashboard is
-       * represented by the application root.
-       *
-       * admin.dashboard -> /admin
-       */
-      if (
-        segments.length === 1 &&
-        segments[0] === 'dashboard'
-      ) {
-        return this.applicationPath
-      }
-
-      return this.joinPath(
+      return this.createResolvedRoute(
+        normalizedRoute,
+        'dashboard',
         this.applicationPath,
-        ...segments,
       )
     }
 
     /*
-     * Routes belonging to another
-     * navigation namespace.
+     * Remove "index" from resource
+     * routes.
      *
-     * users.index -> /admin/users
-     * users.show  -> /admin/users/show
+     * users.index
+     *     ↓
+     * /admin/users
      */
-    const resource =
-      namespace
-
-    const resourceSegments =
-      segments.filter(
+    const pathSegments =
+      routeSegments.filter(
         (segment) =>
           segment !== 'index',
       )
 
-    return this.joinPath(
-      this.applicationPath,
-      resource,
-      ...resourceSegments,
+    return this.createResolvedRoute(
+      normalizedRoute,
+      page,
+      this.joinPath(
+        this.applicationPath,
+        ...pathSegments,
+      ),
     )
   }
 
   /**
-   * Resolve the final browser URL for
-   * a navigation item.
-   *
-   * An explicit URL always has priority
-   * over the logical route.
+   * Resolve a navigation href.
    */
   resolveHref(
     route: string | null,
     url: string | null = null,
   ): string {
     if (url) {
-      return url
+      return this.normalizeHref(url)
     }
 
-    return this.resolveRoute(route)
+    return this.resolve(route).path
   }
 
   /**
-   * Return the current browser path.
+   * Get current browser path.
    */
   getCurrentPath(): string {
     if (
@@ -140,76 +216,171 @@ export class RouteResolver {
   }
 
   /**
-   * Check whether a logical route is
-   * currently active.
+   * Resolve the current browser URL
+   * back into a logical application route.
+   */
+  resolveCurrentRoute(): ResolvedRoute {
+    const currentPath =
+      this.getCurrentPath()
+
+    /*
+     * /admin
+     *
+     * becomes dashboard.
+     */
+    if (
+      currentPath ===
+      this.applicationPath
+    ) {
+      return this.resolve(
+        'dashboard',
+      )
+    }
+
+    /*
+     * If the path does not belong
+     * to this application, fall back
+     * to dashboard.
+     */
+    if (
+      !this.isApplicationPath(
+        currentPath,
+      )
+    ) {
+      return this.resolve(
+        'dashboard',
+      )
+    }
+
+    /*
+     * /admin/settings
+     *
+     * becomes:
+     *
+     * settings
+     */
+    const relativePath =
+      currentPath.slice(
+        this.applicationPath.length,
+      )
+
+    const route =
+      relativePath
+        .replace(
+          /^\/+/,
+          '',
+        )
+        .replace(
+          /\/+$/,
+          '',
+        )
+
+    return this.resolve(
+      route || 'dashboard',
+    )
+  }
+
+  /**
+   * Check active logical route.
    */
   isActive(
     route: string | null,
-    currentPath: string,
+    currentPath?: string,
   ): boolean {
     if (!route) {
       return false
     }
 
-    const routePath =
-      this.resolveRoute(route)
+    const resolved =
+      this.resolve(route)
+
+    const path =
+      currentPath ??
+      this.getCurrentPath()
 
     return (
       this.normalizePath(
-        routePath,
+        resolved.path,
       ) ===
       this.normalizePath(
-        currentPath,
+        path,
       )
     )
   }
 
   /**
-   * Check whether an explicit URL
-   * is currently active.
+   * Check active explicit URL.
    */
   isUrlActive(
     url: string | null,
-    currentPath: string,
+    currentPath?: string,
   ): boolean {
     if (!url) {
       return false
     }
 
+    const path =
+      currentPath ??
+      this.getCurrentPath()
+
     return (
-      this.normalizePath(url) ===
-      this.normalizePath(currentPath)
+      this.normalizePath(
+        this.normalizeHref(url),
+      ) ===
+      this.normalizePath(
+        path,
+      )
     )
   }
 
   /**
-   * Navigate without reloading the
-   * application.
+   * Navigate to a route without
+   * reloading the application.
    */
   navigate(
     route: string | null,
     url: string | null = null,
-  ): void {
+  ): ResolvedRoute | null {
     if (
       typeof window === 'undefined'
     ) {
-      return
+      return null
     }
 
+    const resolved =
+      route
+        ? this.resolve(route)
+        : null
+
     const href =
-      this.resolveHref(
-        route,
-        url,
+      this.normalizeHref(
+        url ??
+          resolved?.path ??
+          this.applicationPath,
       )
+
+    /*
+     * External URL.
+     *
+     * We never pass an external URL
+     * to pushState().
+     */
+    if (
+      this.isExternalUrl(href)
+    ) {
+      window.location.href =
+        href
+
+      return resolved
+    }
 
     const currentPath =
       this.getCurrentPath()
 
     if (
-      this.normalizePath(href) ===
-      currentPath
+      href === currentPath
     ) {
-      return
+      return resolved
     }
 
     window.history.pushState(
@@ -218,16 +389,111 @@ export class RouteResolver {
       href,
     )
 
+    /*
+     * Notify the Runtime.
+     */
     window.dispatchEvent(
       new PopStateEvent(
         'popstate',
       ),
     )
+
+    return resolved
   }
 
-  /**
-   * Normalize a browser path.
-   */
+  private createResolvedRoute(
+    route: string,
+    page: string,
+    path: string,
+  ): ResolvedRoute {
+    return {
+      route,
+      page,
+      path,
+      application:
+        this.applicationId,
+    }
+  }
+
+  private normalizeApplicationPath(
+    path: string,
+  ): string {
+    if (!path) {
+      return '/'
+    }
+
+    if (
+      /^https?:\/\//i.test(path)
+    ) {
+      try {
+        return this.normalizePath(
+          new URL(path).pathname,
+        )
+      } catch {
+        return '/'
+      }
+    }
+
+    return this.normalizePath(
+      path,
+    )
+  }
+
+  private normalizeRoute(
+    route: string | null,
+  ): string {
+    if (!route) {
+      return ''
+    }
+
+    return route
+      .trim()
+      .replace(
+        /^\/+/,
+        '',
+      )
+      .replace(
+        /\/+$/,
+        '',
+      )
+  }
+
+  private normalizeHref(
+    href: string,
+  ): string {
+    if (!href) {
+      return this.applicationPath
+    }
+
+    if (
+      /^https?:\/\//i.test(href)
+    ) {
+      try {
+        const url =
+          new URL(href)
+
+        if (
+          typeof window !==
+            'undefined' &&
+          url.origin ===
+            window.location.origin
+        ) {
+          return this.normalizePath(
+            url.pathname,
+          )
+        }
+
+        return href
+      } catch {
+        return this.applicationPath
+      }
+    }
+
+    return this.normalizePath(
+      href,
+    )
+  }
+
   private normalizePath(
     path: string,
   ): string {
@@ -235,45 +501,97 @@ export class RouteResolver {
       return '/'
     }
 
-    /*
-     * Remove query string and hash.
-     */
-    const pathname =
-      path.split('?')[0]
-        .split('#')[0]
-
-    const normalized =
-      pathname.replace(
-        /\/+/g,
-        '/',
-      )
+    let value = path
 
     if (
-      normalized.length > 1 &&
-      normalized.endsWith('/')
+      /^https?:\/\//i.test(value)
     ) {
-      return normalized.slice(
-        0,
-        -1,
-      )
+      try {
+        value =
+          new URL(value).pathname
+      } catch {
+        value = '/'
+      }
     }
 
-    return normalized || '/'
+    value =
+      value
+        .split('?')[0]
+        .split('#')[0]
+        .replace(
+          /\/+/g,
+          '/',
+        )
+
+    if (
+      !value.startsWith('/')
+    ) {
+      value = `/${value}`
+    }
+
+    if (
+      value.length > 1 &&
+      value.endsWith('/')
+    ) {
+      value =
+        value.slice(
+          0,
+          -1,
+        )
+    }
+
+    return value || '/'
   }
 
-  /**
-   * Join path segments safely.
-   */
   private joinPath(
     ...segments: string[]
   ): string {
-    const path =
+    const value =
       segments
+        .filter(Boolean)
+        .map(
+          (segment) =>
+            segment
+              .replace(
+                /^\/+/,
+                '',
+              )
+              .replace(
+                /\/+$/,
+                '',
+              ),
+        )
         .filter(Boolean)
         .join('/')
 
     return this.normalizePath(
-      `/${path}`,
+      value,
+    )
+  }
+
+  private isApplicationPath(
+    path: string,
+  ): boolean {
+    if (
+      this.applicationPath === '/'
+    ) {
+      return true
+    }
+
+    return (
+      path ===
+        this.applicationPath ||
+      path.startsWith(
+        `${this.applicationPath}/`,
+      )
+    )
+  }
+
+  private isExternalUrl(
+    url: string,
+  ): boolean {
+    return /^https?:\/\//i.test(
+      url,
     )
   }
 }

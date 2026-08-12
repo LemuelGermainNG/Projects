@@ -28,6 +28,7 @@ final class SourceController extends Controller
         Request $request,
         string $source,
     ): JsonResponse {
+
         try {
             $resolved = $this->registry
                 ->resolveByName($source);
