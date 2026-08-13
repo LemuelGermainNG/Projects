@@ -4,38 +4,33 @@ declare(strict_types=1);
 
 namespace App\Applications\Admin\Navigation;
 
+use App\Applications\Admin\Pages\DashboardPage;
 use App\Core\Runtime\Contracts\Navigation;
 use App\Core\Schema\Navigation\NavigationItemSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
+use App\Core\Support\Enum\Icons\Heroicons;
 
 final class AdminNavigation implements Navigation
 {
     public function schema(): NavigationSchema
     {
         return NavigationSchema::make()
-            ->label('Administration')
-            ->icon('heroicon-o-squares-2x2')
             ->items([
                 NavigationItemSchema::make()
                     ->label('Dashboard')
-                    ->icon('heroicon-o-home')
+                    ->icon(Heroicons::Home)
                     ->route('dashboard'),
-
-                NavigationItemSchema::make()
-                    ->label('Settings')
-                    ->icon('heroicon-o-cog-6-tooth')
-                    ->route('settings'),
-
-                NavigationItemSchema::make()
-                    ->label('Plugins')
-                    ->icon('heroicon-o-puzzle-piece')
-                    ->route('plugins'),
-
-                NavigationItemSchema::make()
-                    ->label('System')
-                    ->icon('heroicon-o-server')
-                    ->route('system'),
             ]);
+    }
+
+    /**
+     * @return array<string, class-string>
+     */
+    public function pages(): array
+    {
+        return [
+            'dashboard' => DashboardPage::class,
+        ];
     }
 
     public function metadata(): array

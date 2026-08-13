@@ -31,6 +31,9 @@ final class NavigationBuilder extends Builder
                 ),
                 $schema->items(),
             ),
+            'groups' => $this->compileSchemas(
+                $schema->groups(),
+            ),
             'props' => $schema->props(),
         ];
     }

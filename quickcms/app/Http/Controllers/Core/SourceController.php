@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Core;
 
+use App\Core\Source\Contracts\CreatesRecords;
+use App\Core\Source\Contracts\DeletesRecords;
+use App\Core\Source\Contracts\UpdatesRecords;
 use App\Core\Source\SourceRegistry;
 use App\Core\Source\SourceRequest;
 use App\Core\Source\SourceResolver;
@@ -18,30 +21,141 @@ final class SourceController extends Controller
     public function __construct(
         protected readonly SourceRegistry $registry,
         protected readonly SourceResolver $resolver,
-    ) {
-    }
+    ) {}
 
     /**
-     * Return source data.
+     * List source records.
      */
     public function index(
         Request $request,
         string $source,
     ): JsonResponse {
+        $resolved = $this->resolveSource(
+            $source,
+        );
 
-        try {
-            $resolved = $this->registry
-                ->resolveByName($source);
-        } catch (InvalidArgumentException) {
+        $result = $this->resolver->resolve(
+            source: $resolved,
+            request: $this->sourceRequest($request),
+        );
+
+        return response()->json([
+            'data' => $result->toArray(),
+        ]);
+    }
+
+    /**
+     * Create a source record.
+     */
+    public function store(
+        Request $request,
+        string $source,
+    ): JsonResponse {
+        $resolved = $this->resolveSource(
+            $source,
+        );
+
+        if (! $resolved instanceof CreatesRecords) {
             return response()->json(
                 [
-                    'message' => 'Source not found.',
+                    'message' => 'Source does not support create.',
                 ],
-                Response::HTTP_NOT_FOUND,
+                Response::HTTP_METHOD_NOT_ALLOWED,
             );
         }
 
-        $sourceRequest = new SourceRequest(
+        $result = $resolved->create(
+            $this->sourceRequest($request),
+        );
+
+        return response()->json(
+            [
+                'data' => $result->toArray(),
+            ],
+            Response::HTTP_CREATED,
+        );
+    }
+
+    /**
+     * Update a source record.
+     */
+    public function update(
+        Request $request,
+        string $source,
+        string $id,
+    ): JsonResponse {
+        $resolved = $this->resolveSource(
+            $source,
+        );
+
+        if (! $resolved instanceof UpdatesRecords) {
+            return response()->json(
+                [
+                    'message' => 'Source does not support update.',
+                ],
+                Response::HTTP_METHOD_NOT_ALLOWED,
+            );
+        }
+
+        $result = $resolved->update(
+            id: $id,
+            request: $this->sourceRequest($request),
+        );
+
+        return response()->json([
+            'data' => $result->toArray(),
+        ]);
+    }
+
+    /**
+     * Delete a source record.
+     */
+    public function destroy(
+        Request $request,
+        string $source,
+        string $id,
+    ): JsonResponse {
+        $resolved = $this->resolveSource(
+            $source,
+        );
+
+        if (! $resolved instanceof DeletesRecords) {
+            return response()->json(
+                [
+                    'message' => 'Source does not support delete.',
+                ],
+                Response::HTTP_METHOD_NOT_ALLOWED,
+            );
+        }
+
+        $result = $resolved->delete(
+            id: $id,
+            request: $this->sourceRequest($request),
+        );
+
+        return response()->json([
+            'data' => $result->toArray(),
+        ]);
+    }
+
+    private function resolveSource(
+        string $source,
+    ): object {
+        try {
+            return $this->registry
+                ->resolveByName($source);
+        } catch (InvalidArgumentException) {
+            abort(
+                Response::HTTP_NOT_FOUND,
+                'Source not found.',
+            );
+        }
+    }
+
+    private function sourceRequest(
+        Request $request,
+    ): SourceRequest {
+        return new SourceRequest(
             page: max(
                 1,
                 $request->integer(
@@ -55,20 +169,11 @@ final class SourceController extends Controller
                     1,
                     $request->integer(
                         'perPage',
-                        20,
+                        25,
                     ),
                 ),
             ),
             query: $request->query(),
         );
-
-        $result = $this->resolver->resolve(
-            source: $resolved,
-            request: $sourceRequest,
-        );
-
-        return response()->json([
-            'data' => $result->toArray(),
-        ]);
     }
 }

@@ -22,7 +22,7 @@ final class NavigationProvider implements Navigation
                 NavigationItemSchema::make()
                     ->label('Dashboard')
                     ->icon(Heroicons::Home)
-                    ->route(DashboardPage::class),
+                    ->route('dashboard'),
 
                 NavigationItemSchema::make()
                     ->label('Management')
@@ -31,9 +31,17 @@ final class NavigationProvider implements Navigation
                         NavigationItemSchema::make()
                             ->label('Users')
                             ->icon(Heroicons::User)
-                            ->route(UsersPage::class),
+                            ->route('users'),
                     ]),
             ]);
+    }
+
+    public function pages(): array
+    {
+        return [
+            DashboardPage::class,
+            UsersPage::class,
+        ];
     }
 
     public function metadata(): array

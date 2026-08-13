@@ -14,15 +14,18 @@ it('aggregates application and feature navigation', function (): void {
         ->id('admin-navigation-test')
         ->name('Administration')
         ->path('/admin-navigation-test')
-        ->rootPage(PageOne::class)
+        ->rootPage(
+            PageOne::class,
+        )
         ->navigation(
             AdminNavigation::class,
         );
 
-    Application::only('admin-navigation-test')
-        ->navigation(
-            UserNavigation::class,
-        );
+    Application::only(
+        'admin-navigation-test',
+    )->navigation(
+        UserNavigation::class,
+    );
 
     $application = Application::find(
         'admin-navigation-test',
@@ -36,18 +39,28 @@ it('aggregates application and feature navigation', function (): void {
         ApplicationSchema::make(),
     );
 
-    expect($schema->navigation())
-        ->toHaveCount(2);
+    $navigation = $schema->navigation();
 
-    expect($schema->navigation())
-        ->each
+    expect($navigation)
         ->toBeInstanceOf(
             NavigationSchema::class,
         );
 
-    expect($schema->navigation()[0]->label())
-        ->toBe('Administration');
+    expect($navigation->items())
+        ->toHaveCount(2);
 
-    expect($schema->navigation()[1]->label())
+    expect($navigation->groups())
+        ->toBe([]);
+
+    expect($navigation->items()[0]->label())
+        ->toBe('Dashboard');
+
+    expect($navigation->items()[0]->route())
+        ->toBe('dashboard');
+
+    expect($navigation->items()[1]->label())
         ->toBe('Users');
+
+    expect($navigation->items()[1]->route())
+        ->toBe('users.index');
 });

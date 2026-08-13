@@ -10,14 +10,68 @@ Route::prefix('applications')
     ->group(function (): void {
         Route::get(
             '/{application}',
-            [ApplicationSchemaController::class, 'show'],
+            [
+                ApplicationSchemaController::class,
+                'show',
+            ],
         );
 
         Route::get(
             '/{application}/schema',
-            [ApplicationSchemaController::class, 'schema'],
+            [
+                ApplicationSchemaController::class,
+                'schema',
+            ],
+        );
+
+        Route::get(
+            '/{application}/pages/{name}',
+            [
+                ApplicationSchemaController::class,
+                'page',
+            ],
         );
     });
 
+Route::prefix('sources')
+    ->group(function (): void {
+        Route::get(
+            '/{source}',
+            [
+                SourceController::class,
+                'index',
+            ],
+        );
 
-Route::get('/sources/{source}',[SourceController::class, 'index'],);
+        Route::post(
+            '/{source}',
+            [
+                SourceController::class,
+                'store',
+            ],
+        );
+
+        Route::put(
+            '/{source}/{id}',
+            [
+                SourceController::class,
+                'update',
+            ],
+        );
+
+        Route::patch(
+            '/{source}/{id}',
+            [
+                SourceController::class,
+                'update',
+            ],
+        );
+
+        Route::delete(
+            '/{source}/{id}',
+            [
+                SourceController::class,
+                'destroy',
+            ],
+        );
+    });

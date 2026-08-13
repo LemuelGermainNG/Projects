@@ -18,10 +18,7 @@ final class ApplicationSchema extends Schema
 
     protected ?PageSchema $root = null;
 
-    /**
-     * @var list<NavigationSchema>
-     */
-    protected array $navigation = [];
+    protected ?NavigationSchema $navigation = null;
 
     public function brand(
         ?BrandSchema $brand = null,
@@ -30,7 +27,10 @@ final class ApplicationSchema extends Schema
             return $this->brand;
         }
 
-        return $this->with('brand', $brand);
+        return $this->with(
+            'brand',
+            $brand,
+        );
     }
 
     public function root(
@@ -40,21 +40,22 @@ final class ApplicationSchema extends Schema
             return $this->root;
         }
 
-        return $this->with('root', $root);
+        return $this->with(
+            'root',
+            $root,
+        );
     }
 
-    /**
-     * @param list<NavigationSchema>|null $navigation
-     *
-     * @return list<NavigationSchema>|static
-     */
     public function navigation(
-        ?array $navigation = null,
-    ): array|static {
+        ?NavigationSchema $navigation = null,
+    ): NavigationSchema|static|null {
         if (func_num_args() === 0) {
             return $this->navigation;
         }
 
-        return $this->with('navigation', $navigation);
+        return $this->with(
+            'navigation',
+            $navigation,
+        );
     }
 }

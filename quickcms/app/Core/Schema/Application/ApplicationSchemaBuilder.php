@@ -29,7 +29,7 @@ final class ApplicationSchemaBuilder extends Builder
                 $schema->root(),
             ),
 
-            'navigation' => $this->compileSchemas(
+            'navigation' => $this->compileChild(
                 $schema->navigation(),
             ),
 

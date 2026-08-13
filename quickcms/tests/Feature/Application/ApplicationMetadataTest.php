@@ -37,10 +37,10 @@ it('sets the path', function (): void {
 
 it('sets the layout', function (): void {
     $metadata = ApplicationMetadata::make()
-        ->layout(ApplicationLayout::Default);
+        ->layout(ApplicationLayout::Simple);
 
     expect($metadata->layout())
-        ->toBe(ApplicationLayout::Default);
+        ->toBe(ApplicationLayout::Simple);
 });
 
 it('converts metadata to an array', function (): void {
@@ -48,13 +48,13 @@ it('converts metadata to an array', function (): void {
         ->id('admin')
         ->name('Administration')
         ->path('/admin')
-        ->layout(ApplicationLayout::Default);
+        ->layout(ApplicationLayout::Simple);
 
     expect($metadata->toArray())
         ->toBe([
             'id' => 'admin',
             'name' => 'Administration',
             'path' => '/admin',
-            'layout' => ApplicationLayout::Default->value,
+            'layout' => ApplicationLayout::Simple->value,
         ]);
 });

@@ -9,7 +9,7 @@ use App\Core\Support\Concerns\HasIcon;
 use App\Core\Support\Concerns\HasLabel;
 use App\Core\Support\Concerns\HasProps;
 
-final class NavigationSchema extends Schema
+final class NavigationGroupSchema extends Schema
 {
     use HasIcon;
     use HasLabel;
@@ -19,11 +19,6 @@ final class NavigationSchema extends Schema
      * @var list<NavigationItemSchema>
      */
     protected array $items = [];
-
-    /**
-     * @var list<NavigationGroupSchema>
-     */
-    protected array $groups = [];
 
     /**
      * @param  list<NavigationItemSchema>|null  $items
@@ -39,23 +34,6 @@ final class NavigationSchema extends Schema
         return $this->with(
             'items',
             $items,
-        );
-    }
-
-    /**
-     * @param  list<NavigationGroupSchema>|null  $groups
-     * @return list<NavigationGroupSchema>|static
-     */
-    public function groups(
-        ?array $groups = null,
-    ): array|static {
-        if (func_num_args() === 0) {
-            return $this->groups;
-        }
-
-        return $this->with(
-            'groups',
-            $groups,
         );
     }
 }

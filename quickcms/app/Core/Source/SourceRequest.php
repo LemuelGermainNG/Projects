@@ -9,14 +9,13 @@ use Illuminate\Http\Request;
 final readonly class SourceRequest
 {
     /**
-     * @param array<string, mixed> $query
+     * @param  array<string, mixed>  $query
      */
     public function __construct(
         public int $page = 1,
         public int $perPage = 20,
         public array $query = [],
-    ) {
-    }
+    ) {}
 
     public function get(
         string $key,
@@ -69,6 +68,20 @@ final readonly class SourceRequest
                 static fn (string $value): bool => $value !== '',
             ),
         );
+    }
+
+    public function cursor(): ?string
+    {
+        $cursor = $this->query['cursor'] ?? null;
+
+        return is_string($cursor) && $cursor !== ''
+            ? $cursor
+            : null;
+    }
+
+    public function hasCursor(): bool
+    {
+        return $this->cursor() !== null;
     }
 
     public function toHttpRequest(): Request

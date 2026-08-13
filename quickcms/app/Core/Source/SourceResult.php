@@ -7,20 +7,21 @@ namespace App\Core\Source;
 final readonly class SourceResult
 {
     /**
-     * @param list<array<string, mixed>> $records
+     * @param  list<array<string, mixed>>  $records
      * @param array{
      *     enabled: bool,
      *     perPage: int,
      *     page: int,
      *     total: int,
-     *     lastPage: int
+     *     lastPage: int,
+     *     nextCursor: string|null,
+     *     previousCursor: string|null
      * } $pagination
      */
     public function __construct(
         public array $records,
         public array $pagination,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array{
@@ -30,7 +31,9 @@ final readonly class SourceResult
      *         perPage: int,
      *         page: int,
      *         total: int,
-     *         lastPage: int
+     *         lastPage: int,
+     *         nextCursor: string|null,
+     *         previousCursor: string|null
      *     }
      * }
      */

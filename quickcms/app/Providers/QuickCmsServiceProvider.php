@@ -8,6 +8,7 @@ use App\Core\Application\ApplicationDiscovery;
 use App\Core\Application\ApplicationManager;
 use App\Core\Application\ApplicationRegistry;
 use App\Core\Feature\FeatureDiscovery;
+use App\Core\Runtime\Navigation\NavigationRegistry;
 use Illuminate\Support\ServiceProvider;
 
 final class QuickCmsServiceProvider extends ServiceProvider
@@ -51,6 +52,13 @@ final class QuickCmsServiceProvider extends ServiceProvider
             config(
                 'quickcms.features_path',
                 app_path('Features'),
+            ),
+        );
+
+        $this->app->singleton(
+            NavigationRegistry::class,
+            fn ($app) => new NavigationRegistry(
+                $app->make(ApplicationRegistry::class),
             ),
         );
     }

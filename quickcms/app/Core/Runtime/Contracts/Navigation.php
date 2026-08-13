@@ -6,7 +6,6 @@ namespace App\Core\Runtime\Contracts;
 
 use App\Core\Schema\Navigation\NavigationSchema;
 
-
 interface Navigation
 {
     /**
@@ -20,4 +19,11 @@ interface Navigation
      * @return array<string, mixed>
      */
     public function metadata(): array;
+
+    /**
+     * Returns the pages exposed by this navigation.
+     *
+     * @return array<string, class-string<Page>>
+     */
+    public function pages(): array;
 }

@@ -18,4 +18,15 @@ export class ApplicationApi {
       signal,
     )
   }
+
+  getPage(
+    application: string,
+    page: string,
+    signal?: AbortSignal,
+  ) {
+    return this.client.get<ApplicationSchemaResponse>(
+      `/applications/${encodeURIComponent(application)}/pages/${encodeURIComponent(page)}`,
+      signal,
+    )
+  }
 }

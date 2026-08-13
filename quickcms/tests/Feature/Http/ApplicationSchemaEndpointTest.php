@@ -48,7 +48,7 @@ it('returns application metadata', function (): void {
         )
         ->assertJsonPath(
             'data.layout',
-            'default',
+            'sidebar',
         );
 });
 
@@ -73,7 +73,7 @@ it('returns another application metadata', function (): void {
         )
         ->assertJsonPath(
             'data.layout',
-            'default',
+            'sidebar',
         );
 });
 
@@ -118,7 +118,19 @@ it('returns an empty compiled schema for an application without contributions', 
             null,
         )
         ->assertJsonPath(
-            'data.schema.navigation',
+            'data.schema.navigation.type',
+            'navigation',
+        )
+        ->assertJsonPath(
+            'data.schema.navigation.items',
+            [],
+        )
+        ->assertJsonPath(
+            'data.schema.navigation.groups',
+            [],
+        )
+        ->assertJsonPath(
+            'data.schema.navigation.props',
             [],
         )
         ->assertJsonPath(

@@ -49,6 +49,8 @@ it('compiles a navigation schema', function (): void {
             ],
         ],
 
+        'groups' => [],
+
         'props' => [
             'foo' => 'bar',
         ],

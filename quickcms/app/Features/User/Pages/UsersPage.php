@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Applications\Admin\Pages;
+namespace App\Features\User\Pages;
 
 use App\Core\Runtime\Contracts\Page;
 use App\Core\Schema\Header\HeaderSchema;

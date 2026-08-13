@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Core\Application;
 
-use App\Core\Runtime\Contracts\Navigation;
 use App\Core\Runtime\Contracts\Page;
+use App\Core\Runtime\Navigation\NavigationRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
 use RuntimeException;
 
@@ -13,6 +13,7 @@ final class ApplicationBuilder
 {
     public function __construct(
         protected ApplicationRegistry $registry,
+        protected NavigationRegistry $navigationRegistry,
     ) {}
 
     /**
@@ -45,25 +46,16 @@ final class ApplicationBuilder
         }
 
         /** @var Page $rootPage */
-        $rootPage = new $rootPageClass();
-
-        $navigation = [];
-
-        foreach (
-            $this->registry->navigation(
-                $application->id(),
-            ) as $navigationClass
-        ) {
-            /** @var Navigation $provider */
-            $provider = new $navigationClass();
-
-            $navigation[] = $provider->schema();
-        }
+        $rootPage = new $rootPageClass;
 
         return $schema
             ->root(
                 $rootPage->content(),
             )
-            ->navigation($navigation);
+            ->navigation(
+                $this->navigationRegistry->schema(
+                    $application->id(),
+                ),
+            );
     }
 }

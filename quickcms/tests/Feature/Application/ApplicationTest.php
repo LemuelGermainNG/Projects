@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Core\Application\Application;
+use App\Core\Application\ApplicationContext;
 use App\Core\Application\ApplicationMetadata;
 use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
@@ -42,9 +43,6 @@ it('registers and builds an application', function (): void {
         );
 
     expect($schema->navigation())
-        ->toHaveCount(1);
-
-    expect($schema->navigation()[0])
         ->toBeInstanceOf(
             NavigationSchema::class,
         );
@@ -100,6 +98,6 @@ it('creates a scoped application context with only', function (): void {
 
     expect($context)
         ->toBeInstanceOf(
-            \App\Core\Application\ApplicationContext::class,
+            ApplicationContext::class,
         );
 });

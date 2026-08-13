@@ -4,8 +4,16 @@ declare(strict_types=1);
 
 use App\Core\Source\Drivers\Firebase\FirebaseQuery;
 use App\Core\Source\SourceRequest;
-use Kreait\Firebase\Contract\Firestore;
 use Google\Cloud\Firestore\Query;
+use Kreait\Firebase\Contract\Firestore;
+
+beforeEach(function (): void {
+    if (! (bool) env('RUN_FIREBASE_INTEGRATION_TESTS', false)) {
+        $this->markTestSkipped(
+            'Set RUN_FIREBASE_INTEGRATION_TESTS=true to run Firebase integration tests.',
+        );
+    }
+});
 
 it('applies an allowed firestore filter', function (): void {
     $firestore = app(Firestore::class);
@@ -66,7 +74,6 @@ it('rejects a filter that is not allowed', function (): void {
     );
 });
 
-
 it('sorts users by name ascending', function (): void {
     $firestore = app(Firestore::class);
 
@@ -103,7 +110,6 @@ it('sorts users by name ascending', function (): void {
     expect($names)->toBe($expected);
 });
 
-
 it('sorts users by name descending', function (): void {
     $firestore = app(Firestore::class);
 
@@ -139,7 +145,6 @@ it('sorts users by name descending', function (): void {
 
     expect($names)->toBe($expected);
 });
-
 
 it('rejects a sort that is not allowed', function (): void {
     $firestore = app(Firestore::class);
