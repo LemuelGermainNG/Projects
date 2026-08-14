@@ -8,6 +8,9 @@ use App\Core\Runtime\Contracts\Navigation;
 use App\Core\Schema\Navigation\NavigationItemSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
 use App\Core\Support\Enum\Icons\Heroicons;
+use App\Features\User\Pages\UserCreatePage;
+use App\Features\User\Pages\UserEditPage;
+use App\Features\User\Pages\UserViewPage;
 use App\Features\User\Pages\UsersPage;
 
 final class UserNavigation implements Navigation
@@ -32,6 +35,9 @@ final class UserNavigation implements Navigation
     {
         return [
             'users' => UsersPage::class,
+            'users/create' => UserCreatePage::class,
+            'users/{id}' => UserViewPage::class,
+            'users/{id}/edit' => UserEditPage::class,
         ];
     }
 
