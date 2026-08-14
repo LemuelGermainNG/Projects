@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Core\Application;
 
-use App\Core\Runtime\Contracts\Page;
 use App\Core\Runtime\Navigation\NavigationRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
 use RuntimeException;
@@ -32,11 +31,11 @@ final class ApplicationBuilder
             );
         }
 
-        $rootPageClass = $this->registry->rootPage(
+        $root = $this->registry->root(
             $application->id(),
         );
 
-        if ($rootPageClass === null) {
+        if ($root === null) {
             throw new RuntimeException(
                 sprintf(
                     'Application [%s] has no root page.',
@@ -45,13 +44,8 @@ final class ApplicationBuilder
             );
         }
 
-        /** @var Page $rootPage */
-        $rootPage = new $rootPageClass;
-
         return $schema
-            ->root(
-                $rootPage->content(),
-            )
+            ->root($root)
             ->navigation(
                 $this->navigationRegistry->schema(
                     $application->id(),

@@ -250,6 +250,7 @@ final class DashboardPage implements Page
     {
         return [
             'title' => 'Dashboard',
+            'description' => 'Administration dashboard',
         ];
     }
 }

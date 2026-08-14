@@ -91,13 +91,13 @@ final class ApplicationSchemaController
             );
         }
 
-        $pageClass = app(NavigationRegistry::class)
-            ->resolvePage(
+        $pageMatch = app(NavigationRegistry::class)
+            ->resolvePageMatch(
                 application: $application,
                 route: $name,
             );
 
-        if ($pageClass === null) {
+        if ($pageMatch === null) {
             return response()->json(
                 [
                     'message' => 'Page not found.',
@@ -106,14 +106,18 @@ final class ApplicationSchemaController
             );
         }
 
-        $page = app($pageClass);
+        $page = app($pageMatch['page']);
 
         return response()->json([
             'data' => [
                 'application' => $metadata->toArray(),
-                'page' => $page->content()->compile(
-                    app(BuilderRegistry::class),
-                ),
+                'route' => $name,
+                'parameters' => $pageMatch['parameters'],
+                'page' => $page->content()
+                    ->metadata($page->metadata())
+                    ->compile(
+                        app(BuilderRegistry::class),
+                    ),
             ],
         ]);
     }

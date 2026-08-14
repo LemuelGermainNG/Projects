@@ -38,6 +38,14 @@ it('returns the expected dashboard page', function (): void {
     $response
         ->assertOk()
         ->assertJsonPath(
+            'data.page.metadata.title',
+            'Dashboard',
+        )
+        ->assertJsonPath(
+            'data.page.metadata.description',
+            'Administration dashboard',
+        )
+        ->assertJsonPath(
             'data.page.header.title',
             'Dashboard',
         );
@@ -53,4 +61,33 @@ it('returns not found for an unknown application', function (): void {
     $this->getJson(
         '/api/applications/unknown/pages/dashboard',
     )->assertNotFound();
+});
+
+it('resolves nested page paths and returns dynamic parameters', function (): void {
+    Application::make()
+        ->id('dynamic-pages')
+        ->name('Dynamic Pages')
+        ->path('/dynamic-pages')
+        ->navigation(
+            \Tests\Support\Navigation\DynamicNavigation::class,
+        );
+
+    $response = $this->getJson(
+        '/api/applications/dynamic-pages/pages/users/42/edit',
+    );
+
+    $response
+        ->assertOk()
+        ->assertJsonPath(
+            'data.route',
+            'users/42/edit',
+        )
+        ->assertJsonPath(
+            'data.parameters.id',
+            '42',
+        )
+        ->assertJsonPath(
+            'data.page.metadata.title',
+            'Edit User',
+        );
 });

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Applications\Admin;
 
 use App\Applications\Admin\Navigation\AdminNavigation;
-use App\Applications\Admin\Pages\DashboardPage;
 use App\Core\Application\ApplicationContext;
 use App\Core\Application\ApplicationProvider;
 
@@ -19,11 +18,9 @@ final class AdminApplicationProvider extends ApplicationProvider
             ->name('Administration')
             ->path('/admin')
             ->layout('sidebar')
+            ->root('dashboard')
             ->navigation(
                 AdminNavigation::class,
-            )
-            ->rootPage(
-                DashboardPage::class,
             );
     }
 }

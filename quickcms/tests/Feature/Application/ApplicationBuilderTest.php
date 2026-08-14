@@ -8,9 +8,7 @@ use App\Core\Application\ApplicationRegistry;
 use App\Core\Runtime\Navigation\NavigationRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
-use App\Core\Schema\Page\PageSchema;
 use Tests\Fixtures\Navigation\NavigationProvider;
-use Tests\Fixtures\Pages\DashboardPage;
 
 it('throws an exception when the application is not registered', function (): void {
     $registry = new ApplicationRegistry;
@@ -38,7 +36,7 @@ it('throws an exception when the application is not registered', function (): vo
     );
 });
 
-it('builds an application schema', function (): void {
+it('builds an application schema with a root route', function (): void {
     $registry = new ApplicationRegistry;
 
     $application = ApplicationMetadata::make()
@@ -55,9 +53,9 @@ it('builds an application schema', function (): void {
         NavigationProvider::class,
     );
 
-    $registry->registerRootPage(
+    $registry->registerRoot(
         ['admin'],
-        DashboardPage::class,
+        'dashboard',
     );
 
     $navigationRegistry = new NavigationRegistry(
@@ -84,9 +82,7 @@ it('builds an application schema', function (): void {
         ->toBe([]);
 
     expect($result->root())
-        ->toBeInstanceOf(
-            PageSchema::class,
-        );
+        ->toBe('dashboard');
 
     expect($result->navigation())
         ->toBeInstanceOf(
@@ -95,4 +91,32 @@ it('builds an application schema', function (): void {
 
     expect($result->navigation()->items())
         ->toHaveCount(2);
+});
+
+it('allows an application without a root route', function (): void {
+    $registry = new ApplicationRegistry;
+
+    $application = ApplicationMetadata::make()
+        ->id('shop')
+        ->name('Shop')
+        ->path('/shop');
+
+    $registry->registerApplication(
+        $application,
+    );
+
+    $navigationRegistry = new NavigationRegistry(
+        $registry,
+    );
+
+    $result = (new ApplicationBuilder(
+        $registry,
+        $navigationRegistry,
+    ))->build(
+        $application,
+        ApplicationSchema::make(),
+    );
+
+    expect($result->root())
+        ->toBeNull();
 });

@@ -33,6 +33,7 @@ it('compiles application brand', function (): void {
 
 it('compiles application navigation', function (): void {
     $schema = ApplicationSchema::make()
+        ->root('dashboard')
         ->navigation(
             NavigationSchema::make()
                 ->items([
@@ -53,8 +54,6 @@ it('compiles application navigation', function (): void {
     expect($compiled['navigation'])
         ->toMatchArray([
             'type' => 'navigation',
-            'label' => null,
-            'icon' => null,
             'items' => [
                 [
                     'label' => 'Dashboard',
@@ -77,18 +76,20 @@ it('compiles application navigation', function (): void {
                     'props' => [],
                 ],
             ],
-            'groups' => [],
             'props' => [],
         ]);
 });
 
-it('compiles application navigation groups', function (): void {
+it('compiles application navigation groups as ordered navigation items', function (): void {
     $schema = ApplicationSchema::make()
+        ->root('dashboard')
         ->navigation(
             NavigationSchema::make()
-                ->groups([
+                ->items([
                     NavigationGroupSchema::make()
+                        ->id('features')
                         ->label('Features')
+                        ->sort(20)
                         ->items([
                             NavigationItemSchema::make()
                                 ->label('Apps')
@@ -104,10 +105,7 @@ it('compiles application navigation groups', function (): void {
     expect($compiled['navigation'])
         ->toMatchArray([
             'type' => 'navigation',
-            'label' => null,
-            'icon' => null,
-            'items' => [],
-            'groups' => [
+            'items' => [
                 [
                     'type' => 'navigation-group',
                     'label' => 'Features',
@@ -133,6 +131,7 @@ it('compiles application navigation groups', function (): void {
 
 it('compiles a complete application schema', function (): void {
     $schema = ApplicationSchema::make()
+        ->root('dashboard')
         ->brand(
             BrandSchema::make()
                 ->name('QuickCMS')
@@ -158,6 +157,8 @@ it('compiles a complete application schema', function (): void {
         ->toMatchArray([
             'type' => 'application',
 
+            'root' => 'dashboard',
+
             'brand' => [
                 'type' => 'brand',
                 'name' => 'QuickCMS',
@@ -167,8 +168,6 @@ it('compiles a complete application schema', function (): void {
 
             'navigation' => [
                 'type' => 'navigation',
-                'label' => null,
-                'icon' => null,
                 'items' => [
                     [
                         'label' => 'Dashboard',
@@ -181,7 +180,6 @@ it('compiles a complete application schema', function (): void {
                         'props' => [],
                     ],
                 ],
-                'groups' => [],
                 'props' => [],
             ],
 

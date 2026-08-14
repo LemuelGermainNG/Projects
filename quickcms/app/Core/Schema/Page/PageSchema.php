@@ -12,9 +12,32 @@ final class PageSchema extends Schema
 {
     use HasProps;
 
+    /**
+     * @var array<string, mixed>
+     */
+    protected array $metadata = [];
+
     protected ?HeaderSchema $header = null;
 
     protected ?Schema $content = null;
+
+    /**
+     * @param array<string, mixed>|null $metadata
+     *
+     * @return array<string, mixed>|static
+     */
+    public function metadata(
+        ?array $metadata = null,
+    ): array|static {
+        if (func_num_args() === 0) {
+            return $this->metadata;
+        }
+
+        return $this->with(
+            'metadata',
+            $metadata ?? [],
+        );
+    }
 
     public function header(
         ?HeaderSchema $header = null,

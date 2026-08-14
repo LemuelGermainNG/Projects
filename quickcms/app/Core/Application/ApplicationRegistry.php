@@ -12,9 +12,9 @@ final class ApplicationRegistry
     protected array $applications = [];
 
     /**
-     * @var array<string, class-string>
+     * @var array<string, string>
      */
-    protected array $rootPage = [];
+    protected array $root = [];
 
     /**
      * @var array<string, list<class-string>>
@@ -40,27 +40,23 @@ final class ApplicationRegistry
     }
 
     /**
-     * Register the single root page of an application.
+     * Register the root page route of an application.
      *
      * @param list<string> $applications
-     * @param class-string $page
      */
-    public function registerRootPage(
+    public function registerRoot(
         array $applications,
-        string $page,
+        string $route,
     ): void {
         foreach ($applications as $application) {
-            $this->rootPage[$application] = $page;
+            $this->root[$application] = $route;
         }
     }
 
-    /**
-     * @return class-string|null
-     */
-    public function rootPage(
+    public function root(
         string $application,
     ): ?string {
-        return $this->rootPage[$application] ?? null;
+        return $this->root[$application] ?? null;
     }
 
     /**

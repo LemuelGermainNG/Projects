@@ -25,9 +25,7 @@ final class ApplicationSchemaBuilder extends Builder
                 $schema->brand(),
             ),
 
-            'root' => $this->compileChild(
-                $schema->root(),
-            ),
+            'root' => $schema->root(),
 
             'navigation' => $this->compileChild(
                 $schema->navigation(),

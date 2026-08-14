@@ -3,36 +3,79 @@
 declare(strict_types=1);
 
 use App\Applications\Admin\Navigation\AdminNavigation;
+use App\Applications\Admin\Pages\CategoriesPage;
+use App\Applications\Admin\Pages\DashboardPage;
+use App\Applications\Admin\Pages\LogsPage;
+use App\Applications\Admin\Pages\MediaPage;
+use App\Applications\Admin\Pages\PluginsPage;
+use App\Applications\Admin\Pages\PostsPage;
+use App\Applications\Admin\Pages\RolesPage;
+use App\Applications\Admin\Pages\SettingsPage;
+use App\Applications\Admin\Pages\TeamsPage;
 use App\Core\Application\Application;
 use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
-use App\Features\User\Navigation\UserNavigation;
-use Tests\Support\Pages\PageOne;
+use App\Features\User\Pages\UsersPage;
 
-it('aggregates application and feature navigation', function (): void {
+it('builds the admin navigation with direct items and groups', function (): void {
+    $schema = (new AdminNavigation())->schema();
+
+    expect($schema)
+        ->toBeInstanceOf(NavigationSchema::class);
+
+    expect($schema->items())
+        ->toHaveCount(1);
+
+    expect($schema->items()[0]->route())
+        ->toBe('dashboard');
+
+    expect($schema->groups())
+        ->toHaveCount(3);
+
+    expect($schema->groups()[0]->label())
+        ->toBe('Management');
+
+    expect($schema->groups()[0]->items())
+        ->toHaveCount(3);
+
+    expect($schema->groups()[1]->label())
+        ->toBe('Content');
+
+    expect($schema->groups()[1]->items())
+        ->toHaveCount(3);
+
+    expect($schema->groups()[2]->label())
+        ->toBe('System');
+
+    expect($schema->groups()[2]->items())
+        ->toHaveCount(3);
+});
+
+it('registers every admin navigation route', function (): void {
+    expect((new AdminNavigation())->pages())
+        ->toMatchArray([
+            'dashboard' => DashboardPage::class,
+            'users.index' => UsersPage::class,
+            'teams.index' => TeamsPage::class,
+            'roles.index' => RolesPage::class,
+            'posts.index' => PostsPage::class,
+            'media.index' => MediaPage::class,
+            'categories.index' => CategoriesPage::class,
+            'settings.index' => SettingsPage::class,
+            'plugins.index' => PluginsPage::class,
+            'logs.index' => LogsPage::class,
+        ]);
+});
+
+it('merges the admin navigation into the application schema', function (): void {
     Application::make()
-        ->id('admin-navigation-test')
+        ->id('admin-navigation-pages-test')
         ->name('Administration')
-        ->path('/admin-navigation-test')
-        ->rootPage(
-            PageOne::class,
-        )
-        ->navigation(
-            AdminNavigation::class,
-        );
+        ->path('/admin-navigation-pages-test')
+        ->root('dashboard')
+        ->navigation(AdminNavigation::class);
 
-    Application::only(
-        'admin-navigation-test',
-    )->navigation(
-        UserNavigation::class,
-    );
-
-    $application = Application::find(
-        'admin-navigation-test',
-    );
-
-    expect($application)
-        ->not->toBeNull();
+    $application = Application::find('admin-navigation-pages-test');
 
     $schema = Application::build(
         $application,
@@ -41,26 +84,12 @@ it('aggregates application and feature navigation', function (): void {
 
     $navigation = $schema->navigation();
 
-    expect($navigation)
-        ->toBeInstanceOf(
-            NavigationSchema::class,
-        );
-
     expect($navigation->items())
-        ->toHaveCount(2);
+        ->toHaveCount(4);
 
     expect($navigation->groups())
         ->toBe([]);
 
-    expect($navigation->items()[0]->label())
-        ->toBe('Dashboard');
-
     expect($navigation->items()[0]->route())
         ->toBe('dashboard');
-
-    expect($navigation->items()[1]->label())
-        ->toBe('Users');
-
-    expect($navigation->items()[1]->route())
-        ->toBe('users.index');
 });

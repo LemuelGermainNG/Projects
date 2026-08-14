@@ -13,6 +13,11 @@ it('creates a page schema', function (): void {
 });
 
 it('sets page properties', function (): void {
+    $metadata = [
+        'title' => 'Users',
+        'description' => 'Manage users',
+    ];
+
     $header = HeaderSchema::make()
         ->title('Users')
         ->description('Manage users');
@@ -20,11 +25,15 @@ it('sets page properties', function (): void {
     $content = ContainerSchema::make();
 
     $page = PageSchema::make()
+        ->metadata($metadata)
         ->header($header)
         ->content($content)
         ->props([
             'fluid' => true,
         ]);
+
+    expect($page->metadata())
+        ->toBe($metadata);
 
     expect($page->header())
         ->toBe($header);
@@ -42,6 +51,9 @@ it('is immutable', function (): void {
     $page = PageSchema::make();
 
     $updated = $page
+        ->metadata([
+            'title' => 'Users',
+        ])
         ->header(
             HeaderSchema::make()
                 ->title('Users'),
@@ -53,11 +65,19 @@ it('is immutable', function (): void {
     expect($updated)
         ->not->toBe($page);
 
+    expect($page->metadata())
+        ->toBe([]);
+
     expect($page->header())
         ->toBeNull();
 
     expect($page->content())
         ->toBeNull();
+
+    expect($updated->metadata())
+        ->toBe([
+            'title' => 'Users',
+        ]);
 
     expect($updated->header())
         ->toBeInstanceOf(HeaderSchema::class);

@@ -118,6 +118,10 @@ it('returns an empty compiled schema for an application without contributions', 
             null,
         )
         ->assertJsonPath(
+            'data.schema.root',
+            null,
+        )
+        ->assertJsonPath(
             'data.schema.navigation.type',
             'navigation',
         )

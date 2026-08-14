@@ -7,20 +7,16 @@ use App\Core\Application\ApplicationContext;
 use App\Core\Application\ApplicationMetadata;
 use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
-use App\Core\Schema\Page\PageSchema;
 use Tests\Fixtures\Navigation\NavigationProvider;
-use Tests\Support\Pages\PageOne;
 
 it('registers and builds an application', function (): void {
     Application::make()
         ->id('application-test')
         ->name('Administration')
         ->path('/application-test')
+        ->root('dashboard')
         ->navigation(
             NavigationProvider::class,
-        )
-        ->rootPage(
-            PageOne::class,
         );
 
     $application = Application::find(
@@ -38,9 +34,7 @@ it('registers and builds an application', function (): void {
     );
 
     expect($schema->root())
-        ->toBeInstanceOf(
-            PageSchema::class,
-        );
+        ->toBe('dashboard');
 
     expect($schema->navigation())
         ->toBeInstanceOf(
@@ -76,9 +70,7 @@ it('targets the current application when using make', function (): void {
         ->id('current-test')
         ->name('Current')
         ->path('/current-test')
-        ->rootPage(
-            PageOne::class,
-        );
+        ->root('dashboard');
 
     $application = Application::find(
         'current-test',

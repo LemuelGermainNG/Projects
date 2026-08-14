@@ -30,7 +30,7 @@ Route::prefix('applications')
                 ApplicationSchemaController::class,
                 'page',
             ],
-        );
+        )->where('name', '.*');
     });
 
 Route::prefix('sources')

@@ -71,16 +71,14 @@ final class ApplicationContext
     }
 
     /**
-     * Register the application root page.
-     *
-     * @param class-string $page
+     * Register the root page route of an application.
      */
-    public function rootPage(
-        string $page,
+    public function root(
+        string $route,
     ): static {
-        $this->registry->registerRootPage(
+        $this->registry->registerRoot(
             $this->applications,
-            $page,
+            $route,
         );
 
         return $this;

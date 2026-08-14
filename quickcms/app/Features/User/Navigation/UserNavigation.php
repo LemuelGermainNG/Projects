@@ -17,9 +17,11 @@ final class UserNavigation implements Navigation
         return NavigationSchema::make()
             ->items([
                 NavigationItemSchema::make()
+                    ->group('management')
                     ->label('Users')
                     ->icon(Heroicons::User)
-                    ->route('users.index'),
+                    ->route('users')
+                    ->sort(10),
             ]);
     }
 
@@ -29,7 +31,7 @@ final class UserNavigation implements Navigation
     public function pages(): array
     {
         return [
-            'users.index' => UsersPage::class,
+            'users' => UsersPage::class,
         ];
     }
 

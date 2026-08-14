@@ -16,8 +16,6 @@ final class NavigationProvider implements Navigation
     public function schema(): NavigationSchema
     {
         return NavigationSchema::make()
-            ->label('Administration')
-            ->icon(Heroicons::Squares2x2)
             ->items([
                 NavigationItemSchema::make()
                     ->label('Dashboard')
@@ -36,14 +34,20 @@ final class NavigationProvider implements Navigation
             ]);
     }
 
+    /**
+     * @return array<string, class-string>
+     */
     public function pages(): array
     {
         return [
-            DashboardPage::class,
-            UsersPage::class,
+            'dashboard' => DashboardPage::class,
+            'users' => UsersPage::class,
         ];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function metadata(): array
     {
         return [

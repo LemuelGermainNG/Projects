@@ -6,7 +6,6 @@ namespace App\Core\Schema\Application;
 
 use App\Core\Schema\Brand\BrandSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
-use App\Core\Schema\Page\PageSchema;
 use App\Core\Schema\Schema;
 use App\Core\Support\Concerns\HasProps;
 
@@ -16,7 +15,7 @@ final class ApplicationSchema extends Schema
 
     protected ?BrandSchema $brand = null;
 
-    protected ?PageSchema $root = null;
+    protected ?string $root = null;
 
     protected ?NavigationSchema $navigation = null;
 
@@ -34,8 +33,8 @@ final class ApplicationSchema extends Schema
     }
 
     public function root(
-        ?PageSchema $root = null,
-    ): PageSchema|static|null {
+        ?string $root = null,
+    ): string|static|null {
         if (func_num_args() === 0) {
             return $this->root;
         }

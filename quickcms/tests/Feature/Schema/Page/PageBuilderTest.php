@@ -7,8 +7,12 @@ use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Page\PageSchema;
 use Tests\Support\Factories\BuilderRegistryFactory;
 
-it('compiles a page schema', function (): void {
+it('compiles a page schema with metadata', function (): void {
     $page = PageSchema::make()
+        ->metadata([
+            'title' => 'Users',
+            'description' => 'Manage users',
+        ])
         ->header(
             HeaderSchema::make()
                 ->title('Users')
@@ -27,6 +31,11 @@ it('compiles a page schema', function (): void {
         ),
     )->toBe([
         'type' => 'page',
+
+        'metadata' => [
+            'title' => 'Users',
+            'description' => 'Manage users',
+        ],
 
         'header' => [
             'type' => 'header',
