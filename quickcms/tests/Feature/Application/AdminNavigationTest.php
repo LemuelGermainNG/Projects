@@ -15,7 +15,6 @@ use App\Applications\Admin\Pages\TeamsPage;
 use App\Core\Application\Application;
 use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
-use App\Features\User\Pages\UsersPage;
 
 it('builds the admin navigation with direct items and groups', function (): void {
     $schema = (new AdminNavigation())->schema();
@@ -36,7 +35,7 @@ it('builds the admin navigation with direct items and groups', function (): void
         ->toBe('Management');
 
     expect($schema->groups()[0]->items())
-        ->toHaveCount(3);
+        ->toHaveCount(2);
 
     expect($schema->groups()[1]->label())
         ->toBe('Content');
@@ -55,15 +54,14 @@ it('registers every admin navigation route', function (): void {
     expect((new AdminNavigation())->pages())
         ->toMatchArray([
             'dashboard' => DashboardPage::class,
-            'users.index' => UsersPage::class,
-            'teams.index' => TeamsPage::class,
-            'roles.index' => RolesPage::class,
-            'posts.index' => PostsPage::class,
-            'media.index' => MediaPage::class,
-            'categories.index' => CategoriesPage::class,
-            'settings.index' => SettingsPage::class,
-            'plugins.index' => PluginsPage::class,
-            'logs.index' => LogsPage::class,
+            'teams' => TeamsPage::class,
+            'roles' => RolesPage::class,
+            'posts' => PostsPage::class,
+            'media' => MediaPage::class,
+            'categories' => CategoriesPage::class,
+            'settings' => SettingsPage::class,
+            'plugins' => PluginsPage::class,
+            'logs' => LogsPage::class,
         ]);
 });
 

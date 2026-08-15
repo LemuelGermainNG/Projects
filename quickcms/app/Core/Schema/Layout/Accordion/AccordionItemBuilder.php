@@ -31,11 +31,11 @@ final class AccordionItemBuilder extends Builder
                 : null,
 
             'visible' => $this->evaluate(
-                $schema->visible(),
+                $schema->isVisible(),
             ),
 
             'disabled' => $this->evaluate(
-                $schema->disabled(),
+                $schema->isDisabled(),
             ),
 
             'child' => $schema->child() !== null

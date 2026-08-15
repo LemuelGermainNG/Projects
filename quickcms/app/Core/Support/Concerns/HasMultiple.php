@@ -11,15 +11,16 @@ trait HasMultiple
     protected bool|Closure|null $multiple = null;
 
     public function multiple(
-        bool|Closure|null $multiple = null,
-    ): bool|Closure|null|static {
-        if (func_num_args() === 0) {
-            return $this->multiple;
-        }
-
+        bool|Closure $value = true,
+    ): static {
         return $this->with(
             'multiple',
-            $multiple,
+            $value,
         );
+    }
+
+    public function isMultiple(): bool|Closure|null
+    {
+        return $this->multiple;
     }
 }

@@ -120,7 +120,7 @@ it('inherits widget configuration', function (): void {
     expect($calendar->icon())
         ->toBe('heroicon-o-calendar');
 
-    expect($calendar->visible())
+    expect($calendar->isVisible())
         ->toBeFalse();
 
     expect($calendar->width())

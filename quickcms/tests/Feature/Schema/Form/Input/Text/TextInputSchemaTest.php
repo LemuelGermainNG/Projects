@@ -26,10 +26,10 @@ it('sets properties', function (): void {
     expect($input->placeholder())
         ->toBe('Enter your name');
 
-    expect($input->readonly())
+    expect($input->isReadonly())
         ->toBeTrue();
 
-    expect($input->disabled())
+    expect($input->isDisabled())
         ->toBeTrue();
 });
 

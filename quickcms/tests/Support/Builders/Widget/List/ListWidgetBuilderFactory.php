@@ -21,7 +21,7 @@ final class ListWidgetBuilderFactory
             ->title('Users')
             ->description('User list')
             ->icon('heroicon-o-users')
-            ->visible(true)
+            ->visible()
             ->width(6)
             ->columns([
                 'default' => 1,

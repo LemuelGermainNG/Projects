@@ -15,10 +15,10 @@ it('compiles a navigation item schema', function (): void {
     $item = NavigationItemSchema::make()
         ->label('Users')
         ->icon('heroicon-o-users')
-        ->route('users.index')
+        ->route('users')
         ->url('/users')
         ->badge('12')
-        ->visible(true)
+        ->visible()
         ->props([
             'foo' => 'bar',
         ]);
@@ -30,7 +30,7 @@ it('compiles a navigation item schema', function (): void {
     )->toBe([
         'label' => 'Users',
         'icon' => 'heroicon-o-users',
-        'route' => 'users.index',
+        'route' => 'users',
         'url' => '/users',
         'badge' => '12',
         'visible' => true,
@@ -47,11 +47,11 @@ it('compiles nested navigation items', function (): void {
         ->children([
             NavigationItemSchema::make()
                 ->label('Users')
-                ->route('users.index'),
+                ->route('users'),
 
             NavigationItemSchema::make()
                 ->label('Roles')
-                ->route('roles.index'),
+                ->route('roles'),
         ]);
 
     expect(
@@ -70,7 +70,7 @@ it('compiles nested navigation items', function (): void {
             [
                 'label' => 'Users',
                 'icon' => null,
-                'route' => 'users.index',
+                'route' => 'users',
                 'url' => null,
                 'badge' => null,
                 'visible' => true,
@@ -80,7 +80,7 @@ it('compiles nested navigation items', function (): void {
             [
                 'label' => 'Roles',
                 'icon' => null,
-                'route' => 'roles.index',
+                'route' => 'roles',
                 'url' => null,
                 'badge' => null,
                 'visible' => true,

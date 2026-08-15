@@ -34,7 +34,7 @@ final class TableWidgetBuilder extends Builder
             ),
 
             'visible' => $this->evaluate(
-                $schema->visible(),
+                $schema->isVisible(),
             ),
 
             'width' => $this->evaluate(
@@ -92,8 +92,7 @@ final class TableWidgetBuilder extends Builder
     }
 
     /**
-     * @param array<int, array<string, mixed>>|null $columns
-     *
+     * @param  array<int, array<string, mixed>>|null  $columns
      * @return array<int, array<string, mixed>>|null
      */
     protected function compileTableColumns(?array $columns): ?array

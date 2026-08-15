@@ -17,8 +17,8 @@ abstract class BaseInputBuilder extends Builder
             'type' => $this->type(),
 
             'name' => $this->evaluate(
-                    $schema->name(),
-                ),
+                $schema->name(),
+            ),
             'value' => $this->evaluate(
                 $schema->value(),
             ),
@@ -28,11 +28,11 @@ abstract class BaseInputBuilder extends Builder
             ),
 
             'disabled' => $this->evaluate(
-                $schema->disabled(),
+                $schema->isDisabled(),
             ),
 
             'readonly' => $this->evaluate(
-                $schema->readonly(),
+                $schema->isReadonly(),
             ),
 
             'props' => $schema->props(),

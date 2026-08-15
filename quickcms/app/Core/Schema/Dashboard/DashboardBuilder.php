@@ -34,7 +34,7 @@ final class DashboardBuilder extends Builder
             ),
 
             'visible' => $this->evaluate(
-                $schema->visible(),
+                $schema->isVisible(),
             ),
 
             'layout' => $this->compileChild(

@@ -25,13 +25,13 @@ final class ColumnBuilder extends Builder
 
             'description' => $this->evaluate($schema->description()),
 
-            'sortable' => $this->evaluate($schema->sortable()),
+            'sortable' => $this->evaluate($schema->isSortable()),
 
-            'searchable' => $this->evaluate($schema->searchable()),
+            'searchable' => $this->evaluate($schema->isSearchable()),
 
-            'toggleable' => $this->evaluate($schema->toggleable()),
+            'toggleable' => $this->evaluate($schema->isToggleable()),
 
-            'hidden' => $this->evaluate($schema->hidden()),
+            'hidden' => $this->evaluate($schema->isHidden()),
 
             'default' => $this->evaluate($schema->default()),
 

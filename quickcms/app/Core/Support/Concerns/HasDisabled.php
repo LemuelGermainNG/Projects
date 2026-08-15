@@ -11,12 +11,8 @@ trait HasDisabled
     protected bool|Closure $disabled = false;
 
     public function disabled(
-        bool|Closure|null $disabled = null,
-    ): bool|Closure|static {
-        if (func_num_args() === 0) {
-            return $this->disabled;
-        }
-
+        bool|Closure $disabled = true,
+    ): static {
         return $this->with(
             'disabled',
             $disabled,
@@ -28,8 +24,8 @@ trait HasDisabled
         return $this->disabled(false);
     }
 
-    public function isDisabled(): bool
+    public function isDisabled(): bool|Closure
     {
-        return (bool) $this->disabled;
+        return $this->disabled;
     }
 }

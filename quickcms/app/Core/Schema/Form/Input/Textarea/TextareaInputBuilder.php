@@ -37,7 +37,7 @@ final class TextareaInputBuilder extends TextInputBaseBuilder
         $this->addIfNotNull(
             $data,
             'autosize',
-            $this->evaluate($schema->autosize()),
+            $this->evaluate($schema->isAutosize()),
         );
 
         $data['props'] = $schema->props();

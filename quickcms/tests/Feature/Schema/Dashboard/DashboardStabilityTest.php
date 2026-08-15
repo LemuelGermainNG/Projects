@@ -194,7 +194,7 @@ it('keeps dashboard immutable', function (): void {
     expect($dashboard->description())
         ->toBe('');
 
-    expect($dashboard->visible())
+    expect($dashboard->isVisible())
         ->toBeTrue();
 
     expect($dashboard->refreshValue())
@@ -206,7 +206,7 @@ it('keeps dashboard immutable', function (): void {
     expect($updated->description())
         ->toBe('Description');
 
-    expect($updated->visible())
+    expect($updated->isVisible())
         ->toBeFalse();
 
     expect($updated->refreshValue())

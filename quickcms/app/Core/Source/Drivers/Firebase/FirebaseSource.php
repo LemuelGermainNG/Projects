@@ -16,6 +16,58 @@ final class FirebaseSource
      * @param  list<string>  $allowedFilters
      * @param  list<string>  $allowedSorts
      */
+    /**
+     * Resolve a single Firestore document.
+     *
+     * @param class-string<Data> $data
+     */
+    public static function read(
+        Firestore $firestore,
+        string $collection,
+        string $data,
+        string|int $id,
+        SourceRequest $request,
+    ): SourceResult {
+        $document = $firestore
+            ->database()
+            ->collection($collection)
+            ->document((string) $id)
+            ->snapshot();
+
+        if (! $document->exists()) {
+            return new SourceResult(
+                records: [],
+                pagination: [
+                    'enabled' => false,
+                    'perPage' => 1,
+                    'page' => 1,
+                    'total' => 0,
+                    'lastPage' => 1,
+                    'nextCursor' => null,
+                    'previousCursor' => null,
+                ],
+            );
+        }
+
+        $record = $document->data();
+        $record['id'] = $document->id();
+
+        return new SourceResult(
+            records: [
+                $data::from($record)->toArray(),
+            ],
+            pagination: [
+                'enabled' => false,
+                'perPage' => 1,
+                'page' => 1,
+                'total' => 1,
+                'lastPage' => 1,
+                'nextCursor' => null,
+                'previousCursor' => null,
+            ],
+        );
+    }
+
     public static function resolve(
         Firestore $firestore,
         string $collection,

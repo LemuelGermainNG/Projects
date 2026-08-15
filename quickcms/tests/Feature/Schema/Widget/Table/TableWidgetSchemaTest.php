@@ -96,7 +96,7 @@ it('inherits widget configuration', function (): void {
     expect($table->icon())
         ->toBe('heroicon-o-users');
 
-    expect($table->visible())
+    expect($table->isVisible())
         ->toBeFalse();
 
     expect($table->width())

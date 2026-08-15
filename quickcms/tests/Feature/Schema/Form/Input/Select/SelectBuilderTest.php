@@ -13,8 +13,8 @@ it('compiles a select input', function (): void {
             'admin' => 'Administrator',
             'user' => 'User',
         ])
-        ->multiple(true)
-        ->searchable(true);
+        ->multiple()
+        ->searchable();
 
     expect(
         $input->compile(
@@ -22,7 +22,7 @@ it('compiles a select input', function (): void {
         ),
     )->toBe([
         'type' => 'select',
-        'name'=> 'role',
+        'name' => 'role',
         'value' => null,
 
         'placeholder' => '',
@@ -43,7 +43,6 @@ it('compiles a select input', function (): void {
         'props' => [],
     ]);
 });
-
 
 it('compiles select options from option schemas', function (): void {
     $select = SelectSchema::make()
@@ -94,4 +93,16 @@ it('compiles select options from option schemas', function (): void {
             ],
         ],
     ]);
+});
+
+
+it('evaluates dynamic searchable state', function (): void {
+    $input = SelectSchema::make()
+        ->name('role')
+        ->searchable(fn (): bool => true);
+
+    expect($input->compile(BuilderRegistryFactory::make()))
+        ->toMatchArray([
+            'searchable' => true,
+        ]);
 });

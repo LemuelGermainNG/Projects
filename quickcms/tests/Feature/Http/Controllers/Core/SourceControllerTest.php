@@ -136,3 +136,47 @@ it('passes sorting to the source', function (): void {
         $response->json('data.records.1.name'),
     )->toBe('Zachary');
 });
+
+
+it('returns a single source record', function (): void {
+    $user = User::factory()->create([
+        'name' => 'John Doe',
+        'email' => 'john@example.com',
+        'status' => 'active',
+    ]);
+
+    $response = $this->getJson(
+        "/api/sources/user/{$user->id}",
+    );
+
+    $response
+        ->assertOk()
+        ->assertJsonPath(
+            'data.record.id',
+            $user->id,
+        )
+        ->assertJsonPath(
+            'data.record.name',
+            'John Doe',
+        )
+        ->assertJsonPath(
+            'data.record.email',
+            'john@example.com',
+        )
+        ->assertJsonPath(
+            'data.record.status',
+            'active',
+        );
+});
+
+it('returns not found when a source record does not exist', function (): void {
+    $response = $this->getJson(
+        '/api/sources/user/999999',
+    );
+
+    $response
+        ->assertNotFound()
+        ->assertJson([
+            'message' => 'Source record not found.',
+        ]);
+});

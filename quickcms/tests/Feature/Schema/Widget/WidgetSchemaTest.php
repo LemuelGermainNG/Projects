@@ -47,7 +47,7 @@ it('sets widget visibility', function (): void {
     $widget = WidgetSchema::make()
         ->visible(false);
 
-    expect($widget->visible())
+    expect($widget->isVisible())
         ->toBeFalse();
 });
 
@@ -119,7 +119,7 @@ it('is immutable', function (): void {
     expect($widget->icon())
         ->toBeNull();
 
-    expect($widget->visible())
+    expect($widget->isVisible())
         ->toBeTrue();
 
     expect($widget->width())
@@ -146,7 +146,7 @@ it('is immutable', function (): void {
     expect($updated->icon())
         ->toBe('heroicon-o-users');
 
-    expect($updated->visible())
+    expect($updated->isVisible())
         ->toBeFalse();
 
     expect($updated->width())

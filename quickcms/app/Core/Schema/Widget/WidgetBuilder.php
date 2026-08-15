@@ -34,7 +34,7 @@ class WidgetBuilder extends Builder
             ),
 
             'visible' => $this->evaluate(
-                $schema->visible(),
+                $schema->isVisible(),
             ),
 
             'width' => $this->evaluate(
@@ -57,7 +57,7 @@ class WidgetBuilder extends Builder
             'key',
             $key,
         );
-        
+
         $this->addIfNotNull(
             $data,
             'source',

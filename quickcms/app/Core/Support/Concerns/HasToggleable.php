@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use Closure;
+
 trait HasToggleable
 {
-    protected bool $toggleable = false;
+    protected bool|Closure $toggleable = false;
 
-    public function toggleable(bool $condition = true): bool|static
+    public function toggleable(bool|Closure $condition = true): static
     {
-        if (func_num_args() === 0) {
-            return $this->toggleable;
-        }
-
         return $this->with('toggleable', $condition);
+    }
+
+    public function isToggleable(): bool|Closure
+    {
+        return $this->toggleable;
     }
 
     public function untoggleable(): static

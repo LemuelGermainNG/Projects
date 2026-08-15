@@ -30,7 +30,7 @@ final class OptionBuilder extends Builder
             ),
 
             'disabled' => $this->evaluate(
-                $schema->disabled(),
+                $schema->isDisabled(),
             ),
             'description' => $this->evaluate(
                 $schema->description(),

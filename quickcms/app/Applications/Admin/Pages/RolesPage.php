@@ -13,7 +13,7 @@ final class RolesPage implements Page
 {
     public function id(): string
     {
-        return 'roles.index';
+        return 'roles';
     }
 
     public function content(): PageSchema

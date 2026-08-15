@@ -13,7 +13,7 @@ final class MediaPage implements Page
 {
     public function id(): string
     {
-        return 'media.index';
+        return 'media';
     }
 
     public function content(): PageSchema

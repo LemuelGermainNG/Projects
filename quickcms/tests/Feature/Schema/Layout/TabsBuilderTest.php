@@ -14,7 +14,7 @@ it('compiles a tabs schema', function (): void {
             TabSchema::make()
                 ->label('Users')
                 ->icon(Heroicons::Users)
-                ->visible(true)
+                ->visible()
                 ->disabled(false)
                 ->child(
                     HeaderSchema::make()
@@ -23,7 +23,7 @@ it('compiles a tabs schema', function (): void {
 
             TabSchema::make()
                 ->label('Roles')
-                ->visible(true)
+                ->visible()
                 ->disabled(false)
                 ->child(
                     HeaderSchema::make()

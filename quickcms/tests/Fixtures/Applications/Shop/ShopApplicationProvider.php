@@ -15,6 +15,7 @@ final class ShopApplicationProvider extends ApplicationProvider
         $application
             ->id('shop')
             ->name('Shop')
-            ->path('/shop');
+            ->path('/shop')
+            ->root('dashboard.sales');
     }
 }

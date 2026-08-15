@@ -17,7 +17,7 @@ it('compiles an accordion item schema', function (): void {
         ->child(
             StackSchema::make(),
         )
-        ->visible(true)
+        ->visible()
         ->disabled(false)
         ->props([
             'lazy' => true,

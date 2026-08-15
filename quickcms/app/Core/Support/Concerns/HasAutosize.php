@@ -11,15 +11,16 @@ trait HasAutosize
     protected bool|Closure|null $autosize = null;
 
     public function autosize(
-        bool|Closure|null $autosize = null,
-    ): bool|Closure|null|static {
-        if (func_num_args() === 0) {
-            return $this->autosize;
-        }
-
+        bool|Closure $value = true,
+    ): static {
         return $this->with(
             'autosize',
-            $autosize,
+            $value,
         );
+    }
+
+    public function isAutosize(): bool|Closure|null
+    {
+        return $this->autosize;
     }
 }

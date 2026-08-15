@@ -25,9 +25,9 @@ it('sets properties', function (): void {
             'user' => 'User',
         ]);
 
-    expect($input->multiple())
+    expect($input->isMultiple())
         ->toBeTrue();
 
-    expect($input->searchable())
+    expect($input->isSearchable())
         ->toBeTrue();
 });

@@ -17,7 +17,6 @@ use App\Core\Schema\Form\Validation\Validation;
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Layout\Card\CardSchema;
 use App\Core\Schema\Page\PageSchema;
-use App\Features\User\Sources\UserSource;
 
 final class UserCreatePage implements Page
 {
@@ -38,7 +37,7 @@ final class UserCreatePage implements Page
                 CardSchema::make()
                     ->child(
                         FormSchema::make()
-                            ->source(UserSource::class)
+                            ->source('user')
                             ->schema([
                                 FieldSchema::make()
                                     ->name('name')

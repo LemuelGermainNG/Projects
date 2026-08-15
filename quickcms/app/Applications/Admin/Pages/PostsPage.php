@@ -13,7 +13,7 @@ final class PostsPage implements Page
 {
     public function id(): string
     {
-        return 'posts.index';
+        return 'posts';
     }
 
     public function content(): PageSchema

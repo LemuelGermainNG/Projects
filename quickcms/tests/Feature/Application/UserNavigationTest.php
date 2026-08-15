@@ -30,12 +30,12 @@ it('contains the users entry', function (): void {
         ->toBe(Heroicons::User);
 
     expect($item->route())
-        ->toBe('users.index');
+        ->toBe('users');
 });
 
 it('resolves the users page route', function (): void {
     expect((new UserNavigation)->pages())
         ->toMatchArray([
-            'users.index' => UsersPage::class,
+            'users' => UsersPage::class,
         ]);
 });

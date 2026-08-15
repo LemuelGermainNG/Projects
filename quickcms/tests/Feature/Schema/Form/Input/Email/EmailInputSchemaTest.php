@@ -23,10 +23,10 @@ it('sets properties', function (): void {
     expect($input->placeholder())
         ->toBe('Email address');
 
-    expect($input->readonly())
+    expect($input->isReadonly())
         ->toBeTrue();
 
-    expect($input->disabled())
+    expect($input->isDisabled())
         ->toBeTrue();
 });
 

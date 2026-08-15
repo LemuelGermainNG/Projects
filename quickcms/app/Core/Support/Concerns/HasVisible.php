@@ -11,18 +11,17 @@ trait HasVisible
     protected bool|Closure $visible = true;
 
     public function visible(
-        bool|Closure|null $visible = null,
-    ): bool|Closure|static {
-        if (func_num_args() === 0) {
-            return $this->visible;
-        }
-
-        return $this->with('visible', $visible);
+        bool|Closure $visible = true,
+    ): static {
+        return $this->with(
+            'visible',
+            $visible,
+        );
     }
 
-    public function isVisible(): bool
+    public function isVisible(): bool|Closure
     {
-        return (bool) $this->visible;
+        return $this->visible;
     }
 
     public function show(): static

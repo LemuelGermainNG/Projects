@@ -21,7 +21,7 @@ final class StatsWidgetBuilderFactory
             ->title('Users')
             ->description('Total users')
             ->icon('heroicon-o-users')
-            ->visible(true)
+            ->visible()
             ->width(4)
             ->columns([
                 'default' => 1,

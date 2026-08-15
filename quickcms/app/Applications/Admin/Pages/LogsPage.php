@@ -13,7 +13,7 @@ final class LogsPage implements Page
 {
     public function id(): string
     {
-        return 'logs.index';
+        return 'logs';
     }
 
     public function content(): PageSchema

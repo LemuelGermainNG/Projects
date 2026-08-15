@@ -43,6 +43,14 @@ Route::prefix('sources')
             ],
         );
 
+        Route::get(
+            '/{source}/{id}',
+            [
+                SourceController::class,
+                'show',
+            ],
+        );
+
         Route::post(
             '/{source}',
             [

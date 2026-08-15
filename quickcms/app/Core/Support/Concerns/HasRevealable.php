@@ -11,15 +11,16 @@ trait HasRevealable
     protected bool|Closure|null $revealable = null;
 
     public function revealable(
-        bool|Closure|null $revealable = null,
-    ): bool|Closure|null|static {
-        if (func_num_args() === 0) {
-            return $this->revealable;
-        }
-
+        bool|Closure $value = true,
+    ): static {
         return $this->with(
             'revealable',
-            $revealable,
+            $value,
         );
+    }
+
+    public function isRevealable(): bool|Closure|null
+    {
+        return $this->revealable;
     }
 }

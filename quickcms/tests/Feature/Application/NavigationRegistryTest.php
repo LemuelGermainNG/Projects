@@ -27,13 +27,13 @@ it('merges navigation items from all providers', function (): void {
         ->toBeInstanceOf(NavigationSchema::class);
 
     expect($schema->items())
-        ->toHaveCount(2);
+        ->toHaveCount(4);
 
     expect($schema->items()[0]->route())
         ->toBe('dashboard');
 
-    expect($schema->items()[1]->route())
-        ->toBe('users.index');
+    expect($schema->items()[1]->id())
+        ->toBe('management');
 });
 
 it('starts with no navigation groups', function (): void {

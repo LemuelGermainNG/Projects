@@ -32,10 +32,10 @@ it('sets tab properties', function (): void {
     expect($tab->icon())
         ->toBe(Heroicons::Users);
 
-    expect($tab->visible())
+    expect($tab->isVisible())
         ->toBeTrue();
 
-    expect($tab->disabled())
+    expect($tab->isDisabled())
         ->toBeFalse();
 
     expect($tab->child())

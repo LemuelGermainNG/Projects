@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 it('exposes the same source to table and card widgets', function (): void {
     $response = $this->getJson(
-        '/api/applications/admin/schema',
+        '/api/applications/admin/pages/dashboard',
     );
 
     $response->assertOk();
 
     $schema = $response->json(
-        'data.schema',
+        'data.page',
     );
 
     expect($schema)

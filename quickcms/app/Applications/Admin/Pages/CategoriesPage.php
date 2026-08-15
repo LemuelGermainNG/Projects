@@ -13,7 +13,7 @@ final class CategoriesPage implements Page
 {
     public function id(): string
     {
-        return 'categories.index';
+        return 'categories';
     }
 
     public function content(): PageSchema

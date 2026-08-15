@@ -115,3 +115,23 @@ it('returns the next firebase page using the cursor', function (): void {
         $firstPage->records[0]['id'],
     );
 });
+
+
+it('returns a single firebase user through the source api', function (): void {
+    $response = $this->getJson(
+        '/api/sources/firebase-user/quickcms-test-user-1',
+    );
+
+    $response
+        ->assertOk()
+        ->assertJsonStructure([
+            'data' => [
+                'record' => [
+                    'id',
+                    'name',
+                    'email',
+                    'status',
+                ],
+            ],
+        ]);
+});

@@ -21,7 +21,7 @@ final class ChartWidgetBuilderFactory
             ->title('Revenue')
             ->description('Monthly revenue')
             ->icon('heroicon-o-chart-bar')
-            ->visible(true)
+            ->visible()
             ->width(8)
             ->columns([
                 'default' => 1,

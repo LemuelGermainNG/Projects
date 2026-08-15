@@ -1,0 +1,440 @@
+   PASS  Tests\Feature\Support\BooleanFluentConventionTest
+  ✓ it treats boolean methods without arguments as enabling the option   0.06s  
+  ✓ it preserves closures for dynamic boolean options                    0.05s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Application\AdminNavigationTest > it builds the adm…   
+  Failed asserting that actual size 2 matches expected size 3.
+
+  at tests/Feature/Application/AdminNavigationTest.php:38
+     34▕     expect($schema->groups()[0]->label())
+     35▕         ->toBe('Management');
+     36▕ 
+     37▕     expect($schema->groups()[0]->items())
+  ➜  38▕         ->toHaveCount(3);
+     39▕ 
+     40▕     expect($schema->groups()[1]->label())
+     41▕         ->toBe('Content');
+     42▕ 
+
+  1   tests/Feature/Application/AdminNavigationTest.php:38
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Http\ApplicationSchemaEndpointTest > it returns the…   
+  Expected response status code [200] but received 500.
+Failed asserting that 500 is identical to 200.
+
+The following exception occurred during the last request:
+
+RuntimeException: Application [shop] has no root page. in /home/dmtb/dev/Projects/quickcms/app/Core/Application/ApplicationBuilder.php:39
+Stack trace:
+#0 /home/dmtb/dev/Projects/quickcms/app/Core/Application/Application.php(52): App\Core\Application\ApplicationBuilder->build()
+#1 /home/dmtb/dev/Projects/quickcms/app/Http/Controllers/Core/ApplicationSchemaController.php(59): App\Core\Application\Application::build()
+#2 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): App\Http\Controllers\Core\ApplicationSchemaController->schema()
+#3 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Route.php(276): Illuminate\Routing\ControllerDispatcher->dispatch()
+#4 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Route.php(216): Illuminate\Routing\Route->runController()
+#5 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Router.php(822): Illuminate\Routing\Route->run()
+#6 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Routing\Router->{closure:Illuminate\Routing\Router::runRouteWithinStack():821}()
+#7 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(52): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#8 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Routing\Middleware\SubstituteBindings->handle()
+#9 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#10 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Router.php(821): Illuminate\Pipeline\Pipeline->then()
+#11 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Router.php(800): Illuminate\Routing\Router->runRouteWithinStack()
+#12 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Router.php(764): Illuminate\Routing\Router->runRoute()
+#13 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Routing/Router.php(753): Illuminate\Routing\Router->dispatchToRoute()
+#14 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
+#15 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(180): Illuminate\Foundation\Http\Kernel->{closure:Illuminate\Foundation\Http\Kernel::dispatchToRouter():197}()
+#16 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:Illuminate\Pipeline\Pipeline::prepareDestination():178}()
+#17 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#18 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
+#19 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#20 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
+#21 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
+#22 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#23 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePostSize->handle()
+#24 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(109): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#25 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
+#26 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(74): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#27 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\HandleCors->handle()
+#28 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(58): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#29 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\TrustProxies->handle()
+#30 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/InvokeDeferredCallbacks.php(22): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#31 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Foundation\Http\Middleware\InvokeDeferredCallbacks->handle()
+#32 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePathEncoding.php(28): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#33 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(219): Illuminate\Http\Middleware\ValidatePathEncoding->handle()
+#34 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(137): Illuminate\Pipeline\Pipeline->{closure:{closure:Illuminate\Pipeline\Pipeline::carry():194}:195}()
+#35 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
+#36 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
+#37 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(638): Illuminate\Foundation\Http\Kernel->handle()
+#38 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(604): Illuminate\Foundation\Testing\TestCase->call()
+#39 /home/dmtb/dev/Projects/quickcms/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php(381): Illuminate\Foundation\Testing\TestCase->json()
+#40 /home/dmtb/dev/Projects/quickcms/tests/Feature/Http/ApplicationSchemaEndpointTest.php(98): Illuminate\Foundation\Testing\TestCase->getJson()
+#41 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/src/Factories/TestCaseMethodFactory.php(177): P\Tests\Feature\Http\ApplicationSchemaEndpointTest->{closure:/home/dmtb/dev/Projects/quickcms/tests/Feature/Http/ApplicationSchemaEndpointTest.php:92}()
+#42 [internal function]: P\Tests\Feature\Http\ApplicationSchemaEndpointTest->{closure:Pest\Factories\TestCaseMethodFactory::getClosure():167}()
+#43 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/src/Concerns/Testable.php(581): call_user_func_array()
+#44 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/src/Support/ExceptionTrace.php(26): P\Tests\Feature\Http\ApplicationSchemaEndpointTest->{closure:Pest\Concerns\Testable::__callClosure():581}()
+#45 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/src/Concerns/Testable.php(581): Pest\Support\ExceptionTrace::ensure()
+#46 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/src/Concerns/Testable.php(403): P\Tests\Feature\Http\ApplicationSchemaEndpointTest->__callClosure()
+#47 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/src/Factories/TestCaseFactory.php(178) : eval()'d code(44): P\Tests\Feature\Http\ApplicationSchemaEndpointTest->__runTest()
+#48 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestCase.php(1318): P\Tests\Feature\Http\ApplicationSchemaEndpointTest->__pest_evaluable_it_returns_the_compiled_schema_for_the_shop_application()
+#49 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestCase.php(1355): PHPUnit\Framework\TestCase->invokeTestMethod()
+#50 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestCase.php(521): PHPUnit\Framework\TestCase->runTest()
+#51 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestRunner/TestRunner.php(99): PHPUnit\Framework\TestCase->runBare()
+#52 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestCase.php(361): PHPUnit\Framework\TestRunner->run()
+#53 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestCase->run()
+#54 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#55 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/Framework/TestSuite.php(374): PHPUnit\Framework\TestSuite->run()
+#56 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/TextUI/TestRunner.php(64): PHPUnit\Framework\TestSuite->run()
+#57 /home/dmtb/dev/Projects/quickcms/vendor/phpunit/phpunit/src/TextUI/Application.php(229): PHPUnit\TextUI\TestRunner->run()
+#58 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/src/Kernel.php(117): PHPUnit\TextUI\Application->run()
+#59 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/bin/pest(207): Pest\Kernel->handle()
+#60 /home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/bin/pest(215): {closure:/home/dmtb/dev/Projects/quickcms/vendor/pestphp/pest/bin/pest:21}()
+#61 {main}
+
+----------------------------------------------------------------------------------
+
+Application [shop] has no root page.
+
+  at tests/Feature/Http/ApplicationSchemaEndpointTest.php:103
+     99▕         '/api/applications/shop/schema',
+    100▕     );
+    101▕ 
+    102▕     $response
+  ➜ 103▕         ->assertOk()
+    104▕         ->assertJsonPath(
+    105▕             'data.application.id',
+    106▕             'shop',
+    107▕         )
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Form\Input\Select\SelectBuilderTest > it com…   
+  Failed asserting that two arrays are identical.
+           'user' => 'User',
+       ],
+       'multiple' => true,
+  -    'searchable' => true,
+  -    'props' => Array &2 [],
+  +    'searchable' => App\Core\Schema\Form\Input\Select\SelectSchema Object #30789 (
+  +        'disabled' => false,
+  +        'name' => 'role',
+  +        'placeholder' => '',
+  +        'prefix' => null,
+  +        'props' => Array &2 [],
+  +        'readonly' => false,
+  +        'state' => null,
+  +        'suffix' => null,
+  +        'value' => null,
+  +        'validation' => null,
+  +        'options' => Array &3 [
+  +            'admin' => 'Administrator',
+  +            'user' => 'User',
+  +        ],
+  +        'multiple' => true,
+  +        'searchable' => true,
+  +        'native' => null,
+  +        'clearable' => null,
+  +        'loadingMessage' => null,
+  +        'noResultsMessage' => null,
+  +        'relationship' => null,
+  +    ),
+  +    'props' => Array &4 [],
+   ]
+  
+
+  at tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:23
+     19▕     expect(
+     20▕         $input->compile(
+     21▕             BuilderRegistryFactory::make(),
+     22▕         ),
+  ➜  23▕     )->toBe([
+     24▕         'type' => 'select',
+     25▕         'name' => 'role',
+     26▕         'value' => null,
+     27▕ 
+
+  1   tests/Feature/Schema/Form/Input/Select/SelectBuilderTest.php:23
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Form\Input\Select\SelectSchemaTest > it sets…   
+  Failed asserting that App\Core\Schema\Form\Input\Select\SelectSchema Object #37462 (
+    'disabled' => false,
+    'name' => '',
+    'placeholder' => '',
+    'prefix' => null,
+    'props' => Array &0 [],
+    'readonly' => false,
+    'state' => null,
+    'suffix' => null,
+    'value' => null,
+    'validation' => null,
+    'options' => Array &1 [
+        'admin' => 'Administrator',
+        'user' => 'User',
+    ],
+    'multiple' => true,
+    'searchable' => true,
+    'native' => null,
+    'clearable' => null,
+    'loadingMessage' => null,
+    'noResultsMessage' => null,
+    'relationship' => null,
+) is true.
+
+  at tests/Feature/Schema/Form/Input/Select/SelectSchemaTest.php:32
+     28▕     expect($input->isMultiple())
+     29▕         ->toBeTrue();
+     30▕ 
+     31▕     expect($input->searchable())
+  ➜  32▕         ->toBeTrue();
+     33▕ });
+     34▕ 
+
+  1   tests/Feature/Schema/Form/Input/Select/SelectSchemaTest.php:32
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Table\ColumnBuilderTest > it compiles a colu…   
+  Failed asserting that two arrays are identical.
+       'type' => 'column',
+       'label' => 'Name',
+       'description' => '',
+  -    'sortable' => false,
+  -    'searchable' => false,
+  -    'toggleable' => false,
+  +    'sortable' => App\Core\Schema\Table\Column\ColumnSchema Object #50441 (
+  +        'child' => App\Core\Schema\Element\Text\TextSchema Object #48401 (
+  +            'color' => App\Core\Support\Enum\Color Enum #21025 (Primary, 'primary'),
+  +            'props' => Array &1 [],
+  +            'value' => 'John Doe',
+  +        ),
+  +        'description' => '',
+  +        'label' => 'Name',
+  +        'props' => Array &2 [],
+  +        'align' => App\Core\Support\Enum\Layout\Align Enum #28590 (Stretch, 'stretch'),
+  +        'default' => null,
+  +        'formatter' => null,
+  +        'hidden' => false,
+  +        'searchable' => false,
+  +        'sortable' => true,
+  +        'toggleable' => false,
+  +        'width' => null,
+  +    ),
+  +    'searchable' => App\Core\Schema\Table\Column\ColumnSchema Object #49965 (
+  +        'child' => App\Core\Schema\Element\Text\TextSchema Object #48401,
+  +        'description' => '',
+  +        'label' => 'Name',
+  +        'props' => Array &3 [],
+  +        'align' => App\Core\Support\Enum\Layout\Align Enum #28590 (Stretch, 'stretch'),
+  +        'default' => null,
+  +        'formatter' => null,
+  +        'hidden' => false,
+  +        'searchable' => true,
+  +        'sortable' => false,
+  +        'toggleable' => false,
+  +        'width' => null,
+  +    ),
+  +    'toggleable' => App\Core\Schema\Table\Column\ColumnSchema Object #30596 (
+  +        'child' => App\Core\Schema\Element\Text\TextSchema Object #48401,
+  +        'description' => '',
+  +        'label' => 'Name',
+  +        'props' => Array &4 [],
+  +        'align' => App\Core\Support\Enum\Layout\Align Enum #28590 (Stretch, 'stretch'),
+  +        'default' => null,
+  +        'formatter' => null,
+  +        'hidden' => false,
+  +        'searchable' => false,
+  +        'sortable' => false,
+  +        'toggleable' => true,
+  +        'width' => null,
+  +    ),
+       'hidden' => false,
+       'default' => null,
+       'align' => 'stretch',
+       'width' => null,
+       'formatter' => null,
+  -    'child' => Array &1 [
+  +    'child' => Array &5 [
+           'type' => 'text',
+           'value' => 'John Doe',
+           'color' => 'primary',
+  -        'props' => Array &2 [],
+  +        'props' => Array &6 [],
+       ],
+  -    'props' => Array &3 [],
+  +    'props' => Array &7 [],
+   ]
+  
+
+  at tests/Feature/Schema/Table/ColumnBuilderTest.php:21
+     17▕     expect(
+     18▕         $column->compile(
+     19▕             BuilderRegistryFactory::make(),
+     20▕         ),
+  ➜  21▕     )->toBe([
+     22▕         'type' => 'column',
+     23▕ 
+     24▕         'label' => 'Name',
+     25▕ 
+
+  1   tests/Feature/Schema/Table/ColumnBuilderTest.php:21
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Schema\Table\TableBuilderTest > it compiles a table…   
+  Failed asserting that two arrays are identical.
+               'type' => 'column',
+               'label' => 'Name',
+               'description' => '',
+  -            'sortable' => false,
+  -            'searchable' => false,
+  -            'toggleable' => false,
+  +            'sortable' => App\Core\Schema\Table\Column\ColumnSchema Object #45877 (
+  +                'child' => App\Core\Schema\Element\Text\TextSchema Object #49307 (
+  +                    'color' => App\Core\Support\Enum\Color Enum #21025 (Primary, 'primary'),
+  +                    'props' => Array &3 [],
+  +                    'value' => 'John Doe',
+  +                ),
+  +                'description' => '',
+  +                'label' => 'Name',
+  +                'props' => Array &4 [],
+  +                'align' => App\Core\Support\Enum\Layout\Align Enum #28590 (Stretch, 'stretch'),
+  +                'default' => null,
+  +                'formatter' => null,
+  +                'hidden' => false,
+  +                'searchable' => false,
+  +                'sortable' => true,
+  +                'toggleable' => false,
+  +                'width' => null,
+  +            ),
+  +            'searchable' => App\Core\Schema\Table\Column\ColumnSchema Object #49397 (
+  +                'child' => App\Core\Schema\Element\Text\TextSchema Object #49307,
+  +                'description' => '',
+  +                'label' => 'Name',
+  +                'props' => Array &5 [],
+  +                'align' => App\Core\Support\Enum\Layout\Align Enum #28590 (Stretch, 'stretch'),
+  +                'default' => null,
+  +                'formatter' => null,
+  +                'hidden' => false,
+  +                'searchable' => true,
+  +                'sortable' => false,
+  +                'toggleable' => false,
+  +                'width' => null,
+  +            ),
+  +            'toggleable' => App\Core\Schema\Table\Column\ColumnSchema Object #49747 (
+  +                'child' => App\Core\Schema\Element\Text\TextSchema Object #49307,
+  +                'description' => '',
+  +                'label' => 'Name',
+  +                'props' => Array &6 [],
+  +                'align' => App\Core\Support\Enum\Layout\Align Enum #28590 (Stretch, 'stretch'),
+  +                'default' => null,
+  +                'formatter' => null,
+  +                'hidden' => false,
+  +                'searchable' => false,
+  +                'sortable' => false,
+  +                'toggleable' => true,
+  +                'width' => null,
+  +            ),
+               'hidden' => false,
+               'default' => null,
+               'align' => 'stretch',
+               'width' => null,
+               'formatter' => null,
+  -            'child' => Array &3 [
+  +            'child' => Array &7 [
+                   'type' => 'text',
+                   'value' => 'John Doe',
+                   'color' => 'primary',
+  -                'props' => Array &4 [],
+  +                'props' => Array &8 [],
+               ],
+  -            'props' => Array &5 [],
+  +            'props' => Array &9 [],
+           ],
+       ],
+  -    'filters' => Array &6 [
+  -        0 => Array &7 [
+  +    'filters' => Array &10 [
+  +        0 => Array &11 [
+               'type' => 'filter',
+               'name' => 'status',
+               'label' => 'Status',
+               'description' => '',
+  -            'child' => Array &8 [
+  +            'child' => Array &12 [
+                   'type' => 'text',
+                   'value' => 'Active',
+                   'color' => 'primary',
+  -                'props' => Array &9 [],
+  +                'props' => Array &13 [],
+               ],
+  -            'props' => Array &10 [],
+  +            'props' => Array &14 [],
+           ],
+       ],
+  -    'headerActions' => Array &11 [
+  -        0 => Array &12 [
+  +    'headerActions' => Array &15 [
+  +        0 => Array &16 [
+               'type' => 'action',
+               'label' => 'Create',
+               'icon' => null,
+  @@ @@
+               'confirmation' => null,
+           ],
+       ],
+  -    'rowActions' => Array &13 [
+  -        0 => Array &14 [
+  +    'rowActions' => Array &17 [
+  +        0 => Array &18 [
+               'type' => 'action',
+               'label' => 'Edit',
+               'icon' => null,
+  @@ @@
+               'confirmation' => null,
+           ],
+       ],
+  -    'bulkActions' => Array &15 [
+  -        0 => Array &16 [
+  +    'bulkActions' => Array &19 [
+  +        0 => Array &20 [
+               'type' => 'action',
+               'label' => 'Delete selected',
+               'icon' => null,
+  @@ @@
+               'confirmation' => null,
+           ],
+       ],
+  -    'pagination' => Array &17 [
+  +    'pagination' => Array &21 [
+           'type' => 'pagination',
+           'enabled' => true,
+           'perPage' => 25,
+  -        'options' => Array &18 [
+  +        'options' => Array &22 [
+               0 => 15,
+               1 => 30,
+               2 => 50,
+  @@ @@
+           ],
+           'simple' => false,
+       ],
+  -    'props' => Array &19 [],
+  +    'props' => Array &23 [],
+   ]
+  
+
+  at tests/Feature/Schema/Table/TableBuilderTest.php:61
+     57▕     expect(
+     58▕         $table->compile(
+     59▕             BuilderRegistryFactory::make(),
+     60▕         ),
+  ➜  61▕     )->toBe([
+     62▕         'type' => 'table',
+     63▕ 
+     64▕         'source' => UserSource::class,
+     65▕ 
+
+  1   tests/Feature/Schema/Table/TableBuilderTest.php:61
+
+
+  Tests:    6 failed, 8 skipped, 643 passed (2737 assertions)
+  Duration: 47.80s
+
+Script @php artisan test handling the test event returned with error code 1

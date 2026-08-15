@@ -14,12 +14,10 @@ it('creates a navigation schema', function (): void {
 
 it('compiles a navigation schema', function (): void {
     $navigation = NavigationSchema::make()
-        ->label('Administration')
-        ->icon('heroicon-o-cog')
         ->items([
             NavigationItemSchema::make()
                 ->label('Users')
-                ->route('users.index'),
+                ->route('users'),
         ])
         ->props([
             'foo' => 'bar',
@@ -32,15 +30,11 @@ it('compiles a navigation schema', function (): void {
     )->toBe([
         'type' => 'navigation',
 
-        'label' => 'Administration',
-
-        'icon' => 'heroicon-o-cog',
-
         'items' => [
             [
                 'label' => 'Users',
                 'icon' => null,
-                'route' => 'users.index',
+                'route' => 'users',
                 'url' => null,
                 'badge' => null,
                 'visible' => true,
@@ -48,8 +42,6 @@ it('compiles a navigation schema', function (): void {
                 'props' => [],
             ],
         ],
-
-        'groups' => [],
 
         'props' => [
             'foo' => 'bar',
@@ -60,7 +52,7 @@ it('compiles a navigation schema', function (): void {
 it('is immutable', function (): void {
     $navigation = NavigationSchema::make();
 
-    $updated = $navigation->label('Administration');
+    $updated = $navigation->items([]);
 
     expect($updated)
         ->not->toBe($navigation);

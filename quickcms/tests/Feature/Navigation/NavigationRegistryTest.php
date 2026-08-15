@@ -55,10 +55,10 @@ it('merges group contributions from multiple navigation providers', function ():
         ->toBe('users');
 
     expect($management->items()[1]->route())
-        ->toBe('teams.index');
+        ->toBe('teams');
 
     expect($management->items()[2]->route())
-        ->toBe('roles.index');
+        ->toBe('roles');
 });
 
 it('sorts direct items, groups and group items', function (): void {

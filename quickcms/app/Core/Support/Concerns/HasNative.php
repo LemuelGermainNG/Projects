@@ -11,12 +11,16 @@ trait HasNative
     protected bool|Closure|null $native = null;
 
     public function native(
-        bool|Closure|null $native = null,
-    ): bool|Closure|null|static {
-        if (func_num_args() === 0) {
-            return $this->native;
-        }
+        bool|Closure $value = true,
+    ): static {
+        return $this->with(
+            'native',
+            $value,
+        );
+    }
 
-        return $this->with('native', $native);
+    public function isNative(): bool|Closure|null
+    {
+        return $this->native;
     }
 }

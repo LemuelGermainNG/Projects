@@ -20,7 +20,7 @@ it('supports navigation item group references and sort values', function (): voi
     $item = NavigationItemSchema::make()
         ->group('management')
         ->label('Users')
-        ->route('users.index')
+        ->route('users')
         ->sort(10);
 
     expect($item->group())->toBe('management');

@@ -21,7 +21,7 @@ final class TableWidgetBuilderFactory
             ->title('Users')
             ->description('User list')
             ->icon('heroicon-o-users')
-            ->visible(true)
+            ->visible()
             ->width(12)
             ->columns([
                 'default' => 1,
@@ -104,7 +104,7 @@ final class TableWidgetBuilderFactory
             ->title('Users')
             ->description('User list')
             ->icon('heroicon-o-users')
-            ->visible(true)
+            ->visible()
             ->width(12)
             ->columns([
                 'default' => 1,

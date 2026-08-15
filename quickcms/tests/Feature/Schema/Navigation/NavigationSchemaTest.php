@@ -13,20 +13,16 @@ it('creates a navigation schema', function (): void {
 
 it('sets navigation properties', function (): void {
     $navigation = NavigationSchema::make()
-        ->label('Administration')
-        ->icon('heroicon-o-cog')
         ->items([
             NavigationItemSchema::make()
                 ->label('Users')
-                ->route('users.index'),
+                ->route('users'),
         ])
         ->props([
             'foo' => 'bar',
         ]);
 
-    expect($navigation->label())->toBe('Administration')
-        ->and($navigation->icon())->toBe('heroicon-o-cog')
-        ->and($navigation->items())->toHaveCount(1)
+    expect($navigation->items())->toHaveCount(1)
         ->and($navigation->props())->toBe([
             'foo' => 'bar',
         ]);
@@ -35,11 +31,11 @@ it('sets navigation properties', function (): void {
 it('is immutable', function (): void {
     $navigation = NavigationSchema::make();
 
-    $updated = $navigation->label('Administration');
+    $updated = $navigation->items([]);
 
     expect($updated)
         ->not->toBe($navigation);
 
-    expect($navigation->label())
-        ->toBe('');
+    expect($navigation->items())
+        ->toBe([]);
 });

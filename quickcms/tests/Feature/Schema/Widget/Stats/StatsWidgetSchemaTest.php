@@ -55,7 +55,7 @@ it('inherits widget configuration', function (): void {
     expect($stats->icon())
         ->toBe('heroicon-o-users');
 
-    expect($stats->visible())
+    expect($stats->isVisible())
         ->toBeFalse();
 
     expect($stats->width())

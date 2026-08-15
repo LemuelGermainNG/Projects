@@ -29,7 +29,7 @@ abstract class SelectInputBaseBuilder extends BaseInputBuilder
             $data,
             'multiple',
             $this->evaluate(
-                $schema->multiple(),
+                $schema->isMultiple(),
             ),
         );
 
@@ -37,7 +37,7 @@ abstract class SelectInputBaseBuilder extends BaseInputBuilder
             $data,
             'searchable',
             $this->evaluate(
-                $schema->searchable(),
+                $schema->isSearchable(),
             ),
         );
 
@@ -45,7 +45,7 @@ abstract class SelectInputBaseBuilder extends BaseInputBuilder
             $data,
             'native',
             $this->evaluate(
-                $schema->native(),
+                $schema->isNative(),
             ),
         );
 
@@ -53,7 +53,7 @@ abstract class SelectInputBaseBuilder extends BaseInputBuilder
             $data,
             'clearable',
             $this->evaluate(
-                $schema->clearable(),
+                $schema->isClearable(),
             ),
         );
 

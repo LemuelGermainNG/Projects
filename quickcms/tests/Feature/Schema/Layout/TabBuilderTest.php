@@ -11,7 +11,7 @@ it('compiles a tab schema', function (): void {
     $tab = TabSchema::make()
         ->label('Users')
         ->icon(Heroicons::Users)
-        ->visible(true)
+        ->visible()
         ->disabled(false)
         ->child(
             HeaderSchema::make()

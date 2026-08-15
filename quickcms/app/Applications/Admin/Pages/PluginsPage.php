@@ -13,7 +13,7 @@ final class PluginsPage implements Page
 {
     public function id(): string
     {
-        return 'plugins.index';
+        return 'plugins';
     }
 
     public function content(): PageSchema

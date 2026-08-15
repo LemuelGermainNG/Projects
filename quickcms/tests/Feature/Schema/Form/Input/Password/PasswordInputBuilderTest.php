@@ -10,8 +10,8 @@ it('compiles a password input', function (): void {
         ->name('password')
         ->value('secret')
         ->placeholder('Password')
-        ->readonly(true)
-        ->disabled(true);
+        ->readonly()
+        ->disabled();
 
     expect(
         $input->compile(
@@ -19,7 +19,7 @@ it('compiles a password input', function (): void {
         ),
     )->toBe([
         'type' => 'password-input',
-        'name'=> 'password',
+        'name' => 'password',
         'value' => 'secret',
 
         'placeholder' => 'Password',

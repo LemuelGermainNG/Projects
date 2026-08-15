@@ -22,6 +22,6 @@ it('sets properties', function (): void {
     expect($input->cols())
         ->toBe(50);
 
-    expect($input->autosize())
+    expect($input->isAutosize())
         ->toBeTrue();
 });

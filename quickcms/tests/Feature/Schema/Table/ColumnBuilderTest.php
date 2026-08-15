@@ -54,3 +54,19 @@ it('compiles a column schema', function (): void {
         'props' => [],
     ]);
 });
+
+
+it('evaluates dynamic boolean column options', function (): void {
+    $column = ColumnSchema::make()
+        ->label('Name')
+        ->sortable(fn (): bool => true)
+        ->searchable(fn (): bool => true)
+        ->toggleable(fn (): bool => true);
+
+    expect($column->compile(BuilderRegistryFactory::make()))
+        ->toMatchArray([
+            'sortable' => true,
+            'searchable' => true,
+            'toggleable' => true,
+        ]);
+});

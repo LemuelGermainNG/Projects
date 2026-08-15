@@ -146,7 +146,7 @@ it('inherits widget configuration', function (): void {
     expect($list->icon())
         ->toBe('heroicon-o-users');
 
-    expect($list->visible())
+    expect($list->isVisible())
         ->toBeFalse();
 
     expect($list->width())

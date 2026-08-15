@@ -30,11 +30,11 @@ final class TabBuilder extends Builder
             ),
 
             'visible' => $this->evaluate(
-                $schema->visible(),
+                $schema->isVisible(),
             ),
 
             'disabled' => $this->evaluate(
-                $schema->disabled(),
+                $schema->isDisabled(),
             ),
 
             'child' => $schema->child() !== null

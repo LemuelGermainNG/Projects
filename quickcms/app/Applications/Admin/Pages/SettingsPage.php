@@ -13,7 +13,7 @@ final class SettingsPage implements Page
 {
     public function id(): string
     {
-        return 'settings.index';
+        return 'settings';
     }
 
     public function content(): PageSchema

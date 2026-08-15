@@ -34,7 +34,7 @@ final class CardWidgetBuilder extends Builder
             ),
 
             'visible' => $this->evaluate(
-                $schema->visible(),
+                $schema->isVisible(),
             ),
 
             'width' => $this->evaluate(

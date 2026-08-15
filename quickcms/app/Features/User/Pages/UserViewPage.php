@@ -13,7 +13,6 @@ use App\Core\Schema\Infolist\Entry\EntrySchema;
 use App\Core\Schema\Infolist\InfolistSchema;
 use App\Core\Schema\Layout\Card\CardSchema;
 use App\Core\Schema\Page\PageSchema;
-use App\Features\User\Sources\UserSource;
 
 final class UserViewPage implements Page
 {
@@ -34,7 +33,7 @@ final class UserViewPage implements Page
                 CardSchema::make()
                     ->child(
                         InfolistSchema::make()
-                            ->source(UserSource::class)
+                            ->source('user')
                             ->schema([
                                 EntrySchema::make()
                                     ->label('Name')

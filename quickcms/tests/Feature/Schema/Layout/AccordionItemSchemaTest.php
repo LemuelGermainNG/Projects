@@ -34,10 +34,10 @@ it('sets accordion item properties', function (): void {
     expect($item->child())
         ->toBeInstanceOf(StackSchema::class);
 
-    expect($item->visible())
+    expect($item->isVisible())
         ->toBeTrue();
 
-    expect($item->disabled())
+    expect($item->isDisabled())
         ->toBeFalse();
 
     expect($item->props())
@@ -54,9 +54,9 @@ it('is immutable', function (): void {
     expect($updated)
         ->not->toBe($item);
 
-    expect($item->visible())
+    expect($item->isVisible())
         ->toBeTrue();
 
-    expect($updated->visible())
+    expect($updated->isVisible())
         ->toBeFalse();
 });

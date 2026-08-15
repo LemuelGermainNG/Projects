@@ -13,7 +13,7 @@ final class TeamsPage implements Page
 {
     public function id(): string
     {
-        return 'teams.index';
+        return 'teams';
     }
 
     public function content(): PageSchema

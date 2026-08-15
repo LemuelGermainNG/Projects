@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace App\Core\Support\Concerns;
 
+use Closure;
+
 trait HasSearchable
 {
-    protected bool $searchable = false;
+    protected bool|Closure $searchable = false;
 
-    public function searchable(bool $condition = true): bool|static
+    public function searchable(bool|Closure $condition = true): static
     {
-        if (func_num_args() === 0) {
-            return $this->searchable;
-        }
-
         return $this->with('searchable', $condition);
+    }
+
+    public function isSearchable(): bool|Closure
+    {
+        return $this->searchable;
     }
 
     public function unsearchable(): static

@@ -24,7 +24,7 @@ final class PasswordInputBuilder extends TextInputBaseBuilder
             $data,
             'revealable',
             $this->evaluate(
-                $schema->revealable(),
+                $schema->isRevealable(),
             ),
         );
 

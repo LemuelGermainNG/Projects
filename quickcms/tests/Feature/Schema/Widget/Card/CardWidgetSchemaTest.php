@@ -39,7 +39,7 @@ it('inherits widget configuration', function (): void {
     expect($card->icon())
         ->toBe('heroicon-o-users');
 
-    expect($card->visible())
+    expect($card->isVisible())
         ->toBeFalse();
 
     expect($card->width())

@@ -93,7 +93,7 @@ it('builds an application schema with a root route', function (): void {
         ->toHaveCount(2);
 });
 
-it('allows an application without a root route', function (): void {
+it('requires an application root route', function (): void {
     $registry = new ApplicationRegistry;
 
     $application = ApplicationMetadata::make()
@@ -109,14 +109,14 @@ it('allows an application without a root route', function (): void {
         $registry,
     );
 
-    $result = (new ApplicationBuilder(
+    expect(fn () => (new ApplicationBuilder(
         $registry,
         $navigationRegistry,
     ))->build(
         $application,
         ApplicationSchema::make(),
+    ))->toThrow(
+        RuntimeException::class,
+        'Application [shop] has no root page.',
     );
-
-    expect($result->root())
-        ->toBeNull();
 });

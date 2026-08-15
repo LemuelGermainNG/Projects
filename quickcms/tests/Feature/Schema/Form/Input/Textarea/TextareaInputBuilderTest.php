@@ -11,7 +11,7 @@ it('compiles a textarea input', function (): void {
         ->value('Lorem ipsum')
         ->rows(5)
         ->cols(50)
-        ->autosize(true);
+        ->autosize();
 
     expect(
         $input->compile(

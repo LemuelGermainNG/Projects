@@ -21,7 +21,7 @@ final class CalendarWidgetBuilderFactory
             ->title('Calendar')
             ->description('Upcoming events')
             ->icon('heroicon-o-calendar')
-            ->visible(true)
+            ->visible()
             ->width(12)
             ->columns([
                 'default' => 1,

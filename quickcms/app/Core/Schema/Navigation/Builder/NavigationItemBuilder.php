@@ -25,7 +25,7 @@ final class NavigationItemBuilder extends Builder
             'route' => $schema->route(),
             'url' => $schema->url(),
             'badge' => $schema->badge(),
-            'visible' => $schema->visible(),
+            'visible' => $schema->isVisible(),
             'children' => array_map(
                 fn (NavigationItemSchema $child): array => $this->registry->build(
                     $child,

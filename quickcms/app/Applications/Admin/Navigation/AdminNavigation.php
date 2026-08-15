@@ -41,13 +41,13 @@ final class AdminNavigation implements Navigation
                         NavigationItemSchema::make()
                             ->label('Teams')
                             ->icon(Heroicons::UserGroup)
-                            ->route('teams.index')
+                            ->route('teams')
                             ->sort(20),
 
                         NavigationItemSchema::make()
                             ->label('Roles')
                             ->icon(Heroicons::ShieldCheck)
-                            ->route('roles.index')
+                            ->route('roles')
                             ->sort(30),
                     ]),
 
@@ -60,19 +60,19 @@ final class AdminNavigation implements Navigation
                         NavigationItemSchema::make()
                             ->label('Posts')
                             ->icon(Heroicons::Document)
-                            ->route('posts.index')
+                            ->route('posts')
                             ->sort(10),
 
                         NavigationItemSchema::make()
                             ->label('Media')
                             ->icon(Heroicons::Photo)
-                            ->route('media.index')
+                            ->route('media')
                             ->sort(20),
 
                         NavigationItemSchema::make()
                             ->label('Categories')
                             ->icon(Heroicons::Tag)
-                            ->route('categories.index')
+                            ->route('categories')
                             ->sort(30),
                     ]),
 
@@ -85,19 +85,19 @@ final class AdminNavigation implements Navigation
                         NavigationItemSchema::make()
                             ->label('Settings')
                             ->icon(Heroicons::AdjustmentsHorizontal)
-                            ->route('settings.index')
+                            ->route('settings')
                             ->sort(10),
 
                         NavigationItemSchema::make()
                             ->label('Plugins')
                             ->icon(Heroicons::PuzzlePiece)
-                            ->route('plugins.index')
+                            ->route('plugins')
                             ->sort(20),
 
                         NavigationItemSchema::make()
                             ->label('Logs')
                             ->icon(Heroicons::DocumentMagnifyingGlass)
-                            ->route('logs.index')
+                            ->route('logs')
                             ->sort(30),
                     ]),
             ]);
@@ -110,14 +110,14 @@ final class AdminNavigation implements Navigation
     {
         return [
             'dashboard' => DashboardPage::class,
-            'teams.index' => TeamsPage::class,
-            'roles.index' => RolesPage::class,
-            'posts.index' => PostsPage::class,
-            'media.index' => MediaPage::class,
-            'categories.index' => CategoriesPage::class,
-            'settings.index' => SettingsPage::class,
-            'plugins.index' => PluginsPage::class,
-            'logs.index' => LogsPage::class,
+            'teams' => TeamsPage::class,
+            'roles' => RolesPage::class,
+            'posts' => PostsPage::class,
+            'media' => MediaPage::class,
+            'categories' => CategoriesPage::class,
+            'settings' => SettingsPage::class,
+            'plugins' => PluginsPage::class,
+            'logs' => LogsPage::class,
         ];
     }
 

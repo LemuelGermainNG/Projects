@@ -16,7 +16,7 @@ final class WidgetBuilderFactory
             ->title('Users')
             ->description('Manage users')
             ->icon('heroicon-o-users')
-            ->visible(true)
+            ->visible()
             ->width(6)
             ->columns([
                 'default' => 1,

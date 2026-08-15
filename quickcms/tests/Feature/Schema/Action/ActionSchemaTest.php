@@ -120,7 +120,7 @@ it('sets the visibility', function (): void {
     $action = ActionSchema::make()
         ->visible(false);
 
-    expect($action->visible())
+    expect($action->isVisible())
         ->toBeFalse();
 });
 
@@ -128,8 +128,6 @@ it('sets the disabled state', function (): void {
     $action = ActionSchema::make()
         ->disabled(true);
 
-    expect($action->disabled())
+    expect($action->isDisabled())
         ->toBeTrue();
 });
-
-

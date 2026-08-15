@@ -14,10 +14,10 @@ it('sets navigation item properties', function (): void {
     $item = NavigationItemSchema::make()
         ->label('Users')
         ->icon('heroicon-o-users')
-        ->route('users.index')
+        ->route('users')
         ->url('/users')
         ->badge('12')
-        ->visible(true)
+        ->visible()
         ->children([
             NavigationItemSchema::make()
                 ->label('Profile')
@@ -29,7 +29,7 @@ it('sets navigation item properties', function (): void {
 
     expect($item->label())->toBe('Users')
         ->and($item->icon())->toBe('heroicon-o-users')
-        ->and($item->route())->toBe('users.index')
+        ->and($item->route())->toBe('users')
         ->and($item->url())->toBe('/users')
         ->and($item->badge())->toBe('12')
         ->and($item->isVisible())->toBeTrue()

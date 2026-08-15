@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Core;
 
 use App\Core\Source\Contracts\CreatesRecords;
+use App\Core\Source\Contracts\ReadsRecords;
 use App\Core\Source\Contracts\DeletesRecords;
 use App\Core\Source\Contracts\UpdatesRecords;
 use App\Core\Source\SourceRegistry;
@@ -41,6 +42,50 @@ final class SourceController extends Controller
 
         return response()->json([
             'data' => $result->toArray(),
+        ]);
+    }
+
+    /**
+     * Read a single source record.
+     */
+    public function show(
+        Request $request,
+        string $source,
+        string $id,
+    ): JsonResponse {
+        $resolved = $this->resolveSource(
+            $source,
+        );
+
+        if (! $resolved instanceof ReadsRecords) {
+            return response()->json(
+                [
+                    'message' => 'Source does not support read.',
+                ],
+                Response::HTTP_METHOD_NOT_ALLOWED,
+            );
+        }
+
+        $result = $resolved->read(
+            id: $id,
+            request: $this->sourceRequest($request),
+        );
+
+        $record = $result->records[0] ?? null;
+
+        if ($record === null) {
+            return response()->json(
+                [
+                    'message' => 'Source record not found.',
+                ],
+                Response::HTTP_NOT_FOUND,
+            );
+        }
+
+        return response()->json([
+            'data' => [
+                'record' => $record,
+            ],
         ]);
     }
 

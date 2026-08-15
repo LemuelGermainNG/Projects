@@ -24,7 +24,13 @@ final class ApplicationRegistry
     public function registerApplication(
         ApplicationMetadata $application,
     ): void {
-        $this->applications[$application->id()] = $application;
+        $id = $application->id();
+
+        $this->applications[$id] = $application;
+        unset(
+            $this->root[$id],
+            $this->navigation[$id],
+        );
     }
 
     public function application(

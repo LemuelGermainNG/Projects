@@ -11,12 +11,8 @@ trait HasReadonly
     protected bool|Closure $readonly = false;
 
     public function readonly(
-        bool|Closure|null $readonly = null,
-    ): bool|Closure|static {
-        if (func_num_args() === 0) {
-            return $this->readonly;
-        }
-
+        bool|Closure $readonly = true,
+    ): static {
         return $this->with(
             'readonly',
             $readonly,
@@ -25,13 +21,10 @@ trait HasReadonly
 
     public function writable(): static
     {
-        return $this->with(
-            'readonly',
-            false,
-        );
+        return $this->readonly(false);
     }
 
-    public function isReadonly(): bool
+    public function isReadonly(): bool|Closure
     {
         return $this->readonly;
     }

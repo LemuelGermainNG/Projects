@@ -21,13 +21,17 @@ final class PaginationBuilder extends Builder
         return [
             'type' => $this->type(),
 
-            'enabled' => $schema->isEnabled(),
+            'enabled' => $this->evaluate(
+                $schema->isEnabled(),
+            ),
 
             'perPage' => $schema->perPage(),
 
             'options' => $schema->options(),
 
-            'simple' => $schema->isSimple(),
+            'simple' => $this->evaluate(
+                $schema->isSimple(),
+            ),
         ];
     }
 }

@@ -11,12 +11,16 @@ trait HasClearable
     protected bool|Closure|null $clearable = null;
 
     public function clearable(
-        bool|Closure|null $clearable = null,
-    ): bool|Closure|null|static {
-        if (func_num_args() === 0) {
-            return $this->clearable;
-        }
+        bool|Closure $value = true,
+    ): static {
+        return $this->with(
+            'clearable',
+            $value,
+        );
+    }
 
-        return $this->with('clearable', $clearable);
+    public function isClearable(): bool|Closure|null
+    {
+        return $this->clearable;
     }
 }

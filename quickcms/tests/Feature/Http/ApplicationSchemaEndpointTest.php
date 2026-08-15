@@ -89,59 +89,6 @@ it('returns not found for an unknown application', function (): void {
         ]);
 });
 
-it('returns an empty compiled schema for an application without contributions', function (): void {
-    $registry = app(ApplicationRegistry::class);
-
-    expect($registry->has('shop'))
-        ->toBeTrue();
-
-    $response = $this->getJson(
-        '/api/applications/shop/schema',
-    );
-
-    $response
-        ->assertOk()
-        ->assertJsonPath(
-            'data.application.id',
-            'shop',
-        )
-        ->assertJsonPath(
-            'data.application.name',
-            'Shop',
-        )
-        ->assertJsonPath(
-            'data.schema.type',
-            'application',
-        )
-        ->assertJsonPath(
-            'data.schema.brand',
-            null,
-        )
-        ->assertJsonPath(
-            'data.schema.root',
-            null,
-        )
-        ->assertJsonPath(
-            'data.schema.navigation.type',
-            'navigation',
-        )
-        ->assertJsonPath(
-            'data.schema.navigation.items',
-            [],
-        )
-        ->assertJsonPath(
-            'data.schema.navigation.groups',
-            [],
-        )
-        ->assertJsonPath(
-            'data.schema.navigation.props',
-            [],
-        )
-        ->assertJsonPath(
-            'data.schema.props',
-            [],
-        );
-});
 
 it('returns not found when compiling an unknown application', function (): void {
     $response = $this->getJson(

@@ -10,13 +10,18 @@ trait HasHidden
 {
     protected bool|Closure $hidden = false;
 
-    public function hidden(bool|Closure $hidden = true): bool|Closure|static
-    {
-        if (func_num_args() === 0) {
-            return $this->hidden;
-        }
+    public function hidden(
+        bool|Closure $hidden = true,
+    ): static {
+        return $this->with(
+            'hidden',
+            $hidden,
+        );
+    }
 
-        return $this->with('hidden', $hidden);
+    public function isHidden(): bool|Closure
+    {
+        return $this->hidden;
     }
 
     public function visible(): static
