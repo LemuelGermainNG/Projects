@@ -8,7 +8,7 @@ export class ApiClient {
   private readonly credentials: RequestCredentials
 
   constructor(options: ApiClientOptions) {
-    this.baseUrl = options.baseUrl.replace(/\\/$/, '')
+    this.baseUrl = options.baseUrl.replace(/\/$/, '')
     this.credentials = options.credentials ?? 'include'
   }
 

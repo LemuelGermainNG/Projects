@@ -4,26 +4,15 @@ export interface RuntimeConfig {
 }
 
 function readMeta(name: string): string | null {
-  return document
-    .querySelector(`meta[name="${name}"]`)
-    ?.getAttribute('content')
-    ?.trim() || null
+  return document.querySelector(`meta[name="${name}"]`)?.getAttribute('content') ?? null
 }
 
 export function getRuntimeConfig(): RuntimeConfig {
   const apiUrl = readMeta('quickcms-api-url')
   const application = readMeta('quickcms-application')
 
-  if (!apiUrl) {
-    throw new Error('Missing meta[name="quickcms-api-url"].')
-  }
+  if (!apiUrl) throw new Error('Missing meta[name="quickcms-api-url"].')
+  if (!application) throw new Error('Missing meta[name="quickcms-application"].')
 
-  if (!application) {
-    throw new Error('Missing meta[name="quickcms-application"].')
-  }
-
-  return {
-    apiUrl: apiUrl.replace(/\\/$/, ''),
-    application,
-  }
+  return { apiUrl: apiUrl.replace(/\/$/, ''), application }
 }
