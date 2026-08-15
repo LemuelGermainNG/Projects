@@ -1,16 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@/styles/globals.css'
-import { AppProvider } from '@/app/providers/AppProvider'
-import { bootstrap } from '@/app/bootstrap'
 import App from './App'
+import { bootstrap } from '@/app/bootstrap/bootstrap'
+import { AppProvider } from '@/app/providers/AppProvider'
 
-
-const { queryClient, runtime } = bootstrap()
+const { queryClient, api } = bootstrap()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AppProvider queryClient={queryClient} runtime={runtime}>
+    <AppProvider queryClient={queryClient} api={api}>
       <App />
     </AppProvider>
   </StrictMode>,
