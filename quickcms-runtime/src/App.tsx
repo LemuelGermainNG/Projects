@@ -1,10 +1,6 @@
-export default function App() {
-  return (
-    <main className="min-h-screen bg-background p-8 text-foreground">
-      <h1 className="text-2xl font-semibold">QuickCMS Runtime</h1>
-      <p className="mt-2 text-muted-foreground">
-        Runtime foundation ready. Renderer implementation starts in Sprint 1.
-      </p>
-    </main>
-  )
+import type { RuntimeServices } from '@/app/providers/AppProvider'
+import { ApplicationRuntime } from '@/runtime/application/ApplicationRuntime'
+
+export default function App({ runtime }: { runtime: RuntimeServices }) {
+  return <ApplicationRuntime runtime={runtime} />
 }
