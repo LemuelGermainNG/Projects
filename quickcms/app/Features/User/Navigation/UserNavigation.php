@@ -20,7 +20,6 @@ final class UserNavigation implements Navigation
         return NavigationSchema::make()
             ->items([
                 NavigationItemSchema::make()
-                    ->group('management')
                     ->label('Users')
                     ->icon(Heroicons::User)
                     ->route('users')

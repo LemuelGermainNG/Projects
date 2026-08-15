@@ -13,6 +13,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
@@ -160,32 +163,124 @@ function NavigationGroup({
     }
   }, [hasActiveItem])
 
+  const visibleItems = group.items.filter(
+    (item) => item.visible !== false,
+  )
+
+  if (visibleItems.length === 0) {
+    return null
+  }
+
   return (
     <SidebarGroup>
-      <Collapsible.Root open={open} onOpenChange={setOpen}>
-        <Collapsible.Trigger
-          className="group flex h-8 w-full shrink-0 items-center justify-between rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-hidden transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0"
+      <SidebarMenu>
+        <Collapsible.Root
+          open={open}
+          onOpenChange={setOpen}
+          className="group/collapsible"
         >
-          <span className="truncate">{group.label}</span>
-          <ChevronRight className="size-4 shrink-0 transition-transform duration-200 group-data-panel-open:rotate-90" />
-        </Collapsible.Trigger>
-
-        <Collapsible.Panel className="overflow-hidden transition-[height] duration-200 data-ending-style:h-0 data-starting-style:h-0">
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {group.items.map((item) => (
-                <NavigationItem
-                  key={item.route ?? item.url ?? item.label}
-                  item={item}
-                  routeResolver={routeResolver}
-                  currentPath={currentPath}
+          <SidebarMenuItem>
+            <Collapsible.Trigger
+              render={
+                <SidebarMenuButton
+                  tooltip={group.label}
+                  className="font-medium text-sidebar-foreground/70 hover:text-sidebar-foreground"
                 />
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </Collapsible.Panel>
-      </Collapsible.Root>
+              }
+            >
+               {group.icon && <group.icon />}
+              <span className="truncate">{group.label}</span>
+              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+            </Collapsible.Trigger>
+
+            <Collapsible.Panel className="overflow-hidden transition-[height] duration-200 data-ending-style:h-0">
+              <SidebarMenuSub>
+                {visibleItems.map((item) => (
+                  <NavigationSubItem
+                    key={item.route ?? item.url ?? item.label}
+                    item={item}
+                    routeResolver={routeResolver}
+                    currentPath={currentPath}
+                  />
+                ))}
+              </SidebarMenuSub>
+            </Collapsible.Panel>
+          </SidebarMenuItem>
+        </Collapsible.Root>
+      </SidebarMenu>
     </SidebarGroup>
+  )
+}
+
+function NavigationSubItem({
+  item,
+  routeResolver,
+  currentPath,
+}: {
+  item: NavigationItem
+  routeResolver: ApplicationLayoutProps['routeResolver']
+  currentPath: string
+}) {
+  const Icon = resolveIcon(item.icon)
+  const href = routeResolver.resolveHref(
+    item.route ?? null,
+    item.url ?? null,
+  )
+
+  const isActive =
+    item.url !== null
+      ? routeResolver.isUrlActive(item.url, currentPath)
+      : item.route !== null
+        ? routeResolver.isActive(item.route, currentPath)
+        : false
+
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return
+    }
+
+    if (item.url && /^https?:\/\//i.test(item.url)) {
+      return
+    }
+
+    if (!item.route && !item.url) {
+      return
+    }
+
+    event.preventDefault()
+
+    routeResolver.navigate(
+      item.route ?? null,
+      item.url ?? null,
+    )
+  }
+
+  return (
+    <SidebarMenuSubItem>
+      <SidebarMenuSubButton
+        isActive={isActive}
+        render={
+          <a
+            href={href}
+            onClick={handleClick}
+          />
+        }
+      >
+        <Icon className="size-4 shrink-0" />
+        <span className="truncate">{item.label}</span>
+
+        {item.badge !== null && item.badge !== undefined ? (
+          <span className="ml-auto text-xs text-muted-foreground">
+            {String(item.badge)}
+          </span>
+        ) : null}
+      </SidebarMenuSubButton>
+    </SidebarMenuSubItem>
   )
 }
 
