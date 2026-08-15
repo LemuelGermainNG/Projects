@@ -1,5 +1,6 @@
-import type { MouseEvent } from 'react'
-import { User } from 'lucide-react'
+import { useEffect, useState, type MouseEvent } from 'react'
+import { Collapsible } from '@base-ui/react/collapsible'
+import { ChevronRight, User } from 'lucide-react'
 
 import {
   Sidebar,
@@ -7,7 +8,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarInset,
   SidebarMenu,
@@ -32,7 +32,10 @@ import type {
   NavigationGroup,
   NavigationItem,
 } from '@/core/application/types'
-import { normalizeNavigation, isNavigationGroup } from '@/core/navigation/normalizeNavigation'
+import {
+  isNavigationGroup,
+  normalizeNavigation,
+} from '@/core/navigation/normalizeNavigation'
 import { resolveIcon } from '@/runtime/icons/IconResolver'
 import type { ApplicationLayoutProps } from './LayoutRegistry'
 
@@ -46,7 +49,10 @@ export function SidebarLayout({
 }: ApplicationLayoutProps) {
   const navigation = normalizeNavigation(schema.navigation)
   const currentPath = route.path
-  const currentPageTitle = page?.header?.title ?? findNavigationLabel(schema, route.route) ?? route.route
+  const currentPageTitle =
+    page?.header?.title ??
+    findNavigationLabel(schema, route.route) ??
+    route.route
 
   return (
     <SidebarProvider>
@@ -65,12 +71,20 @@ export function SidebarLayout({
                 currentPath={currentPath}
               />
             ) : (
-              <NavigationItem
+              <SidebarGroup
                 key={`${entry.route ?? entry.url ?? entry.label}`}
-                item={entry}
-                routeResolver={routeResolver}
-                currentPath={currentPath}
-              />
+                className="pt-0"
+              >
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    <NavigationItem
+                      item={entry}
+                      routeResolver={routeResolver}
+                      currentPath={currentPath}
+                    />
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
             ),
           )}
         </SidebarContent>
@@ -83,7 +97,7 @@ export function SidebarLayout({
       </Sidebar>
 
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b">
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear">
           <div className="flex min-w-0 items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -126,21 +140,51 @@ function NavigationGroup({
   routeResolver: ApplicationLayoutProps['routeResolver']
   currentPath: string
 }) {
+  const hasActiveItem = group.items.some((item) => {
+    if (item.visible === false) {
+      return false
+    }
+
+    return item.url !== null
+      ? routeResolver.isUrlActive(item.url, currentPath)
+      : item.route !== null
+        ? routeResolver.isActive(item.route, currentPath)
+        : false
+  })
+
+  const [open, setOpen] = useState(hasActiveItem)
+
+  useEffect(() => {
+    if (hasActiveItem) {
+      setOpen(true)
+    }
+  }, [hasActiveItem])
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
-      <SidebarGroupContent>
-        <SidebarMenu>
-          {group.items.map((item) => (
-            <NavigationItem
-              key={item.route ?? item.url ?? item.label}
-              item={item}
-              routeResolver={routeResolver}
-              currentPath={currentPath}
-            />
-          ))}
-        </SidebarMenu>
-      </SidebarGroupContent>
+      <Collapsible.Root open={open} onOpenChange={setOpen}>
+        <Collapsible.Trigger
+          className="group flex h-8 w-full shrink-0 items-center justify-between rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-hidden transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-sidebar-ring group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0"
+        >
+          <span className="truncate">{group.label}</span>
+          <ChevronRight className="size-4 shrink-0 transition-transform duration-200 group-data-panel-open:rotate-90" />
+        </Collapsible.Trigger>
+
+        <Collapsible.Panel className="overflow-hidden transition-[height] duration-200 data-ending-style:h-0 data-starting-style:h-0">
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {group.items.map((item) => (
+                <NavigationItem
+                  key={item.route ?? item.url ?? item.label}
+                  item={item}
+                  routeResolver={routeResolver}
+                  currentPath={currentPath}
+                />
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </Collapsible.Panel>
+      </Collapsible.Root>
     </SidebarGroup>
   )
 }
@@ -154,46 +198,69 @@ function NavigationItem({
   routeResolver: ApplicationLayoutProps['routeResolver']
   currentPath: string
 }) {
-  if (item.visible === false) return null
+  if (item.visible === false) {
+    return null
+  }
 
   const Icon = resolveIcon(item.icon)
-  const href = routeResolver.resolveHref(item.route ?? null, item.url ?? null)
-  const isActive = item.route
-    ? routeResolver.isActive(item.route, currentPath)
-    : routeResolver.isUrlActive(item.url ?? null, currentPath)
+  const href = routeResolver.resolveHref(
+    item.route ?? null,
+    item.url ?? null,
+  )
+
+  const isActive =
+    item.url !== null
+      ? routeResolver.isUrlActive(item.url, currentPath)
+      : item.route !== null
+        ? routeResolver.isActive(item.route, currentPath)
+        : false
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    if (
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return
+    }
 
-    const target = item.url ?? item.route
-    if (!target) return
+    if (item.url && /^https?:\/\//i.test(item.url)) {
+      return
+    }
 
-    if (item.url && /^https?:\/\//i.test(item.url)) return
+    if (!item.route && !item.url) {
+      return
+    }
 
     event.preventDefault()
-    routeResolver.navigate(item.route ?? null, item.url ?? null)
+
+    routeResolver.navigate(
+      item.route ?? null,
+      item.url ?? null,
+    )
   }
 
   return (
     <SidebarMenuItem>
       <SidebarMenuButton
-        asChild
         isActive={isActive}
         tooltip={item.label}
+        render={
+          <a
+            href={href}
+            onClick={handleClick}
+          />
+        }
       >
-        <a
-          href={href}
-          onClick={handleClick}
-          className="flex w-full items-center gap-2"
-        >
-          <Icon className="size-4 shrink-0" />
-          <span className="truncate">{item.label}</span>
-          {item.badge !== null && item.badge !== undefined ? (
-            <span className="ml-auto text-xs text-muted-foreground">
-              {String(item.badge)}
-            </span>
-          ) : null}
-        </a>
+        <Icon className="size-4 shrink-0" />
+        <span className="truncate">{item.label}</span>
+
+        {item.badge !== null && item.badge !== undefined ? (
+          <span className="ml-auto text-xs text-muted-foreground">
+            {String(item.badge)}
+          </span>
+        ) : null}
       </SidebarMenuButton>
     </SidebarMenuItem>
   )
@@ -213,9 +280,14 @@ function ApplicationHeader({
           <div className="flex aspect-square size-8 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
             <span className="text-sm font-semibold">{initial}</span>
           </div>
+
           <div className="grid min-w-0 flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">{application.name}</span>
-            <span className="truncate text-xs">{application.path}</span>
+            <span className="truncate font-semibold">
+              {application.name}
+            </span>
+            <span className="truncate text-xs">
+              {application.path}
+            </span>
           </div>
         </SidebarMenuButton>
       </SidebarMenuItem>
@@ -235,8 +307,11 @@ function ApplicationFooter({
           <div className="flex aspect-square size-8 shrink-0 items-center justify-center rounded-lg bg-muted">
             <User className="size-4" />
           </div>
+
           <div className="grid min-w-0 flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-semibold">{application.name}</span>
+            <span className="truncate font-semibold">
+              {application.name}
+            </span>
             <span className="truncate text-xs text-muted-foreground">
               QuickCMS Runtime
             </span>
@@ -260,6 +335,7 @@ function findNavigationLabel(
           return item.label
         }
       }
+
       continue
     }
 
@@ -271,6 +347,9 @@ function findNavigationLabel(
   return null
 }
 
-function routeResolverEquivalent(left: string, right: string): boolean {
+function routeResolverEquivalent(
+  left: string,
+  right: string,
+): boolean {
   return left.replace(/\.index$/, '') === right.replace(/\.index$/, '')
 }
