@@ -1,5 +1,9 @@
 import { useEffect, useState, type MouseEvent } from 'react'
-import { Collapsible } from '@base-ui/react/collapsible'
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"
 import { ChevronRight, User } from 'lucide-react'
 
 import {
@@ -58,7 +62,12 @@ export function SidebarLayout({
     route.route
 
   return (
-    <SidebarProvider>
+    <SidebarProvider style={
+    {
+      "--sidebar-width": "13rem",
+      "--sidebar-width-mobile": "13rem",
+    } as React.CSSProperties
+  }>
       <Sidebar collapsible="icon">
         <SidebarHeader>
           <ApplicationHeader application={application} />
@@ -157,6 +166,8 @@ function NavigationGroup({
 
   const [open, setOpen] = useState(hasActiveItem)
 
+  const Icon = resolveIcon(group.icon)
+
   useEffect(() => {
     if (hasActiveItem) {
       setOpen(true)
@@ -174,26 +185,26 @@ function NavigationGroup({
   return (
     <SidebarGroup>
       <SidebarMenu>
-        <Collapsible.Root
+        <Collapsible
           open={open}
           onOpenChange={setOpen}
           className="group/collapsible"
         >
           <SidebarMenuItem>
-            <Collapsible.Trigger
+            <CollapsibleTrigger
               render={
                 <SidebarMenuButton
                   tooltip={group.label}
-                  className="font-medium text-sidebar-foreground/70 hover:text-sidebar-foreground"
                 />
               }
             >
-               {group.icon && <group.icon />}
+              <Icon className="size-4 shrink-0" />
               <span className="truncate">{group.label}</span>
               <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-            </Collapsible.Trigger>
+            </CollapsibleTrigger>
 
-            <Collapsible.Panel className="overflow-hidden transition-[height] duration-200 data-ending-style:h-0">
+
+            <CollapsibleContent className="overflow-hidden transition-[height] duration-200 data-ending-style:h-0">
               <SidebarMenuSub>
                 {visibleItems.map((item) => (
                   <NavigationSubItem
@@ -204,9 +215,9 @@ function NavigationGroup({
                   />
                 ))}
               </SidebarMenuSub>
-            </Collapsible.Panel>
+            </CollapsibleContent>
           </SidebarMenuItem>
-        </Collapsible.Root>
+        </Collapsible>
       </SidebarMenu>
     </SidebarGroup>
   )

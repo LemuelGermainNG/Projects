@@ -23,7 +23,7 @@ final class UserNavigation implements Navigation
                     ->label('Users')
                     ->icon(Heroicons::User)
                     ->route('users')
-                    ->sort(10),
+                    ->sort(50),
             ]);
     }
 
