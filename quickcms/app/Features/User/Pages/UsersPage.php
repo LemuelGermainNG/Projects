@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Features\User\Pages;
 
-use App\Core\Runtime\Contracts\Page;
+use App\Core\Page\Contracts\Page;
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Page\PageSchema;
 use App\Core\Schema\Widget\Table\TableWidgetSchema;

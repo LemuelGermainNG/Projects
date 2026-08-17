@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Applications\Admin\Navigation\AdminNavigation;
 use App\Core\Application\Application;
-use App\Core\Runtime\Navigation\NavigationRegistry;
+use App\Core\Navigation\NavigationRegistry;
 use App\Core\Schema\Navigation\NavigationSchema;
 use App\Features\User\Navigation\UserNavigation;
 
@@ -27,7 +27,7 @@ it('merges navigation items from all providers', function (): void {
         ->toBeInstanceOf(NavigationSchema::class);
 
     expect($schema->items())
-        ->toHaveCount(4);
+        ->toHaveCount(5);
 
     expect($schema->items()[0]->route())
         ->toBe('dashboard');

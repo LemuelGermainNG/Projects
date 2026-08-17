@@ -13,7 +13,7 @@ use App\Applications\Admin\Pages\PostsPage;
 use App\Applications\Admin\Pages\RolesPage;
 use App\Applications\Admin\Pages\SettingsPage;
 use App\Applications\Admin\Pages\TeamsPage;
-use App\Core\Runtime\Contracts\Navigation;
+use App\Core\Navigation\Contracts\Navigation;
 use App\Core\Schema\Navigation\NavigationGroupSchema;
 use App\Core\Schema\Navigation\NavigationItemSchema;
 use App\Core\Schema\Navigation\NavigationSchema;

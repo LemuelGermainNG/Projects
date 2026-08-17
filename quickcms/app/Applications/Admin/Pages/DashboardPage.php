@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Applications\Admin\Pages;
 
-use App\Core\Runtime\Contracts\Page;
+use App\Core\Page\Contracts\Page;
 use App\Core\Schema\Dashboard\DashboardSchema;
 use App\Core\Schema\Dashboard\Layout\DashboardColumnSchema;
 use App\Core\Schema\Dashboard\Layout\DashboardLayoutSchema;

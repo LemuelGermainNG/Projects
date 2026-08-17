@@ -3,7 +3,7 @@
 namespace Tests\Support\Pages;
 
 
-use App\Core\Runtime\Contracts\Page;
+use App\Core\Page\Contracts\Page;
 use App\Core\Schema\Page\PageSchema;
 use Override;
 

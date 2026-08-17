@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Application;
 
-use App\Core\Runtime\Navigation\NavigationRegistry;
+use App\Core\Navigation\NavigationRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
 use RuntimeException;
 

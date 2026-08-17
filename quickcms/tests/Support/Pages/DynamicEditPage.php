@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Support\Pages;
 
-use App\Core\Runtime\Contracts\Page;
+use App\Core\Page\Contracts\Page;
 use App\Core\Schema\Page\PageSchema;
 
 final class DynamicEditPage implements Page

@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Core\Application\ApplicationBuilder;
 use App\Core\Application\ApplicationMetadata;
 use App\Core\Application\ApplicationRegistry;
-use App\Core\Runtime\Navigation\NavigationRegistry;
+use App\Core\Navigation\NavigationRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
 use Tests\Fixtures\Navigation\NavigationProvider;

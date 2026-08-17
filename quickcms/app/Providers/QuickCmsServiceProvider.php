@@ -8,7 +8,7 @@ use App\Core\Application\ApplicationDiscovery;
 use App\Core\Application\ApplicationManager;
 use App\Core\Application\ApplicationRegistry;
 use App\Core\Feature\FeatureDiscovery;
-use App\Core\Runtime\Navigation\NavigationRegistry;
+use App\Core\Navigation\NavigationRegistry;
 use Illuminate\Support\ServiceProvider;
 
 final class QuickCmsServiceProvider extends ServiceProvider

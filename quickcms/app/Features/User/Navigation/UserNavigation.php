@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Features\User\Navigation;
 
-use App\Core\Runtime\Contracts\Navigation;
+use App\Core\Navigation\Contracts\Navigation;
 use App\Core\Schema\Navigation\NavigationItemSchema;
 use App\Core\Schema\Navigation\NavigationSchema;
 use App\Core\Support\Enum\Icons\Heroicons;

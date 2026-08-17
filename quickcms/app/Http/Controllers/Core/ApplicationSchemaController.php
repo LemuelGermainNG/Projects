@@ -6,7 +6,7 @@ namespace App\Http\Controllers\Core;
 
 use App\Core\Application\Application;
 use App\Core\Builder\BuilderRegistry;
-use App\Core\Runtime\Navigation\NavigationRegistry;
+use App\Core\Navigation\NavigationRegistry;
 use App\Core\Schema\Application\ApplicationSchema;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

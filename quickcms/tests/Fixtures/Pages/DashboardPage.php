@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Fixtures\Pages;
 
-use App\Core\Runtime\Contracts\Page;
+use App\Core\Page\Contracts\Page;
 use App\Core\Schema\Header\HeaderSchema;
 use App\Core\Schema\Layout\Accordion\AccordionItemSchema;
 use App\Core\Schema\Layout\Accordion\AccordionSchema;

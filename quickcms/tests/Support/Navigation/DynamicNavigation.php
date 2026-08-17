@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Support\Navigation;
 
-use App\Core\Runtime\Contracts\Navigation;
+use App\Core\Navigation\Contracts\Navigation;
 use App\Core\Schema\Navigation\NavigationSchema;
 use Tests\Support\Pages\DynamicPage;
 use Tests\Support\Pages\DynamicEditPage;

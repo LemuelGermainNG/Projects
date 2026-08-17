@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Features\User\Pages;
 
-use App\Core\Runtime\Contracts\Page;
+use App\Core\Page\Contracts\Page;
 use App\Core\Schema\Action\Actions\CancelAction;
 use App\Core\Schema\Action\Actions\SaveAction;
 use App\Core\Schema\Form\Field\FieldSchema;
